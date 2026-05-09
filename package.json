@@ -10,6 +10,8 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/src/cli.js",
     "demo": "npm run build && node dist/src/cli.js check --profile beginner",
+    "issue:daily": "npm run build && node dist/scripts/createDailyIssue.js --dry-run",
+    "issue:create": "npm run build && node dist/scripts/createDailyIssue.js",
     "test": "npm run build && node dist/tests/smoke.test.js",
     "check": "npm run build && npm test && npm run demo"
   },

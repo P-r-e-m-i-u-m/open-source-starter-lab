@@ -87,6 +87,12 @@ See [docs/MAINTAINER_PLAYBOOK.md](docs/MAINTAINER_PLAYBOOK.md).
 Want to invite contributors? Use the copy-ready messages in
 [docs/COMMUNITY_LAUNCH_KIT.md](docs/COMMUNITY_LAUNCH_KIT.md).
 
+## Daily Issue Bot
+
+This repo includes a transparent automation that creates one beginner-friendly starter issue per day from a curated backlog.
+
+Read the bot docs: [docs/DAILY_ISSUE_BOT.md](docs/DAILY_ISSUE_BOT.md).
+
 ## Community Standard
 
 Be clear, kind, and useful. Short answers are fine when they solve the problem, but the best answers teach the next person too.

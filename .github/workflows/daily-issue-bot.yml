@@ -1,0 +1,33 @@
+name: Daily Issue Bot
+
+on:
+  schedule:
+    - cron: "30 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  create-daily-issue:
+    name: Create Daily Starter Issue
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Create issue
+        run: npm run issue:create
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
