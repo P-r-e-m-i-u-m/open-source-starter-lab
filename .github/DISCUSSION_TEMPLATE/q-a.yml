@@ -1,0 +1,18 @@
+title: "[Q&A] "
+labels: ["question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What are you trying to do?
+      placeholder: I am trying to push my first project to GitHub...
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: What did you try?
+      placeholder: I ran git init and git push, but...
+    validations:
+      required: false

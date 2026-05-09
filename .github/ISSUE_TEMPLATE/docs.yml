@@ -1,0 +1,19 @@
+name: Documentation improvement
+description: Improve guides, examples, or wording.
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is confusing?
+      placeholder: This section is hard for beginners because...
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested improvement
+      placeholder: Add an example that shows...
+    validations:
+      required: true

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Ask a beginner question
+    url: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions
+    about: Use Discussions for Git, GitHub, and first PR questions.
