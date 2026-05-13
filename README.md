@@ -44,6 +44,7 @@ Start with one of these:
 - Add a common Git/GitHub error and its fix.
 - Add your contributor card in `contributors/`.
 - Answer a beginner question in Discussions.
+- Learn how to fix a rejected push: [GIT_PUSH_REJECTED.md](docs/GIT_PUSH_REJECTED.md)
 
 Good first issues are listed here:
 [good first issue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
