@@ -20,6 +20,7 @@ npm test
 npm run demo
 npm run check
 ```
+Before you begin, check the [First Contribution Checklist](docs/FIRST_CONTRIBUTION_CHECKLIST.md).
 
 ## Pull Request Checklist
 
