@@ -24,6 +24,7 @@ If you are new here, start with [docs/START_HERE.md](docs/START_HERE.md).
 | Add your first merge | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
 | Learn maintainer habits | [Maintainer playbook](docs/MAINTAINER_PLAYBOOK.md) |
 | Share this with beginners | [Community discovery kit](docs/COMMUNITY_DISCOVERY_KIT.md) |
+| Reply in GitHub Community | [GitHub Community reply pack](docs/GITHUB_COMMUNITY_REPLY_PACK.md) |
 
 ## Why This Repo Exists
 
