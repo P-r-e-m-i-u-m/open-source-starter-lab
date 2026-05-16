@@ -21,6 +21,7 @@ It has:
 - CI checks
 - a First Merge Wall
 - a Discussion where you can introduce yourself and get an issue suggestion
+- skill-based first issues for HTML/CSS, JavaScript, Python, docs, testing, and Git
 
 Repo:
 https://github.com/P-r-e-m-i-u-m/open-source-starter-lab
@@ -37,7 +38,7 @@ https://github.com/P-r-e-m-i-u-m/open-source-starter-lab
 
 It is built for first pull requests and first open-source contributions. You can introduce yourself here and ask which issue fits your skills:
 
-https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/26
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35
 ```
 
 ## DEV / Hashnode Post Idea

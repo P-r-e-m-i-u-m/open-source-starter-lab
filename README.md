@@ -18,8 +18,9 @@ If you are new here, start with [docs/START_HERE.md](docs/START_HERE.md).
 | --- | --- |
 | Make my first pull request | [First PR guide](docs/FIRST_PULL_REQUEST.md) |
 | Find a small task | [Good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) |
+| Pick by your skill | [Skill-based first issues](docs/SKILL_BASED_FIRST_ISSUES.md) |
 | Practice real code changes | [CLI docs](docs/CLI.md) and issues labeled `cli` |
-| Ask which issue to take | [Introduce yourself](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/26) |
+| Ask which issue to take | [Tell me your skill](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35) |
 | Add your first merge | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
 | Learn maintainer habits | [Maintainer playbook](docs/MAINTAINER_PLAYBOOK.md) |
 | Share this with beginners | [Community discovery kit](docs/COMMUNITY_DISCOVERY_KIT.md) |
@@ -90,6 +91,19 @@ Use these filtered searches:
 - [Unassigned issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee)
 
 If you want to work on something, comment on the issue first so nobody duplicates your effort.
+
+## Pick By Skill
+
+Choose the route that matches what you already know:
+
+- [HTML/CSS first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+html-css%22)
+- [JavaScript first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+javascript%22)
+- [Python beginner issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+python%22)
+- [Docs first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+docs%22)
+- [Testing first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+testing%22)
+- [Git beginner issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+git%22)
+
+Not sure? Ask here: [Tell me your skill and I'll suggest your first issue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35).
 
 ## No-Shame Git Help
 

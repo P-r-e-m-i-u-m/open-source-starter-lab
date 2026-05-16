@@ -57,6 +57,11 @@ More useful searches:
 - CLI coding issues: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3Acli
 - Unassigned issues: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee
 
+You can also pick by skill:
+
+- Skill-based first issues: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/SKILL_BASED_FIRST_ISSUES.md
+- Tell me your skill: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35
+
 ## What A Good PR Looks Like
 
 A strong first PR is small and easy to review.

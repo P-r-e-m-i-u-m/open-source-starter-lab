@@ -1,0 +1,35 @@
+title: "[Skill Match] "
+labels: ["question", "good first issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tell us what you know, and a maintainer can suggest your first issue.
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Main skill
+      options:
+        - HTML/CSS
+        - JavaScript/TypeScript
+        - Python
+        - Docs/writing
+        - Testing
+        - Git/GitHub
+        - Not sure yet
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What do you want to practice?
+      placeholder: I want to make my first pull request and learn how review works.
+    validations:
+      required: true
+  - type: textarea
+    id: blocker
+    attributes:
+      label: What feels confusing?
+      placeholder: Choosing an issue, setup, branches, pushing, CI, or reviews.
+    validations:
+      required: false
