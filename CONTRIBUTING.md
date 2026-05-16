@@ -6,11 +6,12 @@ Thanks for helping improve Open Source Starter Lab.
 
 1. Read [docs/START_HERE.md](docs/START_HERE.md).
 2. Find an issue labeled `good first issue`.
-3. Comment that you want to work on it.
+3. Comment that you want to work on it, or introduce yourself in Discussions if you need help choosing.
 4. Create a branch.
 5. Make one focused change.
 6. Run `npm run check`.
 7. Open a pull request and include your test result.
+8. After your PR is merged, add yourself to [docs/FIRST_MERGE_WALL.md](docs/FIRST_MERGE_WALL.md).
 
 ## Commands
 

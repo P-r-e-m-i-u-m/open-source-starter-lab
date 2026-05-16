@@ -1,12 +1,14 @@
 # Open Source Starter Lab
 
-> A friendly practice repo for learning Git, GitHub, issues, pull requests, reviews, CI, and maintainer communication.
+> A beginner GitHub project for making your first pull request, first open-source contribution, good first issue, and first clean merge.
 
 [![CI](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/ci.yml)
 [![Good First Issues](https://img.shields.io/github/issues/P-r-e-m-i-u-m/open-source-starter-lab/good%20first%20issue?label=good%20first%20issues)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 [![License: MIT](https://img.shields.io/badge/license-MIT-0f172a.svg)](LICENSE)
 
 Most beginner repos say "make your first PR" and stop there. This lab gives contributors small tasks, clear acceptance criteria, copy-paste commands, CI checks, and a safe place to ask questions.
+
+If you searched for **first pull request**, **first open source contribution**, **good first issue**, **beginner GitHub project**, or **how to contribute to open source**, this repo is built for you.
 
 If you are new here, start with [docs/START_HERE.md](docs/START_HERE.md).
 
@@ -17,7 +19,8 @@ If you are new here, start with [docs/START_HERE.md](docs/START_HERE.md).
 | Make my first pull request | [First PR guide](docs/FIRST_PULL_REQUEST.md) |
 | Find a small task | [Good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) |
 | Practice real code changes | [CLI docs](docs/CLI.md) and issues labeled `cli` |
-| Ask a GitHub question | [Discussions](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions) |
+| Ask which issue to take | [Introduce yourself](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/26) |
+| Add your first merge | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
 | Learn maintainer habits | [Maintainer playbook](docs/MAINTAINER_PLAYBOOK.md) |
 
 ## Why This Repo Exists
@@ -34,6 +37,7 @@ Open source is hard because the first steps are social and technical at the same
 
 - Open your first issue.
 - Make your first pull request.
+- Make your first open-source contribution.
 - Improve docs, examples, and beginner guides.
 - Practice Git commands in a real workflow.
 - Ask questions in Discussions.
@@ -69,6 +73,7 @@ Start with one of these:
 - Improve one daily starter issue idea.
 - Answer a beginner question in Discussions.
 - Learn how to fix a rejected push: [GIT_PUSH_REJECTED.md](docs/GIT_PUSH_REJECTED.md)
+- Add yourself after a merge: [FIRST_MERGE_WALL.md](docs/FIRST_MERGE_WALL.md)
 
 Good first issues are listed here:
 [good first issue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
@@ -100,6 +105,8 @@ If you want to work on something, comment on the issue first so nobody duplicate
 ## For Contributors
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md), pick one small issue, and comment before starting if you want it assigned. If you are not sure where to begin, use [docs/START_HERE.md](docs/START_HERE.md).
+
+New to open source? [Introduce yourself](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/26) with what you know, such as HTML, CSS, JavaScript, Python, TypeScript, docs, or testing. A maintainer can suggest a good first issue.
 
 A good pull request includes:
 
