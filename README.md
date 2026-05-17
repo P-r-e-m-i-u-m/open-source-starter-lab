@@ -18,6 +18,7 @@ If you are new here, start with [docs/START_HERE.md](docs/START_HERE.md).
 | --- | --- |
 | Make my first pull request | [First PR guide](docs/FIRST_PULL_REQUEST.md) |
 | Find a small task | [Good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) |
+| Choose the right first issue | [Choosing your first issue](docs/CHOOSING_FIRST_ISSUE.md) |
 | Pick by your skill | [Skill-based first issues](docs/SKILL_BASED_FIRST_ISSUES.md) |
 | Practice real code changes | [CLI docs](docs/CLI.md) and issues labeled `cli` |
 | Ask which issue to take | [Tell me your skill](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35) |
@@ -75,6 +76,7 @@ Start with one of these:
 - Add or improve one CLI smoke test.
 - Improve one daily starter issue idea.
 - Answer a beginner question in Discussions.
+- Learn how to choose a finishable task: [CHOOSING_FIRST_ISSUE.md](docs/CHOOSING_FIRST_ISSUE.md)
 - Learn how to fix a rejected push: [GIT_PUSH_REJECTED.md](docs/GIT_PUSH_REJECTED.md)
 - Add yourself after a merge: [FIRST_MERGE_WALL.md](docs/FIRST_MERGE_WALL.md)
 
