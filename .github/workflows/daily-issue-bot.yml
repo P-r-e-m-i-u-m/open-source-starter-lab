@@ -30,4 +30,4 @@ jobs:
       - name: Create issue
         run: npm run issue:create
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MAINTAINER_TOKEN }}
