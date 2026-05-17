@@ -1,0 +1,52 @@
+name: Contributor Proof After Merge
+
+on:
+  pull_request:
+    types:
+      - closed
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: read
+
+jobs:
+  contributor-proof:
+    name: Update Wall And Thank Contributor
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          token: ${{ github.token }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Update contributor proof
+        run: npm run pr:after-merge
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MAINTAINER_TOKEN: ${{ secrets.MAINTAINER_TOKEN }}
+
+      - name: Commit First Merge Wall update
+        run: |
+          if git diff --quiet -- docs/FIRST_MERGE_WALL.md; then
+            echo "No First Merge Wall change needed."
+            exit 0
+          fi
+
+          git config user.name "P-r-e-m-i-u-m"
+          git config user.email "actions@github.com"
+          git add docs/FIRST_MERGE_WALL.md
+          git commit -m "docs: add contributor to first merge wall"
+          git push

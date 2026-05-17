@@ -12,6 +12,8 @@
     "demo": "npm run build && node dist/src/cli.js check --profile beginner",
     "issue:daily": "npm run build && node dist/scripts/createDailyIssue.js --dry-run",
     "issue:create": "npm run build && node dist/scripts/createDailyIssue.js",
+    "pr:after-merge": "npm run build && node dist/scripts/afterMergeContributorProof.js",
+    "pr:after-merge:dry-run": "npm run build && node dist/scripts/afterMergeContributorProof.js --dry-run",
     "test": "npm run build && node dist/tests/smoke.test.js",
     "check": "npm run build && npm test && npm run demo"
   },
