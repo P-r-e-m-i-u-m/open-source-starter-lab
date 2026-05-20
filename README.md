@@ -12,7 +12,7 @@ If you searched for **first pull request**, **first open source contribution**, 
 
 If you are new here, start with [docs/START_HERE.md](docs/START_HERE.md).
 
-Want an issue assigned? Comment in the weekly thread: [Get assigned your first issue this week](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/42).
+Want an issue assigned? Comment in the weekly thread: [Get assigned your first issue this week](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44).
 
 ## Pick Your Path
 
@@ -26,7 +26,7 @@ Want an issue assigned? Comment in the weekly thread: [Get assigned your first i
 | Move after your first merge | [Contributor progress path](docs/CONTRIBUTOR_PROGRESS_PATH.md) |
 | Practice real code changes | [CLI docs](docs/CLI.md) and issues labeled `cli` |
 | Ask which issue to take | [Tell me your skill](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35) |
-| Get assigned this week | [Weekly assignment thread](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/42) |
+| Get assigned this week | [Weekly assignment thread](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
 | Join weekly help | [Weekly help thread](docs/WEEKLY_HELP_THREAD.md) |
 | Add your first merge | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
 | Learn maintainer habits | [Maintainer playbook](docs/MAINTAINER_PLAYBOOK.md) |

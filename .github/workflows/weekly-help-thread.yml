@@ -31,4 +31,3 @@ jobs:
         run: npm run discussion:weekly-help
         env:
           MAINTAINER_TOKEN: ${{ secrets.MAINTAINER_TOKEN }}
-          GITHUB_TOKEN: ${{ github.token }}

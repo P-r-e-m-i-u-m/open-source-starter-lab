@@ -44,8 +44,8 @@ function formatBody(issue: DailyIssue): string {
     ...issue.helpfulNotes.map((note) => `- ${note}`),
     "",
     "---",
-    "If you are not sure this fits you, reply in Discussion #42 with your skill:",
-    "https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/42",
+    "If you are not sure this fits you, reply in Discussion #44 with your skill:",
+    "https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44",
     "",
     "Created from a curated maintainer backlog. A maintainer should still review scope before assigning."
   ].join("\n");

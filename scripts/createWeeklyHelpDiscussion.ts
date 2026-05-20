@@ -188,45 +188,34 @@ async function main(): Promise<void> {
   }
 
   const repository = requireEnv("GITHUB_REPOSITORY");
-  const tokens = [process.env.MAINTAINER_TOKEN, process.env.GITHUB_TOKEN].filter(Boolean) as string[];
+  const token = process.env.MAINTAINER_TOKEN;
   const [owner, repo] = repository.split("/");
 
-  if (!tokens.length) {
-    throw new Error("Missing GITHUB_TOKEN or MAINTAINER_TOKEN.");
+  if (!token) {
+    throw new Error("Missing MAINTAINER_TOKEN. Weekly Discussions should be created by the maintainer account, not github-actions.");
   }
 
   if (!owner || !repo) {
     throw new Error(`Invalid GITHUB_REPOSITORY value: ${repository}`);
   }
 
-  let lastError: unknown;
-  for (const token of tokens) {
-    try {
-      const data = await getRepositoryData(owner, repo, token);
-      const category =
-        data.repository.discussionCategories.nodes.find((node) => node.slug === "q-a") ??
-        data.repository.discussionCategories.nodes.find((node) => node.name.toLowerCase() === "q&a");
+  const data = await getRepositoryData(owner, repo, token);
+  const category =
+    data.repository.discussionCategories.nodes.find((node) => node.slug === "q-a") ??
+    data.repository.discussionCategories.nodes.find((node) => node.name.toLowerCase() === "q&a");
 
-      if (!category) {
-        throw new Error("Could not find the Q&A discussion category.");
-      }
-
-      const existing = data.repository.discussions.nodes.find((discussion) => discussion.title === title);
-      if (existing) {
-        console.log(`Weekly help discussion already exists: ${existing.url}`);
-        return;
-      }
-
-      const discussion = await createDiscussion(data.repository.id, category.id, title, body, token);
-      console.log(`Created weekly help discussion: ${discussion.url}`);
-      return;
-    } catch (error: unknown) {
-      lastError = error;
-      console.warn(error instanceof Error ? error.message : error);
-    }
+  if (!category) {
+    throw new Error("Could not find the Q&A discussion category.");
   }
 
-  throw lastError instanceof Error ? lastError : new Error("Could not create weekly help discussion.");
+  const existing = data.repository.discussions.nodes.find((discussion) => discussion.title === title);
+  if (existing) {
+    console.log(`Weekly help discussion already exists: ${existing.url}`);
+    return;
+  }
+
+  const discussion = await createDiscussion(data.repository.id, category.id, title, body, token);
+  console.log(`Created weekly help discussion: ${discussion.url}`);
 }
 
 main().catch((error: unknown) => {

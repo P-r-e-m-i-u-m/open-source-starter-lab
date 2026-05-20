@@ -1,5 +1,5 @@
 const apiBase = "https://api.github.com";
-const weeklyDiscussionUrl = "https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/42";
+const weeklyDiscussionUrl = "https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44";
 const botMarker = "<!-- oss-lab-assignment-helper -->";
 
 interface GitHubUser {
