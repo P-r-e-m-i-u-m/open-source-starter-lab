@@ -186,8 +186,12 @@ async function main(): Promise<void> {
   }
 
   const repository = requireEnv("GITHUB_REPOSITORY");
-  const token = process.env.MAINTAINER_TOKEN || requireEnv("GITHUB_TOKEN");
+  const token = process.env.GITHUB_TOKEN || process.env.MAINTAINER_TOKEN;
   const [owner, repo] = repository.split("/");
+
+  if (!token) {
+    throw new Error("Missing GITHUB_TOKEN or MAINTAINER_TOKEN.");
+  }
 
   if (!owner || !repo) {
     throw new Error(`Invalid GITHUB_REPOSITORY value: ${repository}`);
