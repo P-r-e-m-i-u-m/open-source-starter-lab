@@ -21,6 +21,7 @@ If you are new here, start with [docs/START_HERE.md](docs/START_HERE.md).
 | Choose the right first issue | [Choosing your first issue](docs/CHOOSING_FIRST_ISSUE.md) |
 | Find an issue by skill and time | [First Issue Fit Finder](docs/FIRST_ISSUE_FIT_FINDER.md) |
 | Pick by your skill | [Skill-based first issues](docs/SKILL_BASED_FIRST_ISSUES.md) |
+| Move after your first merge | [Contributor progress path](docs/CONTRIBUTOR_PROGRESS_PATH.md) |
 | Practice real code changes | [CLI docs](docs/CLI.md) and issues labeled `cli` |
 | Ask which issue to take | [Tell me your skill](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35) |
 | Join weekly help | [Weekly help thread](docs/WEEKLY_HELP_THREAD.md) |
@@ -66,6 +67,7 @@ npm run build
 node dist/src/cli.js check --profile beginner
 node dist/src/cli.js issues
 node dist/src/cli.js fit --skill docs --time 30m
+node dist/src/cli.js next --level second-pr
 ```
 
 ## Best First Contributions

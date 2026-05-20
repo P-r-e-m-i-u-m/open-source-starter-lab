@@ -2,6 +2,8 @@
 
 This repo is designed so contributors can grow from first PR to maintainer-style work.
 
+For the command-line version, see [Contributor Progress Path](CONTRIBUTOR_PROGRESS_PATH.md).
+
 ## Level 1: First PR
 
 Good tasks:

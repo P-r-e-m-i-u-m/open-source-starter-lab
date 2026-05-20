@@ -2,6 +2,7 @@
 import { buildChecklist, type StarterProfile } from "./checklist.js";
 import { findIssueFit } from "./issueFitFinder.js";
 import { issueIdeas } from "./issueIdeas.js";
+import { getProgressionStep, normalizeContributorLevel } from "./progressionPath.js";
 
 function readFlag(name: string): string | undefined {
   const index = process.argv.indexOf(name);
@@ -53,6 +54,26 @@ function printIssueFit(): void {
   console.log(fit.commentTemplate);
 }
 
+function printNextStep(): void {
+  const level = normalizeContributorLevel(readFlag("--level") ?? "first-pr");
+  const step = getProgressionStep(level);
+
+  console.log("Contributor Progression Path\n");
+  console.log(`${step.title}`);
+  console.log(`Goal: ${step.goal}`);
+  console.log(`First command: ${step.firstCommand}`);
+  console.log(`Labels to look for: ${step.labels.join(", ")}`);
+  console.log("\nGood tasks:");
+  for (const task of step.goodTasks) {
+    console.log(`- ${task}`);
+  }
+  console.log("\nProof to show:");
+  for (const proof of step.proof) {
+    console.log(`- ${proof}`);
+  }
+  console.log(`\nNext move: ${step.nextMove}`);
+}
+
 function main(): void {
   const command = process.argv[2] ?? "check";
 
@@ -75,12 +96,18 @@ function main(): void {
     return;
   }
 
+  if (command === "next") {
+    printNextStep();
+    return;
+  }
+
   if (command === "help" || command === "--help" || command === "-h") {
     console.log("Usage:");
     console.log("  oss-lab check --profile beginner");
     console.log("  oss-lab check --profile maintainer");
     console.log("  oss-lab issues");
     console.log("  oss-lab fit --skill docs --time 30m");
+    console.log("  oss-lab next --level second-pr");
     return;
   }
 

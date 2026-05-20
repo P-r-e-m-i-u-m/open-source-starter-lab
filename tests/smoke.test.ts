@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { buildChecklist } from "../src/checklist.js";
 import { findIssueFit } from "../src/issueFitFinder.js";
 import { issueIdeas } from "../src/issueIdeas.js";
+import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
 
 const beginner = buildChecklist("beginner");
 assert.equal(beginner.profile, "beginner");
@@ -24,5 +25,13 @@ assert.ok(docsFit.commentTemplate.includes("Please assign this to me"));
 const jsFit = findIssueFit("ts", "1h");
 assert.equal(jsFit.skill, "javascript");
 assert.ok(jsFit.proofChecklist.some((item) => item.includes("full project check")));
+
+const progressionSteps = listProgressionSteps();
+assert.equal(progressionSteps.length, 5);
+assert.equal(normalizeContributorLevel("second pr"), "second-pr");
+
+const maintainerShadow = getProgressionStep("maintainer-shadow");
+assert.ok(maintainerShadow.labels.includes("maintainer shadow"));
+assert.ok(maintainerShadow.proof.some((item) => item.includes("before/after")));
 
 console.log("Smoke tests passed.");
