@@ -22,7 +22,7 @@ Good for people who know JavaScript or want to start reading TypeScript.
 
 ## Python
 
-Good for people who know Python first and want to learn GitHub contribution workflow.
+Good for people who know Python and want to learn GitHub contribution workflow.
 
 - [Python beginner issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+python%22)
 - Start with: docs that explain how Python learners can contribute to a TypeScript repo.
