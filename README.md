@@ -22,6 +22,7 @@ If you are new here, start with [docs/START_HERE.md](docs/START_HERE.md).
 | Pick by your skill | [Skill-based first issues](docs/SKILL_BASED_FIRST_ISSUES.md) |
 | Practice real code changes | [CLI docs](docs/CLI.md) and issues labeled `cli` |
 | Ask which issue to take | [Tell me your skill](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35) |
+| Join weekly help | [Weekly help thread](docs/WEEKLY_HELP_THREAD.md) |
 | Add your first merge | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
 | Learn maintainer habits | [Maintainer playbook](docs/MAINTAINER_PLAYBOOK.md) |
 | Share this with beginners | [Community discovery kit](docs/COMMUNITY_DISCOVERY_KIT.md) |
@@ -110,7 +111,7 @@ Not sure? Ask here: [Tell me your skill and I'll suggest your first issue](https
 
 ## No-Shame Git Help
 
-If you are stuck on Git, GitHub, branches, pull requests, or CI, ask in [Discussions](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/26) or the [weekly first PR help thread](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/27). Beginner questions are welcome here.
+If you are stuck on Git, GitHub, branches, pull requests, or CI, ask in [Discussions](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/26) or the [weekly help thread](docs/WEEKLY_HELP_THREAD.md). Beginner questions are welcome here.
 
 Good questions include:
 
