@@ -4,16 +4,20 @@ Welcome. This repo is for practicing open source in a real GitHub workflow witho
 
 If you searched for first pull request, first open-source contribution, good first issue, beginner GitHub project, or how to contribute to open source, start here.
 
-## The 10 Minute Tour
+---
 
-1. Read this page.
-2. Run the project locally.
-3. Pick one small issue.
-4. Comment on the issue before starting.
-5. Open a focused pull request with your test result.
-6. Add yourself to the First Merge Wall after your PR is merged.
+# The 10 Minute Tour
 
-## Run The Project
+- [ ] Read this page
+- [ ] Run the project locally
+- [ ] Pick one small issue
+- [ ] Comment on the issue before starting
+- [ ] Open a focused pull request with your test result
+- [ ] Add yourself to the First Merge Wall after your PR is merged
+
+---
+
+# Run The Project
 
 ```bash
 git clone https://github.com/P-r-e-m-i-u-m/open-source-starter-lab.git
@@ -22,25 +26,39 @@ npm install
 npm run check
 ```
 
-If `npm run check` passes, you are ready to make a change.
+> If `npm run check` passes, you are ready to make a change.
 
-## Choose A First Task
+---
 
-Use this order:
+# Choose A First Task
 
-1. Pick an issue labeled `good first issue`.
-2. Prefer docs, examples, or one small CLI test for your first PR.
-3. Avoid broad rewrites for your first contribution.
-4. Comment with a short note like: `I would like to work on this.`
+## Recommended Order
 
-Good first issues are here:
-https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
+1. Pick an issue labeled `good first issue`
+2. Prefer docs, examples, or one small CLI test for your first PR
+3. Avoid broad rewrites for your first contribution
+4. Comment with a short note like:
 
-If you are not sure which issue fits you, open the Introduce Yourself Discussion and write:
+```text
+I would like to work on this.
+```
 
-https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/26
+---
 
-```md
+## Good First Issues
+
+- Beginner issues:
+  https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
+
+---
+
+# Not Sure Which Issue Fits You?
+
+Open the Introduce Yourself Discussion and write:
+
+```text
+#26
+
 Hi, I am new to open source.
 
 I know: HTML, CSS, JavaScript, Python, TypeScript, docs, or testing.
@@ -48,25 +66,46 @@ I know: HTML, CSS, JavaScript, Python, TypeScript, docs, or testing.
 I want to make my first pull request. Which issue should I take?
 ```
 
-If Git itself is confusing, that is okay. Ask anyway. This repo is meant to be a no-shame place for beginner GitHub questions.
+> If Git itself is confusing, that is okay. Ask anyway. This repo is meant to be a no-shame place for beginner GitHub questions.
 
-More useful searches:
+---
 
-- Beginner friendly issues: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22beginner+friendly%22
-- Help wanted issues: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
-- CLI coding issues: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3Acli
-- Unassigned issues: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee
+# More Useful Searches
 
-You can also pick by skill:
+## Beginner Friendly Issues
 
-- Skill-based first issues: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/SKILL_BASED_FIRST_ISSUES.md
-- Tell me your skill: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22beginner+friendly%22
 
-## What A Good PR Looks Like
+## Help Wanted Issues
+
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
+
+## CLI Coding Issues
+
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3Acli
+
+## Unassigned Issues
+
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee
+
+---
+
+# Pick By Skill
+
+## Skill-based First Issues
+
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/SKILL_BASED_FIRST_ISSUES.md
+
+## Tell Me Your Skill
+
+#35
+
+---
+
+# What A Good PR Looks Like
 
 A strong first PR is small and easy to review.
 
-```md
 ## What changed?
 
 - Added a short guide for reading CI failures.
@@ -80,9 +119,10 @@ A strong first PR is small and easy to review.
 - [x] I ran `npm run check`
 
 Closes #123
-```
 
-## If You Get Stuck
+---
+
+# If You Get Stuck
 
 Ask in Discussions or comment on the issue with:
 
@@ -91,19 +131,25 @@ Ask in Discussions or comment on the issue with:
 - what you expected
 - your operating system
 
-Short, clear questions are welcome here.
+> Short, clear questions are welcome here.
 
-## Contributor Ladder
+---
+
+# Contributor Ladder
 
 Start small, then level up:
 
-1. Fix one typo or unclear sentence.
-2. Add one guide or example.
-3. Add one CLI test.
-4. Improve one CLI behavior.
-5. Help another contributor in Discussions.
-6. Review a small PR kindly and clearly.
+- Fix one typo or unclear sentence
+- Add one guide or example
+- Add one CLI test
+- Improve one CLI behavior
+- Help another contributor in Discussions
+- Review a small PR kindly and clearly
 
-See [CONTRIBUTOR_LADDER.md](CONTRIBUTOR_LADDER.md) for more detail.
+See `CONTRIBUTOR_LADDER.md` for more detail.
 
-After your first PR is merged, add your entry to [FIRST_MERGE_WALL.md](FIRST_MERGE_WALL.md).
+---
+
+# After Your First PR
+
+After your first PR is merged, add your entry to `FIRST_MERGE_WALL.md`.
