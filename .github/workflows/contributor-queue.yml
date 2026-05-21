@@ -1,0 +1,56 @@
+name: Contributor Queue
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - closed
+      - assigned
+      - unassigned
+      - labeled
+      - unlabeled
+  issue_comment:
+    types:
+      - created
+      - edited
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - ready_for_review
+      - converted_to_draft
+      - closed
+      - synchronize
+  schedule:
+    - cron: "15 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+jobs:
+  refresh:
+    name: Refresh Contributor Queue
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Refresh queue
+        run: npm run queue:refresh
+        env:
+          MAINTAINER_TOKEN: ${{ secrets.MAINTAINER_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}

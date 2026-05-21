@@ -27,6 +27,7 @@ Want an issue assigned? Comment in the weekly thread: [Get assigned your first i
 | Practice real code changes | [CLI docs](docs/CLI.md) and issues labeled `cli` |
 | Ask which issue to take | [Tell me your skill](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35) |
 | Get assigned this week | [Weekly assignment thread](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
+| See maintainer follow-up | [Contributor queue](docs/CONTRIBUTOR_QUEUE.md) |
 | Join weekly help | [Weekly help thread](docs/WEEKLY_HELP_THREAD.md) |
 | Add your first merge | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
 | Learn maintainer habits | [Maintainer playbook](docs/MAINTAINER_PLAYBOOK.md) |

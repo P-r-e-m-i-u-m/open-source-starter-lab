@@ -13,6 +13,7 @@
     "issue:daily": "npm run build && node dist/scripts/createDailyIssue.js --dry-run",
     "issue:create": "npm run build && node dist/scripts/createDailyIssue.js",
     "issue:assignment-helper": "npm run build && node dist/scripts/replyToAssignmentRequest.js",
+    "queue:refresh": "npm run build && node dist/scripts/refreshContributorQueue.js",
     "discussion:weekly-help": "npm run build && node dist/scripts/createWeeklyHelpDiscussion.js",
     "discussion:weekly-help:dry-run": "npm run build && node dist/scripts/createWeeklyHelpDiscussion.js --dry-run",
     "pr:after-merge": "npm run build && node dist/scripts/afterMergeContributorProof.js",
