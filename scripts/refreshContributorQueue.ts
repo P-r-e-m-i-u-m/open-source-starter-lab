@@ -28,6 +28,7 @@ interface GitHubComment {
   body: string;
   created_at: string;
   html_url: string;
+  issue_url: string;
   user: GitHubUser;
 }
 
@@ -102,6 +103,10 @@ async function githubRequest<T>(path: string, token: string, options: RequestIni
   return (await response.json()) as T;
 }
 
+function isSecondaryRateLimit(error: unknown): boolean {
+  return error instanceof Error && /secondary rate limit/i.test(error.message);
+}
+
 async function ensureLabel(owner: string, repo: string, token: string): Promise<void> {
   const response = await fetch(`${apiBase}/repos/${owner}/${repo}/labels/${encodeURIComponent(queueLabel)}`, {
     headers: {
@@ -145,11 +150,16 @@ async function getOpenPullRequests(owner: string, repo: string, token: string): 
   );
 }
 
-async function getIssueComments(owner: string, repo: string, token: string, issueNumber: number): Promise<GitHubComment[]> {
+async function getRecentIssueComments(owner: string, repo: string, token: string): Promise<GitHubComment[]> {
   return githubRequest<GitHubComment[]>(
-    `/repos/${owner}/${repo}/issues/${issueNumber}/comments?per_page=100`,
+    `/repos/${owner}/${repo}/issues/comments?per_page=100&sort=updated&direction=desc`,
     token
   );
+}
+
+function getIssueNumberFromComment(comment: GitHubComment): number | undefined {
+  const match = comment.issue_url.match(/\/issues\/(\d+)$/);
+  return match ? Number(match[1]) : undefined;
 }
 
 async function buildQueueCandidates(
@@ -159,9 +169,22 @@ async function buildQueueCandidates(
   issues: GitHubIssue[]
 ): Promise<QueueCandidate[]> {
   const candidates: QueueCandidate[] = [];
+  const recentComments = await getRecentIssueComments(owner, repo, token);
+  const commentsByIssue = new Map<number, GitHubComment[]>();
+
+  for (const comment of recentComments) {
+    const issueNumber = getIssueNumberFromComment(comment);
+    if (!issueNumber) {
+      continue;
+    }
+
+    const comments = commentsByIssue.get(issueNumber) || [];
+    comments.push(comment);
+    commentsByIssue.set(issueNumber, comments);
+  }
 
   for (const issue of issues.filter((candidate) => candidate.comments > 0)) {
-    const comments = await getIssueComments(owner, repo, token, issue.number);
+    const comments = commentsByIssue.get(issue.number) || [];
     const requests = comments.filter(
       (comment) => comment.user.type !== "Bot" && !isOwner(comment.user) && isAssignmentRequest(comment.body)
     );
@@ -242,14 +265,8 @@ function renderQueueBody(issues: GitHubIssue[], prs: GitHubPullRequest[], candid
   ].join("\n");
 }
 
-async function findQueueIssue(owner: string, repo: string, token: string): Promise<GitHubIssue | undefined> {
-  const query = `repo:${owner}/${repo} is:issue ${JSON.stringify(queueTitle)}`;
-  const result = await githubRequest<{ items: GitHubIssue[] }>(
-    `/search/issues?q=${encodeURIComponent(query)}&per_page=10`,
-    token
-  );
-
-  return result.items.find((issue) => issue.title === queueTitle);
+function findQueueIssue(issues: GitHubIssue[]): GitHubIssue | undefined {
+  return issues.find((issue) => issue.title === queueTitle);
 }
 
 async function main(): Promise<void> {
@@ -267,7 +284,7 @@ async function main(): Promise<void> {
   const prs = await getOpenPullRequests(owner, repo, token);
   const candidates = await buildQueueCandidates(owner, repo, token, issues);
   const body = renderQueueBody(issues, prs, candidates);
-  const existing = await findQueueIssue(owner, repo, token);
+  const existing = findQueueIssue(issues);
 
   if (existing) {
     await githubRequest(`/repos/${owner}/${repo}/issues/${existing.number}`, token, {
@@ -294,6 +311,11 @@ async function main(): Promise<void> {
 }
 
 main().catch((error: unknown) => {
+  if (isSecondaryRateLimit(error)) {
+    console.warn("GitHub secondary rate limit hit. Skipping this queue refresh; the next scheduled run will update it.");
+    process.exit(0);
+  }
+
   console.error(error instanceof Error ? error.message : error);
   process.exit(1);
 });
