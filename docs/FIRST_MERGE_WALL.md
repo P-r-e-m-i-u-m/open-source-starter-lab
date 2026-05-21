@@ -50,6 +50,12 @@ Keep your entry short and professional.
 - I worked on: Create FINDING_ISSUES.md
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @tatakaisun
+
+- First merged PR: #48
+- I worked on: docs: add first PR mistakes guide
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
