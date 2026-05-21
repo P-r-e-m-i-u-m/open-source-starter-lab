@@ -20,6 +20,7 @@ Want an issue assigned? Comment in the weekly thread: [Get assigned your first i
 | --- | --- |
 | Make my first pull request | [First PR guide](docs/FIRST_PULL_REQUEST.md) |
 | Avoid common first PR mistakes | [First PR mistakes](docs/FIRST_PR_MISTAKES.md) |
+| Understand common open-source words | [Contribution glossary](docs/GLOSSARY.md) |
 | Find a small task | [Good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) |
 | Choose the right first issue | [Choosing your first issue](docs/CHOOSING_FIRST_ISSUE.md) |
 | Find an issue by skill and time | [First Issue Fit Finder](docs/FIRST_ISSUE_FIT_FINDER.md) |
