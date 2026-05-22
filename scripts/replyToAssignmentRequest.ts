@@ -1,6 +1,7 @@
 const apiBase = "https://api.github.com";
 const weeklyDiscussionUrl = "https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44";
 const botMarker = "<!-- oss-lab-assignment-helper -->";
+const ownerLogin = "P-r-e-m-i-u-m";
 
 interface GitHubUser {
   login: string;
@@ -72,6 +73,10 @@ function isAssignmentRequest(body: string): boolean {
   return /\b(assign|assigned|work on|take this|pick this|gssoc|gsoc)\b/i.test(body);
 }
 
+function isMaintainer(user: GitHubUser): boolean {
+  return user.login.toLowerCase() === ownerLogin.toLowerCase();
+}
+
 function buildReply(username: string): string {
   return [
     botMarker,
@@ -93,8 +98,8 @@ async function main(): Promise<void> {
     return;
   }
 
-  if (issue.pull_request || comment.user.type === "Bot") {
-    console.log("Skipping pull request comments and bot comments.");
+  if (issue.pull_request || comment.user.type === "Bot" || isMaintainer(comment.user)) {
+    console.log("Skipping pull request comments, bot comments, and maintainer comments.");
     return;
   }
 
