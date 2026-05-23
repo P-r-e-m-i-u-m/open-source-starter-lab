@@ -96,8 +96,8 @@ async function ensureLabels(owner: string, repo: string, token: string, labels: 
     "help wanted": "Open for community contribution",
     community: "Contributor and discussion work",
     cli: "CLI behavior or examples",
-    testing: "Tests, verification, or quality checks",
-    "developer tooling": "Automation, scripts, or maintainer workflow"
+    testing: "Tasks related to testing, validation, and quality assurance",
+    "developer tooling": "Tasks related to automation, scripts, developer tools, and workflow improvements"
   };
 
   for (const label of labels) {
