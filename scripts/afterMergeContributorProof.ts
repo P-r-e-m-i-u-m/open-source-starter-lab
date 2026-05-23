@@ -129,6 +129,24 @@ function formatIssueList(issues: number[]): string {
   return issues.map((issue) => `#${issue}`).join(", ");
 }
 
+function formatIssueCleanup(linkedIssues: number[], skippedIssues: number[]): string {
+  if (linkedIssues.length === 0) {
+    return "No linked issue was found in the PR body.";
+  }
+
+  const foundIssues = linkedIssues.filter((issue) => !skippedIssues.includes(issue));
+  const foundText = foundIssues.length ? `cleaned ${formatIssueList(foundIssues)}` : "no managed issue was cleaned";
+  const skippedText = skippedIssues.length
+    ? ` Referenced issue(s) ${formatIssueList(skippedIssues)} were not found, so I skipped them.`
+    : "";
+
+  return `${foundText}.${skippedText}`;
+}
+
+function isMissingIssueError(error: unknown): boolean {
+  return error instanceof Error && /GitHub API failed 404/i.test(error.message);
+}
+
 async function ensureWallEntry(contributor: string, pr: GitHubPullRequest): Promise<boolean> {
   const { readFile, writeFile } = await import("node:fs/promises");
   const wall = await readFile(firstMergeWallPath, "utf8");
@@ -213,6 +231,7 @@ async function commentOnPullRequest(
   token: string,
   pr: GitHubPullRequest,
   linkedIssues: number[],
+  skippedIssues: number[],
   nextIssue?: GitHubIssue
 ): Promise<void> {
   const contributor = pr.user?.login ?? "there";
@@ -224,7 +243,7 @@ async function commentOnPullRequest(
     `Thanks @${contributor}, this is merged.`,
     "",
     "I added you to the First Merge Wall so the contribution is visible to future visitors.",
-    `Related issue cleanup: ${formatIssueList(linkedIssues)}.`,
+    `Related issue cleanup: ${formatIssueCleanup(linkedIssues, skippedIssues)}`,
     "",
     nextLine,
     "",
@@ -331,9 +350,22 @@ async function main(): Promise<void> {
 
   const changedWall = await ensureWallEntry(plan.contributor, pr);
   const nextIssue = await findNextIssue(owner, repo, token);
+  const skippedIssues: number[] = [];
 
   for (const issueNumber of plan.linkedIssues) {
-    const issue = await fetchIssue(owner, repo, token, issueNumber);
+    let issue: GitHubIssue;
+    try {
+      issue = await fetchIssue(owner, repo, token, issueNumber);
+    } catch (error: unknown) {
+      if (isMissingIssueError(error)) {
+        skippedIssues.push(issueNumber);
+        console.warn(`Skipping linked issue #${issueNumber}: issue was not found.`);
+        continue;
+      }
+
+      throw error;
+    }
+
     const labels = await fetchIssueLabels(owner, repo, token, issueNumber);
     const isManagedIssue = labels.some((label) =>
       ["good first issue", "beginner friendly", "daily starter issue"].includes(label.name)
@@ -345,7 +377,7 @@ async function main(): Promise<void> {
     }
   }
 
-  await commentOnPullRequest(owner, repo, token, pr, plan.linkedIssues, nextIssue);
+  await commentOnPullRequest(owner, repo, token, pr, plan.linkedIssues, skippedIssues, nextIssue);
   console.log(changedWall ? "First Merge Wall updated." : "First Merge Wall already had this entry.");
   console.log(`Thanked @${plan.contributor} on #${plan.pullRequestNumber}.`);
 }
