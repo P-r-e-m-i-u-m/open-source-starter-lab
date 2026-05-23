@@ -1,5 +1,15 @@
 # Open Source Starter Lab
 
+<p align="center">
+  <img 
+    src="assets/banner.png" 
+    alt="Open Source Starter Lab" 
+    style="max-width: 100%;" 
+    rtrvr-ls="3~hs,4~hs,5~hs,6~hs,8~hs,9~hs,31~hs,32~hs,49~hs" 
+    rtrvr-ro="50"
+  />
+</p>
+
 > A beginner GitHub project for making your first pull request, first open-source contribution, good first issue, and first clean merge.
 
 [![CI](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/ci.yml)
