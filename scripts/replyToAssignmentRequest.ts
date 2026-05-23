@@ -82,9 +82,12 @@ function buildReply(username: string): string {
     botMarker,
     `Done @${username}.`,
     "",
-    `Also introduce yourself in the weekly thread so I can suggest your next task after this: ${weeklyDiscussionUrl}`,
+    "Start with:",
+    "`npm run check`",
     "",
-    "When you open the PR, include what changed and the command you used to check it."
+    "Keep the PR small. Change one thing, then add your check output in the PR.",
+    "",
+    `After this, introduce yourself in the weekly thread so I can suggest your next task: ${weeklyDiscussionUrl}`
   ].join("\n");
 }
 
