@@ -10,9 +10,35 @@ Most beginner repos say "make your first PR" and stop there. This lab gives cont
 
 If you searched for **first pull request**, **first open source contribution**, **good first issue**, **beginner GitHub project**, or **how to contribute to open source**, this repo is built for you.
 
-If you are new here, start with [docs/START_HERE.md](docs/START_HERE.md).
+## Start Here: Get Your First Merge
 
-Want an issue assigned? Comment in the weekly thread: [Get assigned your first issue this week](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44).
+This repo is built to help you move from "I want to contribute" to a real merged pull request.
+
+1. Pick the skill route that fits you.
+2. Open one issue and comment: `I would like to work on this. Please assign me.`
+3. Make one focused change.
+4. Run `npm run check`.
+5. Open a pull request with what changed and how you tested it.
+6. After merge, you get visible proof on the [First Merge Wall](docs/FIRST_MERGE_WALL.md).
+
+| I know... | Best first route | Good issue search |
+| --- | --- | --- |
+| Docs or writing | Improve one guide or example | [Docs first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+docs%22+no%3Aassignee) |
+| JavaScript or TypeScript | Improve one CLI message or command | [JavaScript first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+javascript%22+no%3Aassignee) |
+| Testing | Add one small smoke test | [Testing first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+testing%22+no%3Aassignee) |
+| Git basics | Add or improve a Git workflow guide | [Git beginner issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+git%22+no%3Aassignee) |
+| Not sure yet | Tell me your skill and time | [Weekly assignment thread](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
+
+Need the shortest path? Read [docs/START_HERE.md](docs/START_HERE.md).
+
+## Live Repo Signals
+
+This project should feel alive before you spend your time here:
+
+- Maintainer queue: [who needs help next](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46)
+- Latest merged PRs: [merged pull requests](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/pulls?q=is%3Apr+is%3Amerged+sort%3Aupdated-desc)
+- Open starter tasks: [unassigned good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+no%3Aassignee)
+- Ask for an issue: [Get assigned your first issue this week](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44)
 
 ## Pick Your Path
 

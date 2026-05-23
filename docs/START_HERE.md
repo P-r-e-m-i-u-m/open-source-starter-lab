@@ -1,4 +1,4 @@
-# Start Here
+# Start Here: Get Your First Merge
 
 Welcome. This repo is for practicing open source in a real GitHub workflow without needing to understand a huge production codebase first.
 
@@ -6,18 +6,35 @@ If you searched for first pull request, first open-source contribution, good fir
 
 ---
 
-# The 10 Minute Tour
+# The 10 Minute Path
 
 - [ ] Read this page
+- [ ] Pick one issue by skill
+- [ ] Comment: `I would like to work on this. Please assign me.`
 - [ ] Run the project locally
-- [ ] Pick one small issue
-- [ ] Comment on the issue before starting
-- [ ] Open a focused pull request with your test result
-- [ ] Add yourself to the First Merge Wall after your PR is merged
+- [ ] Make one focused change
+- [ ] Open a pull request with your test result
+- [ ] After merge, appear on the First Merge Wall
 
 ---
 
-# Run The Project
+# Pick One Issue By Skill
+
+Choose the row that feels closest to what you already know.
+
+| Your skill | Start here |
+| --- | --- |
+| Docs or writing | [Docs first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+docs%22+no%3Aassignee) |
+| JavaScript or TypeScript | [JavaScript first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+javascript%22+no%3Aassignee) |
+| Testing | [Testing first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+testing%22+no%3Aassignee) |
+| Git basics | [Git beginner issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+git%22+no%3Aassignee) |
+| Not sure | [Ask in the weekly assignment thread](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
+
+If an issue looks close but confusing, ask first. A good first PR should be small enough to finish.
+
+---
+
+# Run The Project Locally
 
 ```bash
 git clone https://github.com/P-r-e-m-i-u-m/open-source-starter-lab.git
@@ -30,17 +47,14 @@ npm run check
 
 ---
 
-# Choose A First Task
+# Ask To Be Assigned
 
-## Recommended Order
+Comment on the issue before starting:
 
-1. Pick an issue labeled `good first issue`
-2. Prefer docs, examples, or one small CLI test for your first PR
-3. Avoid broad rewrites for your first contribution
-4. Comment with a short note like:
+```md
+I would like to work on this. Please assign me.
 
-```text
-I would like to work on this.
+I will keep the PR focused and run `npm run check` before opening it.
 ```
 
 ---
@@ -54,16 +68,17 @@ I would like to work on this.
 
 # Not Sure Which Issue Fits You?
 
-Open the Introduce Yourself Discussion and write:
+Open the weekly assignment thread and write:
+
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44
 
 ```text
-#26
-
 Hi, I am new to open source.
 
-I know: HTML, CSS, JavaScript, Python, TypeScript, docs, or testing.
-
-I want to make my first pull request. Which issue should I take?
+I know:
+I want to practice:
+I have time for: 15 min / 30 min / 1 hour
+I am stuck on:
 ```
 
 > If Git itself is confusing, that is okay. Ask anyway. This repo is meant to be a no-shame place for beginner GitHub questions.
@@ -90,18 +105,6 @@ https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%
 
 ---
 
-# Pick By Skill
-
-## Skill-based First Issues
-
-https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/SKILL_BASED_FIRST_ISSUES.md
-
-## Tell Me Your Skill
-
-#35
-
----
-
 # What A Good PR Looks Like
 
 A strong first PR is small and easy to review.
@@ -119,6 +122,16 @@ A strong first PR is small and easy to review.
 - [x] I ran `npm run check`
 
 Closes #123
+
+---
+
+# How You Know The Repo Is Active
+
+- Live maintainer queue: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46
+- Latest merged PRs: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/pulls?q=is%3Apr+is%3Amerged+sort%3Aupdated-desc
+- First Merge Wall: https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/FIRST_MERGE_WALL.md
+
+The queue exists so contributor requests do not disappear.
 
 ---
 

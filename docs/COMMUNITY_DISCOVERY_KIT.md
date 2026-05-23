@@ -17,14 +17,34 @@ It has:
 
 - good first issues
 - beginner-friendly tasks
-- a Start Here guide
+- a Start Here guide that points you to one issue by skill
 - CI checks
 - a First Merge Wall
-- a Discussion where you can introduce yourself and get an issue suggestion
+- a weekly thread where you can share your skill and get an issue suggestion
 - skill-based first issues for HTML/CSS, JavaScript, Python, docs, testing, and Git
 
 Repo:
 https://github.com/P-r-e-m-i-u-m/open-source-starter-lab
+
+Fastest path:
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/START_HERE.md
+```
+
+## Direct Invite
+
+Use this when someone says they know a skill but cannot find a first issue.
+
+```md
+If you want a first PR that is small and reviewable, try this:
+
+1. Open the Start Here guide:
+   https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/START_HERE.md
+2. Pick the row for your skill: docs, JavaScript/TypeScript, testing, or Git.
+3. Comment on one unassigned issue: "I would like to work on this. Please assign me."
+4. Run `npm run check` before opening the PR.
+
+If you are not sure what fits, comment in the weekly thread and I will suggest one:
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44
 ```
 
 ## Reddit / Forum Reply
@@ -36,9 +56,9 @@ If you want a small place to practice the full GitHub flow, I maintain Open Sour
 
 https://github.com/P-r-e-m-i-u-m/open-source-starter-lab
 
-It is built for first pull requests and first open-source contributions. You can introduce yourself here and ask which issue fits your skills:
+It is built for first pull requests and first open-source contributions. You can comment in the weekly assignment thread and ask which issue fits your skills:
 
-https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44
 ```
 
 ## DEV / Hashnode Post Idea
