@@ -4,7 +4,7 @@
   <img 
     src="assets/banner.png" 
     alt="Open Source Starter Lab" 
-    style="max-width: 50%;" 
+    style="max-width: 100%;" 
     rtrvr-ls="3~hs,4~hs,5~hs,6~hs,8~hs,9~hs,31~hs,32~hs,49~hs" 
     rtrvr-ro="50"
   />
