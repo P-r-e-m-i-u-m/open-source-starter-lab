@@ -5,7 +5,7 @@
     src="assets/banner.png" 
     alt="Open Source Starter Lab" 
     width="1500"
-    height="230"
+    height="430"
     style="max-width: 100%;" 
     rtrvr-ls="3~hs,4~hs,5~hs,6~hs,8~hs,9~hs,31~hs,32~hs,49~hs" 
     rtrvr-ro="50"
