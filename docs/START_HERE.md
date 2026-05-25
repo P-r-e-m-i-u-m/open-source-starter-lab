@@ -30,7 +30,7 @@ Choose the row that feels closest to what you already know.
 | Git basics | [Git beginner issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+git%22+no%3Aassignee) |
 | Not sure | [Ask in the weekly assignment thread](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
 
-If an issue looks close but confusing, ask first. A good first PR should be small enough to finish.
+If an issue looks close but confusing, use the [First Issue Decoder](ISSUE_DECODER.md) before coding. A good first PR should be small enough to finish.
 
 ---
 

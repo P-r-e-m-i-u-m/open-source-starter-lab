@@ -6,9 +6,23 @@ Strong issues include:
 
 - Context
 - File or folder to change
+- First issue decoder
 - Acceptance criteria
 - Expected test command
 - Difficulty label
+
+## Decode Good First Issues
+
+Before publishing a beginner issue, make sure a new contributor can answer:
+
+- What does this issue mean in plain English?
+- What skill is needed?
+- Which file should they open first?
+- What command should they run first?
+- What should they avoid changing?
+- What proof should the PR include?
+
+Use [ISSUE_DECODER.md](ISSUE_DECODER.md) as the standard. If the issue cannot be decoded quickly, split it into a smaller issue.
 
 ## Good Review Style
 

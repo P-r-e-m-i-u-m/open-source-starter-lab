@@ -20,6 +20,20 @@ body:
     validations:
       required: true
   - type: textarea
+    id: decoder
+    attributes:
+      label: First issue decoder
+      description: Help a beginner understand the task before they code.
+      placeholder: |
+        What this means:
+        Skill needed:
+        Time estimate:
+        First command:
+        What not to change:
+        PR proof:
+    validations:
+      required: true
+  - type: textarea
     id: done
     attributes:
       label: Done when
