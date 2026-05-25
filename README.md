@@ -5,7 +5,7 @@
     src="assets/banner.png" 
     alt="Open Source Starter Lab" 
     width="1500"
-    height="400"
+    height="230"
     style="max-width: 100%;" 
     rtrvr-ls="3~hs,4~hs,5~hs,6~hs,8~hs,9~hs,31~hs,32~hs,49~hs" 
     rtrvr-ro="50"
@@ -22,16 +22,25 @@ Most beginner repos say "make your first PR" and stop there. This lab gives cont
 
 If you searched for **first pull request**, **first open source contribution**, **good first issue**, **beginner GitHub project**, or **how to contribute to open source**, this repo is built for you.
 
-## Start Here: Get Your First Merge
+## First Merge Command Center
 
-This repo is built to help you move from "I want to contribute" to a real merged pull request.
+This repo is built to help you move from "I want to contribute" to a real merged pull request without guessing what to do next.
 
-1. Pick the skill route that fits you.
-2. Open one issue and comment: `I would like to work on this. Please assign me.`
-3. Make one focused change.
-4. Run `npm run check`.
-5. Open a pull request with what changed and how you tested it.
-6. After merge, you get visible proof on the [First Merge Wall](docs/FIRST_MERGE_WALL.md).
+| Goal | Start here | What you get |
+| --- | --- | --- |
+| Make your first PR | [10 minute path](docs/START_HERE.md) | A short workflow from clone to pull request |
+| Get matched to an issue | [Weekly assignment thread](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) | A maintainer suggests one task for your skill and time |
+| Pick by skill | [Skill routes](docs/SKILL_BASED_FIRST_ISSUES.md) | Docs, Git, JavaScript, Python, testing, or CLI tasks |
+| Understand an issue | [First Issue Decoder](docs/ISSUE_DECODER.md) | The first file, first command, scope, and PR proof |
+| Prove your work | [First Merge Wall](docs/FIRST_MERGE_WALL.md) | A visible record after your PR is merged |
+
+## Start In 10 Minutes
+
+1. Pick one route below.
+2. Comment on an issue: `I would like to work on this. Please assign me.`
+3. Run `npm run check`.
+4. Open a small pull request with your test output.
+5. After merge, add your proof to the [First Merge Wall](docs/FIRST_MERGE_WALL.md).
 
 | I know... | Best first route | Good issue search |
 | --- | --- | --- |
@@ -41,16 +50,17 @@ This repo is built to help you move from "I want to contribute" to a real merged
 | Git basics | Add or improve a Git workflow guide | [Git beginner issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22skill%3A+git%22+no%3Aassignee) |
 | Not sure yet | Tell me your skill and time | [Weekly assignment thread](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
 
-Need the shortest path? Read [docs/START_HERE.md](docs/START_HERE.md).
+## Live Lab Signals
 
-## Live Repo Signals
+Before spending time here, check the live proof:
 
-This project should feel alive before you spend your time here:
-
-- Maintainer queue: [who needs help next](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46)
-- Latest merged PRs: [merged pull requests](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/pulls?q=is%3Apr+is%3Amerged+sort%3Aupdated-desc)
-- Open starter tasks: [unassigned good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+no%3Aassignee)
-- Ask for an issue: [Get assigned your first issue this week](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44)
+| Signal | Link |
+| --- | --- |
+| Open starter tasks | [Unassigned good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+no%3Aassignee) |
+| Human help queue | [Contributor queue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46) |
+| Recent proof | [Merged pull requests](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/pulls?q=is%3Apr+is%3Amerged+sort%3Aupdated-desc) |
+| Ask for assignment | [Get assigned your first issue this week](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
+| Contributor proof | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
 
 ## Pick Your Path
 
