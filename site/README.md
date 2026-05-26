@@ -10,6 +10,12 @@ site/index.html
 
 The site has no build step and no runtime dependencies. It is designed to be easy to publish with GitHub Pages later.
 
+Live URL after GitHub Pages deployment:
+
+```text
+https://p-r-e-m-i-u-m.github.io/open-source-starter-lab/
+```
+
 ## Sections
 
 - Hero command center

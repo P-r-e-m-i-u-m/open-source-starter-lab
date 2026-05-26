@@ -15,8 +15,11 @@
 > A beginner GitHub project for making your first pull request, first open-source contribution, good first issue, and first clean merge.
 
 [![CI](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/ci.yml)
+[![Website](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/pages.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/pages.yml)
 [![Good First Issues](https://img.shields.io/github/issues/P-r-e-m-i-u-m/open-source-starter-lab/good%20first%20issue?label=good%20first%20issues)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 [![License: MIT](https://img.shields.io/badge/license-MIT-0f172a.svg)](LICENSE)
+
+Website: [open-source-starter-lab](https://p-r-e-m-i-u-m.github.io/open-source-starter-lab/)
 
 Most beginner repos say "make your first PR" and stop there. This lab gives contributors small tasks, clear acceptance criteria, copy-paste commands, CI checks, and a safe place to ask questions.
 
