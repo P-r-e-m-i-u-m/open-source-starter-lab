@@ -45,7 +45,8 @@ function printIssueFit(): void {
   console.log(`Time: ${fit.timeBudget}`);
   console.log(`Why it fits: ${fit.whyItFits}`);
   console.log(`First command: ${fit.firstCommand}`);
-  console.log(`Issue search: ${fit.issueSearchUrl}`);
+  console.log("\nFind an issue to work on:");
+  console.log(`→ Copy this URL into your browser: ${fit.issueSearchUrl}`);
   console.log("\nProof checklist:");
   for (const item of fit.proofChecklist) {
     console.log(`- ${item}`);

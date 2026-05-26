@@ -22,6 +22,10 @@ assert.equal(docsFit.timeBudget, "30m");
 assert.ok(docsFit.issueSearchUrl.includes("no%3Aassignee"));
 assert.ok(docsFit.commentTemplate.includes("Please assign this to me"));
 
+// Test that the issue search URL is actionable
+assert.ok(docsFit.issueSearchUrl.startsWith("https://github.com"));
+assert.ok(docsFit.issueSearchUrl.includes("is%3Aopen")); // URL-encoded
+
 const jsFit = findIssueFit("ts", "1h");
 assert.equal(jsFit.skill, "javascript");
 assert.ok(jsFit.proofChecklist.some((item) => item.includes("full project check")));
