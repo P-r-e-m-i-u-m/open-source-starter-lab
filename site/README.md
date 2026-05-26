@@ -26,3 +26,7 @@ https://p-r-e-m-i-u-m.github.io/open-source-starter-lab/
 - Trust signals
 - Maintainer automation showcase
 - Beginner FAQ
+
+## Accessibility
+
+See [WEBSITE_ACCESSIBILITY_CHECKLIST.md](../docs/WEBSITE_ACCESSIBILITY_CHECKLIST.md)
