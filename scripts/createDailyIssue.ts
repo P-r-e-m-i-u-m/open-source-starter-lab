@@ -88,7 +88,11 @@ async function ensureLabels(owner: string, repo: string, token: string, labels: 
     "developer tooling": "1d76db",
     "time: 15 min": "bfdadc",
     "time: 30 min": "c5def5",
-    "time: 1 hour": "fef2c0"
+    "time: 1 hour": "fef2c0",
+    "level: first-pr": "7057ff",
+    "level: second-pr": "1d76db",
+    "level: trust-builder": "0e8a16",
+    "level: maintainer-practice": "fbca04"
   };
 
   const labelDescriptions: Record<string, string> = {
@@ -103,7 +107,11 @@ async function ensureLabels(owner: string, repo: string, token: string, labels: 
     "developer tooling": "Tasks related to automation, scripts, developer tools, and workflow improvements",
     "time: 15 min": "Small issue expected to fit in about 15 minutes",
     "time: 30 min": "Small issue expected to fit in about 30 minutes",
-    "time: 1 hour": "Focused issue expected to fit in about one hour"
+    "time: 1 hour": "Focused issue expected to fit in about one hour",
+    "level: first-pr": "Safe task for a first pull request",
+    "level: second-pr": "Good next task after a first merge",
+    "level: trust-builder": "Community task for contributors building repo trust",
+    "level: maintainer-practice": "Small maintainer-style task for triage and review practice"
   };
 
   for (const label of labels) {

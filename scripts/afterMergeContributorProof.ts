@@ -33,6 +33,11 @@ interface GitHubSearchResult {
   items: GitHubIssue[];
 }
 
+interface NextIssueSuggestion {
+  route: string;
+  issue: GitHubIssue;
+}
+
 interface GitHubLabel {
   name: string;
 }
@@ -53,7 +58,7 @@ interface MaintainerActionPlan {
   pullRequestTitle: string;
   pullRequestUrl: string;
   linkedIssues: number[];
-  nextIssue?: GitHubIssue;
+  nextIssues?: NextIssueSuggestion[];
 }
 
 function hasFlag(flag: string): boolean {
@@ -173,13 +178,18 @@ async function ensureWallEntry(contributor: string, pr: GitHubPullRequest): Prom
   return true;
 }
 
-async function findNextIssue(owner: string, repo: string, token: string): Promise<GitHubIssue | undefined> {
+async function searchNextIssue(
+  owner: string,
+  repo: string,
+  token: string,
+  queryParts: string[]
+): Promise<GitHubIssue | undefined> {
   const query = [
     `repo:${owner}/${repo}`,
     "is:issue",
     "is:open",
-    'label:"good first issue"',
-    "no:assignee"
+    "no:assignee",
+    ...queryParts
   ].join(" ");
 
   const result = await githubRequest<GitHubSearchResult>(
@@ -188,6 +198,44 @@ async function findNextIssue(owner: string, repo: string, token: string): Promis
   );
 
   return result.items.find((issue) => !issue.pull_request);
+}
+
+async function findNextIssueSuggestions(
+  owner: string,
+  repo: string,
+  token: string
+): Promise<NextIssueSuggestion[]> {
+  const routes = [
+    {
+      route: "Second PR route",
+      queryParts: ['label:"level: second-pr"']
+    },
+    {
+      route: "Docs route",
+      queryParts: ['label:"documentation"', 'label:"time: 30 min"']
+    },
+    {
+      route: "Code route",
+      queryParts: ['label:"cli"']
+    },
+    {
+      route: "Testing route",
+      queryParts: ['label:"testing"']
+    }
+  ];
+
+  const suggestions: NextIssueSuggestion[] = [];
+  const seen = new Set<number>();
+
+  for (const route of routes) {
+    const issue = await searchNextIssue(owner, repo, token, route.queryParts);
+    if (issue && !seen.has(issue.number)) {
+      suggestions.push({ route: route.route, issue });
+      seen.add(issue.number);
+    }
+  }
+
+  return suggestions.slice(0, 3);
 }
 
 async function fetchIssue(owner: string, repo: string, token: string, issueNumber: number): Promise<GitHubIssue> {
@@ -232,12 +280,17 @@ async function commentOnPullRequest(
   pr: GitHubPullRequest,
   linkedIssues: number[],
   skippedIssues: number[],
-  nextIssue?: GitHubIssue
+  nextIssues: NextIssueSuggestion[] = []
 ): Promise<void> {
   const contributor = pr.user?.login ?? "there";
-  const nextLine = nextIssue
-    ? `If you want another small one, #${nextIssue.number} looks like a good next pick: ${nextIssue.title}`
-    : "If you want another small one, check the open `good first issue` queue and I can help you choose.";
+  const nextLines = nextIssues.length
+    ? [
+        "Good next steps if you want another small PR:",
+        ...nextIssues.map(
+          (suggestion) => `- ${suggestion.route}: #${suggestion.issue.number} ${suggestion.issue.title}`
+        )
+      ]
+    : ["If you want another small one, check the open `good first issue` queue and I can help you choose."];
 
   const body = [
     `Thanks @${contributor}, this is merged.`,
@@ -245,7 +298,9 @@ async function commentOnPullRequest(
     "I added you to the First Merge Wall so the contribution is visible to future visitors.",
     `Related issue cleanup: ${formatIssueCleanup(linkedIssues, skippedIssues)}`,
     "",
-    nextLine,
+    ...nextLines,
+    "",
+    `No pressure. Your first merge already counts. If you want to keep going, the second PR path is here: https://github.com/${owner}/${repo}/blob/main/docs/SECOND_PR_PATH.md`,
     "",
     "Appreciate you helping make this repo more useful for first-time contributors."
   ].join("\n");
@@ -349,7 +404,7 @@ async function main(): Promise<void> {
   }
 
   const changedWall = await ensureWallEntry(plan.contributor, pr);
-  const nextIssue = await findNextIssue(owner, repo, token);
+  const nextIssues = await findNextIssueSuggestions(owner, repo, token);
   const skippedIssues: number[] = [];
 
   for (const issueNumber of plan.linkedIssues) {
@@ -377,7 +432,7 @@ async function main(): Promise<void> {
     }
   }
 
-  await commentOnPullRequest(owner, repo, token, pr, plan.linkedIssues, skippedIssues, nextIssue);
+  await commentOnPullRequest(owner, repo, token, pr, plan.linkedIssues, skippedIssues, nextIssues);
   console.log(changedWall ? "First Merge Wall updated." : "First Merge Wall already had this entry.");
   console.log(`Thanked @${plan.contributor} on #${plan.pullRequestNumber}.`);
 }

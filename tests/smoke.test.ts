@@ -35,7 +35,7 @@ assert.equal(progressionSteps.length, 5);
 assert.equal(normalizeContributorLevel("second pr"), "second-pr");
 
 const maintainerShadow = getProgressionStep("maintainer-shadow");
-assert.ok(maintainerShadow.labels.includes("maintainer shadow"));
+assert.ok(maintainerShadow.labels.includes("level: maintainer-practice"));
 assert.ok(maintainerShadow.proof.some((item) => item.includes("before/after")));
 
 console.log("Smoke tests passed.");

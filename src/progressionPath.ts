@@ -27,7 +27,7 @@ const progressionSteps: ProgressionStep[] = [
       "Improve one command example",
       "Add a contributor card"
     ],
-    labels: ["good first issue", "beginner friendly", "docs only"],
+    labels: ["level: first-pr", "good first issue", "beginner friendly", "docs only"],
     firstCommand: "npm run check",
     proof: [
       "Show what changed",
@@ -46,7 +46,7 @@ const progressionSteps: ProgressionStep[] = [
       "Add one smoke test assertion",
       "Clarify one issue acceptance checklist"
     ],
-    labels: ["second pr", "cli", "testing", "documentation"],
+    labels: ["level: second-pr", "cli", "testing", "documentation"],
     firstCommand: "node dist/src/cli.js fit --skill docs --time 30m",
     proof: [
       "Name the exact file changed",
@@ -65,7 +65,7 @@ const progressionSteps: ProgressionStep[] = [
       "Add a missing proof checklist to a task",
       "Suggest a smaller scope on an unclear idea"
     ],
-    labels: ["trust builder", "community", "help wanted"],
+    labels: ["level: trust-builder", "community", "help wanted"],
     firstCommand: "gh issue list --label \"good first issue\" --limit 10",
     proof: [
       "Link the issue, PR, or Discussion helped",
@@ -84,7 +84,7 @@ const progressionSteps: ProgressionStep[] = [
       "Check one PR description for proof",
       "Draft a review comment that is specific and kind"
     ],
-    labels: ["maintainer shadow", "triage", "community"],
+    labels: ["level: maintainer-practice", "triage", "community"],
     firstCommand: "node dist/src/cli.js check --profile maintainer",
     proof: [
       "Describe the maintainer problem",

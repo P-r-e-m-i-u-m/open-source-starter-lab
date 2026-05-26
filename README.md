@@ -5,7 +5,7 @@
     src="assets/banner.png" 
     alt="Open Source Starter Lab" 
     width="1500"
-    height="430"
+    height="230"
     style="max-width: 100%;" 
     rtrvr-ls="3~hs,4~hs,5~hs,6~hs,8~hs,9~hs,31~hs,32~hs,49~hs" 
     rtrvr-ro="50"
@@ -34,6 +34,7 @@ This repo is built to help you move from "I want to contribute" to a real merged
 | Pick by skill | [Skill routes](docs/SKILL_BASED_FIRST_ISSUES.md) | Docs, Git, JavaScript, Python, testing, or CLI tasks |
 | Understand an issue | [First Issue Decoder](docs/ISSUE_DECODER.md) | The first file, first command, scope, and PR proof |
 | Prove your work | [First Merge Wall](docs/FIRST_MERGE_WALL.md) | A visible record after your PR is merged |
+| Keep going after merge | [Second PR Path](docs/SECOND_PR_PATH.md) | A stronger next task without jumping too far |
 
 ## Start In 10 Minutes
 
@@ -78,6 +79,7 @@ Before spending time here, check the live proof:
 | Decode an issue before coding | [First Issue Decoder](docs/ISSUE_DECODER.md) |
 | Pick by your skill | [Skill-based first issues](docs/SKILL_BASED_FIRST_ISSUES.md) |
 | Move after your first merge | [Contributor progress path](docs/CONTRIBUTOR_PROGRESS_PATH.md) |
+| Pick your second PR | [Second PR Path](docs/SECOND_PR_PATH.md) |
 | Practice real code changes | [CLI docs](docs/CLI.md) and issues labeled `cli` |
 | Ask which issue to take | [Tell me your skill](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/35) |
 | Get assigned this week | [Weekly assignment thread](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
