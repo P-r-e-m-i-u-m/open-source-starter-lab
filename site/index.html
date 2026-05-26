@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Open Source Starter Lab helps beginners get their first pull request merged with guided issues, maintainer feedback, and proof-driven workflows."
+    />
+    <title>Open Source Starter Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="crt" aria-hidden="true"></div>
+    <div class="grid-floor" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Open Source Starter Lab home">
+        <span class="brand-mark">OS</span>
+        <span>Starter Lab</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#finder">Issue Finder</a>
+        <a href="#journey">Journey</a>
+        <a href="#proof">Proof</a>
+        <a href="#automation">Automation</a>
+      </nav>
+      <a class="header-cta" href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab" target="_blank" rel="noreferrer">
+        View Repo
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-copy">
+          <p class="eyebrow">> beginner_open_source/program</p>
+          <h1>
+            Get your first
+            <span>open-source PR</span>
+            merged.
+          </h1>
+          <p class="hero-text">
+            A guided GitHub lab for first pull requests, real maintainer feedback, clean checks, and a visible path from first merge to second contribution.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="btn btn-primary" href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/START_HERE.md" target="_blank" rel="noreferrer">
+              <span>Start in 10 minutes</span>
+            </a>
+            <a class="btn btn-secondary" href="#finder">
+              <span>Find my issue</span>
+            </a>
+          </div>
+        </div>
+
+        <aside class="terminal-card" aria-label="Open Source Starter Lab terminal preview">
+          <div class="window-bar">
+            <span class="dot magenta"></span>
+            <span class="dot cyan"></span>
+            <span class="dot orange"></span>
+            <span class="window-title">first-merge.exe</span>
+          </div>
+          <div class="terminal-body">
+            <p><span>&gt;</span> npm run check</p>
+            <p class="terminal-success">Smoke tests passed.</p>
+            <p><span>&gt;</span> pick route --skill docs --time 30m</p>
+            <p>Best path: Featured First Issues</p>
+            <p><span>&gt;</span> open-pr --proof included</p>
+            <p class="terminal-success">Ready for review.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="signal-strip" aria-label="Repository signals">
+        <a href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+no%3Aassignee" target="_blank" rel="noreferrer">
+          <strong>Good first issues</strong>
+          <span>small tasks with clear scope</span>
+        </a>
+        <a href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/pulls?q=is%3Apr+is%3Amerged+sort%3Aupdated-desc" target="_blank" rel="noreferrer">
+          <strong>Merged PR proof</strong>
+          <span>real contributors, real reviews</span>
+        </a>
+        <a href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46" target="_blank" rel="noreferrer">
+          <strong>Contributor queue</strong>
+          <span>who needs help next</span>
+        </a>
+      </section>
+
+      <section id="finder" class="section finder-section">
+        <div class="section-heading">
+          <p class="eyebrow">> choose_your_entry_point</p>
+          <h2>Issue Finder</h2>
+          <p>Pick your skill and time. The site builds a GitHub search link that feels made for you.</p>
+        </div>
+
+        <div class="finder-panel">
+          <div class="control-group">
+            <label for="skill">I know</label>
+            <select id="skill">
+              <option value="docs">Docs or writing</option>
+              <option value="git">Git basics</option>
+              <option value="javascript">JavaScript or TypeScript</option>
+              <option value="testing">Testing</option>
+              <option value="python">Python learner</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="time">I have</label>
+            <select id="time">
+              <option value="15">15 minutes</option>
+              <option value="30" selected>30 minutes</option>
+              <option value="60">1 hour</option>
+            </select>
+          </div>
+          <div class="result-card" aria-live="polite">
+            <p class="result-label">Suggested route</p>
+            <h3 id="routeTitle">30 minute docs task</h3>
+            <p id="routeCopy">Improve one guide, example, or checklist with a focused pull request.</p>
+            <a id="routeLink" class="btn btn-primary" target="_blank" rel="noreferrer" href="#">
+              <span>Open matching issues</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="journey" class="section journey-section">
+        <div class="section-heading">
+          <p class="eyebrow">> contributor_journey</p>
+          <h2>From first PR to trusted contributor</h2>
+          <p>The repo is designed as a progression path, not a one-time task list.</p>
+        </div>
+        <div class="timeline">
+          <article>
+            <span>01</span>
+            <h3>First PR</h3>
+            <p>Pick a tiny issue, run the check, open a PR with proof.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>First Merge</h3>
+            <p>Get visible proof on the First Merge Wall after review.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Second PR</h3>
+            <p>Move into a stronger task: CLI, testing, docs structure, or issue quality.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Trust Builder</h3>
+            <p>Help another beginner, improve an issue, or answer a discussion clearly.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="proof" class="section proof-section">
+        <div class="section-heading">
+          <p class="eyebrow">> live_proof_layer</p>
+          <h2>Built around evidence</h2>
+        </div>
+        <div class="proof-grid">
+          <a class="proof-card" href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/FIRST_MERGE_WALL.md" target="_blank" rel="noreferrer">
+            <strong>First Merge Wall</strong>
+            <span>contributors can show proof after merge</span>
+          </a>
+          <a class="proof-card" href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/SECOND_PR_PATH.md" target="_blank" rel="noreferrer">
+            <strong>Second PR Path</strong>
+            <span>clear next step after the first win</span>
+          </a>
+          <a class="proof-card" href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/FEATURED_FIRST_ISSUES.md" target="_blank" rel="noreferrer">
+            <strong>Featured Issues</strong>
+            <span>curated routes by time, skill, and confidence</span>
+          </a>
+        </div>
+      </section>
+
+      <section id="automation" class="section automation-section">
+        <div class="section-heading">
+          <p class="eyebrow">> maintainer_os</p>
+          <h2>Human-feeling automation</h2>
+          <p>Automation handles the repetitive guidance so maintainers can focus on thoughtful review.</p>
+        </div>
+        <div class="automation-grid">
+          <article class="system-card">
+            <h3>Daily Issue Bot</h3>
+            <p>Creates beginner-friendly starter issues from a curated maintainer backlog.</p>
+          </article>
+          <article class="system-card">
+            <h3>PR Welcome Guard</h3>
+            <p>Welcomes contributors and checks whether the PR is review-ready.</p>
+          </article>
+          <article class="system-card">
+            <h3>Contributor Queue</h3>
+            <p>Shows who is assigned, stuck, ready for follow-up, or waiting for help.</p>
+          </article>
+          <article class="system-card">
+            <h3>After Merge Proof</h3>
+            <p>Thanks contributors, closes linked issues, and suggests a next useful path.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="final-cta section">
+        <p class="eyebrow">> ready_when_you_are</p>
+        <h2>Make one focused change. Show proof. Get reviewed.</h2>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab" target="_blank" rel="noreferrer">
+            <span>Open GitHub repo</span>
+          </a>
+          <a class="btn btn-secondary" href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44" target="_blank" rel="noreferrer">
+            <span>Ask for an issue</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
