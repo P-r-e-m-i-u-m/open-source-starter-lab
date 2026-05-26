@@ -29,6 +29,7 @@ This repo is built to help you move from "I want to contribute" to a real merged
 | Goal | Start here | What you get |
 | --- | --- | --- |
 | Make your first PR | [10 minute path](docs/START_HERE.md) | A short workflow from clone to pull request |
+| Find the best open task | [Featured first issues](docs/FEATURED_FIRST_ISSUES.md) | A curated list by time, skill, and confidence |
 | Get matched to an issue | [Weekly assignment thread](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) | A maintainer suggests one task for your skill and time |
 | Pick by skill | [Skill routes](docs/SKILL_BASED_FIRST_ISSUES.md) | Docs, Git, JavaScript, Python, testing, or CLI tasks |
 | Understand an issue | [First Issue Decoder](docs/ISSUE_DECODER.md) | The first file, first command, scope, and PR proof |
@@ -57,6 +58,7 @@ Before spending time here, check the live proof:
 | Signal | Link |
 | --- | --- |
 | Open starter tasks | [Unassigned good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+no%3Aassignee) |
+| Featured starter tasks | [Featured first issues](docs/FEATURED_FIRST_ISSUES.md) |
 | Human help queue | [Contributor queue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46) |
 | Recent proof | [Merged pull requests](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/pulls?q=is%3Apr+is%3Amerged+sort%3Aupdated-desc) |
 | Ask for assignment | [Get assigned your first issue this week](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
@@ -70,6 +72,7 @@ Before spending time here, check the live proof:
 | Avoid common first PR mistakes | [First PR mistakes](docs/FIRST_PR_MISTAKES.md) |
 | Understand common open-source words | [Contribution glossary](docs/GLOSSARY.md) |
 | Find a small task | [Good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) |
+| Find a curated first task | [Featured first issues](docs/FEATURED_FIRST_ISSUES.md) |
 | Choose the right first issue | [Choosing your first issue](docs/CHOOSING_FIRST_ISSUE.md) |
 | Find an issue by skill and time | [First Issue Fit Finder](docs/FIRST_ISSUE_FIT_FINDER.md) |
 | Decode an issue before coding | [First Issue Decoder](docs/ISSUE_DECODER.md) |

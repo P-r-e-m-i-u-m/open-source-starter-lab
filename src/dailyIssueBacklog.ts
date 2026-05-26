@@ -11,7 +11,7 @@ export interface DailyIssue {
 export const dailyIssueBacklog: DailyIssue[] = [
   {
     title: "Add a guide for fixing rejected git push errors",
-    labels: ["daily starter issue", "documentation", "good first issue", "beginner friendly"],
+    labels: ["daily starter issue", "documentation", "good first issue", "beginner friendly", "time: 30 min"],
     context: "A lot of beginners see `Updates were rejected` and do not know whether to pull, rebase, or start over.",
     goal: "Write a small guide that explains the error and gives a safe recovery path.",
     suggestedFiles: ["docs/GIT_PUSH_REJECTED.md", "README.md"],
@@ -28,7 +28,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add a guide for writing better pull request descriptions",
-    labels: ["daily starter issue", "documentation", "good first issue", "community"],
+    labels: ["daily starter issue", "documentation", "good first issue", "community", "time: 30 min"],
     context: "New contributors often open PRs with very little context, which makes review harder.",
     goal: "Create a short guide that shows what a helpful PR description looks like.",
     suggestedFiles: ["docs/PR_DESCRIPTION_GUIDE.md", "CONTRIBUTING.md"],
@@ -42,7 +42,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add examples for choosing a good first issue",
-    labels: ["daily starter issue", "documentation", "beginner friendly"],
+    labels: ["daily starter issue", "documentation", "beginner friendly", "time: 30 min"],
     context: "Beginners sometimes pick tasks that are too broad and get stuck.",
     goal: "Add a guide that helps contributors choose a small, finishable first issue.",
     suggestedFiles: ["docs/CHOOSING_FIRST_ISSUE.md", "README.md"],
@@ -56,7 +56,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add a checklist for reviewing documentation PRs",
-    labels: ["daily starter issue", "documentation", "help wanted"],
+    labels: ["daily starter issue", "documentation", "help wanted", "time: 30 min"],
     context: "Documentation PRs still need review, but the checklist should be simple.",
     goal: "Create a small reviewer checklist for docs changes.",
     suggestedFiles: ["docs/DOCS_REVIEW_CHECKLIST.md"],
@@ -70,7 +70,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add a beginner guide for Git branches",
-    labels: ["daily starter issue", "documentation", "good first issue", "beginner friendly"],
+    labels: ["daily starter issue", "documentation", "good first issue", "beginner friendly", "time: 30 min"],
     context: "Branches are one of the first confusing Git concepts for new contributors.",
     goal: "Explain branches with practical commands and a first-PR workflow.",
     suggestedFiles: ["docs/GIT_BRANCHES.md", "docs/FIRST_PULL_REQUEST.md"],
@@ -84,7 +84,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add a guide for reading GitHub Actions failures",
-    labels: ["daily starter issue", "documentation", "help wanted", "beginner friendly"],
+    labels: ["daily starter issue", "documentation", "help wanted", "beginner friendly", "time: 30 min"],
     context: "A red CI check can feel scary when someone opens their first PR.",
     goal: "Write a guide that explains how to open a failed check and find the useful error.",
     suggestedFiles: ["docs/READING_CI_FAILURES.md"],
@@ -98,7 +98,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add a first-time contributor FAQ",
-    labels: ["daily starter issue", "documentation", "community", "good first issue"],
+    labels: ["daily starter issue", "documentation", "community", "good first issue", "time: 30 min"],
     context: "A FAQ can reduce repeated questions and help contributors feel less lost.",
     goal: "Create a FAQ with practical answers for first-time contributors.",
     suggestedFiles: ["docs/FIRST_TIME_CONTRIBUTOR_FAQ.md", "README.md"],
@@ -112,7 +112,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add examples for good Discussion answers",
-    labels: ["daily starter issue", "documentation", "community", "help wanted"],
+    labels: ["daily starter issue", "documentation", "community", "help wanted", "time: 30 min"],
     context: "Discussions are more useful when answers teach clearly and include assumptions.",
     goal: "Create examples of weak and strong GitHub Discussion answers.",
     suggestedFiles: ["docs/DISCUSSION_ANSWER_EXAMPLES.md", "docs/MAINTAINER_PLAYBOOK.md"],
@@ -126,7 +126,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add CLI tests for unknown commands",
-    labels: ["daily starter issue", "cli", "good first issue", "testing"],
+    labels: ["daily starter issue", "cli", "good first issue", "testing", "time: 1 hour"],
     context: "The CLI throws an error for unknown commands, but the behavior should be covered by a small test so future changes do not break it.",
     goal: "Add a focused test that proves unknown CLI commands fail with a useful message.",
     suggestedFiles: ["tests/cli.test.ts", "package.json", "docs/CLI.md"],
@@ -143,7 +143,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add a `--json` output option for starter issue ideas",
-    labels: ["daily starter issue", "cli", "help wanted", "developer tooling"],
+    labels: ["daily starter issue", "cli", "help wanted", "developer tooling", "time: 1 hour"],
     context: "The `issues` command prints human-readable text, but automation examples are easier when the CLI can also return JSON.",
     goal: "Add a `node dist/src/cli.js issues --json` mode that prints starter issue ideas as JSON.",
     suggestedFiles: ["src/cli.ts", "tests/smoke.test.ts", "docs/CLI.md"],
@@ -160,7 +160,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add a command that lists available contributor profiles",
-    labels: ["daily starter issue", "cli", "good first issue", "developer tooling"],
+    labels: ["daily starter issue", "cli", "good first issue", "developer tooling", "time: 1 hour"],
     context: "The CLI supports beginner and maintainer profiles, but users only discover that by reading help text.",
     goal: "Add a small `profiles` command that lists supported checklist profiles.",
     suggestedFiles: ["src/cli.ts", "docs/CLI.md", "tests/smoke.test.ts"],
@@ -174,7 +174,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Improve daily issue bot label coverage",
-    labels: ["daily starter issue", "developer tooling", "help wanted"],
+    labels: ["daily starter issue", "developer tooling", "help wanted", "time: 30 min"],
     context: "The daily issue bot creates labels when needed, but newer backlog labels should also get clear colors and descriptions.",
     goal: "Improve the label map used by the daily issue bot so generated issues look consistent.",
     suggestedFiles: ["scripts/createDailyIssue.ts", "docs/DAILY_ISSUE_BOT.md"],
@@ -188,7 +188,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add a guide for reproducing a bug before opening a PR",
-    labels: ["daily starter issue", "documentation", "good first issue", "testing"],
+    labels: ["daily starter issue", "documentation", "good first issue", "testing", "time: 30 min"],
     context: "New contributors often jump into a fix before they can reproduce the problem, which makes reviews harder.",
     goal: "Create a short guide for writing reproduction steps and expected behavior.",
     suggestedFiles: ["docs/BUG_REPRODUCTION_GUIDE.md", "CONTRIBUTING.md"],
@@ -202,7 +202,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add issue filtering examples for contributors",
-    labels: ["daily starter issue", "documentation", "community", "good first issue"],
+    labels: ["daily starter issue", "documentation", "community", "good first issue", "time: 15 min"],
     context: "GitHub issue filters are powerful, but beginners may not know how to find open tasks by label or difficulty.",
     goal: "Add examples for filtering issues by label, state, and assignment status.",
     suggestedFiles: ["docs/FINDING_ISSUES.md", "README.md"],
@@ -230,7 +230,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add a small command glossary for the CLI",
-    labels: ["daily starter issue", "documentation", "cli", "good first issue"],
+    labels: ["daily starter issue", "documentation", "cli", "good first issue", "time: 15 min"],
     context: "The CLI is small, but contributors should understand what each command does.",
     goal: "Add a command glossary for the `oss-lab` CLI.",
     suggestedFiles: ["docs/CLI.md"],
@@ -244,7 +244,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Improve the contributor card example",
-    labels: ["daily starter issue", "documentation", "beginner friendly"],
+    labels: ["daily starter issue", "documentation", "beginner friendly", "time: 15 min"],
     context: "Contributor cards should feel welcoming but still professional.",
     goal: "Improve the example contributor card with clearer fields.",
     suggestedFiles: ["contributors/README.md", "CONTRIBUTING.md"],
@@ -258,7 +258,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add a guide for asking better GitHub questions",
-    labels: ["daily starter issue", "documentation", "community", "beginner friendly"],
+    labels: ["daily starter issue", "documentation", "community", "beginner friendly", "time: 30 min"],
     context: "Good questions get better answers and make Discussions easier to maintain.",
     goal: "Write a short guide that helps beginners ask answerable GitHub questions.",
     suggestedFiles: ["docs/ASKING_GOOD_QUESTIONS.md", "README.md"],

@@ -85,7 +85,10 @@ async function ensureLabels(owner: string, repo: string, token: string, labels: 
     community: "fbca04",
     cli: "d876e3",
     testing: "0e8a16",
-    "developer tooling": "1d76db"
+    "developer tooling": "1d76db",
+    "time: 15 min": "bfdadc",
+    "time: 30 min": "c5def5",
+    "time: 1 hour": "fef2c0"
   };
 
   const labelDescriptions: Record<string, string> = {
@@ -97,7 +100,10 @@ async function ensureLabels(owner: string, repo: string, token: string, labels: 
     community: "Contributor and discussion work",
     cli: "CLI behavior or examples",
     testing: "Tasks related to testing, validation, and quality assurance",
-    "developer tooling": "Tasks related to automation, scripts, developer tools, and workflow improvements"
+    "developer tooling": "Tasks related to automation, scripts, developer tools, and workflow improvements",
+    "time: 15 min": "Small issue expected to fit in about 15 minutes",
+    "time: 30 min": "Small issue expected to fit in about 30 minutes",
+    "time: 1 hour": "Focused issue expected to fit in about one hour"
   };
 
   for (const label of labels) {
