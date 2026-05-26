@@ -28,6 +28,7 @@
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#finder">Issue Finder</a>
         <a href="#journey">Journey</a>
+        <a href="#workflow">Workflow</a>
         <a href="#proof">Proof</a>
         <a href="#automation">Automation</a>
       </nav>
@@ -158,6 +159,47 @@
         </div>
       </section>
 
+      <section id="workflow" class="section workflow-section">
+        <div class="section-heading">
+          <p class="eyebrow">> before_you_touch_code</p>
+          <h2>The first PR workflow</h2>
+          <p>Most beginners do not fail because they cannot code. They get lost in the process. This path keeps the next step visible.</p>
+        </div>
+
+        <div class="workflow-shell">
+          <div class="command-stack" aria-label="Copy-ready setup commands">
+            <div class="window-bar">
+              <span class="dot magenta"></span>
+              <span class="dot cyan"></span>
+              <span class="dot orange"></span>
+              <span class="window-title">setup-path.sh</span>
+            </div>
+            <pre><code>git clone https://github.com/P-r-e-m-i-u-m/open-source-starter-lab.git
+cd open-source-starter-lab
+npm install
+npm run check</code></pre>
+          </div>
+
+          <div class="workflow-list">
+            <article>
+              <strong>01</strong>
+              <h3>Read the issue</h3>
+              <p>Use the decoder to find the first file, first command, and what not to change.</p>
+            </article>
+            <article>
+              <strong>02</strong>
+              <h3>Claim one task</h3>
+              <p>Comment before starting so nobody duplicates the same work.</p>
+            </article>
+            <article>
+              <strong>03</strong>
+              <h3>Ship with proof</h3>
+              <p>Keep the PR small and include the check output so review is faster.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="proof" class="section proof-section">
         <div class="section-heading">
           <p class="eyebrow">> live_proof_layer</p>
@@ -176,6 +218,28 @@
             <strong>Featured Issues</strong>
             <span>curated routes by time, skill, and confidence</span>
           </a>
+        </div>
+      </section>
+
+      <section class="section trust-section">
+        <div class="section-heading">
+          <p class="eyebrow">> why_people_trust_it</p>
+          <h2>No silent maze</h2>
+          <p>The repo is built around signals contributors look for before spending time: active review, clear instructions, visible proof, and a next step after merge.</p>
+        </div>
+        <div class="trust-grid">
+          <article>
+            <h3>Review readiness</h3>
+            <p>The PR Welcome Guard checks summaries, testing notes, and `npm run check` so first PRs are easier to review.</p>
+          </article>
+          <article>
+            <h3>Open coordination</h3>
+            <p>Issues, discussions, queues, and merge proof stay public so contributors can see how work moves.</p>
+          </article>
+          <article>
+            <h3>Second-step support</h3>
+            <p>After merge, contributors get route suggestions instead of being left wondering what to do next.</p>
+          </article>
         </div>
       </section>
 
@@ -202,6 +266,31 @@
             <h3>After Merge Proof</h3>
             <p>Thanks contributors, closes linked issues, and suggests a next useful path.</p>
           </article>
+        </div>
+      </section>
+
+      <section class="section faq-section">
+        <div class="section-heading">
+          <p class="eyebrow">> beginner_questions</p>
+          <h2>FAQ for the nervous first PR</h2>
+        </div>
+        <div class="faq-grid">
+          <details open>
+            <summary>Do I need to be an expert?</summary>
+            <p>No. Start with docs, examples, setup guides, issue clarity, or one tiny CLI/test improvement.</p>
+          </details>
+          <details>
+            <summary>What if the issue is confusing?</summary>
+            <p>Use the First Issue Decoder or ask in the weekly assignment thread with your skill and time.</p>
+          </details>
+          <details>
+            <summary>What should my PR include?</summary>
+            <p>Say what changed, why it helps, how you tested it, and link the issue with `Closes #...` when relevant.</p>
+          </details>
+          <details>
+            <summary>What if checks fail?</summary>
+            <p>Paste the command, the error, and what you expected. Clear failure notes are useful maintainer signals.</p>
+          </details>
         </div>
       </section>
 

@@ -279,6 +279,11 @@ h1 span,
 .proof-card,
 .system-card,
 .timeline article,
+.workflow-shell,
+.command-stack,
+.workflow-list article,
+.trust-grid article,
+.faq-grid details,
 .signal-strip a,
 .final-cta {
   border: 2px solid rgba(255, 0, 255, 0.44);
@@ -331,7 +336,9 @@ h1 span,
 .signal-strip,
 .proof-grid,
 .automation-grid,
-.timeline {
+.timeline,
+.trust-grid,
+.faq-grid {
   display: grid;
   gap: 22px;
 }
@@ -478,6 +485,87 @@ a:focus-visible {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.workflow-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+  gap: 24px;
+  padding: 28px;
+}
+
+.command-stack {
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.82);
+}
+
+pre {
+  margin: 0;
+  padding: 26px;
+  overflow-x: auto;
+  color: var(--cyan);
+  font: 1rem/1.8 var(--font-body);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.72);
+}
+
+.workflow-list {
+  display: grid;
+  gap: 18px;
+}
+
+.workflow-list article,
+.trust-grid article,
+.faq-grid details {
+  padding: 22px;
+}
+
+.workflow-list strong {
+  color: var(--orange);
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+}
+
+.workflow-list h3,
+.trust-grid h3 {
+  color: var(--cyan);
+  margin: 10px 0;
+}
+
+.workflow-list p,
+.trust-grid p,
+.faq-grid p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.trust-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.trust-grid article:nth-child(2) {
+  transform: translateY(22px);
+  border-top-color: var(--orange);
+}
+
+.trust-grid article:nth-child(3) {
+  border-top-color: var(--magenta);
+}
+
+.faq-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+summary {
+  cursor: pointer;
+  color: var(--cyan);
+  font-family: var(--font-heading);
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+details[open] {
+  border-color: var(--cyan);
+  box-shadow: 0 0 28px rgba(0, 255, 255, 0.2), 10px 10px 0 rgba(255, 0, 255, 0.2);
+}
+
 .final-cta {
   text-align: center;
   padding: 48px;
@@ -505,10 +593,13 @@ a:focus-visible {
 
   .hero,
   .finder-panel,
+  .workflow-shell,
   .signal-strip,
   .timeline,
   .proof-grid,
-  .automation-grid {
+  .automation-grid,
+  .trust-grid,
+  .faq-grid {
     grid-template-columns: 1fr;
   }
 
@@ -517,6 +608,10 @@ a:focus-visible {
   }
 
   .timeline article:nth-child(even) {
+    transform: none;
+  }
+
+  .trust-grid article:nth-child(2) {
     transform: none;
   }
 }
@@ -537,6 +632,12 @@ a:focus-visible {
 
   .final-cta {
     padding: 28px;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 0.88rem;
   }
 }
 
