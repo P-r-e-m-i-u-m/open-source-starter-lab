@@ -234,6 +234,11 @@ Read the bot docs: [docs/DAILY_ISSUE_BOT.md](docs/DAILY_ISSUE_BOT.md).
 
 Be clear, kind, and useful. Short answers are fine when they solve the problem, but the best answers teach the next person too.
 
+## Contribution Guides
+
+- [Python Learner First PR Guide](docs/PYTHON_LEARNER_FIRST_PR.md)
+
 ## License
 
 MIT
+
