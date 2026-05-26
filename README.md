@@ -237,7 +237,7 @@ Be clear, kind, and useful. Short answers are fine when they solve the problem, 
 ## Contribution Guides
 
 - [Python Learner First PR Guide](docs/PYTHON_LEARNER_FIRST_PR.md)
-- 
+
 ## License
 
 MIT
