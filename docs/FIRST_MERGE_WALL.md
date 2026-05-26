@@ -68,6 +68,12 @@ Keep your entry short and professional.
 - I worked on: Improve CLI output message for issue search URL
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @Alee-n
+
+- First merged PR: #55
+- I worked on: Add first PR guide for Python learners
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
