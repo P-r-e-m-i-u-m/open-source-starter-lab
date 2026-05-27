@@ -80,6 +80,12 @@ Keep your entry short and professional.
 - I worked on: docs: add website accessibility checklist
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @nanookclaw
+
+- First merged PR: #60
+- I worked on: feat: add JSON output for issue ideas
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
