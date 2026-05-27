@@ -3,6 +3,7 @@ name: Daily Issue Bot
 on:
   schedule:
     - cron: "30 4 * * *"
+    - cron: "30 8 * * *"
   workflow_dispatch:
 
 permissions:
