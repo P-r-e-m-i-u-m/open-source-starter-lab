@@ -92,6 +92,7 @@ Before spending time here, check the live proof:
 | Join weekly help | [Weekly help thread](docs/WEEKLY_HELP_THREAD.md) |
 | Add your first merge | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
 | Learn maintainer habits | [Maintainer playbook](docs/MAINTAINER_PLAYBOOK.md) |
+| Keep automation healthy | [Automation health](docs/AUTOMATION_HEALTH.md) |
 | Launch and share the repo | [Launch playbook](docs/LAUNCH_PLAYBOOK.md) |
 | Share this with beginners | [Community discovery kit](docs/COMMUNITY_DISCOVERY_KIT.md) |
 | Reply in GitHub Community | [GitHub Community reply pack](docs/GITHUB_COMMUNITY_REPLY_PACK.md) |
@@ -231,6 +232,8 @@ This repo is also a maintainer practice lab. Use it to learn:
 - How to keep project checks simple and visible
 
 See [docs/MAINTAINER_PLAYBOOK.md](docs/MAINTAINER_PLAYBOOK.md).
+
+Automation recovery notes live in [docs/AUTOMATION_HEALTH.md](docs/AUTOMATION_HEALTH.md).
 
 ## Launch Kit
 

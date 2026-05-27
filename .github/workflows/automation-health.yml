@@ -1,18 +1,16 @@
-name: CI
+name: Automation Health
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  schedule:
+    - cron: "10 3 * * *"
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  build-and-test:
-    name: Build and Test
+  dry-run-automation:
+    name: Dry Run Automation Scripts
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -29,5 +27,5 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Check
-        run: npm run check
+      - name: Automation health check
+        run: npm run automation:health

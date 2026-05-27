@@ -13,6 +13,10 @@ jobs:
   create-weekly-help-thread:
     name: Create Weekly Discussion
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: weekly-help-thread-${{ github.repository }}
+      cancel-in-progress: false
 
     steps:
       - name: Checkout

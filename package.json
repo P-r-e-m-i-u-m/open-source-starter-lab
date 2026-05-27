@@ -20,6 +20,7 @@
     "pr:after-merge:dry-run": "npm run build && node dist/scripts/afterMergeContributorProof.js --dry-run",
     "pr:welcome": "npm run build && node dist/scripts/welcomePullRequest.js",
     "pr:welcome:dry-run": "npm run build && node dist/scripts/welcomePullRequest.js --dry-run",
+    "automation:health": "npm run build && node dist/scripts/createDailyIssue.js --dry-run && node dist/scripts/createWeeklyHelpDiscussion.js --dry-run && node dist/scripts/welcomePullRequest.js --dry-run && node dist/scripts/afterMergeContributorProof.js --dry-run",
     "test": "npm run build && node dist/tests/smoke.test.js",
     "check": "npm run build && npm test && npm run demo"
   },

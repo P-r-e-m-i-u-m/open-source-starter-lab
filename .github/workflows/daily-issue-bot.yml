@@ -14,6 +14,10 @@ jobs:
   create-daily-issue:
     name: Create Daily Starter Issue
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: daily-issue-bot-${{ github.repository }}
+      cancel-in-progress: false
 
     steps:
       - name: Checkout

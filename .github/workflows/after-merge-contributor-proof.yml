@@ -15,6 +15,10 @@ jobs:
     name: Update Wall And Thank Contributor
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: contributor-proof-${{ github.repository }}-${{ github.event.pull_request.number }}
+      cancel-in-progress: false
 
     steps:
       - name: Checkout
