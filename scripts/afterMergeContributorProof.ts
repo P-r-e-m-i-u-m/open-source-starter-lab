@@ -1,5 +1,6 @@
 const apiBase = "https://api.github.com";
 const firstMergeWallPath = "docs/FIRST_MERGE_WALL.md";
+const passportDirectory = "contributors/passports";
 
 interface GitHubUser {
   login: string;
@@ -54,6 +55,7 @@ interface MaintainerActionPlan {
   pullRequestTitle: string;
   pullRequestUrl: string;
   linkedIssues: number[];
+  passportPath?: string;
   nextIssues?: NextIssueSuggestion[];
 }
 
@@ -148,6 +150,64 @@ function isMissingIssueError(error: unknown): boolean {
   return error instanceof Error && /GitHub API failed 404/i.test(error.message);
 }
 
+function slugifyContributor(login: string): string {
+  return login.toLowerCase().replace(/[^a-z0-9-]/g, "-");
+}
+
+function inferSkillFromLabels(labels: GitHubLabel[]): string | undefined {
+  const skillLabel = labels.find((label) => label.name.startsWith("skill: "));
+  if (skillLabel) {
+    return skillLabel.name.replace("skill: ", "");
+  }
+
+  if (labels.some((label) => label.name === "documentation")) {
+    return "docs";
+  }
+  if (labels.some((label) => label.name === "testing")) {
+    return "testing";
+  }
+  if (labels.some((label) => label.name === "cli")) {
+    return "cli";
+  }
+
+  return undefined;
+}
+
+function inferSkillFromTitle(title: string): string {
+  const text = title.toLowerCase();
+  if (/\b(test|testing|check|verify)\b/.test(text)) {
+    return "testing";
+  }
+  if (/\b(cli|command|json|output)\b/.test(text)) {
+    return "cli";
+  }
+  if (/\b(site|website|css|html|accessibility)\b/.test(text)) {
+    return "website";
+  }
+  if (/\b(doc|guide|readme|checklist|glossary)\b/.test(text)) {
+    return "docs";
+  }
+
+  return "open source workflow";
+}
+
+function formatPassportDate(value: string | null): string {
+  if (!value) {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  return new Date(value).toISOString().slice(0, 10);
+}
+
+function formatNextIssueLine(nextIssues: NextIssueSuggestion[]): string {
+  const nextIssue = nextIssues[0];
+  if (!nextIssue) {
+    return "Ask in the weekly assignment thread for a second PR suggestion.";
+  }
+
+  return `${nextIssue.route}: #${nextIssue.issue.number} ${nextIssue.issue.title}`;
+}
+
 async function ensureWallEntry(contributor: string, pr: GitHubPullRequest): Promise<boolean> {
   const { readFile, writeFile } = await import("node:fs/promises");
   const wall = await readFile(firstMergeWallPath, "utf8");
@@ -172,6 +232,73 @@ async function ensureWallEntry(contributor: string, pr: GitHubPullRequest): Prom
 
   await writeFile(firstMergeWallPath, updated, "utf8");
   return true;
+}
+
+async function ensureContributorPassport(
+  contributor: string,
+  pr: GitHubPullRequest,
+  skill: string,
+  linkedIssues: number[],
+  nextIssues: NextIssueSuggestion[]
+): Promise<string> {
+  const { mkdir, readFile, writeFile } = await import("node:fs/promises");
+  const path = `${passportDirectory}/${slugifyContributor(contributor)}.md`;
+  const contributionLine = `| #${pr.number} | ${formatPassportDate(pr.merged_at)} | ${skill} | ${pr.title} | ${formatIssueList(linkedIssues)} |`;
+
+  await mkdir(passportDirectory, { recursive: true });
+
+  let existing = "";
+  try {
+    existing = await readFile(path, "utf8");
+  } catch {
+    existing = "";
+  }
+
+  if (existing.includes(`| #${pr.number} |`)) {
+    return path;
+  }
+
+  if (!existing.trim()) {
+    const content = [
+      `# @${contributor} Open Source Trust Passport`,
+      "",
+      "This passport records reviewed, merged contributions in Open Source Starter Lab.",
+      "",
+      "## Current Level",
+      "",
+      "- Level: 1 - First PR Contributor",
+      `- First merged PR: #${pr.number}`,
+      `- Primary skill: ${skill}`,
+      "- Proof: merged pull request with maintainer review and project checks",
+      "",
+      "## Verified Contributions",
+      "",
+      "| PR | Date | Skill | Work | Linked issues |",
+      "| --- | --- | --- | --- | --- |",
+      contributionLine,
+      "",
+      "## Suggested Next Step",
+      "",
+      `- ${formatNextIssueLine(nextIssues)}`,
+      "",
+      "## Share Line",
+      "",
+      `I earned my Open Source Trust Passport by getting #${pr.number} merged in Open Source Starter Lab.`,
+      ""
+    ].join("\n");
+
+    await writeFile(path, content, "utf8");
+    return path;
+  }
+
+  const updated = existing.includes("## Suggested Next Step")
+    ? existing
+        .replace("## Suggested Next Step", `${contributionLine}\n\n## Suggested Next Step`)
+        .replace(/- .+\n(?=\n## Share Line)/, `- ${formatNextIssueLine(nextIssues)}\n`)
+    : `${existing.trimEnd()}\n\n${contributionLine}\n`;
+
+  await writeFile(path, updated, "utf8");
+  return path;
 }
 
 async function searchNextIssue(
@@ -308,7 +435,8 @@ async function buildPlan(): Promise<MaintainerActionPlan> {
       pullRequestNumber: 123,
       pullRequestTitle: "docs: improve first PR checklist",
       pullRequestUrl: "https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/pull/123",
-      linkedIssues: [42]
+      linkedIssues: [42],
+      passportPath: `${passportDirectory}/example-contributor.md`
     };
   }
 
@@ -394,6 +522,7 @@ async function main(): Promise<void> {
   const changedWall = await ensureWallEntry(plan.contributor, pr);
   const nextIssues = await findNextIssueSuggestions(owner, repo, token);
   const skippedIssues: number[] = [];
+  let inferredSkill: string | undefined;
 
   for (const issueNumber of plan.linkedIssues) {
     let issue: GitHubIssue;
@@ -410,6 +539,7 @@ async function main(): Promise<void> {
     }
 
     const labels = await fetchIssueLabels(owner, repo, token, issueNumber);
+    inferredSkill ??= inferSkillFromLabels(labels);
     const isManagedIssue = labels.some((label) =>
       ["good first issue", "beginner friendly", "daily starter issue"].includes(label.name)
     );
@@ -420,8 +550,16 @@ async function main(): Promise<void> {
     }
   }
 
+  const passportPath = await ensureContributorPassport(
+    plan.contributor,
+    pr,
+    inferredSkill ?? inferSkillFromTitle(pr.title),
+    plan.linkedIssues,
+    nextIssues
+  );
   await commentOnPullRequest(owner, repo, token, pr, plan.linkedIssues, skippedIssues, nextIssues);
   console.log(changedWall ? "First Merge Wall updated." : "First Merge Wall already had this entry.");
+  console.log(`Trust Passport updated: ${passportPath}`);
   console.log(`Thanked @${plan.contributor} on #${plan.pullRequestNumber}.`);
 }
 

@@ -13,7 +13,7 @@ The goal is not to make the repo noisy. The goal is to catch broken automation e
 | `Weekly Help Thread` | Opens the weekly issue-assignment discussion | Existing-thread check, concurrency guard |
 | `Contributor Queue` | Keeps maintainer follow-up visible | Concurrency guard, secondary rate-limit skip |
 | `PR Welcome Guard` | Replies to PRs with review-readiness guidance | Updates one marked comment instead of posting duplicates |
-| `Contributor Proof After Merge` | Thanks contributors, closes linked issues, and updates the First Merge Wall | Per-PR concurrency guard, direct issue listing instead of search API |
+| `Contributor Proof After Merge` | Thanks contributors, closes linked issues, updates the First Merge Wall, and creates contributor passports | Per-PR concurrency guard, direct issue listing instead of search API |
 | `Automation Health` | Dry-runs automation scripts daily without writing to GitHub | No token needed, read-only permissions |
 
 ## Daily Health Check

@@ -67,6 +67,23 @@ Before spending time here, check the live proof:
 | Recent proof | [Merged pull requests](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/pulls?q=is%3Apr+is%3Amerged+sort%3Aupdated-desc) |
 | Ask for assignment | [Get assigned your first issue this week](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
 | Contributor proof | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
+| Trust proof | [Contributor Passports](contributors/passports/README.md) |
+
+## Get Your Open Source Trust Passport
+
+This repo now creates an **Open Source Trust Passport** for contributors after a real reviewed PR is merged.
+
+A passport records:
+
+- first merged PR
+- skill used
+- linked issue
+- review proof
+- next suggested contribution path
+
+Read the system: [docs/CONTRIBUTOR_PASSPORT.md](docs/CONTRIBUTOR_PASSPORT.md)
+
+See passport files: [contributors/passports](contributors/passports)
 
 ## Pick Your Path
 
@@ -91,6 +108,7 @@ Before spending time here, check the live proof:
 | See maintainer follow-up | [Contributor queue](docs/CONTRIBUTOR_QUEUE.md) |
 | Join weekly help | [Weekly help thread](docs/WEEKLY_HELP_THREAD.md) |
 | Add your first merge | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
+| Understand contributor passports | [Contributor Passport](docs/CONTRIBUTOR_PASSPORT.md) |
 | Learn maintainer habits | [Maintainer playbook](docs/MAINTAINER_PLAYBOOK.md) |
 | Keep automation healthy | [Automation health](docs/AUTOMATION_HEALTH.md) |
 | Launch and share the repo | [Launch playbook](docs/LAUNCH_PLAYBOOK.md) |
@@ -151,6 +169,7 @@ Start with one of these:
 - Learn how to choose a finishable task: [CHOOSING_FIRST_ISSUE.md](docs/CHOOSING_FIRST_ISSUE.md)
 - Learn how to fix a rejected push: [GIT_PUSH_REJECTED.md](docs/GIT_PUSH_REJECTED.md)
 - Add yourself after a merge: [FIRST_MERGE_WALL.md](docs/FIRST_MERGE_WALL.md)
+- Earn proof after merge: [CONTRIBUTOR_PASSPORT.md](docs/CONTRIBUTOR_PASSPORT.md)
 
 Good first issues are listed here:
 [good first issue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
@@ -230,6 +249,7 @@ This repo is also a maintainer practice lab. Use it to learn:
 - How to review without discouraging beginners
 - How to answer Discussions clearly
 - How to keep project checks simple and visible
+- How to turn merged work into contributor proof
 
 See [docs/MAINTAINER_PLAYBOOK.md](docs/MAINTAINER_PLAYBOOK.md).
 

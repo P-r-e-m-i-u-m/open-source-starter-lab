@@ -44,13 +44,13 @@ jobs:
 
       - name: Commit First Merge Wall update
         run: |
-          if git diff --quiet -- docs/FIRST_MERGE_WALL.md; then
-            echo "No First Merge Wall change needed."
+          if git diff --quiet -- docs/FIRST_MERGE_WALL.md contributors/passports; then
+            echo "No contributor proof change needed."
             exit 0
           fi
 
           git config user.name "P-r-e-m-i-u-m"
           git config user.email "actions@github.com"
-          git add docs/FIRST_MERGE_WALL.md
-          git commit -m "docs: add contributor to first merge wall"
+          git add docs/FIRST_MERGE_WALL.md contributors/passports
+          git commit -m "docs: update contributor proof"
           git push

@@ -81,6 +81,37 @@ If you already contribute, help one beginner get through their first PR.
 #OpenSource #GitHub #GoodFirstIssue #FirstPullRequest #DeveloperCommunity #TypeScript #Git
 ```
 
+## Trust Passport Launch Post
+
+```md
+I added an Open Source Trust Passport system to Open Source Starter Lab.
+
+The idea is simple:
+
+Most beginner repos help you open a PR.
+This repo should help you leave with proof.
+
+After a reviewed PR is merged, contributors can get a public passport file that records:
+
+- first merged PR
+- skill used
+- linked issue
+- review proof
+- next suggested contribution path
+
+This helps beginners show real open-source evidence, and it helps maintainers see who has already shipped focused, reviewed work.
+
+Repo:
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab
+
+Passport system:
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/CONTRIBUTOR_PASSPORT.md
+
+If you want your first open-source PR, start small. If it gets merged, your work becomes visible proof.
+
+#OpenSource #GitHub #FirstPullRequest #GoodFirstIssue #DeveloperCommunity #BuildInPublic
+```
+
 ## X Launch Post
 
 ```text

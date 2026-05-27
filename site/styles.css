@@ -346,7 +346,7 @@ h1 span,
 .signal-strip {
   width: min(1180px, calc(100% - 32px));
   margin: -42px auto 0;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   position: relative;
   z-index: 3;
 }
@@ -481,6 +481,59 @@ a:focus-visible {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.passport-shell {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.passport-card,
+.passport-copy {
+  border: 2px solid rgba(0, 255, 255, 0.56);
+  border-top-color: var(--orange);
+  background: var(--panel);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 30px rgba(255, 153, 0, 0.16), 12px 12px 0 rgba(0, 255, 255, 0.14);
+  padding: 28px;
+}
+
+.passport-card {
+  transform: rotate(-1deg);
+}
+
+.passport-label {
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin: 0 0 18px;
+}
+
+.passport-card h3,
+.passport-copy h3 {
+  color: var(--cyan);
+  text-shadow: 0 0 14px rgba(0, 255, 255, 0.75);
+}
+
+.passport-card ul {
+  margin: 22px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.passport-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.passport-copy p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
 .automation-grid {
   grid-template-columns: repeat(4, 1fr);
 }
@@ -594,6 +647,7 @@ details[open] {
   .hero,
   .finder-panel,
   .workflow-shell,
+  .passport-shell,
   .signal-strip,
   .timeline,
   .proof-grid,
