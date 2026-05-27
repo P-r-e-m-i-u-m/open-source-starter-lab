@@ -216,7 +216,7 @@ export const dailyIssueBacklog: DailyIssue[] = [
   },
   {
     title: "Add a guide for creating useful issue titles",
-    labels: ["daily starter issue", "documentation", "good first issue"],
+    labels: ["daily starter issue", "documentation", "good first issue", "beginner friendly", "time: 30 min", "level: first-pr"],
     context: "Clear issue titles help contributors scan the backlog quickly.",
     goal: "Document examples of vague issue titles and stronger versions.",
     suggestedFiles: ["docs/ISSUE_TITLE_GUIDE.md"],

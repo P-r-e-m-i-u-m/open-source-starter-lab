@@ -18,6 +18,7 @@
 [![Website](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/pages.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/pages.yml)
 [![Automation Health](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/automation-health.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/automation-health.yml)
 [![Daily Issue Bot](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/daily-issue-bot.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/daily-issue-bot.yml)
+[![Monthly Dashboard](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/monthly-maintainer-dashboard.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/monthly-maintainer-dashboard.yml)
 [![Good First Issues](https://img.shields.io/github/issues/P-r-e-m-i-u-m/open-source-starter-lab/good%20first%20issue?label=good%20first%20issues)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 [![Contributors](https://img.shields.io/github/contributors/P-r-e-m-i-u-m/open-source-starter-lab?label=contributors)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/graphs/contributors)
 [![License: MIT](https://img.shields.io/badge/license-MIT-0f172a.svg)](LICENSE)
@@ -27,6 +28,19 @@ Website: [open-source-starter-lab](https://p-r-e-m-i-u-m.github.io/open-source-s
 Most beginner repos say "make your first PR" and stop there. This lab gives contributors small tasks, clear acceptance criteria, copy-paste commands, CI checks, and a safe place to ask questions.
 
 If you searched for **first pull request**, **first open source contribution**, **good first issue**, **beginner GitHub project**, or **how to contribute to open source**, this repo is built for you.
+
+## How It Works In 4 Steps
+
+| Step | What you do | What this repo gives you |
+| --- | --- | --- |
+| 1 | Pick a small issue | Skill routes, time labels, and curated issue quality scores |
+| 2 | Run the check | `npm run check` proves the repo still builds and tests |
+| 3 | Open a focused PR | PR welcome guidance tells you what proof to include |
+| 4 | Get visible proof | First Merge Wall, Trust Passport, and next issue suggestions |
+
+<p align="center">
+  <img src="assets/screenshots/terminal-demo.gif" alt="Terminal demo showing checks, automation health, issue quality, and first PR proof flow" width="760" />
+</p>
 
 ## Visual Preview
 
@@ -52,6 +66,7 @@ Screenshot system notes: [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md)
 | Website | [Live site](https://p-r-e-m-i-u-m.github.io/open-source-starter-lab/) | Shows the contributor journey visually |
 | Automation Health | [Workflow](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/automation-health.yml) | Dry-runs automation so breakage is caught early |
 | Daily Issue Bot | [Workflow](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/daily-issue-bot.yml) | Keeps beginner tasks moving |
+| Monthly Dashboard | [Workflow](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/monthly-maintainer-dashboard.yml) | Refreshes the maintainer view and contributor spotlight |
 | Contributor Queue | [Live queue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46) | Shows who needs maintainer attention |
 | Trust Passports | [Passport folder](contributors/passports) | Turns merged work into public proof |
 
@@ -95,6 +110,7 @@ Before spending time here, check the live proof:
 | Featured starter tasks | [Featured first issues](docs/FEATURED_FIRST_ISSUES.md) |
 | Human help queue | [Contributor queue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46) |
 | Recent proof | [Merged pull requests](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/pulls?q=is%3Apr+is%3Amerged+sort%3Aupdated-desc) |
+| Maintainer dashboard | [Generated dashboard](docs/MAINTAINER_DASHBOARD.md) |
 | Ask for assignment | [Get assigned your first issue this week](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
 | Join the passport cohort | [First PR Cohort 01](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/61) |
 | Contributor proof | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
@@ -111,6 +127,7 @@ A passport records:
 - linked issue
 - review proof
 - next suggested contribution path
+- Level 2 and Level 3 progress for returning contributors and trust builders
 
 Read the system: [docs/CONTRIBUTOR_PASSPORT.md](docs/CONTRIBUTOR_PASSPORT.md)
 
@@ -145,6 +162,9 @@ Join the first cohort: [First PR Cohort 01 - Get your Open Source Trust Passport
 | Learn maintainer habits | [Maintainer playbook](docs/MAINTAINER_PLAYBOOK.md) |
 | Keep automation healthy | [Automation health](docs/AUTOMATION_HEALTH.md) |
 | Maintain visual previews | [Screenshot system](docs/SCREENSHOTS.md) |
+| Understand issue curation | [Issue quality scoring](docs/ISSUE_QUALITY.md) |
+| See the maintainer view | [Maintainer dashboard](docs/MAINTAINER_DASHBOARD.md) |
+| See contributor spotlights | [Monthly contributor spotlight](docs/CONTRIBUTOR_SPOTLIGHT.md) |
 | Understand the architecture | [Architecture](docs/ARCHITECTURE.md) |
 | See the roadmap | [Roadmap](docs/ROADMAP.md) |
 | Understand AI-assisted contributions | [AI contribution policy](docs/AI_CONTRIBUTION_POLICY.md) |

@@ -4,6 +4,8 @@ import path from "node:path";
 import { buildChecklist } from "../src/checklist.js";
 import { findIssueFit } from "../src/issueFitFinder.js";
 import { issueIdeas } from "../src/issueIdeas.js";
+import { dailyIssueBacklog } from "../src/dailyIssueBacklog.js";
+import { scoreDailyIssue } from "../src/issueQuality.js";
 import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
 
 const beginner = buildChecklist("beginner");
@@ -17,6 +19,7 @@ assert.ok(maintainer.items.some((item) => item.id === "answers"));
 
 assert.ok(issueIdeas.length >= 5);
 assert.ok(issueIdeas.every((idea) => idea.acceptanceCriteria.length >= 3));
+assert.ok(dailyIssueBacklog.every((issue) => scoreDailyIssue(issue).score >= 80));
 
 const docsFit = findIssueFit("docs", "30m");
 assert.equal(docsFit.skill, "docs");

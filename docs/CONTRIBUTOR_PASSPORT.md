@@ -42,7 +42,13 @@ After a human contributor's PR is merged, the after-merge automation:
 | 3 | Trust Builder | Helped another beginner, improved an issue, or answered a discussion |
 | 4 | Maintainer Practice | Helped with triage, review, labels, or repo workflow |
 
-The first version creates Level 1 passports automatically. Higher levels can be added as the repo grows.
+Levels 1, 2, and 3 are updated automatically by the after-merge workflow:
+
+- Level 1 appears after the first reviewed merge.
+- Level 2 appears after a second useful merged PR.
+- Level 3 appears after three merged PRs, or after a returning contribution that clearly helps the community, discussions, issue quality, passports, mentoring, or triage.
+
+Level 4 is intentionally manual for now because maintainer practice needs human judgment.
 
 ## Contributor Share Line
 

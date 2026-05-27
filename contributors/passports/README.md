@@ -10,6 +10,17 @@ A passport is created or updated after a contributor gets a reviewed pull reques
 - File name uses the GitHub username in lowercase.
 - Each entry should link to a real merged PR number.
 - The passport should stay short, useful, and proof-based.
+- Levels 1, 2, and 3 can be updated automatically after merged pull requests.
+- Level 4 requires maintainer judgment.
+
+## Level Ladder
+
+| Level | Name | How it is earned |
+| --- | --- | --- |
+| 1 | First PR Contributor | First focused PR gets merged |
+| 2 | Returning Contributor | Second useful PR gets merged |
+| 3 | Trust Builder | Third PR, or a returning PR that helps community, triage, issue quality, discussions, or contributor guidance |
+| 4 | Maintainer Practice | Manual maintainer recognition for review, triage, or workflow help |
 
 ## Why This Exists
 

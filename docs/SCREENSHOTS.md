@@ -12,6 +12,7 @@ Good screenshots should show the product, the workflow, or the proof layer. Do n
 | `assets/screenshots/website-hero.jpg` | Website hero preview |
 | `assets/screenshots/trust-passport-section.jpg` | Trust Passport website section |
 | `assets/screenshots/mobile-issue-finder.jpg` | Mobile issue finder preview |
+| `assets/screenshots/terminal-demo.gif` | Animated terminal demo showing checks and proof flow |
 | `assets/screenshots/terminal-preview.svg` | Terminal proof preview |
 | `assets/screenshots/automation-flow.svg` | Automation architecture flow |
 
@@ -31,6 +32,7 @@ This helps visitors decide what the repo does before reading every section.
 - Use stable filenames so existing Markdown links do not break.
 - Prefer JPEG for large website screenshots.
 - Prefer SVG for diagrams and terminal-style previews.
+- Keep GIFs short and focused on commands, checks, and outcomes.
 - Keep screenshots focused on real repo behavior.
 - Use helpful alt text.
 - Replace existing screenshots only when the UI meaning changes.

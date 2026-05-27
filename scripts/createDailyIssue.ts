@@ -1,4 +1,5 @@
 import { dailyIssueBacklog, type DailyIssue } from "../src/dailyIssueBacklog.js";
+import { scoreDailyIssue } from "../src/issueQuality.js";
 
 const apiBase = "https://api.github.com";
 
@@ -27,7 +28,11 @@ function chooseIssue(date = new Date()): DailyIssue {
 }
 
 function formatBody(issue: DailyIssue): string {
+  const quality = scoreDailyIssue(issue);
+
   return [
+    `> Curated issue quality: ${quality.score}/100 (${quality.rating})`,
+    "",
     "## Context",
     issue.context,
     "",
@@ -42,6 +47,9 @@ function formatBody(issue: DailyIssue): string {
     "",
     "## Helpful notes",
     ...issue.helpfulNotes.map((note) => `- ${note}`),
+    "",
+    "## Curation checks",
+    ...quality.checks.map((check) => `- ${check}`),
     "",
     "---",
     "If you are not sure this fits you, reply in Discussion #44 with your skill:",
@@ -153,10 +161,12 @@ async function main(): Promise<void> {
   const dryRun = hasFlag("--dry-run");
   const issue = chooseIssue();
   const body = formatBody(issue);
+  const quality = scoreDailyIssue(issue);
 
   if (dryRun) {
     console.log(`# ${issue.title}`);
     console.log(`Labels: ${issue.labels.join(", ")}`);
+    console.log(`Quality: ${quality.score}/100 (${quality.rating})`);
     console.log("");
     console.log(body);
     return;

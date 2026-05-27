@@ -279,6 +279,8 @@ h1 span,
 .proof-card,
 .system-card,
 .timeline article,
+.surface-grid article,
+.dashboard-preview,
 .workflow-shell,
 .command-stack,
 .workflow-list article,
@@ -338,6 +340,7 @@ h1 span,
 .automation-grid,
 .timeline,
 .trust-grid,
+.surface-grid,
 .faq-grid {
   display: grid;
   gap: 22px;
@@ -538,6 +541,37 @@ a:focus-visible {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.surface-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.surface-grid article {
+  padding: 26px;
+}
+
+.surface-grid span {
+  color: var(--orange);
+  font-family: var(--font-heading);
+  font-size: 2rem;
+}
+
+.surface-grid h3 {
+  color: var(--cyan);
+  margin: 12px 0;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+}
+
+.surface-grid p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.dashboard-preview {
+  margin-top: 28px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.82);
+}
+
 .workflow-shell {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
@@ -653,6 +687,7 @@ details[open] {
   .proof-grid,
   .automation-grid,
   .trust-grid,
+  .surface-grid,
   .faq-grid {
     grid-template-columns: 1fr;
   }

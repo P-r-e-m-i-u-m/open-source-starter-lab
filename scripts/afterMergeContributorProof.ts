@@ -208,6 +208,46 @@ function formatNextIssueLine(nextIssues: NextIssueSuggestion[]): string {
   return `${nextIssue.route}: #${nextIssue.issue.number} ${nextIssue.issue.title}`;
 }
 
+function countContributionRows(passport: string): number {
+  return passport
+    .split("\n")
+    .filter((line) => /^\| #\d+ \|/.test(line.trim()))
+    .length;
+}
+
+function resolveTrustLevel(contributionCount: number, skill: string, title: string): { level: number; name: string } {
+  const trustSignal = /\b(help|discussion|answer|community|queue|triage|issue quality|passport|mentor)\b/i.test(
+    `${skill} ${title}`
+  );
+
+  if (contributionCount >= 3 || (contributionCount >= 2 && trustSignal)) {
+    return { level: 3, name: "Trust Builder" };
+  }
+
+  if (contributionCount >= 2) {
+    return { level: 2, name: "Returning Contributor" };
+  }
+
+  return { level: 1, name: "First PR Contributor" };
+}
+
+function updatePassportLevel(content: string, level: { level: number; name: string }, pr: GitHubPullRequest, skill: string): string {
+  let updated = content;
+  const levelLine = `- Level: ${level.level} - ${level.name}`;
+  const skillLine = `- Primary skill: ${skill}`;
+
+  updated = updated.replace(/- Level: .+/, levelLine);
+  updated = updated.replace(/- Primary skill: .+/, skillLine);
+
+  if (!updated.includes("- Latest merged PR:")) {
+    updated = updated.replace(/- First merged PR: .+/, (match) => `${match}\n- Latest merged PR: #${pr.number}`);
+  } else {
+    updated = updated.replace(/- Latest merged PR: .+/, `- Latest merged PR: #${pr.number}`);
+  }
+
+  return updated;
+}
+
 async function ensureWallEntry(contributor: string, pr: GitHubPullRequest): Promise<boolean> {
   const { readFile, writeFile } = await import("node:fs/promises");
   const wall = await readFile(firstMergeWallPath, "utf8");
@@ -259,6 +299,7 @@ async function ensureContributorPassport(
   }
 
   if (!existing.trim()) {
+    const level = resolveTrustLevel(1, skill, pr.title);
     const content = [
       `# @${contributor} Open Source Trust Passport`,
       "",
@@ -266,8 +307,9 @@ async function ensureContributorPassport(
       "",
       "## Current Level",
       "",
-      "- Level: 1 - First PR Contributor",
+      `- Level: ${level.level} - ${level.name}`,
       `- First merged PR: #${pr.number}`,
+      `- Latest merged PR: #${pr.number}`,
       `- Primary skill: ${skill}`,
       "- Proof: merged pull request with maintainer review and project checks",
       "",
@@ -291,11 +333,14 @@ async function ensureContributorPassport(
     return path;
   }
 
-  const updated = existing.includes("## Suggested Next Step")
+  const contributionCount = countContributionRows(existing) + 1;
+  const level = resolveTrustLevel(contributionCount, skill, pr.title);
+  const withContribution = existing.includes("## Suggested Next Step")
     ? existing
         .replace("## Suggested Next Step", `${contributionLine}\n\n## Suggested Next Step`)
         .replace(/- .+\n(?=\n## Share Line)/, `- ${formatNextIssueLine(nextIssues)}\n`)
     : `${existing.trimEnd()}\n\n${contributionLine}\n`;
+  const updated = updatePassportLevel(withContribution, level, pr, skill);
 
   await writeFile(path, updated, "utf8");
   return path;
