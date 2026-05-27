@@ -26,6 +26,12 @@ node dist/src/cli.js issues
 
 This prints issue ideas with labels, difficulty, goals, and acceptance criteria.
 
+Pass `--json` to print the same ideas as pretty JSON for automation (each entry has `title`, `label`, `difficulty`, `goal`, and `acceptanceCriteria`):
+
+```bash
+node dist/src/cli.js issues --json
+```
+
 ## First Issue Fit Finder
 
 ```bash
