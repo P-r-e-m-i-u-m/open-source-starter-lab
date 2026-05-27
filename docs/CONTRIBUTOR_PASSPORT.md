@@ -52,6 +52,12 @@ After merge, contributors can say:
 I earned my Open Source Trust Passport by getting a real PR merged in Open Source Starter Lab.
 ```
 
+## Join The First Cohort
+
+If you want your first passport, comment here with your skill and available time:
+
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/61
+
 ## Maintainer Rule
 
 Do not use passports as fake badges. A passport should represent a real merged contribution with visible proof.

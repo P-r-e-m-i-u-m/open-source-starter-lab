@@ -107,6 +107,9 @@ https://github.com/P-r-e-m-i-u-m/open-source-starter-lab
 Passport system:
 https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/blob/main/docs/CONTRIBUTOR_PASSPORT.md
 
+First cohort:
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/61
+
 If you want your first open-source PR, start small. If it gets merged, your work becomes visible proof.
 
 #OpenSource #GitHub #FirstPullRequest #GoodFirstIssue #DeveloperCommunity #BuildInPublic

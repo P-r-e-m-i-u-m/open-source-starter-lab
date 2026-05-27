@@ -66,6 +66,7 @@ Before spending time here, check the live proof:
 | Human help queue | [Contributor queue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46) |
 | Recent proof | [Merged pull requests](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/pulls?q=is%3Apr+is%3Amerged+sort%3Aupdated-desc) |
 | Ask for assignment | [Get assigned your first issue this week](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44) |
+| Join the passport cohort | [First PR Cohort 01](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/61) |
 | Contributor proof | [First Merge Wall](docs/FIRST_MERGE_WALL.md) |
 | Trust proof | [Contributor Passports](contributors/passports/README.md) |
 
@@ -84,6 +85,8 @@ A passport records:
 Read the system: [docs/CONTRIBUTOR_PASSPORT.md](docs/CONTRIBUTOR_PASSPORT.md)
 
 See passport files: [contributors/passports](contributors/passports)
+
+Join the first cohort: [First PR Cohort 01 - Get your Open Source Trust Passport](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/61)
 
 ## Pick Your Path
 
