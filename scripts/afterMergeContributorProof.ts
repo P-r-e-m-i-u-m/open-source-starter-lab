@@ -29,10 +29,6 @@ interface GitHubIssue {
   pull_request?: unknown;
 }
 
-interface GitHubSearchResult {
-  items: GitHubIssue[];
-}
-
 interface NextIssueSuggestion {
   route: string;
   issue: GitHubIssue;
@@ -182,22 +178,14 @@ async function searchNextIssue(
   owner: string,
   repo: string,
   token: string,
-  queryParts: string[]
+  labels: string[]
 ): Promise<GitHubIssue | undefined> {
-  const query = [
-    `repo:${owner}/${repo}`,
-    "is:issue",
-    "is:open",
-    "no:assignee",
-    ...queryParts
-  ].join(" ");
-
-  const result = await githubRequest<GitHubSearchResult>(
-    `/search/issues?q=${encodeURIComponent(query)}&sort=created&order=desc&per_page=10`,
+  const issues = await githubRequest<GitHubIssue[]>(
+    `/repos/${owner}/${repo}/issues?state=open&per_page=30&labels=${encodeURIComponent(labels.join(","))}`,
     token
   );
 
-  return result.items.find((issue) => !issue.pull_request);
+  return issues.find((issue) => !issue.pull_request);
 }
 
 async function findNextIssueSuggestions(
@@ -208,19 +196,19 @@ async function findNextIssueSuggestions(
   const routes = [
     {
       route: "Second PR route",
-      queryParts: ['label:"level: second-pr"']
+      labels: ["level: second-pr"]
     },
     {
       route: "Docs route",
-      queryParts: ['label:"documentation"', 'label:"time: 30 min"']
+      labels: ["documentation", "time: 30 min"]
     },
     {
       route: "Code route",
-      queryParts: ['label:"cli"']
+      labels: ["cli"]
     },
     {
       route: "Testing route",
-      queryParts: ['label:"testing"']
+      labels: ["testing"]
     }
   ];
 
@@ -228,7 +216,7 @@ async function findNextIssueSuggestions(
   const seen = new Set<number>();
 
   for (const route of routes) {
-    const issue = await searchNextIssue(owner, repo, token, route.queryParts);
+    const issue = await searchNextIssue(owner, repo, token, route.labels);
     if (issue && !seen.has(issue.number)) {
       suggestions.push({ route: route.route, issue });
       seen.add(issue.number);
