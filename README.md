@@ -16,7 +16,10 @@
 
 [![CI](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/ci.yml)
 [![Website](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/pages.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/pages.yml)
+[![Automation Health](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/automation-health.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/automation-health.yml)
+[![Daily Issue Bot](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/daily-issue-bot.yml/badge.svg)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/daily-issue-bot.yml)
 [![Good First Issues](https://img.shields.io/github/issues/P-r-e-m-i-u-m/open-source-starter-lab/good%20first%20issue?label=good%20first%20issues)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+[![Contributors](https://img.shields.io/github/contributors/P-r-e-m-i-u-m/open-source-starter-lab?label=contributors)](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/graphs/contributors)
 [![License: MIT](https://img.shields.io/badge/license-MIT-0f172a.svg)](LICENSE)
 
 Website: [open-source-starter-lab](https://p-r-e-m-i-u-m.github.io/open-source-starter-lab/)
@@ -40,6 +43,17 @@ If you searched for **first pull request**, **first open source contribution**, 
 | <img src="assets/screenshots/mobile-issue-finder.jpg" alt="Mobile issue finder showing skill and time selection" width="240" /> | <img src="assets/screenshots/terminal-preview.svg" alt="Terminal preview showing check and automation health output" width="440" /> |
 
 Screenshot system notes: [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md)
+
+## Platform Status
+
+| System | Status | Why it matters |
+| --- | --- | --- |
+| CI | [Workflow](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/ci.yml) | Proves the project builds and tests |
+| Website | [Live site](https://p-r-e-m-i-u-m.github.io/open-source-starter-lab/) | Shows the contributor journey visually |
+| Automation Health | [Workflow](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/automation-health.yml) | Dry-runs automation so breakage is caught early |
+| Daily Issue Bot | [Workflow](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/daily-issue-bot.yml) | Keeps beginner tasks moving |
+| Contributor Queue | [Live queue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46) | Shows who needs maintainer attention |
+| Trust Passports | [Passport folder](contributors/passports) | Turns merged work into public proof |
 
 ## First Merge Command Center
 
@@ -131,6 +145,10 @@ Join the first cohort: [First PR Cohort 01 - Get your Open Source Trust Passport
 | Learn maintainer habits | [Maintainer playbook](docs/MAINTAINER_PLAYBOOK.md) |
 | Keep automation healthy | [Automation health](docs/AUTOMATION_HEALTH.md) |
 | Maintain visual previews | [Screenshot system](docs/SCREENSHOTS.md) |
+| Understand the architecture | [Architecture](docs/ARCHITECTURE.md) |
+| See the roadmap | [Roadmap](docs/ROADMAP.md) |
+| Understand AI-assisted contributions | [AI contribution policy](docs/AI_CONTRIBUTION_POLICY.md) |
+| Read project history | [Changelog](CHANGELOG.md) |
 | Launch and share the repo | [Launch playbook](docs/LAUNCH_PLAYBOOK.md) |
 | Share this with beginners | [Community discovery kit](docs/COMMUNITY_DISCOVERY_KIT.md) |
 | Reply in GitHub Community | [GitHub Community reply pack](docs/GITHUB_COMMUNITY_REPLY_PACK.md) |
