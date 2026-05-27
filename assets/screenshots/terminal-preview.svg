@@ -1,0 +1,41 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Open Source Starter Lab terminal preview</title>
+  <desc id="desc">A terminal-style preview showing npm run check, automation health, and trust passport output.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#080013"/>
+      <stop offset="0.55" stop-color="#180736"/>
+      <stop offset="1" stop-color="#001A28"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#FF00FF" opacity="0.22"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+  <text x="82" y="92" fill="#00FFFF" font-family="Consolas, monospace" font-size="24" letter-spacing="6">TERMINAL PROOF</text>
+  <text x="82" y="146" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="52" font-weight="800">Checks, health, and contributor proof</text>
+  <g filter="url(#glow)">
+    <rect x="82" y="196" width="1036" height="390" rx="0" fill="#06000F" stroke="#00FFFF" stroke-width="3"/>
+    <rect x="82" y="196" width="1036" height="54" fill="#121C3D" stroke="#FF00FF" stroke-width="3"/>
+  </g>
+  <circle cx="118" cy="223" r="9" fill="#FF00FF"/>
+  <circle cx="148" cy="223" r="9" fill="#00FFFF"/>
+  <circle cx="178" cy="223" r="9" fill="#FF9900"/>
+  <text x="214" y="231" fill="#B9C8E8" font-family="Consolas, monospace" font-size="20">open-source-starter-lab</text>
+  <g font-family="Consolas, monospace" font-size="24">
+    <text x="122" y="302" fill="#00FFFF">&gt; npm run check</text>
+    <text x="122" y="344" fill="#CFFFEF">Smoke tests passed.</text>
+    <text x="122" y="396" fill="#00FFFF">&gt; npm run automation:health</text>
+    <text x="122" y="438" fill="#CFFFEF">Dry-ran daily issue, weekly help, PR welcome, after-merge proof.</text>
+    <text x="122" y="490" fill="#00FFFF">&gt; trust-passport --after-merge</text>
+    <text x="122" y="532" fill="#CFFFEF">Created contributor passport + First Merge Wall proof.</text>
+  </g>
+</svg>

@@ -25,6 +25,22 @@ Most beginner repos say "make your first PR" and stop there. This lab gives cont
 
 If you searched for **first pull request**, **first open source contribution**, **good first issue**, **beginner GitHub project**, or **how to contribute to open source**, this repo is built for you.
 
+## Visual Preview
+
+<p align="center">
+  <img src="assets/screenshots/website-hero.jpg" alt="Open Source Starter Lab website hero with terminal proof preview" width="900" />
+</p>
+
+| Trust Passport proof | Automation flow |
+| --- | --- |
+| <img src="assets/screenshots/trust-passport-section.jpg" alt="Open Source Trust Passport website section" width="440" /> | <img src="assets/screenshots/automation-flow.svg" alt="Automation flow from issue to PR to merge to passport" width="440" /> |
+
+| Mobile issue finder | Terminal proof |
+| --- | --- |
+| <img src="assets/screenshots/mobile-issue-finder.jpg" alt="Mobile issue finder showing skill and time selection" width="240" /> | <img src="assets/screenshots/terminal-preview.svg" alt="Terminal preview showing check and automation health output" width="440" /> |
+
+Screenshot system notes: [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md)
+
 ## First Merge Command Center
 
 This repo is built to help you move from "I want to contribute" to a real merged pull request without guessing what to do next.
@@ -114,6 +130,7 @@ Join the first cohort: [First PR Cohort 01 - Get your Open Source Trust Passport
 | Understand contributor passports | [Contributor Passport](docs/CONTRIBUTOR_PASSPORT.md) |
 | Learn maintainer habits | [Maintainer playbook](docs/MAINTAINER_PLAYBOOK.md) |
 | Keep automation healthy | [Automation health](docs/AUTOMATION_HEALTH.md) |
+| Maintain visual previews | [Screenshot system](docs/SCREENSHOTS.md) |
 | Launch and share the repo | [Launch playbook](docs/LAUNCH_PLAYBOOK.md) |
 | Share this with beginners | [Community discovery kit](docs/COMMUNITY_DISCOVERY_KIT.md) |
 | Reply in GitHub Community | [GitHub Community reply pack](docs/GITHUB_COMMUNITY_REPLY_PACK.md) |

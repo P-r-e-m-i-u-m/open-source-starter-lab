@@ -1,0 +1,62 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Open Source Starter Lab automation flow</title>
+  <desc id="desc">A neon architecture diagram showing how issues, pull requests, automation, and contributor passports connect.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#090014"/>
+      <stop offset="0.52" stop-color="#170735"/>
+      <stop offset="1" stop-color="#001D2B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="120" y1="120" x2="1080" y2="555" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF00FF"/>
+      <stop offset="0.48" stop-color="#00FFFF"/>
+      <stop offset="1" stop-color="#FF9900"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 .65 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M 42 0 L 0 0 0 42" stroke="#00FFFF" stroke-opacity="0.12" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#grid)" opacity="0.9"/>
+  <rect x="52" y="46" width="1096" height="583" stroke="url(#accent)" stroke-width="3"/>
+  <text x="92" y="112" fill="#00FFFF" font-family="Consolas, monospace" font-size="24" letter-spacing="6">OPEN_SOURCE_STARTER_LAB / AUTOMATION MAP</text>
+  <text x="92" y="164" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="54" font-weight="800">From first issue to verified proof</text>
+  <g filter="url(#glow)">
+    <path d="M214 341 H388" stroke="#00FFFF" stroke-width="4"/>
+    <path d="M414 341 H588" stroke="#FF00FF" stroke-width="4"/>
+    <path d="M614 341 H788" stroke="#00FFFF" stroke-width="4"/>
+    <path d="M814 341 H988" stroke="#FF9900" stroke-width="4"/>
+  </g>
+  <g font-family="Consolas, monospace">
+    <rect x="92" y="258" width="210" height="166" fill="#130729" stroke="#00FFFF" stroke-width="3"/>
+    <text x="122" y="306" fill="#FF9900" font-size="22">01 ISSUE</text>
+    <text x="122" y="346" fill="#FFFFFF" font-size="18">good first issue</text>
+    <text x="122" y="378" fill="#B9FFFF" font-size="18">clear done when</text>
+    <text x="122" y="410" fill="#B9FFFF" font-size="18">beginner scope</text>
+    <rect x="322" y="258" width="210" height="166" fill="#130729" stroke="#FF00FF" stroke-width="3"/>
+    <text x="352" y="306" fill="#FF9900" font-size="22">02 PR</text>
+    <text x="352" y="346" fill="#FFFFFF" font-size="18">small change</text>
+    <text x="352" y="378" fill="#B9FFFF" font-size="18">npm run check</text>
+    <text x="352" y="410" fill="#B9FFFF" font-size="18">review signal</text>
+    <rect x="552" y="258" width="210" height="166" fill="#130729" stroke="#00FFFF" stroke-width="3"/>
+    <text x="582" y="306" fill="#FF9900" font-size="22">03 MERGE</text>
+    <text x="582" y="346" fill="#FFFFFF" font-size="18">clean review</text>
+    <text x="582" y="378" fill="#B9FFFF" font-size="18">issue cleanup</text>
+    <text x="582" y="410" fill="#B9FFFF" font-size="18">thank-you note</text>
+    <rect x="782" y="258" width="210" height="166" fill="#130729" stroke="#FF9900" stroke-width="3"/>
+    <text x="812" y="306" fill="#FF9900" font-size="22">04 PASSPORT</text>
+    <text x="812" y="346" fill="#FFFFFF" font-size="18">public proof</text>
+    <text x="812" y="378" fill="#B9FFFF" font-size="18">skill record</text>
+    <text x="812" y="410" fill="#B9FFFF" font-size="18">next route</text>
+  </g>
+  <rect x="92" y="486" width="1000" height="72" fill="#06000F" stroke="#2DFFFF" stroke-width="2"/>
+  <text x="126" y="532" fill="#FFFFFF" font-family="Consolas, monospace" font-size="22">Automation Health dry-runs daily issue, weekly help, PR welcome, and after-merge proof scripts.</text>
+</svg>
