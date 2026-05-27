@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
+import path from "node:path";
 import { buildChecklist } from "../src/checklist.js";
 import { findIssueFit } from "../src/issueFitFinder.js";
 import { issueIdeas } from "../src/issueIdeas.js";
@@ -37,5 +39,19 @@ assert.equal(normalizeContributorLevel("second pr"), "second-pr");
 const maintainerShadow = getProgressionStep("maintainer-shadow");
 assert.ok(maintainerShadow.labels.includes("level: maintainer-practice"));
 assert.ok(maintainerShadow.proof.some((item) => item.includes("before/after")));
+
+const cliPath = path.resolve("dist/src/cli.js");
+const jsonOutput = execFileSync("node", [cliPath, "issues", "--json"], { encoding: "utf8" });
+const parsedIssues = JSON.parse(jsonOutput);
+assert.ok(Array.isArray(parsedIssues));
+assert.equal(parsedIssues.length, issueIdeas.length);
+for (const idea of parsedIssues) {
+  assert.equal(typeof idea.title, "string");
+  assert.equal(typeof idea.label, "string");
+  assert.equal(typeof idea.difficulty, "string");
+  assert.equal(typeof idea.goal, "string");
+  assert.ok(Array.isArray(idea.acceptanceCriteria));
+  assert.ok(idea.acceptanceCriteria.length >= 3);
+}
 
 console.log("Smoke tests passed.");

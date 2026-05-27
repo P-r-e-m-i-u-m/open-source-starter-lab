@@ -26,6 +26,18 @@ function printChecklist(profile: StarterProfile): void {
 }
 
 function printIssueIdeas(): void {
+  if (process.argv.includes("--json")) {
+    const payload = issueIdeas.map((idea) => ({
+      title: idea.title,
+      label: idea.label,
+      difficulty: idea.difficulty,
+      goal: idea.goal,
+      acceptanceCriteria: idea.acceptanceCriteria
+    }));
+    console.log(JSON.stringify(payload, null, 2));
+    return;
+  }
+
   console.log("Starter issue ideas\n");
   for (const idea of issueIdeas) {
     console.log(`- ${idea.title} [${idea.label}, ${idea.difficulty}]`);
@@ -107,6 +119,7 @@ function main(): void {
     console.log("  oss-lab check --profile beginner");
     console.log("  oss-lab check --profile maintainer");
     console.log("  oss-lab issues");
+    console.log("  oss-lab issues --json");
     console.log("  oss-lab fit --skill docs --time 30m");
     console.log("  oss-lab next --level second-pr");
     return;
