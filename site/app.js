@@ -105,3 +105,53 @@ function updateRoute() {
 skill.addEventListener("change", updateRoute);
 time.addEventListener("change", updateRoute);
 updateRoute();
+
+// --- Live Issue Feed Fetcher ---
+async function fetchLiveIssues() {
+  const feedElement = document.getElementById("liveIssueFeed");
+  if (!feedElement) return;
+
+  try {
+    // Fetch issues with the "good first issue" label that are open
+    const response = await fetch("https://api.github.com/repos/P-r-e-m-i-u-m/open-source-starter-lab/issues?state=open&labels=good%20first%20issue&sort=created&direction=desc&per_page=5");
+    
+    if (!response.ok) {
+      throw new Error("Failed to fetch issues.");
+    }
+    
+    const issues = await response.json();
+    
+    // Clear loading state
+    feedElement.innerHTML = "<p><span>&gt;</span> fetching open issues from GitHub API...</p><p class=\"terminal-success\">200 OK</p>";
+    
+    if (issues.length === 0) {
+      feedElement.innerHTML += "<p>No open issues found right now. Check back later!</p>";
+      return;
+    }
+
+    issues.forEach(issue => {
+      // Don't show PRs, only issues
+      if (issue.pull_request) return;
+      
+      const title = issue.title.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const url = issue.html_url;
+      const isAssigned = issue.assignees && issue.assignees.length > 0;
+      const statusColor = isAssigned ? "magenta" : "cyan";
+      const statusText = isAssigned ? "CLAIMED" : "AVAILABLE";
+
+      feedElement.innerHTML += `
+        <div style="margin-top: 1rem; border-top: 1px dashed var(--green); padding-top: 0.5rem;">
+          <p><span class="${statusColor}">[${statusText}]</span> <a href="${url}" target="_blank" style="color: var(--fg); text-decoration: underline;">#${issue.number} ${title}</a></p>
+          <p style="font-size: 0.9em; opacity: 0.8;">> claim by commenting <code>.take</code></p>
+        </div>
+      `;
+    });
+
+  } catch (err) {
+    feedElement.innerHTML += `<p class="magenta">Error: ${err.message}</p>`;
+  }
+}
+
+// Fetch issues on load
+document.addEventListener("DOMContentLoaded", fetchLiveIssues);
+

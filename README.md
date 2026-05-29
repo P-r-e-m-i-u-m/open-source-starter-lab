@@ -86,8 +86,8 @@ This repo is built to help you move from "I want to contribute" to a real merged
 
 ## Start In 10 Minutes
 
-1. Pick one route below.
-2. Comment on an issue: `I would like to work on this. Please assign me.`
+1. Pick one route below or check the live issue feed on the website.
+2. Comment on an issue: `I would like to work on this. Please assign me.` or simply type `.take` to get automatically assigned by our bot.
 3. Run `npm run check`.
 4. Open a small pull request with your test output.
 5. After merge, add your proof to the [First Merge Wall](docs/FIRST_MERGE_WALL.md).
@@ -107,6 +107,7 @@ Before spending time here, check the live proof:
 | Signal | Link |
 | --- | --- |
 | Open starter tasks | [Unassigned good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+no%3Aassignee) |
+| Live Interactive Feed | [Website Dashboard](https://p-r-e-m-i-u-m.github.io/open-source-starter-lab/#live-issues) |
 | Featured starter tasks | [Featured first issues](docs/FEATURED_FIRST_ISSUES.md) |
 | Human help queue | [Contributor queue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46) |
 | Recent proof | [Merged pull requests](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/pulls?q=is%3Apr+is%3Amerged+sort%3Aupdated-desc) |

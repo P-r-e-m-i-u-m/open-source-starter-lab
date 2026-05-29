@@ -1,0 +1,57 @@
+name: Auto Assign Issue
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    if: (!github.event.issue.pull_request) && (contains(github.event.comment.body, '.take') || contains(github.event.comment.body, 'please assign me') || contains(github.event.comment.body, 'I would like to work on this'))
+    steps:
+      - name: Assign issue to commenter
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Check if issue is already assigned
+            const issue = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+            
+            if (issue.data.assignees && issue.data.assignees.length > 0) {
+              console.log("Issue is already assigned.");
+              return;
+            }
+            
+            // Assign the user
+            await github.rest.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              assignees: [context.payload.comment.user.login]
+            });
+            
+            // Post a welcome message
+            const body = `Hi @${context.payload.comment.user.login}! 👋
+
+Thank you for claiming this issue. It is now assigned to you!
+
+### Next Steps:
+1. **Clone the repo:** \`git clone https://github.com/${context.repo.owner}/${context.repo.repo}.git\`
+2. **Create a branch:** \`git checkout -b fix-issue-${context.issue.number}\`
+3. **Run checks locally:** run \`npm run check\` to make sure everything passes before and after your changes.
+4. **Open a PR:** Make sure to include "Closes #${context.issue.number}" in your PR description.
+
+For a full walkthrough, see the [10 Minute Path](https://github.com/${context.repo.owner}/${context.repo.repo}/blob/main/docs/START_HERE.md). Good luck! 🚀`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: body
+            });
