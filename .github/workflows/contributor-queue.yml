@@ -36,9 +36,10 @@ jobs:
     name: Refresh Contributor Queue
     if: github.event_name != 'issues' || github.event.issue.title != 'Contributor Queue - who needs help next'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     concurrency:
       group: contributor-queue-${{ github.repository }}
-      cancel-in-progress: true
+      cancel-in-progress: false
 
     steps:
       - name: Checkout

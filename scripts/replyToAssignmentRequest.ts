@@ -39,6 +39,10 @@ function requireEnv(name: string): string {
   return value;
 }
 
+function hasFlag(flag: string): boolean {
+  return process.argv.includes(flag);
+}
+
 async function readEvent(): Promise<IssueCommentEvent> {
   const eventPath = requireEnv("GITHUB_EVENT_PATH");
   const { readFile } = await import("node:fs/promises");
@@ -70,7 +74,9 @@ async function githubRequest<T>(path: string, token: string, options: RequestIni
 }
 
 function isAssignmentRequest(body: string): boolean {
-  return /\b(assign|assigned|work on|take this|pick this|gssoc|gsoc)\b/i.test(body);
+  return /(?:^|\s)\.take(?:\s|$)|\b(assign|assigned|work on|take this|pick this|please assign me|I would like to work on this|gssoc|gsoc)\b/i.test(
+    body
+  );
 }
 
 function isMaintainer(user: GitHubUser): boolean {
@@ -92,6 +98,16 @@ function buildReply(username: string): string {
 }
 
 async function main(): Promise<void> {
+  if (hasFlag("--dry-run")) {
+    const sample = ".take";
+    if (!isAssignmentRequest(sample)) {
+      throw new Error("Dry-run failed: .take was not recognized as an assignment request.");
+    }
+
+    console.log(buildReply("new-contributor"));
+    return;
+  }
+
   const event = await readEvent();
   const issue = event.issue;
   const comment = event.comment;

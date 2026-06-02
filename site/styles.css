@@ -9,6 +9,7 @@
   --orange: #ff9900;
   --yellow: #ffe600;
   --purple: #7b2fff;
+  --green: #7effb2;
   --border: #2d1b4e;
   --font-heading: "Orbitron", system-ui, sans-serif;
   --font-body: "Share Tech Mono", Consolas, monospace;
@@ -318,6 +319,16 @@ h1 span,
 .magenta { background: var(--magenta); }
 .cyan { background: var(--cyan); }
 .orange { background: var(--orange); }
+
+.terminal-status-magenta {
+  color: var(--magenta);
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.75);
+}
+
+.terminal-status-cyan {
+  color: var(--cyan);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.75);
+}
 
 .window-title {
   margin-left: 8px;
