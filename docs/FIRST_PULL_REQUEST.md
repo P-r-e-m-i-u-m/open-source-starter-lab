@@ -1,51 +1,17 @@
-# First Pull Request Guide
+# Your First Pull Request
 
-## 1. Clone the Repo
+This guide walks you through making your first pull request (PR) on GitHub.
 
-```bash
-git clone https://github.com/P-r-e-m-i-u-m/open-source-starter-lab.git
-cd open-source-starter-lab
-```
+## Steps
 
-## 2. Create a Branch
+1. Fork the repository
+2. Clone your fork
+3. Create a new branch
+4. Make your changes
+5. Commit and push
+6. Open a pull request
 
-```bash
-git checkout -b docs/add-my-note
-```
+For more details, see the [Contributing guide](../CONTRIBUTING.md).
 
-## 3. Make One Small Change
-
-Good examples:
-
-- Fix unclear wording
-- Add one Git error and fix
-- Add a docs example
-- Add your contributor card
-
-## 4. Test
-
-```bash
-npm install
-npm run check
-```
-
-## 5. Commit
-
-```bash
-git add .
-git commit -m "Add beginner Git note"
-```
-
-## 6. Push
-
-```bash
-git push origin docs/add-my-note
-```
-
-## 7. Open a Pull Request
-
-In the pull request, include:
-
-- What you changed
-- Why it helps
-- The result of `npm run check`
+---
+*Link to the [Git Branches guide](./GIT_BRANCHES.md) for more on branching.*
