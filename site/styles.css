@@ -740,3 +740,32 @@ details[open] {
     transition-duration: 0.15s !important;
   }
 }
+
+.success-stories-section {
+  margin-top: 4rem;
+}
+
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.story-card {
+  padding: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.03);
+}
+
+.story-card h3 {
+  margin-bottom: 0.75rem;
+}
+
+.story-card p {
+  margin-bottom: 1rem;
+}
+
+.story-card a {
+  text-decoration: none;
+}
