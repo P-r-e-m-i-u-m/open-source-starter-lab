@@ -57,4 +57,22 @@ for (const idea of parsedIssues) {
   assert.ok(idea.acceptanceCriteria.length >= 3);
 }
 
+let unknownCommandOutput = "";
+
+try {
+  execFileSync("node", [cliPath, "not-a-real-command"], {
+    encoding: "utf8",
+    stdio: "pipe"
+  });
+
+  assert.fail("Unknown command should fail");
+} catch (error) {
+  unknownCommandOutput = String(error);
+}
+
+assert.ok(
+  unknownCommandOutput.includes("Unknown command"),
+  "Expected output to include 'Unknown command'"
+);
+
 console.log("Smoke tests passed.");
