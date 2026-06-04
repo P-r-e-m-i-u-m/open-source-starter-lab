@@ -4,10 +4,10 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 1 - First PR Contributor
+- Level: 2 - Returning Contributor
 - First merged PR: #73
-- Latest merged PR: #73
-- Primary skill: testing
+- Latest merged PR: #75
+- Primary skill: website
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -15,6 +15,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | PR | Date | Skill | Work | Linked issues |
 | --- | --- | --- | --- | --- |
 | #73 | 2026-06-03 | testing | test: add unknown command CLI test | #22 |
+
+| #75 | 2026-06-04 | website | tooling: add site link checker | No linked issue was found in the PR body. |
 
 ## Suggested Next Step
 
