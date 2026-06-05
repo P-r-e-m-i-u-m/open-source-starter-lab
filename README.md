@@ -38,7 +38,7 @@ If you searched for **first pull request**, **first open source contribution**, 
 | 3 | Open a focused PR | PR welcome guidance tells you what proof to include |
 | 4 | Get visible proof | First Merge Wall, Trust Passport, and next issue suggestions |
 
-<p align="center">
+<p align="center" style="overflow: hidden;">
   <img src="assets/screenshots/terminal-demo.gif" alt="Terminal demo showing checks, automation health, issue quality, and first PR proof flow" width="760" />
 </p>
 
@@ -338,4 +338,3 @@ Be clear, kind, and useful. Short answers are fine when they solve the problem, 
 ## License
 
 MIT
-
