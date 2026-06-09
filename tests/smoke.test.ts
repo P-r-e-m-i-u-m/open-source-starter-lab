@@ -75,4 +75,22 @@ assert.ok(
   "Expected output to include 'Unknown command'"
 );
 
+let invalidProfileOutput = "";
+
+try {
+  execFileSync("node", [cliPath, "check", "--profile", "expert"], {
+    encoding: "utf8",
+    stdio: "pipe"
+  });
+
+  assert.fail("Invalid profile should fail");
+} catch (error) {
+  invalidProfileOutput = String(error);
+}
+
+assert.ok(
+  invalidProfileOutput.includes("Use --profile beginner or --profile maintainer"),
+  "Expected output to explain valid profile options"
+);
+
 console.log("Smoke tests passed.");
