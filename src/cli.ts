@@ -87,6 +87,12 @@ function printNextStep(): void {
   console.log(`\nNext move: ${step.nextMove}`);
 }
 
+function printProfiles(): void {
+  console.log("Available checklist profiles:");
+  console.log("- beginner: Use this profile when you are making a first or early open-source contribution.");
+  console.log("- maintainer: Use this profile when you are reviewing, organizing, or supporting contributor work.");
+}
+
 function main(): void {
   const command = process.argv[2] ?? "check";
 
@@ -114,12 +120,18 @@ function main(): void {
     return;
   }
 
+  if (command === "profiles") {
+    printProfiles();
+    return;
+  }  
+
   if (command === "help" || command === "--help" || command === "-h") {
     console.log("Usage:");
     console.log("  oss-lab check --profile beginner");
     console.log("  oss-lab check --profile maintainer");
     console.log("  oss-lab issues");
     console.log("  oss-lab issues --json");
+    console.log("  oss-lab profiles");
     console.log("  oss-lab fit --skill docs --time 30m");
     console.log("  oss-lab next --level second-pr");
     return;
