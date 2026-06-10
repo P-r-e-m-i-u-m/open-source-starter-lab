@@ -51,14 +51,21 @@ Use [docs/CONTRIBUTOR_LADDER.md](docs/CONTRIBUTOR_LADDER.md) to choose a level t
 
 ## Contributor Cards
 
-You can add a short card in `contributors/your-github-username.md`:
+You can add a short contributor card in `contributors/your-github-username.md`.
+
+Example:
 
 ```md
 # @your-github-username
 
-- Learning: Git, GitHub, open source
-- First contribution goal: improve one docs page
-- Favorite command so far: git status
+- Learning: Git, GitHub, and open source
+- First contribution: documentation improvement
+- Favorite command: git status
+- Goal: make one helpful contribution
 ```
 
 Keep it friendly and professional.
+
+Do not share private contact details such as personal phone numbers, home addresses, or personal email addresses.
+
+See [contributors/README.md](contributors/README.md) for contributor card instructions and examples.
