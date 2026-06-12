@@ -2,6 +2,14 @@
 
 The CLI gives beginners and maintainers a quick checklist.
 
+## Command Glossary
+
+| Command | What it does | When to use it |
+|---|---|---|
+| `check --profile beginner` | Prints a beginner checklist for starting a first or early open-source contribution. | Use this before working on a beginner issue or opening a first pull request. |
+| `check --profile maintainer` | Prints a maintainer checklist for reviewing, assigning, or supporting contributor work. | Use this when helping manage issues, review PRs, or guide contributors. |
+| `issues` | Prints starter issue ideas with labels, difficulty, goals, and acceptance criteria. | Use this when looking for a suitable issue to work on. |
+
 ## Beginner Checklist
 
 ```bash
