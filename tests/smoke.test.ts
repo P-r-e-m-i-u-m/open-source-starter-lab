@@ -57,6 +57,15 @@ for (const idea of parsedIssues) {
   assert.ok(idea.acceptanceCriteria.length >= 3);
 }
 
+const profilesOutput = execFileSync("node", [cliPath, "profiles"], {
+  encoding: "utf8"
+});
+
+assert.ok(profilesOutput.includes("beginner"));
+assert.ok(profilesOutput.includes("maintainer"));
+assert.ok(profilesOutput.includes("first or early open-source contribution"));
+assert.ok(profilesOutput.includes("reviewing, organizing, or supporting contributor work"));
+
 let unknownCommandOutput = "";
 
 try {
