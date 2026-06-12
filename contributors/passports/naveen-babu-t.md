@@ -6,7 +6,7 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #73
-- Latest merged PR: #83
+- Latest merged PR: #84
 - Primary skill: cli
 - Proof: merged pull request with maintainer review and project checks
 
@@ -21,6 +21,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | #87 | 2026-06-12 | docs | docs: add CLI command glossary | #82 |
 
 | #83 | 2026-06-12 | cli | test: add invalid CLI profile coverage | #6 |
+
+| #84 | 2026-06-12 | cli | feat: add profiles CLI command | #37 |
 
 ## Suggested Next Step
 
