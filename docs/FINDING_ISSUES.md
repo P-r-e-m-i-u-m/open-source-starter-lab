@@ -74,3 +74,23 @@ is:open label:"cli" no:assignee
 - Check whether someone is already assigned.
 - Ask questions politely if the task is unclear.
 - Start with small documentation or beginner-friendly issues first.
+
+## Useful Repository Searches
+
+### Good First Issues
+
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
+
+### Help Wanted Issues
+
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
+
+### CLI Issues
+
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3Acli
+
+### Unassigned Issues
+
+https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee
+
+These links take you directly to filtered issue lists in this repository so you can quickly find a task that matches your interests and experience level.
