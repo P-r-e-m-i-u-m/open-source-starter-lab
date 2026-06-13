@@ -46,3 +46,17 @@ npm run check
 - Weekly help threads available.
 
 We're here to help you grow as a contributor and maintainer. Let's build something great together! 🌟
+
+
+## Pull Request Descriptions
+
+A helpful pull request description makes reviews faster and easier.
+
+When opening a pull request, please include:
+
+- A summary of your changes
+- The reason for the change
+- Testing evidence
+- Related issues using `Closes #issue-number`
+
+For examples and guidance, see the [PR Description Guide](docs/PR_DESCRIPTION_GUIDE.md).
