@@ -6,7 +6,7 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #72
-- Latest merged PR: #89
+- Latest merged PR: #91
 - Primary skill: docs
 - Proof: merged pull request with maintainer review and project checks
 
@@ -23,6 +23,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | #86 | 2026-06-12 | docs | docs: add documentation review checklist | #62 |
 
 | #89 | 2026-06-12 | docs | docs: add maintainer welcome reply pack | #5 |
+
+| #91 | 2026-06-13 | docs | docs: add issue filtering examples | #25 |
 
 ## Suggested Next Step
 
