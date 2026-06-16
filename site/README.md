@@ -30,3 +30,7 @@ https://p-r-e-m-i-u-m.github.io/open-source-starter-lab/
 ## Accessibility
 
 See [WEBSITE_ACCESSIBILITY_CHECKLIST.md](../docs/WEBSITE_ACCESSIBILITY_CHECKLIST.md)
+
+## Contributor Success Stories
+
+The website includes a Contributor Success Stories section that highlights what contributors practice while working on real open-source tasks. The section links to project proof resources such as the First Merge Wall, Second PR Path, and Contributor Queue.

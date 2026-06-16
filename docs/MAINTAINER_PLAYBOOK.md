@@ -64,3 +64,7 @@ If you already cloned the repo, skip `git init`.
 ```
 
 Short can be good. Complete is better.
+
+## Discussion Answer Examples
+
+See [DISCUSSION_ANSWER_EXAMPLES.md](./DISCUSSION_ANSWER_EXAMPLES.md) for examples of weak and strong discussion answers, safe command usage, and situations where maintainers should ask clarifying questions before providing guidance.

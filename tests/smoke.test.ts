@@ -57,4 +57,49 @@ for (const idea of parsedIssues) {
   assert.ok(idea.acceptanceCriteria.length >= 3);
 }
 
+const profilesOutput = execFileSync("node", [cliPath, "profiles"], {
+  encoding: "utf8"
+});
+
+assert.ok(profilesOutput.includes("beginner"));
+assert.ok(profilesOutput.includes("maintainer"));
+assert.ok(profilesOutput.includes("first or early open-source contribution"));
+assert.ok(profilesOutput.includes("reviewing, organizing, or supporting contributor work"));
+
+let unknownCommandOutput = "";
+
+try {
+  execFileSync("node", [cliPath, "not-a-real-command"], {
+    encoding: "utf8",
+    stdio: "pipe"
+  });
+
+  assert.fail("Unknown command should fail");
+} catch (error) {
+  unknownCommandOutput = String(error);
+}
+
+assert.ok(
+  unknownCommandOutput.includes("Unknown command"),
+  "Expected output to include 'Unknown command'"
+);
+
+let invalidProfileOutput = "";
+
+try {
+  execFileSync("node", [cliPath, "check", "--profile", "expert"], {
+    encoding: "utf8",
+    stdio: "pipe"
+  });
+
+  assert.fail("Invalid profile should fail");
+} catch (error) {
+  invalidProfileOutput = String(error);
+}
+
+assert.ok(
+  invalidProfileOutput.includes("Use --profile beginner or --profile maintainer"),
+  "Expected output to explain valid profile options"
+);
+
 console.log("Smoke tests passed.");

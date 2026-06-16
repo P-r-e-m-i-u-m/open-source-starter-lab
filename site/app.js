@@ -136,7 +136,7 @@ async function fetchLiveIssues() {
       const title = issue.title.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       const url = issue.html_url;
       const isAssigned = issue.assignees && issue.assignees.length > 0;
-      const statusColor = isAssigned ? "magenta" : "cyan";
+      const statusColor = isAssigned ? "terminal-status-magenta" : "terminal-status-cyan";
       const statusText = isAssigned ? "CLAIMED" : "AVAILABLE";
 
       feedElement.innerHTML += `

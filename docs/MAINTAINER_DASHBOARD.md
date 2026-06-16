@@ -1,6 +1,6 @@
 # Maintainer Dashboard
 
-Generated: 2026-05-27
+Generated: 2026-06-01
 
 This dashboard is the small operating view for Open Source Starter Lab. It keeps the repo looking alive, curated, and reviewable without making contributors guess what is happening.
 
@@ -29,6 +29,7 @@ Every daily issue should include context, goal, suggested files, acceptance crit
 | Contributor | Level | Contributions | Proof |
 | --- | --- | --- | --- |
 | @Bhuvanakalaga | 1 - First PR Contributor | 1 | [passport](../contributors/passports/bhuvanakalaga.md) |
+| @DarkRoot-Cmd | 1 - First PR Contributor | 1 | [passport](../contributors/passports/darkroot-cmd.md) |
 | @nanookclaw | 1 - First PR Contributor | 1 | [passport](../contributors/passports/nanookclaw.md) |
 
 ## Monthly Contributor Spotlight

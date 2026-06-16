@@ -38,7 +38,7 @@ If you searched for **first pull request**, **first open source contribution**, 
 | 3 | Open a focused PR | PR welcome guidance tells you what proof to include |
 | 4 | Get visible proof | First Merge Wall, Trust Passport, and next issue suggestions |
 
-<p align="center">
+<p align="center" style="overflow: hidden;">
   <img src="assets/screenshots/terminal-demo.gif" alt="Terminal demo showing checks, automation health, issue quality, and first PR proof flow" width="760" />
 </p>
 
@@ -142,6 +142,7 @@ Join the first cohort: [First PR Cohort 01 - Get your Open Source Trust Passport
 | --- | --- |
 | Make my first pull request | [First PR guide](docs/FIRST_PULL_REQUEST.md) |
 | Avoid common first PR mistakes | [First PR mistakes](docs/FIRST_PR_MISTAKES.md) |
+| Read common first-time contributor questions | [First-Time Contributor FAQ](docs/FIRST_TIME_CONTRIBUTOR_FAQ.md) |
 | Understand common open-source words | [Contribution glossary](docs/GLOSSARY.md) |
 | Find a small task | [Good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) |
 | Find a curated first task | [Featured first issues](docs/FEATURED_FIRST_ISSUES.md) |
@@ -337,4 +338,3 @@ Be clear, kind, and useful. Short answers are fine when they solve the problem, 
 ## License
 
 MIT
-
