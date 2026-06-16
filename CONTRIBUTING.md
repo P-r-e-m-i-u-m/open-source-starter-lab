@@ -47,23 +47,16 @@ npm run check
 
 We're here to help you grow as a contributor and maintainer. Let's build something great together! 🌟
 
+## Contributor Cards
 
-## Pull Request Descriptions
+You can add a short contributor card in `contributors/your-github-username.md`.
 
-A helpful pull request description makes reviews faster and easier.
+Example:
 
-When opening a pull request, please include:
+```md
+# @your-github-username
 
-- A summary of your changes
-- The reason for the change
-- Testing evidence
-- Related issues using `Closes #issue-number`
-
-For examples and guidance, see the [PR Description Guide](docs/PR_DESCRIPTION_GUIDE.md).
-
-## Reproducing Bugs
-
-Before working on a bug fix, make sure you can reproduce the issue locally. Clear reproduction steps help reviewers understand the problem and verify the fix.
-
-See [Bug Reproduction Guide](docs/BUG_REPRODUCTION_GUIDE.md).
-For examples and guidance, see the [PR Description Guide](docs/PR_DESCRIPTION_GUIDE.md).
+- Learning: Git, GitHub, and open source
+- First contribution: documentation improvement
+- Favorite command: git status
+- Goal: make one helpful contribution
