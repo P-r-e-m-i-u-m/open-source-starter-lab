@@ -59,7 +59,6 @@ When opening a pull request, please include:
 - Testing evidence
 - Related issues using `Closes #issue-number`
 
-For examples and guidance, see the [PR Description Guide](docs/PR_DESCRIPTION_GUIDE.md).
 
 ## Reproducing Bugs
 
