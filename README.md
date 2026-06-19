@@ -174,6 +174,7 @@ Join the first cohort: [First PR Cohort 01 - Get your Open Source Trust Passport
 | Launch and share the repo | [Launch playbook](docs/LAUNCH_PLAYBOOK.md) |
 | Share this with beginners | [Community discovery kit](docs/COMMUNITY_DISCOVERY_KIT.md) |
 | Reply in GitHub Community | [GitHub Community reply pack](docs/GITHUB_COMMUNITY_REPLY_PACK.md) |
+Linux or macOS user? See [Linux and macOS Setup Guide](docs/UNIX_SETUP.md).
 
 ## Why This Repo Exists
 
