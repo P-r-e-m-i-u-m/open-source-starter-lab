@@ -26,7 +26,7 @@
     "pr:welcome:dry-run": "npm run build && node dist/scripts/welcomePullRequest.js --dry-run",
     "automation:health": "npm run build && node dist/scripts/createDailyIssue.js --dry-run && node dist/scripts/createWeeklyHelpDiscussion.js --dry-run && node dist/scripts/replyToAssignmentRequest.js --dry-run && node dist/scripts/welcomePullRequest.js --dry-run && node dist/scripts/afterMergeContributorProof.js --dry-run && node dist/scripts/generateMaintainerDashboard.js --dry-run",
     "test": "npm run build && node dist/tests/smoke.test.js && node dist/tests/cli.test.js",
-    "check": "npm run build && npm test && npm run demo"
+    "check": "npm run build && npm test && npm run demo && npm run site:check-links"
   },
   "keywords": [
     "open-source",
