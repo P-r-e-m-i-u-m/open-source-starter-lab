@@ -73,7 +73,45 @@ A maintainer will review your PR. They might:
 - Be patient — maintainers are often volunteers
 
 ---
+## Safe Issue-to-PR Workflow Example
 
+Use this flow for small beginner-friendly issues, especially documentation changes.
+
+```bash
+git clone https://github.com/YOUR-USERNAME/REPO-NAME.git
+cd REPO-NAME
+git checkout -b docs/short-description
+git status
+```
+What each command does:
+
+- `git clone` downloads your fork to your computer.
+- `cd` moves you into the project folder.
+- `git checkout -b` creates a new branch for your work.
+- `git status` shows which files changed.
+
+After editing files:
+
+```bash
+git status
+git add PATH/TO/CHANGED_FILE.md
+git commit -m "docs: describe your change"
+git push origin docs/short-description
+```
+What each command does:
+
+- `git status` helps you review your changes before committing.
+- `git add` stages only the file you want to include in the pull request.
+- `git commit` saves your staged change locally with a short message.
+- `git push` sends your branch to GitHub so you can open a pull request.
+
+If a command fails, do not guess or run destructive commands. Copy the full error message and ask for help in the issue or pull request. Include:
+
+- the command you ran
+- what you expected to happen
+- what happened instead
+
+---
 ## Quick Reference
 
 ```bash
