@@ -128,6 +128,12 @@ Keep your entry short and professional.
 - I worked on: docs: add PR description guideAdds a PR description guide to help contributors write clearer and more useful pull request description
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @katebabakova444
+
+- First merged PR: #102
+- I worked on: docs: add safe issue-to-pr workflow example
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
