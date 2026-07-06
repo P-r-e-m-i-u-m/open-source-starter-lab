@@ -9,6 +9,7 @@ The CLI gives beginners and maintainers a quick checklist.
 | `check --profile beginner` | Prints a beginner checklist for starting a first or early open-source contribution. | Use this before working on a beginner issue or opening a first pull request. |
 | `check --profile maintainer` | Prints a maintainer checklist for reviewing, assigning, or supporting contributor work. | Use this when helping manage issues, review PRs, or guide contributors. |
 | `issues` | Prints starter issue ideas with labels, difficulty, goals, and acceptance criteria. | Use this when looking for a suitable issue to work on. |
+| `profiles` | Prints available checklist profiles (`beginner` and `maintainer`) with a short explanation of each. | Use this to discover which profile fits your role before running `check --profile`. |
 
 ## Beginner Checklist
 
@@ -48,6 +49,14 @@ node dist/src/cli.js fit --skill javascript --time 1h
 ```
 
 Use this when you are not sure which issue to pick. It suggests a skill-based path, an unassigned issue search, the first command to run, a proof checklist, and a comment you can paste before starting.
+
+## List Contributor Profiles
+
+```bash
+node dist/src/cli.js profiles
+```
+
+This prints the two supported checklist profiles (`beginner` and `maintainer`) with a short explanation of what each profile is for. Use this when you are unsure which profile to pass to `check --profile`.
 
 ## Contributor Progression
 
@@ -146,4 +155,20 @@ Starter issue ideas
 - Add JSON output for issue ideas [help wanted, medium]
 - Add a contribution glossary [good first issue, easy]
 - Add a maintainer response playbook [documentation, medium]
+```
+
+## Example Output: Profiles
+
+Command:
+
+```bash
+node dist/src/cli.js profiles
+```
+
+Example output:
+
+```text
+Available checklist profiles:
+- beginner: Use this profile when you are making a first or early open-source contribution.
+- maintainer: Use this profile when you are reviewing, organizing, or supporting contributor work.
 ```
