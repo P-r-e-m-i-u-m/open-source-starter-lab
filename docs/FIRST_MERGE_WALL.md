@@ -134,6 +134,12 @@ Keep your entry short and professional.
 - I worked on: docs: add safe issue-to-pr workflow example
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @wincharm001
+
+- First merged PR: #105
+- I worked on: docs: add profiles command to CLI guide
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
