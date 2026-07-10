@@ -102,4 +102,23 @@ assert.ok(
   "Expected output to explain valid profile options"
 );
 
+const fitOutput = execFileSync("node", [cliPath, "fit", "--skill", "docs", "--time", "30m"], {
+  encoding: "utf8"
+});
+
+assert.ok(fitOutput.includes("First Issue Fit Finder"), "Expected output to include title");
+assert.ok(fitOutput.includes("Best path:"), "Expected output to include best path");
+assert.ok(fitOutput.includes("Skill: docs"), "Expected output to show skill");
+assert.ok(fitOutput.includes("Time: 30m"), "Expected output to show time budget");
+assert.ok(fitOutput.includes("Proof checklist:"), "Expected output to include proof checklist");
+
+const nextOutput = execFileSync("node", [cliPath, "next", "--level", "first-pr"], {
+  encoding: "utf8"
+});
+
+assert.ok(nextOutput.includes("Contributor Progression Path"), "Expected output to include title");
+assert.ok(nextOutput.includes("Goal:"), "Expected output to include goal");
+assert.ok(nextOutput.includes("First command:"), "Expected output to include first command");
+assert.ok(nextOutput.includes("Labels to look for:"), "Expected output to include labels");
+
 console.log("Smoke tests passed.");
