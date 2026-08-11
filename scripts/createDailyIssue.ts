@@ -61,6 +61,16 @@ function chooseIssues(count: number, date = new Date()): DailyIssue[] {
   return Array.from({ length: count }, (_, offset) => dailyIssueBacklog[(startIndex + offset) % dailyIssueBacklog.length]);
 }
 
+function chooseIssueCandidates(date = new Date()): DailyIssue[] {
+  const dayIndex = getDayIndex(date);
+  const startIndex = dayIndex % dailyIssueBacklog.length;
+
+  return Array.from(
+    { length: dailyIssueBacklog.length },
+    (_, offset) => dailyIssueBacklog[(startIndex + offset) % dailyIssueBacklog.length]
+  );
+}
+
 function formatBody(issue: DailyIssue): string {
   const quality = scoreDailyIssue(issue);
 
@@ -184,13 +194,24 @@ async function ensureLabels(owner: string, repo: string, token: string, labels: 
   }
 }
 
-async function issueAlreadyExists(owner: string, repo: string, token: string, title: string): Promise<GitHubIssue | undefined> {
+async function fetchOpenDailyStarterIssues(owner: string, repo: string, token: string): Promise<GitHubIssue[]> {
+  return githubRequest<GitHubIssue[]>(
+    `/repos/${owner}/${repo}/issues?state=open&per_page=100&labels=${encodeURIComponent("daily starter issue")}`,
+    token
+  );
+}
+
+function issueAlreadyExists(issues: GitHubIssue[], title: string): GitHubIssue | undefined {
+  return issues.find((issue) => issue.title.toLowerCase() === title.toLowerCase());
+}
+
+async function fetchAllDailyStarterIssues(owner: string, repo: string, token: string): Promise<GitHubIssue[]> {
   const issues = await githubRequest<GitHubIssue[]>(
     `/repos/${owner}/${repo}/issues?state=all&per_page=100&labels=${encodeURIComponent("daily starter issue")}`,
     token
   );
 
-  return issues.find((issue) => issue.title.toLowerCase() === title.toLowerCase());
+  return issues;
 }
 
 async function main(): Promise<void> {
@@ -223,13 +244,26 @@ async function main(): Promise<void> {
     throw new Error(`Invalid GITHUB_REPOSITORY value: ${repository}`);
   }
 
-  for (const issue of issues) {
+  const openDailyIssues = await fetchOpenDailyStarterIssues(owner, repo, token);
+  const allDailyIssues = await fetchAllDailyStarterIssues(owner, repo, token);
+  let createdCount = 0;
+
+  for (const issue of chooseIssueCandidates()) {
+    if (createdCount >= issueCount) {
+      break;
+    }
+
     await ensureLabels(owner, repo, token, issue.labels);
 
-    const existing = await issueAlreadyExists(owner, repo, token, issue.title);
+    const existing = issueAlreadyExists(openDailyIssues, issue.title);
     if (existing) {
-      console.log(`Daily issue already exists: ${existing.html_url}`);
+      console.log(`Open daily issue already exists: ${existing.html_url}`);
       continue;
+    }
+
+    const previouslyUsed = issueAlreadyExists(allDailyIssues, issue.title);
+    if (previouslyUsed) {
+      console.log(`Reopening fresh slot for previously used issue title: ${issue.title}`);
     }
 
     const created = await githubRequest<GitHubIssue>(`/repos/${owner}/${repo}/issues`, token, {
@@ -242,6 +276,13 @@ async function main(): Promise<void> {
     });
 
     console.log(`Created daily issue: ${created.html_url}`);
+    openDailyIssues.push(created);
+    allDailyIssues.push(created);
+    createdCount += 1;
+  }
+
+  if (createdCount < issueCount) {
+    console.log(`Created ${createdCount}/${issueCount} requested daily issue(s). Add more backlog items to keep the queue fresh.`);
   }
 }
 
