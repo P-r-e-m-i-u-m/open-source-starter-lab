@@ -9,7 +9,7 @@ The goal is not to make the repo noisy. The goal is to catch broken automation e
 | Workflow | Purpose | Safety guard |
 | --- | --- | --- |
 | `CI` | Builds and tests the project on pushes and PRs | 10 minute timeout |
-| `Daily Issue Bot` | Creates one beginner starter issue from a curated backlog | Duplicate protection in the script, two daily schedule windows, concurrency guard |
+| `Daily Issue Bot` | Creates up to five beginner starter issues from a curated backlog | Duplicate protection in the script, two daily schedule windows, concurrency guard |
 | `Weekly Help Thread` | Opens the weekly issue-assignment discussion | Existing-thread check, concurrency guard |
 | `Assignment Helper` | Assigns contributors who comment `.take` or ask to work on an issue | Dry-run request recognition and marked reply body |
 | `Contributor Queue` | Keeps maintainer follow-up visible | Concurrency guard, secondary rate-limit skip |

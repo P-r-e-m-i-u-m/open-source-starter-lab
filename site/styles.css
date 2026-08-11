@@ -408,7 +408,7 @@ h1 span,
 
 .finder-panel {
   display: grid;
-  grid-template-columns: 1fr 1fr minmax(320px, 1.25fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
   padding: 28px;
 }
@@ -445,6 +445,11 @@ a:focus-visible {
   border: 2px solid var(--cyan);
   padding: 22px;
   background: rgba(0, 255, 255, 0.06);
+}
+
+.idea-card {
+  border-color: var(--magenta);
+  background: rgba(255, 0, 255, 0.06);
 }
 
 .result-label {
@@ -549,7 +554,7 @@ a:focus-visible {
 }
 
 .automation-grid {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
 .surface-grid {

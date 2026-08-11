@@ -1,0 +1,63 @@
+name: Real problem or improvement idea
+description: Suggest a real issue that would make this repo more useful for contributors.
+title: "[Idea]: "
+labels: ["community", "help wanted", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for bringing a real problem here. Good issues help the repo grow beyond beginner practice.
+
+        Keep it small, specific, and useful for contributors.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem did you notice?
+      description: Explain the pain point in plain language.
+      placeholder: I noticed contributors may get stuck when...
+    validations:
+      required: true
+  - type: textarea
+    id: who
+    attributes:
+      label: Who would this help?
+      description: Beginner, second-time contributor, maintainer, reviewer, docs writer, tester, etc.
+      placeholder: This would help...
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: What solution do you suggest?
+      placeholder: Add a guide, improve a workflow, create a small CLI feature, update the website...
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Small first version
+      description: What is the smallest useful version of this idea?
+      placeholder: A small first PR could change only...
+    validations:
+      required: true
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Main skill area
+      options:
+        - Docs
+        - JavaScript or TypeScript
+        - Testing
+        - Git or GitHub workflow
+        - Website or design
+        - Maintainer workflow
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: How should a PR prove it worked?
+      placeholder: The PR should show npm run check output, screenshots, before/after docs, or a small demo.
+    validations:
+      required: true

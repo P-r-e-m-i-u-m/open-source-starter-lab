@@ -12,6 +12,33 @@ function hasFlag(flag: string): boolean {
   return process.argv.includes(flag);
 }
 
+function getOptionValue(name: string): string | undefined {
+  const prefix = `${name}=`;
+  const inline = process.argv.find((arg) => arg.startsWith(prefix));
+
+  if (inline) {
+    return inline.slice(prefix.length);
+  }
+
+  const index = process.argv.indexOf(name);
+  if (index >= 0) {
+    return process.argv[index + 1];
+  }
+
+  return undefined;
+}
+
+function getIssueCount(): number {
+  const rawValue = getOptionValue("--count") ?? process.env.DAILY_ISSUE_COUNT ?? "5";
+  const count = Number.parseInt(rawValue, 10);
+
+  if (!Number.isFinite(count) || count < 1 || count > 5) {
+    throw new Error("Daily issue count must be a number between 1 and 5.");
+  }
+
+  return count;
+}
+
 function requireEnv(name: string): string {
   const value = process.env[name];
   if (!value) {
@@ -20,11 +47,18 @@ function requireEnv(name: string): string {
   return value;
 }
 
-function chooseIssue(date = new Date()): DailyIssue {
+function getDayIndex(date = new Date()): number {
   const start = Date.UTC(2026, 0, 1);
   const today = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-  const dayIndex = Math.max(0, Math.floor((today - start) / 86_400_000));
-  return dailyIssueBacklog[dayIndex % dailyIssueBacklog.length];
+
+  return Math.max(0, Math.floor((today - start) / 86_400_000));
+}
+
+function chooseIssues(count: number, date = new Date()): DailyIssue[] {
+  const dayIndex = getDayIndex(date);
+  const startIndex = (dayIndex * count) % dailyIssueBacklog.length;
+
+  return Array.from({ length: count }, (_, offset) => dailyIssueBacklog[(startIndex + offset) % dailyIssueBacklog.length]);
 }
 
 function formatBody(issue: DailyIssue): string {
@@ -94,6 +128,7 @@ async function ensureLabels(owner: string, repo: string, token: string, labels: 
     cli: "d876e3",
     testing: "0e8a16",
     "developer tooling": "1d76db",
+    "needs triage": "d93f0b",
     "time: 15 min": "bfdadc",
     "time: 30 min": "c5def5",
     "time: 1 hour": "fef2c0",
@@ -113,6 +148,7 @@ async function ensureLabels(owner: string, repo: string, token: string, labels: 
     cli: "CLI behavior or examples",
     testing: "Tasks related to testing, validation, and quality assurance",
     "developer tooling": "Tasks related to automation, scripts, developer tools, and workflow improvements",
+    "needs triage": "Needs maintainer review before it becomes ready for contribution",
     "time: 15 min": "Small issue expected to fit in about 15 minutes",
     "time: 30 min": "Small issue expected to fit in about 30 minutes",
     "time: 1 hour": "Focused issue expected to fit in about one hour",
@@ -159,16 +195,23 @@ async function issueAlreadyExists(owner: string, repo: string, token: string, ti
 
 async function main(): Promise<void> {
   const dryRun = hasFlag("--dry-run");
-  const issue = chooseIssue();
-  const body = formatBody(issue);
-  const quality = scoreDailyIssue(issue);
+  const issueCount = getIssueCount();
+  const issues = chooseIssues(issueCount);
 
   if (dryRun) {
-    console.log(`# ${issue.title}`);
-    console.log(`Labels: ${issue.labels.join(", ")}`);
-    console.log(`Quality: ${quality.score}/100 (${quality.rating})`);
-    console.log("");
-    console.log(body);
+    console.log(`Daily issue dry-run: ${issues.length} curated issue(s)`);
+
+    for (const [index, issue] of issues.entries()) {
+      const quality = scoreDailyIssue(issue);
+
+      console.log("");
+      console.log(`## ${index + 1}. ${issue.title}`);
+      console.log(`Labels: ${issue.labels.join(", ")}`);
+      console.log(`Quality: ${quality.score}/100 (${quality.rating})`);
+      console.log("");
+      console.log(formatBody(issue));
+    }
+
     return;
   }
 
@@ -180,24 +223,26 @@ async function main(): Promise<void> {
     throw new Error(`Invalid GITHUB_REPOSITORY value: ${repository}`);
   }
 
-  await ensureLabels(owner, repo, token, issue.labels);
+  for (const issue of issues) {
+    await ensureLabels(owner, repo, token, issue.labels);
 
-  const existing = await issueAlreadyExists(owner, repo, token, issue.title);
-  if (existing) {
-    console.log(`Daily issue already exists: ${existing.html_url}`);
-    return;
+    const existing = await issueAlreadyExists(owner, repo, token, issue.title);
+    if (existing) {
+      console.log(`Daily issue already exists: ${existing.html_url}`);
+      continue;
+    }
+
+    const created = await githubRequest<GitHubIssue>(`/repos/${owner}/${repo}/issues`, token, {
+      method: "POST",
+      body: JSON.stringify({
+        title: issue.title,
+        body: formatBody(issue),
+        labels: issue.labels
+      })
+    });
+
+    console.log(`Created daily issue: ${created.html_url}`);
   }
-
-  const created = await githubRequest<GitHubIssue>(`/repos/${owner}/${repo}/issues`, token, {
-    method: "POST",
-    body: JSON.stringify({
-      title: issue.title,
-      body,
-      labels: issue.labels
-    })
-  });
-
-  console.log(`Created daily issue: ${created.html_url}`);
 }
 
 main().catch((error: unknown) => {

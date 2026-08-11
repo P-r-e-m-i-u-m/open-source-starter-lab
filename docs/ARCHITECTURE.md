@@ -38,7 +38,7 @@ Next contributor
 
 ## Automation Flow
 
-1. `Daily Issue Bot` creates one curated starter issue when needed.
+1. `Daily Issue Bot` creates up to five curated starter issues when needed.
 2. `Assignment Helper` replies when contributors ask for an issue.
 3. `Contributor Queue` keeps maintainer follow-up visible.
 4. `PR Welcome Guard` checks whether a PR is review-ready.

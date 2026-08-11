@@ -121,4 +121,11 @@ assert.ok(nextOutput.includes("Goal:"), "Expected output to include goal");
 assert.ok(nextOutput.includes("First command:"), "Expected output to include first command");
 assert.ok(nextOutput.includes("Labels to look for:"), "Expected output to include labels");
 
+const dailyIssueDryRun = execFileSync("node", [path.resolve("dist/scripts/createDailyIssue.js"), "--dry-run", "--count", "5"], {
+  encoding: "utf8"
+});
+
+assert.ok(dailyIssueDryRun.includes("Daily issue dry-run: 5 curated issue(s)"));
+assert.equal((dailyIssueDryRun.match(/^## \d+\./gm) ?? []).length, 5);
+
 console.log("Smoke tests passed.");

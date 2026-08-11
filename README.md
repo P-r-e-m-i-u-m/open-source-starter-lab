@@ -65,7 +65,7 @@ Screenshot system notes: [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md)
 | CI | [Workflow](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/ci.yml) | Proves the project builds and tests |
 | Website | [Live site](https://p-r-e-m-i-u-m.github.io/open-source-starter-lab/) | Shows the contributor journey visually |
 | Automation Health | [Workflow](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/automation-health.yml) | Dry-runs automation so breakage is caught early |
-| Daily Issue Bot | [Workflow](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/daily-issue-bot.yml) | Keeps beginner tasks moving |
+| Daily Issue Bot | [Workflow](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/daily-issue-bot.yml) | Keeps up to five curated starter tasks moving daily |
 | Monthly Dashboard | [Workflow](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/actions/workflows/monthly-maintainer-dashboard.yml) | Refreshes the maintainer view and contributor spotlight |
 | Contributor Queue | [Live queue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/46) | Shows who needs maintainer attention |
 | Trust Passports | [Passport folder](contributors/passports) | Turns merged work into public proof |
@@ -235,6 +235,9 @@ Start with one of these:
 Good first issues are listed here:
 [good first issue](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 
+Have a real problem or improvement idea? Open a structured idea issue:
+[Real problem or improvement idea](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/new?template=real-problem.yml)
+
 ## Find Issues Fast
 
 Use these filtered searches:
@@ -326,7 +329,7 @@ Want to invite contributors? Use the copy-ready messages in
 
 ## Daily Issue Bot
 
-This repo includes a transparent automation that creates one beginner-friendly starter issue per day from a curated backlog.
+This repo includes a transparent automation that can create up to five beginner-friendly starter issues per day from a curated backlog.
 
 Read the bot docs: [docs/DAILY_ISSUE_BOT.md](docs/DAILY_ISSUE_BOT.md).
 

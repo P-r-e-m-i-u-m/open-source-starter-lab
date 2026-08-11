@@ -36,3 +36,4 @@ jobs:
         run: npm run issue:create
         env:
           GITHUB_TOKEN: ${{ secrets.MAINTAINER_TOKEN }}
+          DAILY_ISSUE_COUNT: 5

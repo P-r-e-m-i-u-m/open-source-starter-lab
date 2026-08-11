@@ -1,6 +1,6 @@
 # Daily Issue Bot
 
-Daily Issue Bot creates one beginner-friendly issue every day from a curated maintainer backlog.
+Daily Issue Bot creates up to five beginner-friendly issues every day from a curated maintainer backlog.
 
 It is designed to keep the repo active without creating spam.
 
@@ -24,6 +24,13 @@ Local dry run:
 
 ```bash
 npm run issue:daily
+```
+
+To preview a smaller batch:
+
+```bash
+npm run build
+node dist/scripts/createDailyIssue.js --dry-run --count 2
 ```
 
 Create an issue locally with GitHub credentials:
