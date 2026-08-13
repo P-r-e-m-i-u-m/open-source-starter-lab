@@ -133,6 +133,8 @@ function main(): void {
     console.log("  oss-lab issues --json");
     console.log("  oss-lab profiles");
     console.log("  oss-lab fit --skill docs --time 30m");
+    console.log("    Skills: html-css, javascript, python, docs, testing, git");
+    console.log("    Time: 15m, 30m, 1h");
     console.log("  oss-lab next --level second-pr");
     return;
   }

@@ -139,6 +139,13 @@ main {
   text-decoration: none;
 }
 
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 2px;
+}
+
 .nav-links a:hover,
 .nav-links a:focus-visible {
   color: var(--cyan);
