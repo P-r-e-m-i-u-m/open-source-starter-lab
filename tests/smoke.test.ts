@@ -66,6 +66,14 @@ assert.ok(profilesOutput.includes("maintainer"));
 assert.ok(profilesOutput.includes("first or early open-source contribution"));
 assert.ok(profilesOutput.includes("reviewing, organizing, or supporting contributor work"));
 
+const helpOutput = execFileSync("node", [cliPath, "help"], {
+  encoding: "utf8"
+});
+
+assert.ok(helpOutput.includes("oss-lab fit --skill docs --time 30m"));
+assert.ok(helpOutput.includes("Skills: html-css, javascript, python, docs, testing, git"));
+assert.ok(helpOutput.includes("Time: 15m, 30m, 1h"));
+
 let unknownCommandOutput = "";
 
 try {
