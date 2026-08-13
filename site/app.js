@@ -124,31 +124,78 @@ async function fetchLiveIssues() {
     // Clear loading state
     feedElement.innerHTML = "<p><span>&gt;</span> fetching open issues from GitHub API...</p><p class=\"terminal-success\">200 OK</p>";
     
-    if (issues.length === 0) {
-      feedElement.innerHTML += "<p>No open issues found right now. Check back later!</p>";
+if (issues.length === 0) {
+  feedElement.innerHTML += `
+    <div style="margin-top: 1rem; border-top: 1px dashed var(--green); padding-top: 0.5rem;">
+      <p>No open good first issues found right now.</p>
+      <p>
+        <a href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues/new?template=real-problem.yml"
+           target="_blank"
+           rel="noreferrer"
+           style="color: var(--fg); text-decoration: underline;">
+          Open a real problem idea
+        </a>
+      </p>
+      <p>
+        <a href="https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/discussions/44"
+           target="_blank"
+           rel="noreferrer"
+           style="color: var(--fg); text-decoration: underline;">
+          Join the weekly assignment thread
+            </a>
+          </p>
+        </div>
+      `;
       return;
     }
 
-    issues.forEach(issue => {
-      // Don't show PRs, only issues
-      if (issue.pull_request) return;
-      
-      const title = issue.title.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      const url = issue.html_url;
-      const isAssigned = issue.assignees && issue.assignees.length > 0;
-      const statusColor = isAssigned ? "terminal-status-magenta" : "terminal-status-cyan";
-      const statusText = isAssigned ? "CLAIMED" : "AVAILABLE";
+issues.forEach(issue => {
+  // Don't show PRs, only issues
+  if (issue.pull_request) return;
 
-      feedElement.innerHTML += `
-        <div style="margin-top: 1rem; border-top: 1px dashed var(--green); padding-top: 0.5rem;">
-          <p><span class="${statusColor}">[${statusText}]</span> <a href="${url}" target="_blank" style="color: var(--fg); text-decoration: underline;">#${issue.number} ${title}</a></p>
-          <p style="font-size: 0.9em; opacity: 0.8;">> claim by commenting <code>.take</code></p>
-        </div>
-      `;
-    });
+  const isAssigned = issue.assignees && issue.assignees.length > 0;
+  const statusColor = isAssigned ? "terminal-status-magenta" : "terminal-status-cyan";
+  const statusText = isAssigned ? "CLAIMED" : "AVAILABLE";
+
+  const issueContainer = document.createElement("div");
+  issueContainer.style.marginTop = "1rem";
+  issueContainer.style.borderTop = "1px dashed var(--green)";
+  issueContainer.style.paddingTop = "0.5rem";
+
+  const issueLine = document.createElement("p");
+
+  const status = document.createElement("span");
+  status.className = statusColor;
+  status.textContent = `[${statusText}] `;
+
+  const issueLink = document.createElement("a");
+  issueLink.href = issue.html_url;
+  issueLink.target = "_blank";
+  issueLink.rel = "noreferrer";
+  issueLink.style.color = "var(--fg)";
+  issueLink.style.textDecoration = "underline";
+  issueLink.textContent = `#${issue.number} ${issue.title}`;
+
+  issueLine.append(status, issueLink);
+
+  const claimLine = document.createElement("p");
+  claimLine.style.fontSize = "0.9em";
+  claimLine.style.opacity = "0.8";
+  claimLine.textContent = "> claim by commenting ";
+
+  const command = document.createElement("code");
+  command.textContent = ".take";
+
+  claimLine.appendChild(command);
+  issueContainer.append(issueLine, claimLine);
+  feedElement.appendChild(issueContainer);
+});
 
   } catch (err) {
-    feedElement.innerHTML += `<p class="magenta">Error: ${err.message}</p>`;
+    const errorMessage = document.createElement("p");
+    errorMessage.className = "magenta";
+    errorMessage.textContent = `Error: ${err.message}`;
+    feedElement.appendChild(errorMessage);
   }
 }
 
