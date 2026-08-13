@@ -4,10 +4,10 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 1 - First PR Contributor
+- Level: 2 - Returning Contributor
 - First merged PR: #138
-- Latest merged PR: #138
-- Primary skill: cli
+- Latest merged PR: #139
+- Primary skill: website
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -16,9 +16,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | --- | --- | --- | --- | --- |
 | #138 | 2026-08-13 | cli | feat: add CLI fit help text | #132 |
 
+| #139 | 2026-08-13 | website | fix: improve navigation link accessibility | #137 |
+
 ## Suggested Next Step
 
-- Second PR route: #137 Add a small accessibility pass for website buttons
+- Second PR route: #134 Improve the live issue feed empty state
 
 ## Share Line
 
