@@ -164,6 +164,12 @@ Keep your entry short and professional.
 - I worked on: feat: add CLI fit help text
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @payal-tyagi07
+
+- First merged PR: #140
+- I worked on: add comprehensive guide for choosing a good first issue
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
