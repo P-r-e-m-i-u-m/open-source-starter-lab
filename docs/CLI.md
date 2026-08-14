@@ -10,6 +10,8 @@ The CLI gives beginners and maintainers a quick checklist.
 | `check --profile maintainer` | Prints a maintainer checklist for reviewing, assigning, or supporting contributor work. | Use this when helping manage issues, review PRs, or guide contributors. |
 | `issues` | Prints starter issue ideas with labels, difficulty, goals, and acceptance criteria. | Use this when looking for a suitable issue to work on. |
 | `profiles` | Prints available checklist profiles (`beginner` and `maintainer`) with a short explanation of each. | Use this to discover which profile fits your role before running `check --profile`. |
+| `fit [--skill <skill>] [--time <time>]` | Finds an issue path matching your skill and time budget. | Use this to get tailored issue suggestions, search links, and proof checklists. |
+| `next [--level <level>]` | Shows next steps on the contributor progression path. | Use this after merging PRs to progress toward maintainer tasks. |
 
 ## Beginner Checklist
 
@@ -47,6 +49,19 @@ node dist/src/cli.js issues --json
 node dist/src/cli.js fit --skill docs --time 30m
 node dist/src/cli.js fit --skill javascript --time 1h
 ```
+
+Accepted skills include:
+- `html-css`
+- `javascript` (or `ts`)
+- `python`
+- `docs`
+- `testing`
+- `git`
+
+Accepted time budgets include:
+- `15m`
+- `30m`
+- `1h`
 
 Use this when you are not sure which issue to pick. It suggests a skill-based path, an unassigned issue search, the first command to run, a proof checklist, and a comment you can paste before starting.
 
@@ -171,4 +186,35 @@ Example output:
 Available checklist profiles:
 - beginner: Use this profile when you are making a first or early open-source contribution.
 - maintainer: Use this profile when you are reviewing, organizing, or supporting contributor work.
+```
+
+## Example Output: First Issue Fit Finder
+
+Command:
+
+```bash
+node dist/src/cli.js fit --skill docs --time 30m
+```
+
+Example output:
+
+```text
+First Issue Fit Finder
+
+Best path: Documentation Fix
+Skill: docs
+Time: 30m
+Why it fits: Clear scope, fast review cycle, high maintainer appreciation.
+First command: git checkout -b docs/fix-readme-typo
+
+Find an issue to work on:
+→ Copy this URL into your browser: https://github.com/search?q=is%3Aissue+is%3Aopen+label%3A%22documentation%22+no%3Aassignee
+
+Proof checklist:
+- Before/after screenshot or text diff
+- Link to rendered markdown preview
+- Checked for dead links and formatting issues
+
+Comment to paste:
+Hi! I would like to work on this issue. I have read the contributing guidelines and can submit a PR within 24 hours.
 ```
