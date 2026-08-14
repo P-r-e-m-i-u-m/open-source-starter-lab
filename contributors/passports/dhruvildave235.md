@@ -4,10 +4,10 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 1 - First PR Contributor
+- Level: 2 - Returning Contributor
 - First merged PR: #133
-- Latest merged PR: #133
-- Primary skill: open source workflow
+- Latest merged PR: #141
+- Primary skill: website
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -16,9 +16,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | --- | --- | --- | --- | --- |
 | #133 | 2026-08-13 | open source workflow | Improve live issue feed empty state | #130 |
 
+| #141 | 2026-08-14 | website | Add website and accessibility labels | #136 |
+
 ## Suggested Next Step
 
-- Second PR route: #132 Add CLI help text for the first issue fit command
+- Second PR route: #143 Add a small accessibility pass for website buttons
 
 ## Share Line
 
