@@ -792,3 +792,11 @@ details[open] {
 .story-card a {
   text-decoration: none;
 }
+
+/* Accessibility: Focus styles for keyboard users */
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #005fcc;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
