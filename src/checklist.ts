@@ -1,5 +1,21 @@
 export type StarterProfile = "beginner" | "maintainer";
 
+export interface ProfileDescription {
+  id: StarterProfile;
+  description: string;
+}
+
+export const PROFILE_DESCRIPTIONS: ProfileDescription[] = [
+  {
+    id: "beginner",
+    description: "Use this profile when you are making a first or early open-source contribution."
+  },
+  {
+    id: "maintainer",
+    description: "Use this profile when you are reviewing, organizing, or supporting contributor work."
+  }
+];
+
 export interface ChecklistItem {
   id: string;
   title: string;

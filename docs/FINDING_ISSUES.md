@@ -44,6 +44,15 @@ Shows open issues that are not assigned to anyone yet.
 
 ---
 
+## What the Filters Mean
+
+- `is:open` shows only issues that are currently open.
+- `no:assignee` shows issues that have not been assigned to anyone yet.
+
+You can combine these filters to find issues that are open and available to work on.
+
+---
+
 ## Combining Filters
 
 You can combine filters to find more specific issues.

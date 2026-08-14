@@ -202,3 +202,17 @@ issues.forEach(issue => {
 // Fetch issues on load
 document.addEventListener("DOMContentLoaded", fetchLiveIssues);
 
+// --- FAQ Accessibility ---
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".faq-grid details").forEach((details) => {
+    const summary = details.querySelector("summary");
+    if (!summary) return;
+
+    const updateExpandedState = () => {
+      summary.setAttribute("aria-expanded", String(details.open));
+    };
+
+    updateExpandedState();
+    details.addEventListener("toggle", updateExpandedState);
+  });
+});

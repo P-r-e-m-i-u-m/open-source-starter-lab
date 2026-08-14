@@ -1,3 +1,4 @@
+import { findRepoIssueIdeas } from "./findRepoIssueIdeas.js";
 import { type DailyIssue } from "../src/dailyIssueBacklog.js";
 import {
   chooseIssueCandidates,
@@ -228,21 +229,25 @@ async function main(): Promise<void> {
 
   const openDailyIssues = await fetchOpenDailyStarterIssues(owner, repo, token);
   const allDailyIssues = await fetchAllDailyStarterIssues(owner, repo, token);
-  const { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), openDailyIssues, issueCount);
-  let createdCount = 0;
 
+  let { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), allDailyIssues, issueCount);
+
+  if (fresh.length < issueCount) {
+    const existingTitles = allDailyIssues.map((i) => i.title);
+    const repoIdeas = findRepoIssueIdeas(existingTitles).filter(
+      (idea) => scoreDailyIssue(idea).score >= 80
+    );
+    const topUp = selectFreshDailyIssues(repoIdeas, allDailyIssues, issueCount - fresh.length);
+    fresh = [...fresh, ...topUp.fresh];
+    duplicates = [...duplicates, ...topUp.duplicates];
+  }
+
+  let createdCount = 0;
   for (const duplicate of duplicates) {
     console.log(`Open daily issue already exists: ${duplicate.existing.html_url}`);
   }
-
   for (const issue of fresh) {
     await ensureLabels(owner, repo, token, issue.labels);
-
-    const previouslyUsed = issueAlreadyExists(allDailyIssues, issue.title);
-    if (previouslyUsed) {
-      console.log(`Reopening fresh slot for previously used issue title: ${issue.title}`);
-    }
-
     const created = await githubRequest<GitHubIssue>(`/repos/${owner}/${repo}/issues`, token, {
       method: "POST",
       body: JSON.stringify({
@@ -251,7 +256,6 @@ async function main(): Promise<void> {
         labels: issue.labels
       })
     });
-
     console.log(`Created daily issue: ${created.html_url}`);
     allDailyIssues.push(created);
     createdCount += 1;

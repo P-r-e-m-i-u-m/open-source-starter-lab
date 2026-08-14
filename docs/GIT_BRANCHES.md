@@ -2,13 +2,24 @@
 
 ## Why Branches?
 
-When you work on a project, you don't want to break the main code while experimenting. Branches let you work in isolation — your changes stay separate until you're ready to merge them in.
+Branches give you a separate place to work without changing the stable `main` branch.
 
-Think of it like making a copy of the project, doing your work there, and then folding your changes back in when everything looks good.
+For a contribution, create a branch for your task, make your changes there, and open a Pull Request when you're ready.
+
+Branches also let multiple contributors work on different tasks at the same time without interfering with `main`.
 
 ---
 
 ## Core Commands
+
+### Start from updated main
+```bash
+git checkout main
+git pull origin main
+git checkout -b my-feature-branch
+```
+
+Starting from an updated `main` helps ensure your branch includes the latest project changes before you begin working.
 
 ### Create and switch to a new branch
 
@@ -20,12 +31,14 @@ This does two things at once: creates the branch and switches to it. Use a descr
 
 ### Switch between branches
 
+**Works everywhere:**
+
 ```bash
 git checkout main          # go back to main
 git checkout my-feature-branch   # go to your branch
 ```
 
-Or with the newer syntax (Git 2.23+):
+Newer Git Syntax (2.23+):
 
 ```bash
 git switch main
@@ -38,14 +51,23 @@ git switch my-feature-branch
 git branch
 ```
 
-The branch you're currently on has a `*` next to it.
+For example:
+
+```text
+* my-feature-branch
+  main
+```
+
+The `*` marks the branch you're currently working on. Before making changes, check that the `*` is next to your feature branch rather than `main`.
+
+If you're on the wrong branch, switch to the correct one using either `git checkout` or the newer `git switch` syntax described in the [Switch between branches](#switch-between-branches) section.
 
 ### Delete a branch (after merging)
 
 ```bash
 git branch -d my-feature-branch
 ```
-
+You can usually delete your local feature branch after your Pull Request has been merged.
 ---
 
 ## A Typical Workflow

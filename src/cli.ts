@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { buildChecklist, type StarterProfile } from "./checklist.js";
+import { buildChecklist, PROFILE_DESCRIPTIONS, type StarterProfile } from "./checklist.js";
 import { findIssueFit } from "./issueFitFinder.js";
 import { issueIdeas } from "./issueIdeas.js";
 import { getProgressionStep, normalizeContributorLevel } from "./progressionPath.js";
@@ -51,8 +51,13 @@ function printIssueFit(): void {
   if (isHelp) {
     console.log("First Issue Fit Finder - Help\n");
     console.log("Usage:\n  oss-lab fit [--skill <skill>] [--time <time>]\n");
-    console.log("Accepted Skills:\n  html-css, javascript, typescript, python, docs, testing, git\n");
-    console.log("Accepted Time Budgets:\n  15m, 30m, 1h\n");
+    console.log("Accepted Skills:");
+    console.log("  beginner, intermediate, advanced");
+    console.log("  (examples: html-css, javascript, typescript, python, docs, testing, git)\n");
+    console.log("Accepted Time Budgets:");
+    console.log("  15m (quick task)");
+    console.log("  30m (small improvement)");
+    console.log("  1h (slightly bigger task)\n");
     console.log("Examples:");
     console.log("  oss-lab fit --skill python --time 15m");
     console.log("  oss-lab fit --skill docs --time 30m");
@@ -102,8 +107,9 @@ function printNextStep(): void {
 
 function printProfiles(): void {
   console.log("Available checklist profiles:");
-  console.log("- beginner: Use this profile when you are making a first or early open-source contribution.");
-  console.log("- maintainer: Use this profile when you are reviewing, organizing, or supporting contributor work.");
+  for (const profile of PROFILE_DESCRIPTIONS) {
+    console.log(`- ${profile.id}: ${profile.description}`);
+  }
 }
 
 function main(): void {
@@ -111,8 +117,9 @@ function main(): void {
 
   if (command === "check") {
     const profile = (readFlag("--profile") ?? "beginner") as StarterProfile;
-    if (profile !== "beginner" && profile !== "maintainer") {
-      throw new Error("Use --profile beginner or --profile maintainer");
+    if (!PROFILE_DESCRIPTIONS.some((p) => p.id === profile)) {
+      const validProfiles = PROFILE_DESCRIPTIONS.map((p) => `--profile ${p.id}`).join(" or ");
+      throw new Error(`Use ${validProfiles}`);
     }
     printChecklist(profile);
     return;
@@ -155,4 +162,10 @@ function main(): void {
   throw new Error(`Unknown command: ${command}`);
 }
 
-main();
+try {
+  main();
+} catch (error) {
+  const message = error instanceof Error ? error.message : String(error);
+  console.error(`Error: ${message}`);
+  process.exit(1);
+}
