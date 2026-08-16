@@ -4,9 +4,9 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 2 - Returning Contributor
+- Level: 3 - Trust Builder
 - First merged PR: #140
-- Latest merged PR: #145
+- Latest merged PR: #152
 - Primary skill: open source workflow
 - Proof: merged pull request with maintainer review and project checks
 
@@ -18,9 +18,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #145 | 2026-08-14 | open source workflow | a11y: add focus-visible styles for buttons and links | #143 |
 
+| #152 | 2026-08-16 | open source workflow | enhance focus styles with neon glow effects | #149 |
+
 ## Suggested Next Step
 
-- Second PR route: #134 Improve the live issue feed empty state
+- Second PR route: #147 Add CLI help text for the first issue fit command
 
 ## Share Line
 
