@@ -120,6 +120,13 @@ assert.ok(fitOutput.includes("Skill: docs"), "Expected output to show skill");
 assert.ok(fitOutput.includes("Time: 30m"), "Expected output to show time budget");
 assert.ok(fitOutput.includes("Proof checklist:"), "Expected output to include proof checklist");
 
+const fitHelpOutput = execFileSync("node", [cliPath, "fit", "--help"], {
+  encoding: "utf8"
+});
+assert.ok(fitHelpOutput.includes("First Issue Fit Finder - Help"));
+assert.ok(fitHelpOutput.includes("Accepted Skills:"));
+assert.ok(fitHelpOutput.includes("Accepted Time Budgets:"));
+
 const nextOutput = execFileSync("node", [cliPath, "next", "--level", "first-pr"], {
   encoding: "utf8"
 });
