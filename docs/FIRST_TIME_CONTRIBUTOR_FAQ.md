@@ -35,3 +35,21 @@ Yes. Ask a specific question and include what you tried, what happened, and what
 ## Should my first pull request be big?
 
 No. A small, focused pull request is better for a first contribution. It is easier to review and easier to merge.
+
+## Can I work on multiple issues at the same time?
+
+It is best to focus on one issue at a time, especially for your first contributions. This keeps your changes clear and easy to review.
+
+## What should I do if CI or automated checks fail?
+
+Click on the "Details" link next to the failed check on GitHub to inspect the error log. Fix the issue, commit, and push your changes again.
+
+## How long does it take for a pull request to be reviewed?
+
+Review times vary depending on maintainer availability. If a few days pass without a response, a follow-up comment on your PR is completely acceptable.
+
+## What should I do if a maintainer requests changes?
+
+Review the feedback, make the requested updates locally, and push the new commits to the same branch. The pull request will update automatically.
+
+
