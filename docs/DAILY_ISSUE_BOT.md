@@ -12,6 +12,16 @@ It is designed to keep the repo active without creating spam.
 - Adds useful labels like `daily starter issue`, `good first issue`, and `beginner friendly`.
 - Skips creating the issue if the same daily starter issue already exists.
 
+## Duplicate Handling
+
+The bot never posts a starter issue whose title is already open.
+
+- It compares titles without caring about capitalization.
+- A skipped candidate does not use up a slot, so the bot keeps walking the backlog until it has enough fresh issues.
+- If every backlog item is already open, the run creates nothing and reports how many issues it could fill.
+
+This decision lives in `src/dailyIssueSelection.ts` as a pure function, so `tests/smoke.test.ts` can cover it without calling the GitHub API.
+
 ## Manual Run
 
 Maintainers can run it from GitHub:

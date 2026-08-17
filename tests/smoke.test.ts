@@ -5,6 +5,7 @@ import { buildChecklist } from "../src/checklist.js";
 import { findIssueFit } from "../src/issueFitFinder.js";
 import { issueIdeas } from "../src/issueIdeas.js";
 import { dailyIssueBacklog } from "../src/dailyIssueBacklog.js";
+import { chooseIssueCandidates, selectFreshDailyIssues, type ExistingIssue } from "../src/dailyIssueSelection.js";
 import { scoreDailyIssue } from "../src/issueQuality.js";
 import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
 
@@ -142,5 +143,62 @@ const dailyIssueDryRun = execFileSync("node", [path.resolve("dist/scripts/create
 
 assert.ok(dailyIssueDryRun.includes("Daily issue dry-run: 5 curated issue(s)"));
 assert.equal((dailyIssueDryRun.match(/^## \d+\./gm) ?? []).length, 5);
+
+// Daily issue duplicate handling. These run against the pure selection helper,
+// so they never call the GitHub API.
+const candidates = chooseIssueCandidates(new Date("2026-03-01T00:00:00Z"));
+assert.equal(candidates.length, dailyIssueBacklog.length);
+
+function asOpenIssues(titles: string[]): ExistingIssue[] {
+  return titles.map((title, index) => ({
+    title,
+    html_url: `https://github.com/example/repo/issues/${index + 1}`
+  }));
+}
+
+const nothingOpen = selectFreshDailyIssues(candidates, [], 3);
+assert.equal(nothingOpen.fresh.length, 3);
+assert.equal(nothingOpen.duplicates.length, 0);
+
+// The first two candidates are already open, so the bot should skip them and
+// keep walking the backlog until it still has three fresh issues.
+const alreadyOpen = asOpenIssues(candidates.slice(0, 2).map((issue) => issue.title));
+const withDuplicates = selectFreshDailyIssues(candidates, alreadyOpen, 3);
+
+assert.deepEqual(
+  withDuplicates.duplicates.map((duplicate) => duplicate.issue.title),
+  alreadyOpen.map((issue) => issue.title)
+);
+assert.deepEqual(
+  withDuplicates.duplicates.map((duplicate) => duplicate.existing.html_url),
+  alreadyOpen.map((issue) => issue.html_url)
+);
+assert.equal(withDuplicates.fresh.length, 3);
+assert.deepEqual(
+  withDuplicates.fresh.map((issue) => issue.title),
+  candidates.slice(2, 5).map((issue) => issue.title)
+);
+
+// Duplicate titles are matched without caring about capitalization.
+const differentCasing = selectFreshDailyIssues(
+  candidates,
+  asOpenIssues([candidates[0].title.toUpperCase()]),
+  1
+);
+
+assert.equal(differentCasing.duplicates.length, 1);
+assert.equal(differentCasing.fresh.length, 1);
+assert.notEqual(differentCasing.fresh[0].title, candidates[0].title);
+
+// When the whole backlog is already open the bot creates nothing instead of
+// posting duplicates.
+const everythingOpen = selectFreshDailyIssues(
+  candidates,
+  asOpenIssues(candidates.map((issue) => issue.title)),
+  5
+);
+
+assert.equal(everythingOpen.fresh.length, 0);
+assert.equal(everythingOpen.duplicates.length, dailyIssueBacklog.length);
 
 console.log("Smoke tests passed.");
