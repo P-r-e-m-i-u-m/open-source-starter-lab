@@ -78,3 +78,5 @@ Proof to include:
 ## Review Style
 
 Good reviews are specific, kind, and actionable. Point to the exact problem, explain the reason, and suggest the next step.
+
+See the [Reviewing First PRs](REVIEWING_FIRST_PRS.md) guide for a full checklist and examples.

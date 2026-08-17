@@ -176,6 +176,12 @@ Keep your entry short and professional.
 - I worked on: docs(cli): document fit command parameters and accepted skill/time examples
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @Qamar-Israr
+
+- First merged PR: #151
+- I worked on: docs: add guide for reviewing first PRs
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
