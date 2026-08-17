@@ -6,8 +6,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #140
-- Latest merged PR: #160
-- Primary skill: cli
+- Latest merged PR: #159
+- Primary skill: docs
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -21,6 +21,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | #152 | 2026-08-16 | open source workflow | enhance focus styles with neon glow effects | #149 |
 
 | #160 | 2026-08-17 | cli | add help text for fit command accepted values | #155 |
+
+| #159 | 2026-08-17 | docs | add guide for reviewing first-time PRs | #156 |
 
 ## Suggested Next Step
 
