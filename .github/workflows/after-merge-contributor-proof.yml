@@ -53,4 +53,10 @@ jobs:
           git config user.email "P-r-e-m-i-u-m@users.noreply.github.com"
           git add docs/FIRST_MERGE_WALL.md contributors/passports
           git commit -m "docs: update contributor proof"
-          git push
+          for i in 1 2 3 4 5; do
+            git push && break
+            echo "Push rejected, retrying ($i)..."
+            git fetch origin ${{ github.event.pull_request.base.ref }}
+            git rebase origin/${{ github.event.pull_request.base.ref }}
+            sleep 5
+          done
