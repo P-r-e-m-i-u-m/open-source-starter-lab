@@ -153,6 +153,10 @@ main {
 }
 
 .header-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
   border: 2px solid var(--magenta);
   padding: 10px 16px;
   color: white;
