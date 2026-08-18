@@ -4,11 +4,21 @@
 
 When you work on a project, you don't want to break the main code while experimenting. Branches let you work in isolation — your changes stay separate until you're ready to merge them in.
 
-Think of it like making a copy of the project, doing your work there, and then folding your changes back in when everything looks good.
+Branches let you work on a separate line of development. Your changes stay separate from `main` until you're ready to share them through a Pull Request.
 
+Branches let multiple contributors work in parallel without interfering with stable `main`.
 ---
 
 ## Core Commands
+
+### Start from updated main
+```bash
+git checkout main
+git pull origin main
+git checkout -b my-feature-branch
+```
+
+Starting from an updated `main` helps ensure your branch includes the latest project changes before you begin working.
 
 ### Create and switch to a new branch
 
@@ -20,12 +30,14 @@ This does two things at once: creates the branch and switches to it. Use a descr
 
 ### Switch between branches
 
+**Works everywhere:**
+
 ```bash
 git checkout main          # go back to main
 git checkout my-feature-branch   # go to your branch
 ```
 
-Or with the newer syntax (Git 2.23+):
+Newer Git Syntax (2.23+):
 
 ```bash
 git switch main
@@ -45,7 +57,7 @@ The branch you're currently on has a `*` next to it.
 ```bash
 git branch -d my-feature-branch
 ```
-
+You can usually delete your local feature branch after your Pull Request has been merged.
 ---
 
 ## A Typical Workflow
