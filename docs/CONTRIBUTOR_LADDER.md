@@ -67,6 +67,10 @@ Good tasks:
 - Add a maintainer reply example.
 - Improve the daily issue backlog.
 
+## Level 6: Reviewer
+
+After you've successfully made a few contributions, you can start helping others by reviewing their PRs. Check out our guide on [How to Review Someone's First Pull Request](REVIEWING_FIRST_PRS.md) to get started.
+
 Proof to include:
 
 - Explain the review or maintainer problem you solved.
@@ -74,3 +78,5 @@ Proof to include:
 ## Review Style
 
 Good reviews are specific, kind, and actionable. Point to the exact problem, explain the reason, and suggest the next step.
+
+See the [Reviewing First PRs](REVIEWING_FIRST_PRS.md) guide for a full checklist and examples.

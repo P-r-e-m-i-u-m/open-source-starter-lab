@@ -1,4 +1,10 @@
-import { dailyIssueBacklog, type DailyIssue } from "../src/dailyIssueBacklog.js";
+import { type DailyIssue } from "../src/dailyIssueBacklog.js";
+import {
+  chooseIssueCandidates,
+  chooseIssues,
+  issueAlreadyExists,
+  selectFreshDailyIssues
+} from "../src/dailyIssueSelection.js";
 import { scoreDailyIssue } from "../src/issueQuality.js";
 
 const apiBase = "https://api.github.com";
@@ -45,30 +51,6 @@ function requireEnv(name: string): string {
     throw new Error(`Missing required environment variable: ${name}`);
   }
   return value;
-}
-
-function getDayIndex(date = new Date()): number {
-  const start = Date.UTC(2026, 0, 1);
-  const today = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-
-  return Math.max(0, Math.floor((today - start) / 86_400_000));
-}
-
-function chooseIssues(count: number, date = new Date()): DailyIssue[] {
-  const dayIndex = getDayIndex(date);
-  const startIndex = (dayIndex * count) % dailyIssueBacklog.length;
-
-  return Array.from({ length: count }, (_, offset) => dailyIssueBacklog[(startIndex + offset) % dailyIssueBacklog.length]);
-}
-
-function chooseIssueCandidates(date = new Date()): DailyIssue[] {
-  const dayIndex = getDayIndex(date);
-  const startIndex = dayIndex % dailyIssueBacklog.length;
-
-  return Array.from(
-    { length: dailyIssueBacklog.length },
-    (_, offset) => dailyIssueBacklog[(startIndex + offset) % dailyIssueBacklog.length]
-  );
 }
 
 function formatBody(issue: DailyIssue): string {
@@ -205,10 +187,6 @@ async function fetchOpenDailyStarterIssues(owner: string, repo: string, token: s
   );
 }
 
-function issueAlreadyExists(issues: GitHubIssue[], title: string): GitHubIssue | undefined {
-  return issues.find((issue) => issue.title.toLowerCase() === title.toLowerCase());
-}
-
 async function fetchAllDailyStarterIssues(owner: string, repo: string, token: string): Promise<GitHubIssue[]> {
   const issues = await githubRequest<GitHubIssue[]>(
     `/repos/${owner}/${repo}/issues?state=all&per_page=100&labels=${encodeURIComponent("daily starter issue")}`,
@@ -250,20 +228,15 @@ async function main(): Promise<void> {
 
   const openDailyIssues = await fetchOpenDailyStarterIssues(owner, repo, token);
   const allDailyIssues = await fetchAllDailyStarterIssues(owner, repo, token);
+  const { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), openDailyIssues, issueCount);
   let createdCount = 0;
 
-  for (const issue of chooseIssueCandidates()) {
-    if (createdCount >= issueCount) {
-      break;
-    }
+  for (const duplicate of duplicates) {
+    console.log(`Open daily issue already exists: ${duplicate.existing.html_url}`);
+  }
 
+  for (const issue of fresh) {
     await ensureLabels(owner, repo, token, issue.labels);
-
-    const existing = issueAlreadyExists(openDailyIssues, issue.title);
-    if (existing) {
-      console.log(`Open daily issue already exists: ${existing.html_url}`);
-      continue;
-    }
 
     const previouslyUsed = issueAlreadyExists(allDailyIssues, issue.title);
     if (previouslyUsed) {
@@ -280,7 +253,6 @@ async function main(): Promise<void> {
     });
 
     console.log(`Created daily issue: ${created.html_url}`);
-    openDailyIssues.push(created);
     allDailyIssues.push(created);
     createdCount += 1;
   }
