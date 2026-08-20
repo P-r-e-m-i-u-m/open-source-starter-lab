@@ -409,5 +409,89 @@ export const dailyIssueBacklog: DailyIssue[] = [
       "Keep the wording beginner-friendly"
     ],
     helpfulNotes: ["This improves review quality for future website contributors."]
-  }
+  },
+  {
+    title: "Add a troubleshooting guide for npm ci failures",
+    labels: ["daily starter issue", "documentation", "developer tooling", "help wanted", "time: 30 min", "level: first-pr"],
+    context: "Contributors on different Node versions sometimes hit npm ci errors that npm install would silently work around, and they don't know why.",
+    goal: "Write a short guide explaining why we use npm ci in CI and what to do when it fails locally.",
+    suggestedFiles: ["docs/NPM_CI_TROUBLESHOOTING.md", "CONTRIBUTING.md"],
+    acceptanceCriteria: [
+      "Explain the difference between npm ci and npm install in one paragraph",
+      "Cover the most common fix: deleting node_modules and package-lock mismatches",
+      "Mention checking Node version against package.json engines field",
+      "Link the guide from CONTRIBUTING.md"
+    ],
+    helpfulNotes: ["Keep it short. Most people just need the one command that fixes it."]
+  },
+  {
+    title: "Add a --dry-run flag to the daily issue bot script",
+    labels: ["daily starter issue", "cli", "developer tooling", "help wanted", "time: 1 hour", "level: second-pr"],
+    context: "Right now the only way to see what the daily issue bot would create is to let it actually run against GitHub.",
+    goal: "Add a --dry-run option to scripts/createDailyIssue.ts that prints the selected issue without calling the GitHub API.",
+    suggestedFiles: ["scripts/createDailyIssue.ts", "docs/DAILY_ISSUE_BOT.md"],
+    acceptanceCriteria: [
+      "Running the script with --dry-run prints the chosen issue's title and labels",
+      "No GitHub API calls happen in dry-run mode",
+      "Default behavior without the flag is unchanged",
+      "Document the flag in docs/DAILY_ISSUE_BOT.md"
+    ],
+    helpfulNotes: ["This makes it much easier for maintainers to test backlog changes safely."]
+  },
+  {
+    title: "Add a guide explaining squash vs merge commit choices",
+    labels: ["daily starter issue", "documentation", "good first issue", "beginner friendly", "time: 30 min", "level: first-pr"],
+    context: "First-time contributors see 'Squash and merge' and 'Create a merge commit' as options and don't know which one matters or why.",
+    goal: "Write a short guide explaining what squash merging does to commit history and why this repo prefers it.",
+    suggestedFiles: ["docs/MERGE_STRATEGY.md", "CONTRIBUTING.md"],
+    acceptanceCriteria: [
+      "Explain what squash merging does in plain language",
+      "Explain why a clean main branch history matters",
+      "Note that contributors don't need to worry about their own commit count",
+      "Link the guide from CONTRIBUTING.md"
+    ],
+    helpfulNotes: ["This should reduce 'do my messy commits matter' questions in Discussions."]
+  },
+  {
+    title: "Add a guide for writing commit messages that pass conventional checks",
+    labels: ["daily starter issue", "documentation", "good first issue", "developer tooling", "time: 30 min", "level: first-pr"],
+    context: "Some contributors get confused when a commit message format looks required but isn't clearly documented anywhere.",
+    goal: "Document the commit message style used in this repo with real examples from recent history.",
+    suggestedFiles: ["docs/COMMIT_MESSAGE_GUIDE.md", "CONTRIBUTING.md"],
+    acceptanceCriteria: [
+      "Show 3-4 real style examples like docs:, fix:, feat:",
+      "Explain it's a convention, not a hard CI gate, unless that changes",
+      "Add one bad example and one improved example",
+      "Link the guide from CONTRIBUTING.md"
+    ],
+    helpfulNotes: ["Pull real examples from git log so this stays grounded in how the repo actually works."]
+  },
+  {
+    title: "Add a health check script for stuck GitHub Actions runs",
+    labels: ["daily starter issue", "developer tooling", "help wanted", "time: 1 hour", "level: second-pr"],
+    context: "Scheduled workflow runs occasionally get stuck in a queued state for hours with no automatic alert.",
+    goal: "Add a small check to automation-health.yml that flags workflow runs queued longer than a set threshold.",
+    suggestedFiles: [".github/workflows/automation-health.yml", "docs/AUTOMATION_HEALTH.md"],
+    acceptanceCriteria: [
+      "Detect runs still queued after a reasonable time window",
+      "Log a clear warning in the workflow summary",
+      "Don't fail the whole health check job for a single stuck run",
+      "Document the check in docs/AUTOMATION_HEALTH.md"
+    ],
+    helpfulNotes: ["This is the kind of small reliability improvement that prevents silent automation gaps."]
+  },
+  {
+    title: "Add a guide for resolving conflicts in markdown docs",
+    labels: ["daily starter issue", "documentation", "good first issue", "beginner friendly", "time: 30 min", "level: first-pr"],
+    context: "Doc PRs from long-lived branches often hit merge conflicts in shared files, and beginners aren't sure how to safely resolve them.",
+    goal: "Write a short guide walking through resolving a markdown merge conflict using the GitHub web editor.",
+    suggestedFiles: ["docs/RESOLVING_MARKDOWN_CONFLICTS.md", "docs/FIRST_PULL_REQUEST.md"],
+    acceptanceCriteria: [
+      "Explain the <<<<<<< / ======= / >>>>>>> markers in plain language",
+      "Walk through accepting current, incoming, or a manual merge",
+      "Warn against leaving conflict markers in the final file",
+      "Link the guide from docs/FIRST_PULL_REQUEST.md"
+    ],
+    helpfulNotes: ["A screenshot of the GitHub conflict editor would help a lot here."]
+  },
 ];
