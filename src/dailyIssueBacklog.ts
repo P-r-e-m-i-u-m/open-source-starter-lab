@@ -411,10 +411,10 @@ export const dailyIssueBacklog: DailyIssue[] = [
     helpfulNotes: ["This improves review quality for future website contributors."]
   },
   {
-    title: "Add a troubleshooting guide for npm ci failures",
+    title: "Document the fix for npm ci lockfile mismatches",
     labels: ["daily starter issue", "documentation", "developer tooling", "help wanted", "time: 30 min", "level: first-pr"],
-    context: "Contributors on different Node versions sometimes hit npm ci errors that npm install would silently work around, and they don't know why.",
-    goal: "Write a short guide explaining why we use npm ci in CI and what to do when it fails locally.",
+    context: "npm ci fails hard on lockfile drift where npm install would just quietly patch things up. New contributors on a different Node version hit this and don't know if it's their fault or a real bug.",
+    goal: "Write a short doc that explains why CI uses npm ci and gives the one-line fix for a stale lockfile.",
     suggestedFiles: ["docs/NPM_CI_TROUBLESHOOTING.md", "CONTRIBUTING.md"],
     acceptanceCriteria: [
       "Explain the difference between npm ci and npm install in one paragraph",
@@ -425,10 +425,10 @@ export const dailyIssueBacklog: DailyIssue[] = [
     helpfulNotes: ["Keep it short. Most people just need the one command that fixes it."]
   },
   {
-    title: "Add a --dry-run flag to the daily issue bot script",
+    title: "Let createDailyIssue.ts run without touching GitHub",
     labels: ["daily starter issue", "cli", "developer tooling", "help wanted", "time: 1 hour", "level: second-pr"],
-    context: "Right now the only way to see what the daily issue bot would create is to let it actually run against GitHub.",
-    goal: "Add a --dry-run option to scripts/createDailyIssue.ts that prints the selected issue without calling the GitHub API.",
+    context: "There's no way to preview what the daily issue bot will pick without actually letting it hit the GitHub API and create a real issue.",
+    goal: "Add a --dry-run flag to scripts/createDailyIssue.ts that prints the selected backlog entry instead of creating it.",
     suggestedFiles: ["scripts/createDailyIssue.ts", "docs/DAILY_ISSUE_BOT.md"],
     acceptanceCriteria: [
       "Running the script with --dry-run prints the chosen issue's title and labels",
@@ -436,13 +436,13 @@ export const dailyIssueBacklog: DailyIssue[] = [
       "Default behavior without the flag is unchanged",
       "Document the flag in docs/DAILY_ISSUE_BOT.md"
     ],
-    helpfulNotes: ["This makes it much easier for maintainers to test backlog changes safely."]
+    helpfulNotes: ["This is the difference between guessing what the bot will do and actually knowing."]
   },
   {
-    title: "Add a guide explaining squash vs merge commit choices",
+    title: "Explain why we squash merge (for people wondering if their messy commits matter)",
     labels: ["daily starter issue", "documentation", "good first issue", "beginner friendly", "time: 30 min", "level: first-pr"],
-    context: "First-time contributors see 'Squash and merge' and 'Create a merge commit' as options and don't know which one matters or why.",
-    goal: "Write a short guide explaining what squash merging does to commit history and why this repo prefers it.",
+    context: "First-timers stare at the 'Squash and merge' button wondering if it's going to nuke their work, and nobody's written down that it doesn't matter how messy their commits are.",
+    goal: "Add a short doc explaining what squash merge does to history and why this repo defaults to it.",
     suggestedFiles: ["docs/MERGE_STRATEGY.md", "CONTRIBUTING.md"],
     acceptanceCriteria: [
       "Explain what squash merging does in plain language",
@@ -450,27 +450,27 @@ export const dailyIssueBacklog: DailyIssue[] = [
       "Note that contributors don't need to worry about their own commit count",
       "Link the guide from CONTRIBUTING.md"
     ],
-    helpfulNotes: ["This should reduce 'do my messy commits matter' questions in Discussions."]
+    helpfulNotes: ["This should kill the 'do my messy commits matter' questions in Discussions."]
   },
   {
-    title: "Add a guide for writing commit messages that pass conventional checks",
+    title: "Write down our commit message convention with real examples",
     labels: ["daily starter issue", "documentation", "good first issue", "developer tooling", "time: 30 min", "level: first-pr"],
-    context: "Some contributors get confused when a commit message format looks required but isn't clearly documented anywhere.",
-    goal: "Document the commit message style used in this repo with real examples from recent history.",
+    context: "We use docs:, fix:, feat: prefixes consistently but it's nowhere in writing, so people either guess or ask.",
+    goal: "Document the commit message style with real examples pulled from git log.",
     suggestedFiles: ["docs/COMMIT_MESSAGE_GUIDE.md", "CONTRIBUTING.md"],
     acceptanceCriteria: [
       "Show 3-4 real style examples like docs:, fix:, feat:",
-      "Explain it's a convention, not a hard CI gate, unless that changes",
-      "Add one bad example and one improved example",
+      "Clarify it's a convention, not a CI gate, unless that changes",
+      "Add one weak example next to a better one",
       "Link the guide from CONTRIBUTING.md"
     ],
-    helpfulNotes: ["Pull real examples from git log so this stays grounded in how the repo actually works."]
+    helpfulNotes: ["Pull actual commits from git log so this isn't made up."]
   },
   {
-    title: "Add a health check script for stuck GitHub Actions runs",
+    title: "Catch workflows stuck in queued for hours",
     labels: ["daily starter issue", "developer tooling", "help wanted", "time: 1 hour", "level: second-pr"],
-    context: "Scheduled workflow runs occasionally get stuck in a queued state for hours with no automatic alert.",
-    goal: "Add a small check to automation-health.yml that flags workflow runs queued longer than a set threshold.",
+    context: "Scheduled workflows sometimes sit queued for hours with nothing telling us. We only notice when someone asks why today's automation didn't run.",
+    goal: "Add a check to automation-health.yml that flags runs queued past a set threshold.",
     suggestedFiles: [".github/workflows/automation-health.yml", "docs/AUTOMATION_HEALTH.md"],
     acceptanceCriteria: [
       "Detect runs still queued after a reasonable time window",
@@ -478,13 +478,13 @@ export const dailyIssueBacklog: DailyIssue[] = [
       "Don't fail the whole health check job for a single stuck run",
       "Document the check in docs/AUTOMATION_HEALTH.md"
     ],
-    helpfulNotes: ["This is the kind of small reliability improvement that prevents silent automation gaps."]
+    helpfulNotes: ["Small reliability fix, but it closes a real blind spot in our automation."]
   },
   {
-    title: "Add a guide for resolving conflicts in markdown docs",
+    title: "Walk through resolving a markdown merge conflict in the GitHub UI",
     labels: ["daily starter issue", "documentation", "good first issue", "beginner friendly", "time: 30 min", "level: first-pr"],
-    context: "Doc PRs from long-lived branches often hit merge conflicts in shared files, and beginners aren't sure how to safely resolve them.",
-    goal: "Write a short guide walking through resolving a markdown merge conflict using the GitHub web editor.",
+    context: "Doc PRs from branches that sat too long hit merge conflicts in shared files, and beginners freeze up not knowing if it's safe to touch the <<<<<<< markers.",
+    goal: "Write a guide walking through resolving a markdown conflict using GitHub's web editor.",
     suggestedFiles: ["docs/RESOLVING_MARKDOWN_CONFLICTS.md", "docs/FIRST_PULL_REQUEST.md"],
     acceptanceCriteria: [
       "Explain the <<<<<<< / ======= / >>>>>>> markers in plain language",
