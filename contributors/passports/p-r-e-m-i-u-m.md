@@ -6,7 +6,7 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #77
-- Latest merged PR: #176
+- Latest merged PR: #177
 - Primary skill: open source workflow
 - Proof: merged pull request with maintainer review and project checks
 
@@ -21,6 +21,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | #170 | 2026-08-19 | website | Revert "docs: add problem proposer section to website (#166)" | No linked issue was found in the PR body. |
 
 | #176 | 2026-08-20 | open source workflow | Enable cancellation of in-progress contributor queue jobs | No linked issue was found in the PR body. |
+
+| #177 | 2026-08-20 | open source workflow | Update titles and context for troubleshooting issues | No linked issue was found in the PR body. |
 
 ## Suggested Next Step
 
