@@ -6,8 +6,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #77
-- Latest merged PR: #170
-- Primary skill: website
+- Latest merged PR: #176
+- Primary skill: open source workflow
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -20,9 +20,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #170 | 2026-08-19 | website | Revert "docs: add problem proposer section to website (#166)" | No linked issue was found in the PR body. |
 
+| #176 | 2026-08-20 | open source workflow | Enable cancellation of in-progress contributor queue jobs | No linked issue was found in the PR body. |
+
 ## Suggested Next Step
 
-- Second PR route: #165 Add tests for daily issue duplicate handling
+- Second PR route: #173 Add a small accessibility pass for website buttons
 
 ## Share Line
 
