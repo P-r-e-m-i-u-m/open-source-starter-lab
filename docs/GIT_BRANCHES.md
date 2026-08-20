@@ -59,11 +59,7 @@ For example:
 
 The `*` marks the branch you're currently working on. Before making changes, check that the `*` is next to your feature branch rather than `main`.
 
-If you're on the wrong branch, switch to the correct one:
-
-```bash
-git checkout my-feature-branch
-```
+If you're on the wrong branch, switch to the correct one using either `git checkout` or the newer `git switch` syntax described in the [Switch between branches](#switch-between-branches) section.
 
 ### Delete a branch (after merging)
 
