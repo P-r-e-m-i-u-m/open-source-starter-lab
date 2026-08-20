@@ -50,7 +50,20 @@ git switch my-feature-branch
 git branch
 ```
 
-The branch you're currently on has a `*` next to it.
+For example:
+
+```text
+* my-feature-branch
+  main
+```
+
+The `*` marks the branch you're currently working on. Before making changes, check that the `*` is next to your feature branch rather than `main`.
+
+If you're on the wrong branch, switch to the correct one:
+
+```bash
+git checkout my-feature-branch
+```
 
 ### Delete a branch (after merging)
 
