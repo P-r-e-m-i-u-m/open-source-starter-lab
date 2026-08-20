@@ -34,7 +34,7 @@ Edit files, write code, fix that typo — whatever the task calls for.
 ### 5. Stage and commit
 
 ```bash
-git add .
+git add PATH/TO/CHANGED_FILE.md
 git commit -m "Fix typo in README introduction"
 ```
 
@@ -50,8 +50,9 @@ git push origin fix/my-change
 
 1. Go to your fork on GitHub
 2. You'll see a **"Compare & pull request"** banner — click it
-3. Write a short title and description explaining what you changed and why
-4. Click **Create pull request**
+3. Confirm the PR is **from your fork branch to the upstream `main` branch**
+4. Write a short title and description explaining what you changed and why
+5. Click **Create pull request**
 
 ---
 
@@ -101,7 +102,7 @@ git push origin docs/short-description
 What each command does:
 
 - `git status` helps you review your changes before committing.
-- `git add` stages only the file you want to include in the pull request.
+- `git add` stages the file you want to include in your next commit.
 - `git commit` saves your staged change locally with a short message.
 - `git push` sends your branch to GitHub so you can open a pull request.
 
@@ -116,7 +117,7 @@ If a command fails, do not guess or run destructive commands. Copy the full erro
 
 ```bash
 git checkout -b fix/my-change     # create branch
-git add .                          # stage changes
+git add PATH/TO/CHANGED_FILE.md   # stage the file you changed
 git commit -m "describe change"   # commit
 git push origin fix/my-change     # push to GitHub
 # then open PR on GitHub
