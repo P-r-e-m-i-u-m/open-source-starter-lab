@@ -17,6 +17,13 @@ The goal is not to make the repo noisy. The goal is to catch broken automation e
 | `Contributor Proof After Merge` | Thanks contributors, closes linked issues, updates the First Merge Wall, and creates contributor passports | Per-PR concurrency guard, direct issue listing instead of search API |
 | `Automation Health` | Dry-runs automation scripts daily without writing to GitHub | No token needed, read-only permissions |
 
+## Website and Accessibility Labels
+
+Use the `website` label for issues involving the repository website, pages, site content, navigation, or other website-facing changes.
+Use the `accessibility` label for issues focused on making the website or project interfaces more accessible, including keyboard navigation, visible focus states, semantic markup, labels, and related accessibility improvements.
+
+When an issue clearly involves both areas, maintainers may apply both labels.
+
 ## Daily Health Check
 
 `Automation Health` runs this command:
