@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { buildChecklist, type StarterProfile } from "./checklist.js";
+import { buildChecklist, PROFILE_DESCRIPTIONS, type StarterProfile } from "./checklist.js";
 import { findIssueFit } from "./issueFitFinder.js";
 import { issueIdeas } from "./issueIdeas.js";
 import { getProgressionStep, normalizeContributorLevel } from "./progressionPath.js";
@@ -102,8 +102,9 @@ function printNextStep(): void {
 
 function printProfiles(): void {
   console.log("Available checklist profiles:");
-  console.log("- beginner: Use this profile when you are making a first or early open-source contribution.");
-  console.log("- maintainer: Use this profile when you are reviewing, organizing, or supporting contributor work.");
+  for (const profile of PROFILE_DESCRIPTIONS) {
+    console.log(`- ${profile.id}: ${profile.description}`);
+  }
 }
 
 function main(): void {
@@ -111,8 +112,9 @@ function main(): void {
 
   if (command === "check") {
     const profile = (readFlag("--profile") ?? "beginner") as StarterProfile;
-    if (profile !== "beginner" && profile !== "maintainer") {
-      throw new Error("Use --profile beginner or --profile maintainer");
+    if (!PROFILE_DESCRIPTIONS.some((p) => p.id === profile)) {
+      const validProfiles = PROFILE_DESCRIPTIONS.map((p) => `--profile ${p.id}`).join(" or ");
+      throw new Error(`Use ${validProfiles}`);
     }
     printChecklist(profile);
     return;
