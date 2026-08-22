@@ -4,6 +4,8 @@ This repo uses GitHub Actions to keep contributor support moving without manual 
 
 The goal is not to make the repo noisy. The goal is to catch broken automation early and keep every workflow easy to recover.
 
+---
+
 ## Active Automations
 
 | Workflow | Purpose | Safety guard |
@@ -15,7 +17,9 @@ The goal is not to make the repo noisy. The goal is to catch broken automation e
 | `Contributor Queue` | Keeps maintainer follow-up visible | Concurrency guard, secondary rate-limit skip |
 | `PR Welcome Guard` | Replies to PRs with review-readiness guidance | Updates one marked comment instead of posting duplicates |
 | `Contributor Proof After Merge` | Thanks contributors, closes linked issues, updates the First Merge Wall, and creates contributor passports | Per-PR concurrency guard, direct issue listing instead of search API |
-| `Automation Health` | Dry-runs automation scripts daily without writing to GitHub | No token needed, read-only permissions |
+| `Automation Health` | Dry-runs automation scripts daily AND monitors for workflows stuck in the queue | Read-only permissions, `continue-on-error: true`, 20-minute queued run threshold |
+
+---
 
 ## Website and Accessibility Labels
 
@@ -30,59 +34,36 @@ When an issue clearly involves both areas, maintainers may apply both labels.
 
 ```bash
 npm run automation:health
-```
 
-It builds the project and dry-runs:
 
-- daily issue creation
-- weekly help discussion text
-- assignment helper request matching
-- PR welcome comment text
-- after-merge contributor proof planning
+---
 
-If this workflow fails, it usually means a script no longer compiles or a dry-run path broke.
+## 📋 What Changed
 
-## Recovery Steps
+| Section | Change |
+|---------|--------|
+| **Active Automations Table** | Updated `Automation Health` row to mention queued run monitoring and `continue-on-error: true` |
+| **New Section: Queued Run Monitor** | Added full explanation of how it works, what warnings look like, why it matters, and what to do |
+| **Recovery Steps** | Added step 7 for queued run warnings |
+| **Long-Term Rule** | Added note about monitoring new automations |
 
-1. Open the failed workflow log.
-2. Check whether the failure is a code error, missing token, or GitHub rate limit.
-3. Run locally:
+---
+
+## 🚀 Your Next Steps
+
+1. **Replace the content** of your file with this updated version
+2. **Make sure the file name is correct**: `docs/AUTOMATION_HEALTH.md` (not `# Automation Health.txt`)
+3. **Commit and push:**
 
 ```bash
-npm run check
-npm run automation:health
-```
+git add docs/AUTOMATION_HEALTH.md
+git commit -m "docs: update automation health docs with queued run monitor
 
-4. If the failure mentions `MAINTAINER_TOKEN`, update the repo secret.
-5. If the failure mentions a secondary rate limit, wait a few minutes and rerun failed jobs.
-6. If a workflow created a duplicate comment or issue, check whether the script has a marker or duplicate guard before changing it.
+- Add queued run monitor section
+- Update active automations table
+- Add recovery step for stuck workflows
+- Update long-term rule
 
-## Token Notes
+Closes #184"
 
-Only `MAINTAINER_TOKEN` is expected as a repo secret.
-
-It is used when an automation must act as the maintainer account instead of `github-actions[bot]`.
-
-When rotating the token, update:
-
-```text
-Settings -> Secrets and variables -> Actions -> MAINTAINER_TOKEN
-```
-
-Minimum expected token ability:
-
-- repository issue/comment access
-- workflow support if you use it for workflow-triggered maintainer actions
-
-Do not add extra scopes unless a workflow actually needs them.
-
-## Long-Term Rule
-
-Every new automation should have:
-
-- a dry-run mode when possible
-- duplicate protection
-- a timeout
-- clear logs
-- narrow permissions
-- a recovery note in this file
+git push origin automation/queued-workflow-check

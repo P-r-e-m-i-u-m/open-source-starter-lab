@@ -2,13 +2,17 @@ name: Automation Health
 
 on:
   schedule:
-    - cron: "10 3 * * *"
-  workflow_dispatch:
+    - cron: "10 3 * * *"  # Runs daily at 3:10 AM UTC
+  workflow_dispatch: # Allows manual trigger
 
 permissions:
   contents: read
+  actions: read  # Required to read workflow runs
 
 jobs:
+  # ============================================
+  # JOB 1: Existing Automation Scripts
+  # ============================================
   dry-run-automation:
     name: Dry Run Automation Scripts
     runs-on: ubuntu-latest
@@ -29,3 +33,95 @@ jobs:
 
       - name: Automation health check
         run: npm run automation:health
+
+  # ============================================
+  # JOB 2: Queued Workflow Monitor (NEW)
+  # ============================================
+  check-queued-runs:
+    name: Check for Stuck Queued Workflows
+    runs-on: ubuntu-latest
+    continue-on-error: true # Don't fail the entire job for a single stuck run
+    timeout-minutes: 5
+
+    steps:
+      - name: Check for queued runs
+        id: queue_check
+        run: |
+          echo "🔍 Checking for workflows stuck in 'queued' state..."
+          echo "============================================================"
+          
+          # Get all queued runs
+          QUEUED_RUNS=$(gh api repos/${{ github.repository }}/actions/runs \
+            --paginate \
+            --jq '.workflow_runs[] | select(.status == "queued")')
+          
+          if [ -z "$QUEUED_RUNS" ]; then
+            echo "✅ No queued runs found. All workflows are healthy!"
+            echo "status=healthy" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          echo "⚠️ Found queued runs. Checking their age..."
+          echo ""
+          
+          # Threshold in minutes (20 minutes is reasonable)
+          THRESHOLD_MINUTES=20
+          THRESHOLD_SECONDS=$((THRESHOLD_MINUTES * 60))
+          NOW=$(date +%s)
+          
+          STUCK_COUNT=0
+          WARNING_MESSAGES=""
+          
+          # Process each queued run
+          echo "$QUEUED_RUNS" | jq -c '.' | while read -r RUN; do
+            RUN_NAME=$(echo "$RUN" | jq -r '.name')
+            RUN_ID=$(echo "$RUN" | jq -r '.id')
+            RUN_URL=$(echo "$RUN" | jq -r '.html_url')
+            CREATED_AT=$(echo "$RUN" | jq -r '.created_at')
+            WORKFLOW_ID=$(echo "$RUN" | jq -r '.workflow_id')
+            
+            # Convert created_at to epoch
+            CREATED_EPOCH=$(date -d "$CREATED_AT" +%s)
+            AGE=$((NOW - CREATED_EPOCH))
+            AGE_MINUTES=$((AGE / 60))
+            
+            if [ $AGE -gt $THRESHOLD_SECONDS ]; then
+              STUCK_COUNT=$((STUCK_COUNT + 1))
+              echo "::warning::Workflow '$RUN_NAME' (run #$RUN_ID) has been queued for $AGE_MINUTES minutes (threshold: $THRESHOLD_MINUTES min). URL: $RUN_URL"
+              WARNING_MESSAGES="${WARNING_MESSAGES}\n  - [$RUN_NAME]($RUN_URL) - ${AGE_MINUTES}m queued"
+            else
+              echo "✅ Workflow '$RUN_NAME' is queued but only $AGE_MINUTES minutes old (under ${THRESHOLD_MINUTES}m threshold)."
+            fi
+          done
+          
+          # Output summary
+          if [ $STUCK_COUNT -gt 0 ]; then
+            echo ""
+            echo "============================================================"
+            echo "::warning::Found $STUCK_COUNT workflow(s) stuck in 'queued' state for over $THRESHOLD_MINUTES minutes."
+            echo ""
+            echo "📋 Summary of stuck workflows:"
+            echo -e "$WARNING_MESSAGES"
+            echo ""
+            echo "💡 Suggestion: Check if GitHub Actions is experiencing issues, or manually cancel/restart these runs."
+            echo "🔗 View all queued runs: https://github.com/${{ github.repository }}/actions?query=is%3Apr+status%3Aqueued"
+            echo "============================================================"
+            echo "status=stuck" >> $GITHUB_OUTPUT
+            exit 0 # Don't fail the job
+          else
+            echo "✅ All queued runs are within the $THRESHOLD_MINUTES minute threshold."
+            echo "status=healthy" >> $GITHUB_OUTPUT
+          fi
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Post summary to job
+        run: |
+          echo "🏁 Automation health check completed."
+          echo ""
+          if [ "${{ steps.queue_check.outputs.status }}" == "stuck" ]; then
+            echo "⚠️ Some workflows are stuck in the queue. Please investigate."
+          else
+            echo "✅ All automation health checks passed!"
+          fi
