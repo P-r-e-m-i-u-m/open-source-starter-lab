@@ -804,8 +804,10 @@ details[open] {
 
 /* Accessibility: Focus styles for keyboard users */
 button:focus-visible,
-a:focus-visible {
-    outline: 3px solid #005fcc;
-    outline-offset: 2px;
-    border-radius: 4px;
+a:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
