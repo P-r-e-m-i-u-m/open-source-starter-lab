@@ -2,11 +2,12 @@
 
 ## Why Branches?
 
-When you work on a project, you don't want to break the main code while experimenting. Branches let you work in isolation — your changes stay separate until you're ready to merge them in.
+Branches give you a separate place to work without changing the stable `main` branch.
 
-Branches let you work on a separate line of development. Your changes stay separate from `main` until you're ready to share them through a Pull Request.
+For a contribution, create a branch for your task, make your changes there, and open a Pull Request when you're ready.
 
-Branches let multiple contributors work in parallel without interfering with stable `main`.
+Branches also let multiple contributors work on different tasks at the same time without interfering with `main`.
+
 ---
 
 ## Core Commands
