@@ -4,9 +4,9 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 1 - First PR Contributor
+- Level: 2 - Returning Contributor
 - First merged PR: #193
-- Latest merged PR: #193
+- Latest merged PR: #194
 - Primary skill: docs
 - Proof: merged pull request with maintainer review and project checks
 
@@ -15,6 +15,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | PR | Date | Skill | Work | Linked issues |
 | --- | --- | --- | --- | --- |
 | #193 | 2026-08-22 | docs | docs: add guide for resolving markdown merge conflicts | #186 |
+
+| #194 | 2026-08-22 | docs | docs: add guide explaining squash merge and commit history | #182 |
 
 ## Suggested Next Step
 
