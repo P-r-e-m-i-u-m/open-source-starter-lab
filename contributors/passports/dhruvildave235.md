@@ -6,8 +6,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #133
-- Latest merged PR: #174
-- Primary skill: website
+- Latest merged PR: #191
+- Primary skill: open source workflow
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -20,9 +20,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #174 | 2026-08-20 | website | docs: document website and accessibility labels | #148 |
 
+| #191 | 2026-08-22 | open source workflow | Improve keyboard focus styles | #173 |
+
 ## Suggested Next Step
 
-- Second PR route: #173 Add a small accessibility pass for website buttons
+- Second PR route: #184 Catch workflows stuck in queued for hours
 
 ## Share Line
 
