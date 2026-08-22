@@ -446,12 +446,6 @@ select {
   box-shadow: 0 0 16px rgba(255, 0, 255, 0.24);
 }
 
-select:focus-visible,
-a:focus-visible {
-  outline: 3px dashed var(--yellow);
-  outline-offset: 5px;
-}
-
 .result-card {
   border: 2px solid var(--cyan);
   padding: 22px;
