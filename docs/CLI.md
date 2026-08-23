@@ -218,3 +218,11 @@ Proof checklist:
 Comment to paste:
 Hi! I would like to work on this issue. I have read the contributing guidelines and can submit a PR within 24 hours.
 ```
+
+## Troubleshooting
+
+If you run an unknown command, the CLI will exit with an error:
+
+```bash
+oss-lab invalid-command
+# Expected output: Unknown command: invalid-command
