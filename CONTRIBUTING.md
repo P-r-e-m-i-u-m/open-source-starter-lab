@@ -15,6 +15,8 @@ npm install
 npm run check
 ```
 
+CI installs with `npm ci`, which fails if `package-lock.json` is out of sync with `package.json`. If you hit that error, see the [npm ci Troubleshooting Guide](docs/NPM_CI_TROUBLESHOOTING.md).
+
 ## Contribution Workflow (Professional Standards)
 
 1. **Find an issue** — Look for `good first issue`, `help wanted`, or skill-matched labels.
