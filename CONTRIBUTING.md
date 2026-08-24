@@ -15,6 +15,8 @@ npm install
 npm run check
 ```
 
+CI installs with `npm ci`, which fails if `package-lock.json` is out of sync with `package.json`. If you hit that error, see the [npm ci Troubleshooting Guide](docs/NPM_CI_TROUBLESHOOTING.md).
+
 ## Contribution Workflow (Professional Standards)
 
 1. **Find an issue** — Look for `good first issue`, `help wanted`, or skill-matched labels.
@@ -31,7 +33,7 @@ npm run check
 - **Title**: Use conventional commits style (e.g. `docs: improve Git branches guide`, `fix: CI lint error`).
 - **Description**: Include What changed, Why, How tested, Screenshots/command output.
 - **Scope**: Small and reviewable in <10 minutes.
-- **Quality**: Clean commits, no unrelated changes.
+- **Quality**: Clean final PR structure, no unrelated changes. (Note: Local exploratory commits can be messy; read our [Merge Strategy Guide](docs/MERGE_STRATEGY.md) to learn how squash merging handles them).
 - **CI**: All checks must pass before review.
 
 ## Review Process

@@ -153,6 +153,10 @@ main {
 }
 
 .header-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
   border: 2px solid var(--magenta);
   padding: 10px 16px;
   color: white;
@@ -442,12 +446,6 @@ select {
   box-shadow: 0 0 16px rgba(255, 0, 255, 0.24);
 }
 
-select:focus-visible,
-a:focus-visible {
-  outline: 3px dashed var(--yellow);
-  outline-offset: 5px;
-}
-
 .result-card {
   border: 2px solid var(--cyan);
   padding: 22px;
@@ -671,6 +669,11 @@ summary {
   text-transform: uppercase;
 }
 
+summary:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+
 details[open] {
   border-color: var(--cyan);
   box-shadow: 0 0 28px rgba(0, 255, 255, 0.2), 10px 10px 0 rgba(255, 0, 255, 0.2);
@@ -795,8 +798,10 @@ details[open] {
 
 /* Accessibility: Focus styles for keyboard users */
 button:focus-visible,
-a:focus-visible {
-    outline: 3px solid #005fcc;
-    outline-offset: 2px;
-    border-radius: 4px;
+a:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 4px;
+  border-radius: 4px;
 }

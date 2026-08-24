@@ -6,8 +6,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #140
-- Latest merged PR: #159
-- Primary skill: docs
+- Latest merged PR: #195
+- Primary skill: testing
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -24,9 +24,13 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #159 | 2026-08-17 | docs | add guide for reviewing first-time PRs | #156 |
 
+| #166 | 2026-08-19 | docs | docs: add problem proposer section to website | #128 |
+
+| #195 | 2026-08-22 | testing | add check for workflows stuck in queued state | #184 |
+
 ## Suggested Next Step
 
-- Second PR route: #157 Add a small accessibility pass for website buttons
+- Second PR route: #181 Let createDailyIssue.ts run without touching GitHub
 
 ## Share Line
 
