@@ -34,36 +34,23 @@ When an issue clearly involves both areas, maintainers may apply both labels.
 
 ```bash
 npm run automation:health
-
-
----
-
-## 📋 What Changed
-
-| Section | Change |
-|---------|--------|
-| **Active Automations Table** | Updated `Automation Health` row to mention queued run monitoring and `continue-on-error: true` |
-| **New Section: Queued Run Monitor** | Added full explanation of how it works, what warnings look like, why it matters, and what to do |
-| **Recovery Steps** | Added step 7 for queued run warnings |
-| **Long-Term Rule** | Added note about monitoring new automations |
+```
 
 ---
 
-## 🚀 Your Next Steps
+### Queued Run Monitor
 
-1. **Replace the content** of your file with this updated version
-2. **Make sure the file name is correct**: `docs/AUTOMATION_HEALTH.md` (not `# Automation Health.txt`)
-3. **Commit and push:**
+The health check also looks for workflow runs that are still in the `queued` state.
 
-```bash
-git add docs/AUTOMATION_HEALTH.md
-git commit -m "docs: update automation health docs with queued run monitor
+A queued run is considered stuck when it has been waiting for more than **20 minutes**.
 
-- Add queued run monitor section
-- Update active automations table
-- Add recovery step for stuck workflows
-- Update long-term rule
+When a stuck run is found, the workflow:
 
-Closes #184"
+- Logs a warning with the workflow name, run number, age, and URL.
+- Adds a warning to the GitHub Actions workflow summary.
+- Lists the affected runs so they can be investigated.
+- Keeps the health check job successful instead of failing because of a single stuck run.
 
-git push origin automation/queued-workflow-check
+A queued run that is younger than 20 minutes is reported as healthy and does not trigger a warning.
+
+If a stuck run is reported, check GitHub Actions runner availability and consider cancelling or restarting the affected run.
