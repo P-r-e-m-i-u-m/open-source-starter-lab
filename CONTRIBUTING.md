@@ -31,6 +31,7 @@ CI installs with `npm ci`, which fails if `package-lock.json` is out of sync wit
 ## Pull Request Guidelines (Top Company Level)
 
 - **Title**: Use conventional commits style (e.g. `docs: improve Git branches guide`, `fix: CI lint error`).
+- **Commit messages**: See the [Commit Message Guide](docs/COMMIT_MESSAGE_GUIDE.md) for examples and conventions.
 - **Description**: Include What changed, Why, How tested, Screenshots/command output.
 - **Scope**: Small and reviewable in <10 minutes.
 - **Quality**: Clean final PR structure, no unrelated changes. (Note: Local exploratory commits can be messy; read our [Merge Strategy Guide](docs/MERGE_STRATEGY.md) to learn how squash merging handles them).
