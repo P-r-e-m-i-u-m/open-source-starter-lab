@@ -24,3 +24,26 @@ Look for issues that include:
 
 ```md
 I would like to work on this. My plan is to update the docs and run `npm run check`.
+
+
+---
+
+## Good First Issue Examples
+
+Good first issues are small, specific, and easy to verify. Examples from this repository include:
+
+- Updating one documentation page to clarify an existing instruction.
+- Adding one small example to an existing guide.
+- Adding a focused test for an existing behavior.
+- Fixing a small documentation typo or broken link.
+
+## Risky First Issues
+
+Some issues may be harder for a first contribution because they have a large or unclear scope. Examples include:
+
+- Reworking several parts of the application at once.
+- Changing core architecture or major project structure.
+- Fixing a bug that requires access to production systems or private data.
+- Tasks without clear acceptance criteria or a way to verify the result.
+
+When in doubt, comment on the issue before starting work. Briefly explain what you plan to change and ask whether the scope is appropriate for a first contribution.
