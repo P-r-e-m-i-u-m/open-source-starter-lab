@@ -12,9 +12,19 @@ On GitHub, click **Fork** (top right) to get your own copy of the project.
 
 ### 2. Clone your fork
 
-```bash
+Copy the URL of your fork from GitHub, then run:
+```
 git clone https://github.com/YOUR-USERNAME/REPO-NAME.git
 cd REPO-NAME
+```
+
+Replace YOUR-USERNAME with your GitHub username and REPO-NAME with the name of your fork.
+
+For example, if your GitHub username is o231152-cloud:
+
+```
+git clone https://github.com/o231152-cloud/open-source-starter-lab.git
+cd open-source-starter-lab
 ```
 
 ### 3. Create a branch
