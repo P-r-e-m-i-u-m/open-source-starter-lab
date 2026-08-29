@@ -6,8 +6,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #140
-- Latest merged PR: #195
-- Primary skill: testing
+- Latest merged PR: #206
+- Primary skill: docs
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -28,9 +28,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #195 | 2026-08-22 | testing | add check for workflows stuck in queued state | #184 |
 
+| #206 | 2026-08-29 | docs | docs: add squash merge guide explaining why messy commits don't matter | #197 |
+
 ## Suggested Next Step
 
-- Second PR route: #181 Let createDailyIssue.ts run without touching GitHub
+- Second PR route: #203 Add a small accessibility pass for website buttons
 
 ## Share Line
 
