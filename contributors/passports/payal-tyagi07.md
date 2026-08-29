@@ -6,7 +6,7 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #140
-- Latest merged PR: #211
+- Latest merged PR: #208
 - Primary skill: docs
 - Proof: merged pull request with maintainer review and project checks
 
@@ -31,6 +31,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | #206 | 2026-08-29 | docs | docs: add squash merge guide explaining why messy commits don't matter | #197 |
 
 | #211 | 2026-08-29 | docs | docs: add squash merge guide explaining why messy commits don't matter | #197 |
+
+| #208 | 2026-08-29 | docs | docs: add problem proposer section to website | #172 |
 
 ## Suggested Next Step
 
