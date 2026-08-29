@@ -230,6 +230,12 @@ Keep your entry short and professional.
 - I worked on: docs: add npm ci lockfile troubleshooting guide
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @jayasrivenkatachalam9
+
+- First merged PR: #214
+- I worked on: Docs: add guide for choosing a good first issue
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
