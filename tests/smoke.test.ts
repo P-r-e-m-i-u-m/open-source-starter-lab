@@ -144,8 +144,8 @@ const dailyIssueDryRun = execFileSync("node", [path.resolve("dist/scripts/create
 assert.ok(dailyIssueDryRun.includes("Daily issue dry-run: 5 curated issue(s)"));
 assert.equal((dailyIssueDryRun.match(/^## \d+\./gm) ?? []).length, 5);
 
-// Daily issue duplicate handling. These run against the pure selection helper,
-// so they never call the GitHub API.
+// Daily issue duplicate handling tests protect backlog selection from creating duplicate issues
+// without making live GitHub API calls.
 const candidates = chooseIssueCandidates(new Date("2026-03-01T00:00:00Z"));
 assert.equal(candidates.length, dailyIssueBacklog.length);
 
@@ -189,6 +189,17 @@ const differentCasing = selectFreshDailyIssues(
 assert.equal(differentCasing.duplicates.length, 1);
 assert.equal(differentCasing.fresh.length, 1);
 assert.notEqual(differentCasing.fresh[0].title, candidates[0].title);
+
+// Duplicate titles differing only by leading/trailing whitespace are also matched.
+const whitespaceDuplicate = selectFreshDailyIssues(
+  candidates,
+  asOpenIssues([`   ${candidates[0].title}   `]),
+  1
+);
+
+assert.equal(whitespaceDuplicate.duplicates.length, 1);
+assert.equal(whitespaceDuplicate.fresh.length, 1);
+assert.notEqual(whitespaceDuplicate.fresh[0].title, candidates[0].title);
 
 // When the whole backlog is already open the bot creates nothing instead of
 // posting duplicates.
