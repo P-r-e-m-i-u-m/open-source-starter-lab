@@ -145,6 +145,7 @@ Join the first cohort: [First PR Cohort 01 - Get your Open Source Trust Passport
 | Read common first-time contributor questions | [First-Time Contributor FAQ](docs/FIRST_TIME_CONTRIBUTOR_FAQ.md) |
 | Understand common open-source words | [Contribution glossary](docs/GLOSSARY.md) |
 | Find a small task | [Good first issues](https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) |
+| Learn GitHub issue filters | [Finding beginner-friendly issues](docs/FINDING_ISSUES.md) |
 | Find a curated first task | [Featured first issues](docs/FEATURED_FIRST_ISSUES.md) |
 | Choose the right first issue | [Choosing your first issue](docs/CHOOSING_FIRST_ISSUE.md) |
 | Find an issue by skill and time | [First Issue Fit Finder](docs/FIRST_ISSUE_FIT_FINDER.md) |
