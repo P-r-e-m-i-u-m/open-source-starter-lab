@@ -9,6 +9,7 @@ Use a short prefix followed by a clear description of the change:
 * `docs:` — documentation changes
 * `fix:` — bug fixes or corrections
 * `feat:` — new features or capabilities
+* `test:` — test changes
 
 These prefixes are a project convention, not a CI gate. They help maintainers quickly understand what a commit contains.
 
@@ -37,6 +38,14 @@ feat: add CLI fit help text (#138)
 ```
 
 This identifies a new capability and describes the feature.
+
+### `test:`
+
+```text
+test: add whitespace duplicate test and selection docs (#215)
+```
+
+This identifies a change related to tests and briefly describes what was added.
 
 ## Weak vs. better
 
