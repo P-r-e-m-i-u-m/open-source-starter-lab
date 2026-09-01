@@ -228,21 +228,13 @@ async function main(): Promise<void> {
 
   const openDailyIssues = await fetchOpenDailyStarterIssues(owner, repo, token);
   const allDailyIssues = await fetchAllDailyStarterIssues(owner, repo, token);
-  const { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), openDailyIssues, issueCount);
+  const { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), allDailyIssues, issueCount);
   let createdCount = 0;
-
   for (const duplicate of duplicates) {
     console.log(`Open daily issue already exists: ${duplicate.existing.html_url}`);
   }
-
   for (const issue of fresh) {
     await ensureLabels(owner, repo, token, issue.labels);
-
-    const previouslyUsed = issueAlreadyExists(allDailyIssues, issue.title);
-    if (previouslyUsed) {
-      console.log(`Reopening fresh slot for previously used issue title: ${issue.title}`);
-    }
-
     const created = await githubRequest<GitHubIssue>(`/repos/${owner}/${repo}/issues`, token, {
       method: "POST",
       body: JSON.stringify({
@@ -251,7 +243,6 @@ async function main(): Promise<void> {
         labels: issue.labels
       })
     });
-
     console.log(`Created daily issue: ${created.html_url}`);
     allDailyIssues.push(created);
     createdCount += 1;
