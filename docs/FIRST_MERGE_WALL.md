@@ -260,6 +260,12 @@ Keep your entry short and professional.
 - I worked on: docs: link issue filtering guide from README
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @arman-borkhani
+
+- First merged PR: #229
+- I worked on: docs: add test commit message example
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
