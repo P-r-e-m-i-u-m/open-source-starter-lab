@@ -1,3 +1,4 @@
+import { findRepoIssueIdeas } from "./findRepoIssueIdeas.js";
 import { type DailyIssue } from "../src/dailyIssueBacklog.js";
 import {
   chooseIssueCandidates,
@@ -228,7 +229,18 @@ async function main(): Promise<void> {
 
   const openDailyIssues = await fetchOpenDailyStarterIssues(owner, repo, token);
   const allDailyIssues = await fetchAllDailyStarterIssues(owner, repo, token);
-  const { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), allDailyIssues, issueCount);
+
+  let { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), allDailyIssues, issueCount);
+
+  if (fresh.length < issueCount) {
+    const repoIdeas = findRepoIssueIdeas().filter(
+      (idea) => scoreDailyIssue(idea).score >= 80
+    );
+    const topUp = selectFreshDailyIssues(repoIdeas, allDailyIssues, issueCount - fresh.length);
+    fresh = [...fresh, ...topUp.fresh];
+    duplicates = [...duplicates, ...topUp.duplicates];
+  }
+
   let createdCount = 0;
   for (const duplicate of duplicates) {
     console.log(`Open daily issue already exists: ${duplicate.existing.html_url}`);
