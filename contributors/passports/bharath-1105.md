@@ -4,10 +4,10 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 1 - First PR Contributor
+- Level: 3 - Trust Builder
 - First merged PR: #230
-- Latest merged PR: #230
-- Primary skill: open source workflow
+- Latest merged PR: #243
+- Primary skill: cli
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -16,9 +16,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | --- | --- | --- | --- | --- |
 | #230 | 2026-09-02 | open source workflow | Add How to Contribute section | No linked issue was found in the PR body. |
 
+| #243 | 2026-09-02 | cli | Improve fit command help with skill and time examplesAdd contribution section | No linked issue was found in the PR body. |
+
 ## Suggested Next Step
 
-- Second PR route: #227 Add tests for daily issue duplicate handling
+- Second PR route: #241 Give src/dailyIssueBacklog.ts some real test coverage
 
 ## Share Line
 
