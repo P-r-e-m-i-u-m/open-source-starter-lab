@@ -233,7 +233,8 @@ async function main(): Promise<void> {
   let { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), allDailyIssues, issueCount);
 
   if (fresh.length < issueCount) {
-    const repoIdeas = findRepoIssueIdeas().filter(
+    const existingTitles = allDailyIssues.map((i) => i.title);
+    const repoIdeas = findRepoIssueIdeas(existingTitles).filter(
       (idea) => scoreDailyIssue(idea).score >= 80
     );
     const topUp = selectFreshDailyIssues(repoIdeas, allDailyIssues, issueCount - fresh.length);
