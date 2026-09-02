@@ -272,6 +272,12 @@ Keep your entry short and professional.
 - I worked on: docs: improve choosing first issue guide
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @BHARATH-1105
+
+- First merged PR: #230
+- I worked on: Add How to Contribute section
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
