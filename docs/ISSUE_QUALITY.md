@@ -36,3 +36,10 @@ If a new contributor cannot answer these questions in under one minute, the issu
 ## Why This Matters
 
 Beginner repos often fail because the issue looks easy but hides missing context. This repo should do the opposite: small scope, obvious first step, visible finish line.
+
+## 🔗 Related Maintainer Tools
+
+- Use ISSUE_DECODER.md to validate if an issue is beginner-friendly
+- Use MAINTAINER_PLAYBOOK.md for triaging and labeling decisions
+
+If an issue cannot be understood in under 1 minute using these guides, it should be rewritten or split.
