@@ -51,8 +51,13 @@ function printIssueFit(): void {
   if (isHelp) {
     console.log("First Issue Fit Finder - Help\n");
     console.log("Usage:\n  oss-lab fit [--skill <skill>] [--time <time>]\n");
-    console.log("Accepted Skills:\n  html-css, javascript, typescript, python, docs, testing, git\n");
-    console.log("Accepted Time Budgets:\n  15m, 30m, 1h\n");
+    console.log("Accepted Skills:");
+    console.log("  beginner, intermediate, advanced");
+    console.log("  (examples: html-css, javascript, typescript, python, docs, testing, git)\n");
+    console.log("Accepted Time Budgets:");
+    console.log("  15m (quick task)");
+    console.log("  30m (small improvement)");
+    console.log("  1h (slightly bigger task)\n");
     console.log("Examples:");
     console.log("  oss-lab fit --skill python --time 15m");
     console.log("  oss-lab fit --skill docs --time 30m");

@@ -43,25 +43,31 @@ Pass `--json` to print the same ideas as pretty JSON for automation (each entry 
 node dist/src/cli.js issues --json
 ```
 
-## First Issue Fit Finder
+**## First Issue Fit Finder**
 
 ```bash
 node dist/src/cli.js fit --skill docs --time 30m
 node dist/src/cli.js fit --skill javascript --time 1h
 ```
 
-Accepted skills include:
-- `html-css`
-- `javascript` (or `ts`)
-- `python`
-- `docs`
-- `testing`
-- `git`
+**Accepted Skills:**
 
-Accepted time budgets include:
-- `15m`
-- `30m`
-- `1h`
+* beginner, intermediate, advanced
+* examples: `html-css`, `javascript`, `typescript`, `python`, `docs`, `testing`, `git`
+
+**Accepted Time Budgets:**
+
+* `15m` (quick task)
+* `30m` (small improvement)
+* `1h` (slightly bigger task)
+
+**Examples:**
+
+```bash
+node dist/src/cli.js fit --skill python --time 15m
+node dist/src/cli.js fit --skill docs --time 30m
+node dist/src/cli.js fit --skill testing --time 1h
+```
 
 Use this when you are not sure which issue to pick. It suggests a skill-based path, an unassigned issue search, the first command to run, a proof checklist, and a comment you can paste before starting.
 
