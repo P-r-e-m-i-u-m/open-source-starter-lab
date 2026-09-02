@@ -6,7 +6,7 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #77
-- Latest merged PR: #231
+- Latest merged PR: #233
 - Primary skill: open source workflow
 - Proof: merged pull request with maintainer review and project checks
 
@@ -25,6 +25,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | #177 | 2026-08-20 | open source workflow | Update titles and context for troubleshooting issues | No linked issue was found in the PR body. |
 
 | #231 | 2026-09-01 | open source workflow | Fetch all daily issues instead of open ones | No linked issue was found in the PR body. |
+
+| #233 | 2026-09-02 | open source workflow | Refactor daily issue selection logic | No linked issue was found in the PR body. |
 
 ## Suggested Next Step
 
