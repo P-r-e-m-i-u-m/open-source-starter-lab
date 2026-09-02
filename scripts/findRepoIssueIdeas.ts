@@ -5,6 +5,7 @@ import { type DailyIssue } from "../src/dailyIssueBacklog.js";
 const SCAN_DIRS = ["src", "scripts"];
 const TEST_DIRS = ["tests"];
 const TODO_PATTERN = /\/\/\s*(TODO|FIXME)[:\s](.+)/;
+const MAX_PER_CATEGORY = 2;
 
 function walk(dir: string): string[] {
   let files: string[] = [];
@@ -20,41 +21,48 @@ function walk(dir: string): string[] {
   return files;
 }
 
+function safeWalk(dirs: string[]): string[] {
+  let files: string[] = [];
+  for (const dir of dirs) {
+    try {
+      files = files.concat(walk(dir));
+    } catch {
+      // dir doesn't exist, skip it
+    }
+  }
+  return files;
+}
+
 function findTodoIssues(): DailyIssue[] {
   const found: DailyIssue[] = [];
+  const files = safeWalk(SCAN_DIRS);
 
-  for (const dir of SCAN_DIRS) {
-    let files: string[];
-    try {
-      files = walk(dir);
-    } catch {
-      continue;
-    }
+  for (const file of files) {
+    if (found.length >= MAX_PER_CATEGORY) break;
 
-    for (const file of files) {
-      const lines = readFileSync(file, "utf-8").split("\n");
-      lines.forEach((line, i) => {
-        const match = line.match(TODO_PATTERN);
-        if (!match) return;
+    const lines = readFileSync(file, "utf-8").split("\n");
+    for (let i = 0; i < lines.length; i++) {
+      const match = lines[i].match(TODO_PATTERN);
+      if (!match) continue;
 
-        const note = match[2].trim();
-        const relPath = relative(".", file);
+      const note = match[2].trim();
+      const relPath = relative(".", file);
 
-        found.push({
-          title: `Resolve TODO in ${relPath}: ${note.slice(0, 60)}`,
-          labels: ["daily starter issue", "developer tooling", "help wanted", "time: 30 min", "level: second-pr"],
-          context: `A TODO comment was left in ${relPath} at line ${i + 1}: "${note}". Leaving these unresolved makes the codebase harder to trust.`,
-          goal: `Resolve the TODO in ${relPath} and remove the comment once done.`,
-          suggestedFiles: [relPath],
-          acceptanceCriteria: [
-            `Address what the TODO comment describes`,
-            `Remove the TODO comment once resolved`,
-            `Run \`npm run check\``,
-            `Explain your approach in the PR if the fix wasn't obvious`
-          ],
-          helpfulNotes: ["If the TODO turns out to be unclear or outdated, say so in the PR instead of guessing."]
-        });
+      found.push({
+        title: `Close out the TODO in ${relPath}`,
+        labels: ["daily starter issue", "developer tooling", "help wanted", "time: 30 min", "level: second-pr"],
+        context: `There's a leftover TODO sitting in ${relPath} (line ${i + 1}): "${note}". Nobody's circled back to it, and it's the kind of thing that quietly rots if it sits too long.`,
+        goal: `Track down what that TODO is actually asking for, handle it, and pull the comment out once it's done.`,
+        suggestedFiles: [relPath],
+        acceptanceCriteria: [
+          `Fix or implement what the TODO describes`,
+          `Delete the comment once resolved`,
+          `Run \`npm run check\``,
+          `If the TODO turns out to be stale or unclear, say so in the PR instead of guessing at intent`
+        ],
+        helpfulNotes: ["If you're not sure what the original author meant, it's fine to ask in the PR before writing code."]
       });
+      break;
     }
   }
 
@@ -63,55 +71,58 @@ function findTodoIssues(): DailyIssue[] {
 
 function findUntestedFiles(): DailyIssue[] {
   const found: DailyIssue[] = [];
-  let testFiles: string[] = [];
+  const testContent = safeWalk(TEST_DIRS)
+    .map((f) => readFileSync(f, "utf-8"))
+    .join("\n");
 
-  for (const dir of TEST_DIRS) {
-    try {
-      testFiles = testFiles.concat(walk(dir));
-    } catch {
-      continue;
-    }
-  }
+  const openers = [
+    "sits without any real test coverage",
+    "has no dedicated tests protecting it",
+    "hasn't got a single test guarding its behavior"
+  ];
 
-  const testContent = testFiles.map((f) => readFileSync(f, "utf-8")).join("\n");
+  const files = safeWalk(SCAN_DIRS);
+  for (const file of files) {
+    if (found.length >= MAX_PER_CATEGORY) break;
 
-  for (const dir of SCAN_DIRS) {
-    let files: string[];
-    try {
-      files = walk(dir);
-    } catch {
-      continue;
-    }
+    const content = readFileSync(file, "utf-8");
+    if (!/export\s+(function|const)\s+\w+/.test(content)) continue;
 
-    for (const file of files) {
-      const content = readFileSync(file, "utf-8");
-      const exportMatch = content.match(/export\s+(function|const)\s+(\w+)/g);
-      if (!exportMatch) continue;
+    const relPath = relative(".", file);
+    const baseName = relPath.split("/").pop()?.replace(".ts", "") ?? "";
+    if (testContent.includes(baseName)) continue;
 
-      const relPath = relative(".", file);
-      const baseName = relPath.split("/").pop()?.replace(".ts", "") ?? "";
+    const opener = openers[found.length % openers.length];
 
-      if (testContent.includes(baseName)) continue;
-
-      found.push({
-        title: `Add test coverage for ${relPath}`,
-        labels: ["daily starter issue", "testing", "developer tooling", "help wanted", "time: 1 hour", "level: second-pr"],
-        context: `${relPath} exports functions but has no matching test file, so regressions here go unnoticed.`,
-        goal: `Add a focused test file covering the exported behavior in ${relPath}.`,
-        suggestedFiles: [relPath, "tests/smoke.test.ts"],
-        acceptanceCriteria: [
-          `Add at least one test covering the main exported function(s)`,
-          `Keep the test independent from live network/API calls`,
-          `Run \`npm run check\``
-        ],
-        helpfulNotes: ["Pick the most important function first if there are several — don't try to cover everything in one PR."]
-      });
-    }
+    found.push({
+      title: `Give ${relPath} some real test coverage`,
+      labels: ["daily starter issue", "testing", "developer tooling", "help wanted", "time: 1 hour", "level: second-pr"],
+      context: `${relPath} exports working code but ${opener}, so nobody would notice if a future change quietly broke it.`,
+      goal: `Write a focused test file for the main exported behavior in ${relPath}.`,
+      suggestedFiles: [relPath, "tests/smoke.test.ts"],
+      acceptanceCriteria: [
+        `Cover the main exported function(s), not every edge case`,
+        `Keep it independent from live network or GitHub API calls`,
+        `Run \`npm run check\``
+      ],
+      helpfulNotes: ["Pick the most important function if there's more than one — one solid test beats five thin ones."]
+    });
   }
 
   return found;
 }
 
 export function findRepoIssueIdeas(): DailyIssue[] {
-  return [...findTodoIssues(), ...findUntestedFiles()];
+  // interleave so we don't dump 5 of the same category if one finder is more productive
+  const todos = findTodoIssues();
+  const untested = findUntestedFiles();
+  const combined: DailyIssue[] = [];
+  const max = Math.max(todos.length, untested.length);
+
+  for (let i = 0; i < max; i++) {
+    if (todos[i]) combined.push(todos[i]);
+    if (untested[i]) combined.push(untested[i]);
+  }
+
+  return combined;
 }
