@@ -24,6 +24,7 @@ Look for issues that include:
 
 ```md
 I would like to work on this. My plan is to update the docs and run `npm run check`.
+```
 
 
 ---
@@ -36,6 +37,8 @@ Good first issues are small, specific, and easy to verify. Examples from this re
 - Adding one small example to an existing guide.
 - Adding a focused test for an existing behavior.
 - Fixing a small documentation typo or broken link.
+- Improving a focused section in `docs/GIT_BRANCHES.md` or `docs/FIRST_PULL_REQUEST.md`.
+- Adding a beginner-focused case to `tests/smoke.test.ts` without changing existing behavior.
 
 ## Risky First Issues
 
@@ -45,5 +48,7 @@ Some issues may be harder for a first contribution because they have a large or 
 - Changing core architecture or major project structure.
 - Fixing a bug that requires access to production systems or private data.
 - Tasks without clear acceptance criteria or a way to verify the result.
+- Changing command behavior across `src/cli.ts` and its related tests in one issue.
+- Modifying GitHub automation such as `scripts/createDailyIssue.ts`, especially when it requires repository access or credentials.
 
 When in doubt, comment on the issue before starting work. Briefly explain what you plan to change and ask whether the scope is appropriate for a first contribution.
