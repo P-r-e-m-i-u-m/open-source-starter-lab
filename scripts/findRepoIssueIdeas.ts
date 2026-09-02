@@ -112,13 +112,15 @@ function findUntestedFiles(): DailyIssue[] {
   return found;
 }
 
-export function findRepoIssueIdeas(): DailyIssue[] {
-  // interleave so we don't dump 5 of the same category if one finder is more productive
-  const todos = findTodoIssues();
-  const untested = findUntestedFiles();
+export function findRepoIssueIdeas(existingTitles: string[] = []): DailyIssue[] {
+  const alreadyMentioned = (relPath: string) =>
+    existingTitles.some((title) => title.includes(relPath));
+
+  const todos = findTodoIssues().filter((idea) => !alreadyMentioned(idea.suggestedFiles[0]));
+  const untested = findUntestedFiles().filter((idea) => !alreadyMentioned(idea.suggestedFiles[0]));
+
   const combined: DailyIssue[] = [];
   const max = Math.max(todos.length, untested.length);
-
   for (let i = 0; i < max; i++) {
     if (todos[i]) combined.push(todos[i]);
     if (untested[i]) combined.push(untested[i]);
