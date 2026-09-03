@@ -278,6 +278,12 @@ Keep your entry short and professional.
 - I worked on: Add How to Contribute section
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @sumitpshinde269-oss
+
+- First merged PR: #247
+- I worked on: test: add checklist score and nextAction coverage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
