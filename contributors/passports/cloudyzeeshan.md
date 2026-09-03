@@ -4,10 +4,10 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 2 - Returning Contributor
+- Level: 3 - Trust Builder
 - First merged PR: #232
-- Latest merged PR: #242
-- Primary skill: docs
+- Latest merged PR: #249
+- Primary skill: testing
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -18,9 +18,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #242 | 2026-09-02 | docs | docs: add guide for rejected git pushes | #223 |
 
+| #249 | 2026-09-03 | testing | test: strengthen daily issue backlog smoke checks | #241 |
+
 ## Suggested Next Step
 
-- Second PR route: #241 Give src/dailyIssueBacklog.ts some real test coverage
+- Second PR route: #238 Add test coverage for src/issueIdeas.ts
 
 ## Share Line
 
