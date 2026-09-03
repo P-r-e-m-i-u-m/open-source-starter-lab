@@ -31,6 +31,22 @@ assert.equal(
 
 assert.ok(issueIdeas.length >= 5);
 assert.ok(issueIdeas.every((idea) => idea.acceptanceCriteria.length >= 3));
+assert.ok(dailyIssueBacklog.length > 0);
+assert.ok(dailyIssueBacklog.every((issue) => issue.title.trim().length > 0));
+assert.ok(dailyIssueBacklog.every((issue) => issue.labels.length > 0));
+assert.ok(dailyIssueBacklog.every((issue) => issue.labels.includes("daily starter issue")));
+assert.ok(dailyIssueBacklog.every((issue) => issue.context.trim().length > 0 && issue.goal.trim().length > 0));
+assert.ok(dailyIssueBacklog.every((issue) => issue.suggestedFiles.length > 0));
+assert.ok(dailyIssueBacklog.every((issue) => issue.acceptanceCriteria.length >= 3));
+assert.ok(dailyIssueBacklog.every((issue) => issue.helpfulNotes.length > 0));
+assert.ok(
+  dailyIssueBacklog.every((issue) =>
+    [issue.labels, issue.suggestedFiles, issue.acceptanceCriteria, issue.helpfulNotes].every(
+      (values) => values.every((value) => value.trim().length > 0)
+    )
+  )
+);
+assert.equal(new Set(dailyIssueBacklog.map((issue) => issue.title)).size, dailyIssueBacklog.length);
 assert.ok(dailyIssueBacklog.every((issue) => scoreDailyIssue(issue).score >= 80));
 
 const docsFit = findIssueFit("docs", "30m");
