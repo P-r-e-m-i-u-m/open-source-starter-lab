@@ -73,3 +73,5 @@ I expected the build to pass after changing the CLI output.
 ```
 
 That gives maintainers enough context to help without guessing.
+
+ > **Pro Tip:** Don't panic when you see red text! Take a deep breath and look for the specific error line.
