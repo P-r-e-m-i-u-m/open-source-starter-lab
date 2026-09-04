@@ -8,6 +8,7 @@ const MARKDOWN_SCAN_DIRS = ["docs/recipes"];
 const MD_TODO_PATTERN = /<!--\s*TODO[:\s](.+?)-->/;
 const TODO_PATTERN = /\/\/\s*(TODO|FIXME)[:\s](.+)/;
 const MAX_PER_CATEGORY = 2;
+const MAX_RECIPES_PER_RUN = 4;
 
 function walk(dir: string): string[] {
   let files: string[] = [];
@@ -126,7 +127,7 @@ function findRecipeIssues(): DailyIssue[] {
     }
 
     for (const entry of entries) {
-      if (found.length >= MAX_PER_CATEGORY) break;
+      if (found.length >= MAX_RECIPES_PER_RUN) break;
       if (!entry.endsWith(".md") || entry === "README.md") continue;
 
       const full = join(dir, entry);
