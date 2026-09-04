@@ -4,6 +4,8 @@ import { type DailyIssue } from "../src/dailyIssueBacklog.js";
 
 const SCAN_DIRS = ["src", "scripts"];
 const TEST_DIRS = ["tests"];
+const MARKDOWN_SCAN_DIRS = ["docs/recipes"];
+const MD_TODO_PATTERN = /<!--\s*TODO[:\s](.+?)-->/;
 const TODO_PATTERN = /\/\/\s*(TODO|FIXME)[:\s](.+)/;
 const MAX_PER_CATEGORY = 2;
 
@@ -112,16 +114,62 @@ function findUntestedFiles(): DailyIssue[] {
   return found;
 }
 
+function findRecipeIssues(): DailyIssue[] {
+  const found: DailyIssue[] = [];
+
+  for (const dir of MARKDOWN_SCAN_DIRS) {
+    let entries: string[];
+    try {
+      entries = readdirSync(dir);
+    } catch {
+      continue;
+    }
+
+    for (const entry of entries) {
+      if (found.length >= MAX_PER_CATEGORY) break;
+      if (!entry.endsWith(".md") || entry === "README.md") continue;
+
+      const full = join(dir, entry);
+      const content = readFileSync(full, "utf-8");
+      const match = content.match(MD_TODO_PATTERN);
+      if (!match) continue;
+
+      const relPath = relative(".", full);
+      const note = match[1].trim();
+      const title = content.split("\n")[0].replace(/^#\s*/, "").trim();
+
+      found.push({
+        title: `Write the recipe: ${title}`,
+        labels: ["daily starter issue", "documentation", "community", "help wanted", "time: 1 hour", "level: second-pr"],
+        context: `${relPath} is a stub recipe waiting to be written. It needs: ${note}`,
+        goal: `Fill in ${relPath} with a real, practical guide covering what's described.`,
+        suggestedFiles: [relPath],
+        acceptanceCriteria: [
+          `Replace the TODO comment with actual written content`,
+          `Include at least one concrete example from this repo`,
+          `Keep it practical, not just theory`,
+          `Link the finished recipe from docs/recipes/README.md if not already linked`
+        ],
+        helpfulNotes: ["Write it like you're explaining it to a teammate, not writing a spec."]
+      });
+    }
+  }
+
+  return found;
+}
+
 export function findRepoIssueIdeas(existingTitles: string[] = []): DailyIssue[] {
   const alreadyMentioned = (relPath: string) =>
     existingTitles.some((title) => title.includes(relPath));
 
   const todos = findTodoIssues().filter((idea) => !alreadyMentioned(idea.suggestedFiles[0]));
   const untested = findUntestedFiles().filter((idea) => !alreadyMentioned(idea.suggestedFiles[0]));
+  const recipes = findRecipeIssues().filter((idea) => !alreadyMentioned(idea.suggestedFiles[0]));
 
   const combined: DailyIssue[] = [];
-  const max = Math.max(todos.length, untested.length);
+  const max = Math.max(todos.length, untested.length, recipes.length);
   for (let i = 0; i < max; i++) {
+    if (recipes[i]) combined.push(recipes[i]);
     if (todos[i]) combined.push(todos[i]);
     if (untested[i]) combined.push(untested[i]);
   }
