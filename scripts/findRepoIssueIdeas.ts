@@ -136,7 +136,7 @@ function findRecipeIssues(): DailyIssue[] {
 
       const relPath = relative(".", full);
       const note = match[1].trim();
-      const title = content.split("\n")[0].replace(/^#\s*/, "").trim();
+      const title = content.split("\n")[0].replace(/^#\s*Recipe:\s*/, "").trim();
 
       found.push({
         title: `Write the recipe: ${title}`,
