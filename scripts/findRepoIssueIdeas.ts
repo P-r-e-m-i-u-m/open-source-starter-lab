@@ -7,8 +7,7 @@ const TEST_DIRS = ["tests"];
 const MARKDOWN_SCAN_DIRS = ["docs/recipes"];
 const MD_TODO_PATTERN = /<!--\s*TODO[:\s](.+?)-->/;
 const TODO_PATTERN = /\/\/\s*(TODO|FIXME)[:\s](.+)/;
-const MAX_PER_CATEGORY = 2;
-const MAX_RECIPES_PER_RUN = 4;
+const MAX_PER_CATEGORY = 3;
 
 function walk(dir: string): string[] {
   let files: string[] = [];
@@ -36,12 +35,19 @@ function safeWalk(dirs: string[]): string[] {
   return files;
 }
 
-function findTodoIssues(): DailyIssue[] {
+function isKnown(existingTitles: string[], relPath: string): boolean {
+  return existingTitles.some((title) => title.includes(relPath));
+}
+
+function findTodoIssues(existingTitles: string[]): DailyIssue[] {
   const found: DailyIssue[] = [];
   const files = safeWalk(SCAN_DIRS);
 
   for (const file of files) {
     if (found.length >= MAX_PER_CATEGORY) break;
+
+    const relPath = relative(".", file);
+    if (isKnown(existingTitles, relPath)) continue;
 
     const lines = readFileSync(file, "utf-8").split("\n");
     for (let i = 0; i < lines.length; i++) {
@@ -49,7 +55,6 @@ function findTodoIssues(): DailyIssue[] {
       if (!match) continue;
 
       const note = match[2].trim();
-      const relPath = relative(".", file);
 
       found.push({
         title: `Close out the TODO in ${relPath}`,
@@ -72,7 +77,7 @@ function findTodoIssues(): DailyIssue[] {
   return found;
 }
 
-function findUntestedFiles(): DailyIssue[] {
+function findUntestedFiles(existingTitles: string[]): DailyIssue[] {
   const found: DailyIssue[] = [];
   const testContent = safeWalk(TEST_DIRS)
     .map((f) => readFileSync(f, "utf-8"))
@@ -88,10 +93,12 @@ function findUntestedFiles(): DailyIssue[] {
   for (const file of files) {
     if (found.length >= MAX_PER_CATEGORY) break;
 
+    const relPath = relative(".", file);
+    if (isKnown(existingTitles, relPath)) continue;
+
     const content = readFileSync(file, "utf-8");
     if (!/export\s+(function|const)\s+\w+/.test(content)) continue;
 
-    const relPath = relative(".", file);
     const baseName = relPath.split("/").pop()?.replace(".ts", "") ?? "";
     if (testContent.includes(baseName)) continue;
 
@@ -115,7 +122,7 @@ function findUntestedFiles(): DailyIssue[] {
   return found;
 }
 
-function findRecipeIssues(): DailyIssue[] {
+function findRecipeIssues(existingTitles: string[]): DailyIssue[] {
   const found: DailyIssue[] = [];
 
   for (const dir of MARKDOWN_SCAN_DIRS) {
@@ -127,15 +134,17 @@ function findRecipeIssues(): DailyIssue[] {
     }
 
     for (const entry of entries) {
-      if (found.length >= MAX_RECIPES_PER_RUN) break;
+      if (found.length >= MAX_PER_CATEGORY) break;
       if (!entry.endsWith(".md") || entry === "README.md") continue;
 
       const full = join(dir, entry);
+      const relPath = relative(".", full);
+      if (isKnown(existingTitles, relPath)) continue;
+
       const content = readFileSync(full, "utf-8");
       const match = content.match(MD_TODO_PATTERN);
       if (!match) continue;
 
-      const relPath = relative(".", full);
       const note = match[1].trim();
       const title = content.split("\n")[0].replace(/^#\s*Recipe:\s*/, "").trim();
 
@@ -160,12 +169,9 @@ function findRecipeIssues(): DailyIssue[] {
 }
 
 export function findRepoIssueIdeas(existingTitles: string[] = []): DailyIssue[] {
-  const alreadyMentioned = (relPath: string) =>
-    existingTitles.some((title) => title.includes(relPath));
-
-  const todos = findTodoIssues().filter((idea) => !alreadyMentioned(idea.suggestedFiles[0]));
-  const untested = findUntestedFiles().filter((idea) => !alreadyMentioned(idea.suggestedFiles[0]));
-  const recipes = findRecipeIssues().filter((idea) => !alreadyMentioned(idea.suggestedFiles[0]));
+  const todos = findTodoIssues(existingTitles);
+  const untested = findUntestedFiles(existingTitles);
+  const recipes = findRecipeIssues(existingTitles);
 
   const combined: DailyIssue[] = [];
   const max = Math.max(todos.length, untested.length, recipes.length);
