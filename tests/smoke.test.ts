@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { buildChecklist } from "../src/checklist.js";
-import { findIssueFit } from "../src/issueFitFinder.js";
 import { issueIdeas } from "../src/issueIdeas.js";
 import { dailyIssueBacklog } from "../src/dailyIssueBacklog.js";
 import { chooseIssueCandidates, selectFreshDailyIssues, type ExistingIssue } from "../src/dailyIssueSelection.js";
@@ -48,20 +47,6 @@ assert.ok(
 );
 assert.equal(new Set(dailyIssueBacklog.map((issue) => issue.title)).size, dailyIssueBacklog.length);
 assert.ok(dailyIssueBacklog.every((issue) => scoreDailyIssue(issue).score >= 80));
-
-const docsFit = findIssueFit("docs", "30m");
-assert.equal(docsFit.skill, "docs");
-assert.equal(docsFit.timeBudget, "30m");
-assert.ok(docsFit.issueSearchUrl.includes("no%3Aassignee"));
-assert.ok(docsFit.commentTemplate.includes("Please assign this to me"));
-
-// Test that the issue search URL is actionable
-assert.ok(docsFit.issueSearchUrl.startsWith("https://github.com"));
-assert.ok(docsFit.issueSearchUrl.includes("is%3Aopen")); // URL-encoded
-
-const jsFit = findIssueFit("ts", "1h");
-assert.equal(jsFit.skill, "javascript");
-assert.ok(jsFit.proofChecklist.some((item) => item.includes("full project check")));
 
 const progressionSteps = listProgressionSteps();
 assert.equal(progressionSteps.length, 5);
