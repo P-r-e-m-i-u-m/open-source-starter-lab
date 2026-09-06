@@ -147,10 +147,18 @@ function findRecipeIssues(existingTitles: string[]): DailyIssue[] {
 
       const note = match[1].trim();
       const title = content.split("\n")[0].replace(/^#\s*Recipe:\s*/, "").trim();
+      let recipeLabels: string[];
+      if (note.length < 50) {
+        recipeLabels = ["daily starter issue", "documentation", "good first issue", "help wanted", "time: 15 min", "level: first-pr"];
+      } else if (note.length < 100) {
+        recipeLabels = ["daily starter issue", "documentation", "good first issue", "help wanted", "time: 30 min", "level: first-pr"];
+      } else {
+        recipeLabels = ["daily starter issue", "documentation", "community", "help wanted", "time: 1 hour", "level: second-pr"];
+      }
 
       found.push({
         title: `Write the recipe: ${title} (${relPath})`,
-        labels: ["daily starter issue", "documentation", "community", "help wanted", "time: 1 hour", "level: second-pr"],
+        labels: recipeLabels,
         context: `${relPath} is a stub recipe waiting to be written. It needs: ${note}`,
         goal: `Fill in ${relPath} with a real, practical guide covering what's described.`,
         suggestedFiles: [relPath],
