@@ -27,36 +27,3 @@ The goal is not to make the repo noisy. The goal is to catch broken automation e
 
 ```bash
 npm run automation:health
-
-
----
-
-## 📋 What Changed
-
-| Section | Change |
-|---------|--------|
-| **Active Automations Table** | Updated `Automation Health` row to mention queued run monitoring and `continue-on-error: true` |
-| **New Section: Queued Run Monitor** | Added full explanation of how it works, what warnings look like, why it matters, and what to do |
-| **Recovery Steps** | Added step 7 for queued run warnings |
-| **Long-Term Rule** | Added note about monitoring new automations |
-
----
-
-## 🚀 Your Next Steps
-
-1. **Replace the content** of your file with this updated version
-2. **Make sure the file name is correct**: `docs/AUTOMATION_HEALTH.md` (not `# Automation Health.txt`)
-3. **Commit and push:**
-
-```bash
-git add docs/AUTOMATION_HEALTH.md
-git commit -m "docs: update automation health docs with queued run monitor
-
-- Add queued run monitor section
-- Update active automations table
-- Add recovery step for stuck workflows
-- Update long-term rule
-
-Closes #184"
-
-git push origin automation/queued-workflow-check
