@@ -104,9 +104,17 @@ function findUntestedFiles(existingTitles: string[]): DailyIssue[] {
 
     const opener = openers[found.length % openers.length];
 
-    found.push({
-      title: `Give ${relPath} some real test coverage`,
-      labels: ["daily starter issue", "testing", "developer tooling", "help wanted", "time: 1 hour", "level: second-pr"],
+      const lineCount = content.split("\n").length;
+      const testLabels =
+        lineCount < 40
+          ? ["daily starter issue", "testing", "developer tooling", "good first issue", "help wanted", "time: 15 min", "level: first-pr"]
+          : lineCount < 100
+          ? ["daily starter issue", "testing", "developer tooling", "help wanted", "time: 30 min", "level: second-pr"]
+          : ["daily starter issue", "testing", "developer tooling", "help wanted", "time: 1 hour", "level: second-pr"];
+
+      found.push({
+        title: `Give ${relPath} some real test coverage`,
+        labels: testLabels,
       context: `${relPath} exports working code but ${opener}, so nobody would notice if a future change quietly broke it.`,
       goal: `Write a focused test file for the main exported behavior in ${relPath}.`,
       suggestedFiles: [relPath, "tests/smoke.test.ts"],
