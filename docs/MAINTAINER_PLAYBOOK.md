@@ -10,6 +10,18 @@ Strong issues include:
 - Acceptance criteria
 - Expected test command
 - Difficulty label
+### Ready-Issue Checklist
+
+Before marking an issue as ready for contributors, ensure it includes the following:
+
+- [ ] **Context:** Explains why this issue matters and provides necessary background.
+- [ ] **Focused Goal:** Defines a single, achievable outcome.
+- [ ] **Suggested Files:** Points contributors toward the files they will likely need to modify.
+- [ ] **Acceptance Criteria:** Clearly describes the required end result.
+- [ ] **Verification:** Explains how contributors can prove their work is complete.
+- [ ] **Labels Applied:**
+  - [ ] `needs triage` (to flag for maintainer review)
+  - [ ] A relevant `skill: ...` label (e.g., `skill: docs` for documentation tasks)
 
 ## Decode Good First Issues
 
