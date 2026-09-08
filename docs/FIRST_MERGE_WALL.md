@@ -326,6 +326,30 @@ Keep your entry short and professional.
 - I worked on: test: cobertura de scoreDailyIssue (closes #272)
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @vedantp404
+
+- First merged PR: #280
+- I worked on: test: add daily issue selection coverage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @Prem759-0
+
+- First merged PR: #253
+- I worked on: docs: add pro tip to reading CI failures guide
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @JEISAMATHEW
+
+- First merged PR: #287
+- I worked on: docs: add test fixture recipe
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @DESPITEOFIT
+
+- First merged PR: #281
+- I worked on: test: add coverage for repo issue ideas
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
