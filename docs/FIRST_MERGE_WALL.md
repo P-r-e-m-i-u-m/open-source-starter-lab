@@ -290,6 +290,42 @@ Keep your entry short and professional.
 - I worked on: test: add checklist tests
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @sunilsonumonu12
+
+- First merged PR: #262
+- I worked on: docs: add discussion answer examples
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @ayushdwivedi-stack
+
+- First merged PR: #261
+- I worked on: docs: add guide for debugging failing workflows
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @badrisatyam1-ctrl
+
+- First merged PR: #260
+- I worked on: docs: fill in handling-github-api-errors recipe
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @be-student
+
+- First merged PR: #270
+- I worked on: test: cover issue fit finder behavior
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @Ravikumar49
+
+- First merged PR: #277
+- I worked on: docs: add discussion-to-issue guidance
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @4studiolabs
+
+- First merged PR: #279
+- I worked on: test: cobertura de scoreDailyIssue (closes #272)
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.

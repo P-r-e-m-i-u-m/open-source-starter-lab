@@ -17,6 +17,19 @@ I have time for: 15 min / 30 min / 1 hour
 I am stuck on:
 ```
 
+### Transitioning Discussions to Issues
+
+When a GitHub Discussion surfaces a clear problem or feature request that needs action, a maintainer should transition it into a formal, structured issue. To ensure the context isn't lost, the new issue must capture the following details:
+
+* **Source Link:** A direct link to the original discussion thread for historical reference.
+* **Problem Statement:** A clear, concise description of the bug, gap, or feature request.
+* **Relevant Context:** Background information, system environments, or specific user constraints.
+* **Desired Outcome:** A definition of success showing what the completed task looks like.
+* **Evidence and Examples:** Any diagnostic logs, code snippets, or screenshots provided in the thread.
+
+* **Next Step:** A list of actionable tasks or steps to resolve the issue, including any dependencies or prerequisites.
+
+
 ## Maintainer Reply Style
 
 Reply with one focused path:
