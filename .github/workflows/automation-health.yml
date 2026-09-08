@@ -73,15 +73,7 @@ jobs:
           WARNING_MESSAGES=""
           
           # Process each queued run
-<<<<<<< HEAD
-<<<<<<< HEAD
           echo "$QUEUED_RUNS" | jq -c '.' | while read -r RUN; do
-=======
-          while read -r RUN; do
->>>>>>> upstream/main
-=======
-          echo "$QUEUED_RUNS" | jq -c '.' | while read -r RUN; do
->>>>>>> 0e24747 (feat(automation): add check for workflows stuck in queued state)
             RUN_NAME=$(echo "$RUN" | jq -r '.name')
             RUN_ID=$(echo "$RUN" | jq -r '.id')
             RUN_URL=$(echo "$RUN" | jq -r '.html_url')
@@ -100,15 +92,7 @@ jobs:
             else
               echo "✅ Workflow '$RUN_NAME' is queued but only $AGE_MINUTES minutes old (under ${THRESHOLD_MINUTES}m threshold)."
             fi
-<<<<<<< HEAD
-<<<<<<< HEAD
           done
-=======
-          done < <(echo "$QUEUED_RUNS" | jq -c '.')
->>>>>>> upstream/main
-=======
-          done
->>>>>>> 0e24747 (feat(automation): add check for workflows stuck in queued state)
           
           # Output summary
           if [ $STUCK_COUNT -gt 0 ]; then
@@ -118,9 +102,6 @@ jobs:
             echo ""
             echo "📋 Summary of stuck workflows:"
             echo -e "$WARNING_MESSAGES"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
             echo "## ⚠️ Stuck Workflows Detected" >> "$GITHUB_STEP_SUMMARY"
             echo "" >> "$GITHUB_STEP_SUMMARY"
             echo "Found **$STUCK_COUNT** workflow(s) queued for more than **$THRESHOLD_MINUTES minutes**." >> "$GITHUB_STEP_SUMMARY"
@@ -128,9 +109,6 @@ jobs:
             echo -e "$WARNING_MESSAGES" >> "$GITHUB_STEP_SUMMARY"
             echo "" >> "$GITHUB_STEP_SUMMARY"
             echo "Please investigate GitHub Actions runner availability or cancel/restart the affected runs." >> "$GITHUB_STEP_SUMMARY"
->>>>>>> upstream/main
-=======
->>>>>>> 0e24747 (feat(automation): add check for workflows stuck in queued state)
             echo ""
             echo "💡 Suggestion: Check if GitHub Actions is experiencing issues, or manually cancel/restart these runs."
             echo "🔗 View all queued runs: https://github.com/${{ github.repository }}/actions?query=is%3Apr+status%3Aqueued"
@@ -139,15 +117,9 @@ jobs:
             exit 0 # Don't fail the job
           else
             echo "✅ All queued runs are within the $THRESHOLD_MINUTES minute threshold."
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
             echo "## ✅ Automation Health" >> "$GITHUB_STEP_SUMMARY"
             echo "" >> "$GITHUB_STEP_SUMMARY"
             echo "No workflows have been queued for more than **$THRESHOLD_MINUTES minutes**." >> "$GITHUB_STEP_SUMMARY"
->>>>>>> upstream/main
-=======
->>>>>>> 0e24747 (feat(automation): add check for workflows stuck in queued state)
             echo "status=healthy" >> $GITHUB_OUTPUT
           fi
 
