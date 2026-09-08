@@ -73,7 +73,7 @@ jobs:
           WARNING_MESSAGES=""
           
           # Process each queued run
-          while read -r RUN; do
+          echo "$QUEUED_RUNS" | jq -c '.' | while read -r RUN; do
             RUN_NAME=$(echo "$RUN" | jq -r '.name')
             RUN_ID=$(echo "$RUN" | jq -r '.id')
             RUN_URL=$(echo "$RUN" | jq -r '.html_url')
@@ -92,7 +92,7 @@ jobs:
             else
               echo "✅ Workflow '$RUN_NAME' is queued but only $AGE_MINUTES minutes old (under ${THRESHOLD_MINUTES}m threshold)."
             fi
-          done < <(echo "$QUEUED_RUNS" | jq -c '.')
+          done
           
           # Output summary
           if [ $STUCK_COUNT -gt 0 ]; then

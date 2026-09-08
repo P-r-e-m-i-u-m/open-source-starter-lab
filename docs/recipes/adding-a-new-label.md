@@ -52,4 +52,4 @@ If you wanted to add a new label called `design` for UI-related tasks, you would
 
 The `ensureLabels` function runs automatically before each issue is created. It checks if the label already exists on GitHub using the API. If the label is missing (HTTP 404), it creates it with the color and description you provided. If the label already exists, it leaves it alone.
 
-This means you only need to edit `scripts/createDailyIssue.ts` — the next time the automation runs, your new label will be created on GitHub automatically.
+This means you only need to edit `scripts/createDailyIssue.ts` — the next time the automation runs, your new label will be created on GitHub automatically.
