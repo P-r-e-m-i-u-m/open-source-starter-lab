@@ -197,6 +197,37 @@ async function fetchAllDailyStarterIssues(owner: string, repo: string, token: st
   return issues;
 }
 
+async function closeStaleDailyIssues(
+  owner: string,
+  repo: string,
+  token: string,
+  openIssues: GitHubIssue[]
+): Promise<void> {
+  const STALE_DAYS = 14;
+  const now = Date.now();
+
+  for (const issue of openIssues) {
+    const issueNumber = issue.html_url.split("/").pop();
+
+    const detail = await githubRequest<{
+      number: number;
+      comments: number;
+      assignee: unknown;
+      created_at: string;
+    }>(`/repos/${owner}/${repo}/issues/${issueNumber}`, token);
+
+    const ageDays = (now - new Date(detail.created_at).getTime()) / 86_400_000;
+
+    if (ageDays >= STALE_DAYS && detail.comments === 0 && !detail.assignee) {
+      await githubRequest(`/repos/${owner}/${repo}/issues/${detail.number}`, token, {
+        method: "PATCH",
+        body: JSON.stringify({ state: "closed" })
+      });
+      console.log(`Closed stale unclaimed issue: ${issue.html_url}`);
+    }
+  }
+}
+
 async function main(): Promise<void> {
   const dryRun = hasFlag("--dry-run");
   const issueCount = getIssueCount();
@@ -228,16 +259,19 @@ async function main(): Promise<void> {
   }
 
   const openDailyIssues = await fetchOpenDailyStarterIssues(owner, repo, token);
-  const allDailyIssues = await fetchAllDailyStarterIssues(owner, repo, token);
 
-  let { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), allDailyIssues, issueCount);
+  await closeStaleDailyIssues(owner, repo, token, openDailyIssues);
+
+  const stillOpenDailyIssues = await fetchOpenDailyStarterIssues(owner, repo, token);
+
+  let { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), stillOpenDailyIssues, issueCount);
 
   if (fresh.length < issueCount) {
-    const existingTitles = allDailyIssues.map((i) => i.title);
+    const existingTitles = stillOpenDailyIssues.map((i) => i.title);
     const repoIdeas = findRepoIssueIdeas(existingTitles).filter(
       (idea) => scoreDailyIssue(idea).score >= 80
     );
-    const topUp = selectFreshDailyIssues(repoIdeas, allDailyIssues, issueCount - fresh.length);
+    const topUp = selectFreshDailyIssues(repoIdeas, stillOpenDailyIssues, issueCount - fresh.length);
     fresh = [...fresh, ...topUp.fresh];
     duplicates = [...duplicates, ...topUp.duplicates];
   }
@@ -257,7 +291,7 @@ async function main(): Promise<void> {
       })
     });
     console.log(`Created daily issue: ${created.html_url}`);
-    allDailyIssues.push(created);
+    stillOpenDailyIssues.push(created);
     createdCount += 1;
   }
 
