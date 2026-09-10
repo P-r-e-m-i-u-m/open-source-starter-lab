@@ -6,7 +6,7 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #77
-- Latest merged PR: #286
+- Latest merged PR: #291
 - Primary skill: open source workflow
 - Proof: merged pull request with maintainer review and project checks
 
@@ -42,9 +42,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #286 | 2026-09-08 | open source workflow | Resolve merge conflict in automation-health.yml | No linked issue was found in the PR body. |
 
+| #291 | 2026-09-10 | open source workflow | Update createDailyIssue.ts | No linked issue was found in the PR body. |
+
 ## Suggested Next Step
 
-- Second PR route: #275 Give scripts/findRepoIssueIdeas.ts some real test coverage
+- Second PR route: #274 Give src/progressionPath.ts some real test coverage
 
 ## Share Line
 
