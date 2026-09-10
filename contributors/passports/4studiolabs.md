@@ -4,9 +4,9 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 2 - Returning Contributor
+- Level: 3 - Trust Builder
 - First merged PR: #279
-- Latest merged PR: #283
+- Latest merged PR: #304
 - Primary skill: testing
 - Proof: merged pull request with maintainer review and project checks
 
@@ -18,9 +18,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #283 | 2026-09-10 | testing | test: cobertura de progressionPath (closes #274) | #274 |
 
+| #304 | 2026-09-10 | testing | test: cobertura de dailyIssueBacklog | #235 |
+
 ## Suggested Next Step
 
-- Second PR route: #297 Add a checklist for reviewing documentation PRs
+- Second PR route: #309 Give src/checklist.ts some real test coverage
 
 ## Share Line
 
