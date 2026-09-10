@@ -18,7 +18,7 @@ These prefixes are a project convention, not a CI gate. They help maintainers qu
 ### `docs:`
 
 ```text
-docs: add guide explaining squash merge and commit history (#194)
+docs: link commit message guide (#301)
 ```
 
 This clearly identifies a documentation change and describes what was added.
