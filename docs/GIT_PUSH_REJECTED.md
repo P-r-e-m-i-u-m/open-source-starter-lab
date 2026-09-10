@@ -1,10 +1,12 @@
 # Fixing "Updates Were Rejected" Git Push Errors
 
+If you see `Updates were rejected` after running `git push`, don't panic. This is one of the most common Git errors for beginners — and it has a safe fix.
+
 ## What does a rejected push mean?
 
 A rejected push means GitHub did not accept the commits you tried to send. Git protects the remote branch when accepting your push would overwrite commits that are already there.
 
-A common version of this error is:
+A common version of this error looks like this:
 
 ```
 ! [rejected]        main -> main (fetch first)
