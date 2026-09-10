@@ -68,3 +68,57 @@ Short can be good. Complete is better.
 ## Discussion Answer Examples
 
 See [DISCUSSION_ANSWER_EXAMPLES.md](./DISCUSSION_ANSWER_EXAMPLES.md) for examples of weak and strong discussion answers, safe command usage, and situations where maintainers should ask clarifying questions before providing guidance.
+
+## Converting a Discussion Into an Issue
+
+Good ideas often start in Discussions. When a comment in a Discussion identifies a real, scoped problem or improvement, it can become a proper issue.
+
+### When to convert
+
+Convert a Discussion comment into an issue when it:
+
+- Describes a specific, actionable change (not just a vague idea)
+- Has a clear file or area to change
+- Can be finished by one contributor in one PR
+- Is not already covered by an open issue
+
+### What to copy from the Discussion
+
+When creating the issue, include:
+
+- **Context** — paste the original Discussion comment or summarise the problem in 1–2 sentences
+- **Link back** — add a `Related discussion: #<number>` line so people can trace the origin
+- **Goal** — one sentence describing what the finished issue looks like
+- **Suggested file** — which file to open first
+- **Acceptance criteria** — 2–4 checkboxes that define "done"
+
+### Ready issue checklist
+
+Before publishing the issue, confirm:
+
+- [ ] The title is specific (not "improve docs")
+- [ ] A suggested file is listed
+- [ ] Acceptance criteria are checkboxes, not paragraphs
+- [ ] The `needs triage` label is added until a maintainer reviews scope
+- [ ] A skill label is added (`documentation`, `testing`, `cli`, etc.)
+- [ ] A time label is added (`time: 15 min`, `time: 30 min`, `time: 1 hour`)
+
+### Example
+
+A contributor comments in a Discussion:
+
+> "I keep seeing `npm run check` fail because the lockfile is out of sync. Is there a guide for this?"
+
+That becomes an issue:
+
+```
+Title: Add a guide for fixing npm ci lockfile sync errors
+Context: Contributors see lockfile errors when running npm run check after pulling.
+Suggested file: docs/NPM_CI_TROUBLESHOOTING.md
+Done when:
+- [ ] Explains what causes the lockfile error
+- [ ] Shows the fix command
+- [ ] Mentions npm run check as the verification step
+Labels: documentation, needs triage, time: 30 min
+```
+
