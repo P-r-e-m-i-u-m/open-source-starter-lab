@@ -17,6 +17,8 @@ This usually happens because the remote branch contains commits that are not in 
 
 Do not start by forcing the push. Run these commands one at a time:
 
+Do not use destructive reset commands such as `git reset --hard` blindly, because they can discard local work you still need.
+
 ```bash
 git status
 git remote -v
