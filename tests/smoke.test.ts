@@ -8,6 +8,7 @@ import { chooseIssueCandidates, selectFreshDailyIssues, type ExistingIssue } fro
 import { scoreDailyIssue } from "../src/issueQuality.js";
 import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
 import { timeline } from "../src/plugins/timeline.js";
+import { welcome } from "../src/plugins/welcome.js";
 
 const beginner = buildChecklist("beginner");
 assert.equal(beginner.profile, "beginner");
@@ -52,6 +53,20 @@ assert.ok(dailyIssueBacklog.every((issue) => scoreDailyIssue(issue).score >= 80)
 const progressionSteps = listProgressionSteps();
 assert.equal(progressionSteps.length, 5);
 assert.equal(normalizeContributorLevel("second pr"), "second-pr");
+
+const welcomeMessages: string[] = [];
+const originalWelcomeLog = console.log;
+console.log = (message: string) => welcomeMessages.push(message);
+
+welcome("Test Contributor", "Implement welcome plugin");
+
+console.log = originalWelcomeLog;
+assert.ok(welcomeMessages.includes("Welcome, Test Contributor!"));
+assert.ok(
+  welcomeMessages.includes(
+    "Your first claimed issue is: Implement welcome plugin"
+  )
+);
 
 const maintainerShadow = getProgressionStep("maintainer-shadow");
 assert.ok(maintainerShadow.labels.includes("level: maintainer-practice"));
