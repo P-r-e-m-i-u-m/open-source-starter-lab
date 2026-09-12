@@ -1,8 +1,10 @@
 #!/usr/bin/env node
+
 import { buildChecklist, PROFILE_DESCRIPTIONS, type StarterProfile } from "./checklist.js";
 import { findIssueFit } from "./issueFitFinder.js";
 import { issueIdeas } from "./issueIdeas.js";
 import { getProgressionStep, normalizeContributorLevel } from "./progressionPath.js";
+import { welcome } from "./plugins/welcome.js";
 
 function readFlag(name: string): string | undefined {
   const index = process.argv.indexOf(name);
@@ -112,13 +114,28 @@ function printProfiles(): void {
   }
 }
 
+function printWelcome(): void {
+  const contributor = readFlag("--contributor");
+  const issue = readFlag("--issue");
+
+  if (!contributor || !issue) {
+    throw new Error(
+      "Usage: oss-lab welcome --contributor <name> --issue <issue>"
+    );
+  }
+
+  welcome(contributor, issue);
+}
+
 function main(): void {
   const command = process.argv[2] ?? "check";
 
   if (command === "check") {
     const profile = (readFlag("--profile") ?? "beginner") as StarterProfile;
     if (!PROFILE_DESCRIPTIONS.some((p) => p.id === profile)) {
-      const validProfiles = PROFILE_DESCRIPTIONS.map((p) => `--profile ${p.id}`).join(" or ");
+      const validProfiles = PROFILE_DESCRIPTIONS.map(
+        (p) => `--profile ${p.id}`
+      ).join(" or ");
       throw new Error(`Use ${validProfiles}`);
     }
     printChecklist(profile);
@@ -143,7 +160,12 @@ function main(): void {
   if (command === "profiles") {
     printProfiles();
     return;
-  }  
+  }
+
+  if (command === "welcome") {
+    printWelcome();
+    return;
+  }
 
   if (command === "help" || command === "--help" || command === "-h") {
     console.log("Usage:");
@@ -156,6 +178,7 @@ function main(): void {
     console.log("    Skills: html-css, javascript, python, docs, testing, git");
     console.log("    Time: 15m, 30m, 1h");
     console.log("  oss-lab next --level second-pr");
+    console.log("  oss-lab welcome --contributor <name> --issue <issue>");
     return;
   }
 
