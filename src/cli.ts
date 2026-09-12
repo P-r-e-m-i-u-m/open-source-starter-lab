@@ -14,6 +14,7 @@ import {
 import { mentor } from "./plugins/mentor.js";
 import { suggest } from "./plugins/suggest.js";
 import { leaderboard } from "./plugins/leaderboard.js";
+import { welcome } from "./plugins/welcome.js";
 
 function readFlag(name: string): string | undefined {
   const index = process.argv.indexOf(name);
@@ -181,6 +182,19 @@ async function printMentor(): Promise<void> {
   await mentor(skill);
 }
 
+function printWelcome(): void {
+  const contributor = readFlag("--contributor");
+  const issue = readFlag("--issue");
+
+  if (!contributor || !issue) {
+    throw new Error(
+      "Usage: oss-lab welcome --contributor <name> --issue <issue>"
+    );
+  }
+
+  welcome(contributor, issue);
+}
+
 async function main(): Promise<void> {
   const command = process.argv[2] ?? "check";
 
@@ -242,6 +256,11 @@ async function main(): Promise<void> {
     return;
   }
 
+  if (command === "welcome") {
+    printWelcome();
+    return;
+  }
+
   if (
     command === "help" ||
     command === "--help" ||
@@ -275,6 +294,9 @@ async function main(): Promise<void> {
     );
     console.log(
       "  oss-lab mentor --skill docs"
+    );
+    console.log(
+      "  oss-lab welcome --contributor <name> --issue <issue>"
     );
 
     return;

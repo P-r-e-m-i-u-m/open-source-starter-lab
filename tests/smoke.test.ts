@@ -80,6 +80,22 @@ assert.ok(profilesOutput.includes("maintainer"));
 assert.ok(profilesOutput.includes("first or early open-source contribution"));
 assert.ok(profilesOutput.includes("reviewing, organizing, or supporting contributor work"));
 
+const welcomeOutput = execFileSync(
+  "node",
+  [
+    cliPath,
+    "welcome",
+    "--contributor",
+    "Aman",
+    "--issue",
+    "#385"
+  ],
+  { encoding: "utf8" }
+);
+
+assert.ok(welcomeOutput.includes("Welcome, Aman!"));
+assert.ok(welcomeOutput.includes("Your first claimed issue is: #385"));
+
 const helpOutput = execFileSync("node", [cliPath, "help"], {
   encoding: "utf8"
 });
