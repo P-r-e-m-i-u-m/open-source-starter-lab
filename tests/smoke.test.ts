@@ -52,6 +52,22 @@ const progressionSteps = listProgressionSteps();
 assert.equal(progressionSteps.length, 5);
 assert.equal(normalizeContributorLevel("second pr"), "second-pr");
 
+const welcomeOutput = execFileSync(
+  process.execPath,
+  [
+    cliPath,
+    "welcome",
+    "--contributor",
+    "Test Contributor",
+    "--issue",
+    "Implement welcome plugin"
+  ],
+  { encoding: "utf8" }
+);
+
+assert.match(welcomeOutput, /Welcome, Test Contributor!/);
+assert.match(welcomeOutput, /Implement welcome plugin/);
+
 const maintainerShadow = getProgressionStep("maintainer-shadow");
 assert.ok(maintainerShadow.labels.includes("level: maintainer-practice"));
 assert.ok(maintainerShadow.proof.some((item) => item.includes("before/after")));
