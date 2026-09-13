@@ -42,6 +42,10 @@ jobs:
       cancel-in-progress: true
 
     steps:
+      - name: Wait for related events to settle
+        if: github.event_name == 'pull_request_target' || github.event_name == 'issue_comment'
+        run: sleep 20
+
       - name: Checkout
         uses: actions/checkout@v5
 
