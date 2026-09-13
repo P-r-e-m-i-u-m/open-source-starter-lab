@@ -10,6 +10,18 @@ assert.ok(docsFit.issueSearchUrl.includes("label%3A%22skill%3A%20docs%22"));
 assert.ok(docsFit.issueSearchUrl.includes("no%3Aassignee"));
 assert.ok(docsFit.commentTemplate.includes("Please assign this to me"));
 
+const htmlCssFit = findIssueFit("HTML-CSS", "15m");
+assert.equal(htmlCssFit.skill, "html-css");
+assert.equal(htmlCssFit.timeBudget, "15m");
+assert.equal(htmlCssFit.firstCommand, "npm install");
+assert.ok(htmlCssFit.proofChecklist.some((item) => item.includes("Do not start a feature")));
+assert.ok(htmlCssFit.commentTemplate.includes("Skill: html-css"));
+assert.ok(htmlCssFit.commentTemplate.includes("Time today: 15m"));
+assert.ok(htmlCssFit.commentTemplate.includes("Please assign this to me"));
+
+const numericTimeFit = findIssueFit("testing", "60");
+assert.equal(numericTimeFit.timeBudget, "1h");
+
 const javascriptFit = findIssueFit(" ts ", "hour");
 assert.equal(javascriptFit.skill, "javascript");
 assert.equal(javascriptFit.timeBudget, "1h");

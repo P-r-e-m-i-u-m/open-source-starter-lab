@@ -7,6 +7,7 @@ import { dailyIssueBacklog } from "../src/dailyIssueBacklog.js";
 import { chooseIssueCandidates, selectFreshDailyIssues, type ExistingIssue } from "../src/dailyIssueSelection.js";
 import { scoreDailyIssue } from "../src/issueQuality.js";
 import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
+import { timeline } from "../src/plugins/timeline.js";
 
 const beginner = buildChecklist("beginner");
 assert.equal(beginner.profile, "beginner");
@@ -223,5 +224,16 @@ const everythingOpen = selectFreshDailyIssues(
 
 assert.equal(everythingOpen.fresh.length, 0);
 assert.equal(everythingOpen.duplicates.length, dailyIssueBacklog.length);
+
+let capturedTimelineOutput = "";
+const originalLog = console.log;
+console.log = (msg: string) => {
+  capturedTimelineOutput = msg;
+};
+
+timeline();
+
+console.log = originalLog;
+assert.equal(capturedTimelineOutput, "Not implemented yet.");
 
 console.log("Smoke tests passed.");

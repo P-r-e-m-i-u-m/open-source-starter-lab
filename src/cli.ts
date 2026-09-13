@@ -4,6 +4,7 @@ import { findIssueFit } from "./issueFitFinder.js";
 import { issueIdeas } from "./issueIdeas.js";
 import { getProgressionStep, normalizeContributorLevel } from "./progressionPath.js";
 import { suggest } from "./plugins/suggest.js";
+import { leaderboard } from "./plugins/leaderboard.js";
 
 function readFlag(name: string): string | undefined {
   const index = process.argv.indexOf(name);
@@ -144,10 +145,15 @@ function main(): void {
   if (command === "profiles") {
     printProfiles();
     return;
-  }  
+  }
 
   if (command === "suggest") {
     suggest();
+    return;
+  }
+
+  if (command === "leaderboard") {
+    leaderboard();
     return;
   }
 
@@ -163,6 +169,7 @@ function main(): void {
     console.log("    Time: 15m, 30m, 1h");
     console.log("  oss-lab next --level second-pr");
     console.log("  oss-lab suggest --skill docs --time 30m");
+    console.log("  oss-lab leaderboard");
     return;
   }
 
