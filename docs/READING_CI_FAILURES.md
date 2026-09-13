@@ -1,77 +1,82 @@
-# Reading GitHub Actions Failures
+# Reading CI Failures
 
-A red check on your first pull request can look worse than it is. Most failures become easier once you know where to click and what part of the log matters.
+When a CI check fails on a pull request (PR), GitHub shows the failed check with a red ❌. You can open the check details to see what went wrong.
 
-## Where To Click In A Pull Request
+## Where to click in a PR
 
-1. Open your pull request on GitHub.
-2. Find the checks section near the bottom of the PR conversation or next to the latest commit.
-3. Click the failing check name.
-4. Open the job that failed.
-5. Expand the step with the red `X`.
+1. Open the pull request on GitHub.
+2. Find the **Checks** section near the bottom of the PR.
+3. Find the check with the red ❌ next to its name.
+4. Click **Details** next to the failed check.
+5. GitHub will open the CI run, where you can read the logs and find the error.
 
-The useful error is usually close to the bottom of that failed step, not at the top of the page.
+## What the log output means
 
-## How To Read The Log
+The **log** is the text that the CI system prints while it runs your project's commands. It shows what the system was doing and where it stopped.
 
-You do not need to read every line.
+You will usually see many lines, but you do not need to understand every line.
 
-Start with this order:
+Look for:
 
-1. Find the step that failed.
-2. Scroll near the end of that step.
-3. Look for words like `error`, `failed`, `cannot find`, or `Expected`.
-4. Ignore earlier setup lines unless the error says setup failed.
+- **The command being run** — for example, `npm run build` or `npm test`.
+- **The error message** — this usually explains what went wrong.
+- **The file and line number** — this tells you where the problem was found.
+- **The final failure message** — this tells you that the check could not finish successfully.
 
-Helpful rule:
+Sometimes the log contains a long **stack trace**. A stack trace is a list showing the path the program took before the error happened. You usually do not need to read the whole thing. Start with the clearest error message that points to your own code.
 
-- green steps passed
-- the red step is the one to inspect first
-- the first clear error message is usually more useful than the full stack trace
+## Example: TypeScript build failure
 
-## Example: TypeScript Build Failure
-
-You might see a log line like this:
+Imagine the CI log contains:
 
 ```text
-src/cli.ts:14:7 - error TS2322: Type 'string' is not assignable to type 'number'.
+> npm run build
+
+> my-app@1.0.0 build
+> tsc
+
+src/utils/getUser.ts(12,9): error TS2322: Type 'string' is not assignable to type 'number'.
+
+12   const userId: number = user.id;
+           ~~~~~~
+
+Found 1 error.
 ```
 
-This usually means:
+In plain language, TypeScript is saying:
 
-- the file is `src/cli.ts`
-- the problem is on line `14`
-- TypeScript expected a `number`
-- the code gave it a `string` instead
+- The problem is in `src/utils/getUser.ts`.
+- It is on line **12**.
+- `userId` was declared as a **number**.
+- `user.id` is currently a **string**.
+- TypeScript will not allow a string to be assigned to a variable that should contain a number.
 
-Good next steps:
+So this line:
 
-1. Open the file named in the error.
-2. Go to the line number from the log.
-3. Compare the value you passed with the type that code expects.
-4. Run `npm run check` again after your fix.
+```ts
+const userId: number = user.id;
+```
 
-## Asking For Help Usefully
+has a type mismatch.
 
-If you are stuck, ask for help with the details that let someone reproduce the problem quickly.
+You need to check whether `user.id` should actually be a number, or whether `userId` should be a string, and then make the types consistent.
 
-Include:
-
-- the link to the failing pull request or workflow run
-- the name of the failed job or step
-- the exact error message
-- the command you ran locally
-- what you expected to happen
-
-Good example:
+The important part of the log is:
 
 ```text
-My PR failed in the CI job during the build step.
-The error says: Type 'string' is not assignable to type 'number' in src/cli.ts line 14.
-I ran npm run check locally on macOS and got the same error.
-I expected the build to pass after changing the CLI output.
+error TS2322: Type 'string' is not assignable to type 'number'.
 ```
 
-That gives maintainers enough context to help without guessing.
+That sentence tells you **what is wrong**. The file name and line number tell you **where to look**.
 
- > **Pro Tip:** Don't panic when you see red text! Take a deep breath and look for the specific error line.
+## If you're stuck
+
+When asking for help, include enough information for someone else to understand the problem:
+
+- **Which check failed** — include the exact check name.
+- **The exact error line** — copy the relevant error message from the CI log instead of paraphrasing it.
+- **Where it happened** — include the file and line number if the log gives them.
+- **What you already tried** — briefly describe what you changed or checked.
+- **Relevant code** — include the small section of code around the error if needed.
+
+Avoid saying only "CI is broken." The check name and exact error usually make it much easier to figure out what needs fixing.
