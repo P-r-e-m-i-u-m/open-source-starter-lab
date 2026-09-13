@@ -3,6 +3,7 @@ import { buildChecklist, PROFILE_DESCRIPTIONS, type StarterProfile } from "./che
 import { findIssueFit } from "./issueFitFinder.js";
 import { issueIdeas } from "./issueIdeas.js";
 import { getProgressionStep, normalizeContributorLevel } from "./progressionPath.js";
+import { leaderboard } from "./plugins/leaderboard.js";
 
 function readFlag(name: string): string | undefined {
   const index = process.argv.indexOf(name);
@@ -145,6 +146,11 @@ function main(): void {
     return;
   }  
 
+  if (command === "leaderboard") {
+    leaderboard();
+    return;
+  }
+
   if (command === "help" || command === "--help" || command === "-h") {
     console.log("Usage:");
     console.log("  oss-lab check --profile beginner");
@@ -156,6 +162,7 @@ function main(): void {
     console.log("    Skills: html-css, javascript, python, docs, testing, git");
     console.log("    Time: 15m, 30m, 1h");
     console.log("  oss-lab next --level second-pr");
+    console.log("  oss-lab leaderboard");
     return;
   }
 
