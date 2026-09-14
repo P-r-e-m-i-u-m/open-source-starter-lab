@@ -6,8 +6,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #72
-- Latest merged PR: #98
-- Primary skill: docs
+- Latest merged PR: #92
+- Primary skill: git
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -32,9 +32,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #98 | 2026-06-19 | docs | docs: add guide for asking better GitHub questions | #90 |
 
+| #92 | 2026-09-14 | git | docs: add issue to PR workflow example | #33 |
+
 ## Suggested Next Step
 
-- Second PR route: #71 Add a `--json` output option for starter issue ideas
+- Second PR route: #361 Add CLI tests for unknown commands
 
 ## Share Line
 
