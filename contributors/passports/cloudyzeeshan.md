@@ -6,8 +6,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #232
-- Latest merged PR: #249
-- Primary skill: testing
+- Latest merged PR: #312
+- Primary skill: docs
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -20,9 +20,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #249 | 2026-09-03 | testing | test: strengthen daily issue backlog smoke checks | #241 |
 
+| #312 | 2026-09-14 | docs | docs: add CLI subcommand recipe | #251 |
+
 ## Suggested Next Step
 
-- Second PR route: #238 Add test coverage for src/issueIdeas.ts
+- Second PR route: #361 Add CLI tests for unknown commands
 
 ## Share Line
 
