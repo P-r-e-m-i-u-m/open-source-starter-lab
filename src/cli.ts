@@ -3,6 +3,7 @@ import { buildChecklist, PROFILE_DESCRIPTIONS, type StarterProfile } from "./che
 import { findIssueFit } from "./issueFitFinder.js";
 import { issueIdeas } from "./issueIdeas.js";
 import { getProgressionStep, normalizeContributorLevel } from "./progressionPath.js";
+import { mentor } from "./plugins/mentor.js";
 
 function readFlag(name: string): string | undefined {
   const index = process.argv.indexOf(name);
@@ -112,15 +113,30 @@ function printProfiles(): void {
   }
 }
 
-function main(): void {
+async function printMentor(): Promise<void> {
+  const skill = readFlag("--skill");
+
+  if (!skill) {
+    throw new Error("Usage: oss-lab mentor --skill <skill>");
+  }
+
+  await mentor(skill);
+}
+
+async function main(): Promise<void> {
   const command = process.argv[2] ?? "check";
 
   if (command === "check") {
     const profile = (readFlag("--profile") ?? "beginner") as StarterProfile;
+
     if (!PROFILE_DESCRIPTIONS.some((p) => p.id === profile)) {
-      const validProfiles = PROFILE_DESCRIPTIONS.map((p) => `--profile ${p.id}`).join(" or ");
+      const validProfiles = PROFILE_DESCRIPTIONS
+        .map((p) => `--profile ${p.id}`)
+        .join(" or ");
+
       throw new Error(`Use ${validProfiles}`);
     }
+
     printChecklist(profile);
     return;
   }
@@ -143,9 +159,18 @@ function main(): void {
   if (command === "profiles") {
     printProfiles();
     return;
-  }  
+  }
 
-  if (command === "help" || command === "--help" || command === "-h") {
+  if (command === "mentor") {
+    await printMentor();
+    return;
+  }
+
+  if (
+    command === "help" ||
+    command === "--help" ||
+    command === "-h"
+  ) {
     console.log("Usage:");
     console.log("  oss-lab check --profile beginner");
     console.log("  oss-lab check --profile maintainer");
@@ -153,19 +178,20 @@ function main(): void {
     console.log("  oss-lab issues --json");
     console.log("  oss-lab profiles");
     console.log("  oss-lab fit --skill docs --time 30m");
-    console.log("    Skills: html-css, javascript, python, docs, testing, git");
+    console.log(
+      "    Skills: html-css, javascript, python, docs, testing, git"
+    );
     console.log("    Time: 15m, 30m, 1h");
     console.log("  oss-lab next --level second-pr");
+    console.log("  oss-lab mentor --skill docs");
     return;
   }
 
   throw new Error(`Unknown command: ${command}`);
 }
+     main().catch((error: unknown) => {
+     const message = error instanceof Error ? error.message : String(error);
 
-try {
-  main();
-} catch (error) {
-  const message = error instanceof Error ? error.message : String(error);
-  console.error(`Error: ${message}`);
-  process.exit(1);
-}
+     console.error(`Error: ${message}`);
+      process.exit(1);
+});
