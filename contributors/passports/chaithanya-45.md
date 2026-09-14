@@ -4,9 +4,9 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 1 - First PR Contributor
+- Level: 2 - Returning Contributor
 - First merged PR: #336
-- Latest merged PR: #336
+- Latest merged PR: #349
 - Primary skill: testing
 - Proof: merged pull request with maintainer review and project checks
 
@@ -16,9 +16,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | --- | --- | --- | --- | --- |
 | #336 | 2026-09-13 | testing | test: add weekly summary coverage | #334 |
 
+| #349 | 2026-09-13 | testing | test: add coverage for findRepoIssueIdeas | #344 |
+
 ## Suggested Next Step
 
-- Second PR route: #344 Give scripts/findRepoIssueIdeas.ts some real test coverage
+- Second PR route: #345 Catch workflows stuck in queued for hours
 
 ## Share Line
 

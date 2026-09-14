@@ -35,6 +35,17 @@ function testUnknownCommand(): void {
         }
         return true;
       }
+    },
+    {
+      name: 'error message includes the unknown command name',
+      args: ['dist/src/cli.js', 'my-special-command'],
+      check: (result: any) => {
+        const output = `${result.stdout}${result.stderr}`;
+        if (!output.includes('my-special-command')) {
+          throw new Error(`Expected command name in error message. Got: ${output}`);
+        }
+        return true;
+      }
     }
   ];
 

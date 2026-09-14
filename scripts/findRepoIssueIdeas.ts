@@ -2,12 +2,19 @@ import { readdirSync, readFileSync, statSync } from "fs";
 import { join, relative } from "path";
 import { type DailyIssue } from "../src/dailyIssueBacklog.js";
 
-const SCAN_DIRS = ["src", "scripts"];
-const TEST_DIRS = ["tests"];
-const MARKDOWN_SCAN_DIRS = ["docs/recipes"];
 const MD_TODO_PATTERN = /<!--\s*TODO[:\s](.+?)-->/;
 const TODO_PATTERN = /\/\/\s*(TODO|FIXME)[:\s](.+)/;
 const MAX_PER_CATEGORY = 3;
+
+function scanDirs(root: string): string[] {
+  return [join(root, "src"), join(root, "scripts")];
+}
+function testDirs(root: string): string[] {
+  return [join(root, "tests")];
+}
+function markdownScanDirs(root: string): string[] {
+  return [join(root, "docs/recipes")];
+}
 
 function walk(dir: string): string[] {
   let files: string[] = [];
@@ -39,14 +46,14 @@ function isKnown(existingTitles: string[], relPath: string): boolean {
   return existingTitles.some((title) => title.includes(relPath));
 }
 
-function findTodoIssues(existingTitles: string[]): DailyIssue[] {
+function findTodoIssues(existingTitles: string[], root: string): DailyIssue[] {
   const found: DailyIssue[] = [];
-  const files = safeWalk(SCAN_DIRS);
+  const files = safeWalk(scanDirs(root));
 
   for (const file of files) {
     if (found.length >= MAX_PER_CATEGORY) break;
 
-    const relPath = relative(".", file);
+    const relPath = relative(root, file);
     if (isKnown(existingTitles, relPath)) continue;
 
     const lines = readFileSync(file, "utf-8").split("\n");
@@ -77,9 +84,9 @@ function findTodoIssues(existingTitles: string[]): DailyIssue[] {
   return found;
 }
 
-function findUntestedFiles(existingTitles: string[]): DailyIssue[] {
+function findUntestedFiles(existingTitles: string[], root: string): DailyIssue[] {
   const found: DailyIssue[] = [];
-  const testContent = safeWalk(TEST_DIRS)
+  const testContent = safeWalk(testDirs(root))
     .map((f) => readFileSync(f, "utf-8"))
     .join("\n");
 
@@ -89,11 +96,11 @@ function findUntestedFiles(existingTitles: string[]): DailyIssue[] {
     "hasn't got a single test guarding its behavior"
   ];
 
-  const files = safeWalk(SCAN_DIRS);
+  const files = safeWalk(scanDirs(root));
   for (const file of files) {
     if (found.length >= MAX_PER_CATEGORY) break;
 
-    const relPath = relative(".", file);
+    const relPath = relative(root, file);
     if (isKnown(existingTitles, relPath)) continue;
 
     const content = readFileSync(file, "utf-8");
@@ -103,18 +110,17 @@ function findUntestedFiles(existingTitles: string[]): DailyIssue[] {
     if (testContent.includes(baseName)) continue;
 
     const opener = openers[found.length % openers.length];
+    const lineCount = content.split("\n").length;
+    const testLabels =
+      lineCount < 40
+        ? ["daily starter issue", "testing", "developer tooling", "good first issue", "help wanted", "time: 15 min", "level: first-pr"]
+        : lineCount < 100
+        ? ["daily starter issue", "testing", "developer tooling", "help wanted", "time: 30 min", "level: second-pr"]
+        : ["daily starter issue", "testing", "developer tooling", "help wanted", "time: 1 hour", "level: second-pr"];
 
-      const lineCount = content.split("\n").length;
-      const testLabels =
-        lineCount < 40
-          ? ["daily starter issue", "testing", "developer tooling", "good first issue", "help wanted", "time: 15 min", "level: first-pr"]
-          : lineCount < 100
-          ? ["daily starter issue", "testing", "developer tooling", "help wanted", "time: 30 min", "level: second-pr"]
-          : ["daily starter issue", "testing", "developer tooling", "help wanted", "time: 1 hour", "level: second-pr"];
-
-      found.push({
-        title: `Give ${relPath} some real test coverage`,
-        labels: testLabels,
+    found.push({
+      title: `Give ${relPath} some real test coverage`,
+      labels: testLabels,
       context: `${relPath} exports working code but ${opener}, so nobody would notice if a future change quietly broke it.`,
       goal: `Write a focused test file for the main exported behavior in ${relPath}.`,
       suggestedFiles: [relPath, "tests/smoke.test.ts"],
@@ -130,10 +136,10 @@ function findUntestedFiles(existingTitles: string[]): DailyIssue[] {
   return found;
 }
 
-function findRecipeIssues(existingTitles: string[]): DailyIssue[] {
+function findRecipeIssues(existingTitles: string[], root: string): DailyIssue[] {
   const found: DailyIssue[] = [];
 
-  for (const dir of MARKDOWN_SCAN_DIRS) {
+  for (const dir of markdownScanDirs(root)) {
     let entries: string[];
     try {
       entries = readdirSync(dir);
@@ -146,7 +152,7 @@ function findRecipeIssues(existingTitles: string[]): DailyIssue[] {
       if (!entry.endsWith(".md") || entry === "README.md") continue;
 
       const full = join(dir, entry);
-      const relPath = relative(".", full);
+      const relPath = relative(root, full);
       if (isKnown(existingTitles, relPath)) continue;
 
       const content = readFileSync(full, "utf-8");
@@ -184,10 +190,10 @@ function findRecipeIssues(existingTitles: string[]): DailyIssue[] {
   return found;
 }
 
-export function findRepoIssueIdeas(existingTitles: string[] = []): DailyIssue[] {
-  const todos = findTodoIssues(existingTitles);
-  const untested = findUntestedFiles(existingTitles);
-  const recipes = findRecipeIssues(existingTitles);
+export function findRepoIssueIdeas(existingTitles: string[] = [], root: string = "."): DailyIssue[] {
+  const todos = findTodoIssues(existingTitles, root);
+  const untested = findUntestedFiles(existingTitles, root);
+  const recipes = findRecipeIssues(existingTitles, root);
 
   const combined: DailyIssue[] = [];
   const max = Math.max(todos.length, untested.length, recipes.length);
