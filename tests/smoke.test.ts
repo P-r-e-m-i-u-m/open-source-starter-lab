@@ -8,6 +8,7 @@ import { dailyIssueBacklog } from "../src/dailyIssueBacklog.js";
 import { chooseIssueCandidates, selectFreshDailyIssues, type ExistingIssue } from "../src/dailyIssueSelection.js";
 import { scoreDailyIssue } from "../src/issueQuality.js";
 import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
+import { findRepoIssueIdeas } from "../scripts/findRepoIssueIdeas.js";
 
 const beginner = buildChecklist("beginner");
 assert.equal(beginner.profile, "beginner");
@@ -238,5 +239,37 @@ const everythingOpen = selectFreshDailyIssues(
 
 assert.equal(everythingOpen.fresh.length, 0);
 assert.equal(everythingOpen.duplicates.length, dailyIssueBacklog.length);
+const repoIssueIdeas = findRepoIssueIdeas();
+assert.ok(Array.isArray(repoIssueIdeas), "findRepoIssueIdeas should return an array");
+
+for (const idea of repoIssueIdeas) {
+  assert.equal(typeof idea.title, "string");
+  assert.ok(idea.title.trim().length > 0, "title should not be empty");
+  assert.ok(Array.isArray(idea.labels) && idea.labels.length > 0, "labels should not be empty");
+  assert.ok(idea.context.trim().length > 0, "context should not be empty");
+  assert.ok(idea.goal.trim().length > 0, "goal should not be empty");
+  assert.ok(
+    Array.isArray(idea.suggestedFiles) && idea.suggestedFiles.length > 0,
+    "suggestedFiles should not be empty"
+  );
+  assert.ok(
+    Array.isArray(idea.acceptanceCriteria) && idea.acceptanceCriteria.length > 0,
+    "acceptanceCriteria should not be empty"
+  );
+  assert.ok(
+    Array.isArray(idea.helpfulNotes) && idea.helpfulNotes.length > 0,
+    "helpfulNotes should not be empty"
+  );
+}
+
+// existingTitles should filter out ideas whose suggested file is already referenced
+if (repoIssueIdeas.length > 0) {
+  const target = repoIssueIdeas[0];
+  const filtered = findRepoIssueIdeas([`Existing issue about ${target.suggestedFiles[0]}`]);
+  assert.ok(
+    !filtered.some((idea) => idea.suggestedFiles[0] === target.suggestedFiles[0]),
+    "existingTitles filter should exclude a matching suggestedFiles entry"
+  );
+}
 
 console.log("Smoke tests passed.");
