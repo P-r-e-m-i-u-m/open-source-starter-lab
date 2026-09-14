@@ -368,6 +368,24 @@ Keep your entry short and professional.
 - I worked on: docs: update commit message guide with recent real example (#305)
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @Roshan-Mallick
+
+- First merged PR: #323
+- I worked on: test: add issue fit finder coverage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @chaithanya-45
+
+- First merged PR: #336
+- I worked on: test: add weekly summary coverage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @NaDa042
+
+- First merged PR: #341
+- I worked on: docs: add guide for reading GitHub Actions failures
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.

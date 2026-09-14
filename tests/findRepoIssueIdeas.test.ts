@@ -28,14 +28,18 @@ for (const issue of issues) {
 }
 
 // Passing the paths of all discovered issues as existing titles
-// should prevent those issues from being suggested again.
+// should prevent those exact paths from being suggested again,
+// even if a large enough candidate pool means the total count stays the same.
 const existingTitles = issues.flatMap((issue) => issue.suggestedFiles);
+const knownPrimaryPaths = new Set(issues.map((issue) => issue.suggestedFiles[0]));
 
 const filteredIssues = findRepoIssueIdeas(existingTitles);
 
-assert.ok(
-  filteredIssues.length < issues.length,
-  "Known issue paths should be filtered out"
-);
+for (const issue of filteredIssues) {
+  assert.ok(
+    !knownPrimaryPaths.has(issue.suggestedFiles[0]),
+    `Known issue path ${issue.suggestedFiles[0]} should have been filtered out`
+  );
+}
 
 console.log("Find repo issue ideas tests passed.");
