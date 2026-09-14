@@ -145,6 +145,10 @@ if (command === "profiles") {
 
 That is all it takes. Keep new commands small and focused — one command should do one thing.
 
+## Keep it dependency-free when possible
+
+For a small command with a few flags, reuse the existing `readFlag()` helper instead of adding a new argument-parsing package. That keeps installation fast and makes the command easier for a first-time contributor to understand. Add a dependency only when the command’s needs genuinely outgrow this simple pattern.
+
 ## Checklist before opening your PR
 
 - [ ] New `printXxx()` function added above `main()`
