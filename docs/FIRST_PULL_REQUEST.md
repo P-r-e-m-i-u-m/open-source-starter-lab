@@ -122,6 +122,10 @@ If a command fails, do not guess or run destructive commands. Copy the full erro
 - what you expected to happen
 - what happened instead
 
+## Before You Open the Pull Request
+
+In the PR description, include what you changed, why it helps, and the result of `npm run check`. This gives reviewers enough context to understand and verify a small contribution without needing to reconstruct your workflow.
+
 ---
 ## Quick Reference
 
