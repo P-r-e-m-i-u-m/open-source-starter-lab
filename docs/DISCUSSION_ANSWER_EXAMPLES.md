@@ -1,67 +1,92 @@
 # Discussion Answer Examples
 
-## Example 1: Git Clone Error
+Good Discussion answers help a contributor take a safe next step without
+assuming details that have not been shared. Use these examples as a model.
 
-### Weak Answer
+## Example 1: Git clone error
 
-Run git clone again.
+### Weak answer
 
-### Strong Answer
+Run `git clone` again.
 
-Can you share the exact error message you received?
+### Strong answer
 
-If the repository is private, make sure you are signed in to GitHub and have permission to access it.
+Could you share the complete error message and confirm whether the repository
+is public or private?
 
-Try:
+If it is private, make sure that you are signed in to GitHub and have access
+to the repository. Then, from the folder where you want the project to be
+created, run:
 
+```bash
 git clone <repository-url>
+```
 
-If the error continues, paste the full output so the community can help diagnose the problem.
+Replace `<repository-url>` with the repository's HTTPS or SSH URL. If the
+command still fails, paste the full output (removing any tokens or passwords)
+so the community can help diagnose it.
 
 Why this is better:
 
-* Asks for clarification
-* Provides a safe command
-* Explains the next step
+- Asks for the information needed to diagnose the problem.
+- Uses a command with a clear placeholder instead of an incomplete command.
+- Explains what to share next and protects sensitive credentials.
 
-## Example 2: Build Failure
+## Example 2: Build failure
 
-### Weak Answer
+### Weak answer
 
 Your setup is wrong.
 
-### Strong Answer
+### Strong answer
 
-Could you tell us which operating system you are using and share the output from the build command?
+Which operating system and Node.js version are you using? Please also share
+the command output, including the first error message.
 
-Try running:
+From the repository root, try:
 
+```bash
 npm run check
+```
 
-If the command fails, include the full error message. This helps others understand the environment and identify the root cause.
+If it fails, include the complete error output and mention any setup steps you
+changed. That gives others enough context to identify the environment or root
+cause without guessing.
 
 Why this is better:
 
-* Avoids assumptions
-* Requests useful information
-* Gives a safe verification command
+- Avoids blaming the contributor or assuming the cause.
+- Requests useful, reproducible details.
+- Gives one safe verification command and explains why the output matters.
 
-## Example 3: First Contribution Question
+## Example 3: First contribution question
 
-### Weak Answer
+### Weak answer
 
 Just pick any issue.
 
-### Strong Answer
+### Strong answer
 
-If you are new to the project, start with issues labeled "good first issue" or "help wanted."
+If you are new to the project, start with an issue labeled `good first issue`
+or `help wanted`. Before making changes, read the contribution guide and leave
+a short comment on the issue to say that you would like to work on it.
 
-Before starting, read the contribution guide and comment on the issue to let maintainers know you would like to work on it.
-
-If you are unsure whether an issue matches your skill level, ask a clarifying question before beginning.
+If the issue does not say which file to edit or how to verify the change, ask
+a clarifying question before starting. For example: “Which file should I
+update, and which command should I run to verify the change?”
 
 Why this is better:
 
-* Gives actionable guidance
-* Encourages communication
-* Helps contributors choose appropriate work
+- Gives actionable guidance for choosing an issue.
+- Encourages communication with maintainers.
+- Shows when a clarifying question is the right next step.
+
+## Quick checklist
+
+Before posting a Discussion answer, check that it:
+
+- states any important assumption;
+- asks a clarifying question when the report is incomplete;
+- gives commands in fenced code blocks, with placeholders where needed;
+- avoids requesting passwords, access tokens, or other secrets; and
+- tells the reader what information to share if the suggested step fails.

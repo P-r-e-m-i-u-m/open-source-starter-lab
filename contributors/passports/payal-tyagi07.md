@@ -6,8 +6,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #140
-- Latest merged PR: #208
-- Primary skill: docs
+- Latest merged PR: #205
+- Primary skill: testing
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -34,9 +34,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #208 | 2026-08-29 | docs | docs: add problem proposer section to website | #172 |
 
+| #205 | 2026-09-08 | testing | test(cli): add unknown command handling tests | #122 |
+
 ## Suggested Next Step
 
-- Second PR route: #203 Add a small accessibility pass for website buttons
+- Second PR route: #275 Give scripts/findRepoIssueIdeas.ts some real test coverage
 
 ## Share Line
 

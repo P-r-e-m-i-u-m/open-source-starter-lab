@@ -285,20 +285,6 @@ export const dailyIssueBacklog: DailyIssue[] = [
     helpfulNotes: ["This is a good task for someone who wants to improve product messaging without changing app logic."]
   },
   {
-    title: "Add tests for daily issue duplicate handling",
-    labels: ["daily starter issue", "testing", "developer tooling", "help wanted", "time: 1 hour", "level: second-pr"],
-    context: "The daily issue bot should skip open duplicate titles and keep looking for fresh backlog items.",
-    goal: "Add a small test or fixture that protects duplicate-skipping behavior.",
-    suggestedFiles: ["tests/smoke.test.ts", "scripts/createDailyIssue.ts"],
-    acceptanceCriteria: [
-      "Cover the case where selected daily issues already exist",
-      "Assert the bot can still find fresh candidates",
-      "Keep the test independent from live GitHub API calls",
-      "Run `npm run check`"
-    ],
-    helpfulNotes: ["Do not call GitHub in the test. Extracting a tiny pure helper is okay if it keeps the test simple."]
-  },
-  {
     title: "Improve the live issue feed empty state",
     labels: ["daily starter issue", "developer tooling", "help wanted", "time: 30 min", "level: second-pr"],
     context: "The website live feed currently shows a simple empty message when GitHub returns no issues.",
