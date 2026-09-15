@@ -4,10 +4,10 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 1 - First PR Contributor
+- Level: 2 - Returning Contributor
 - First merged PR: #261
-- Latest merged PR: #261
-- Primary skill: docs
+- Latest merged PR: #366
+- Primary skill: testing
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -16,9 +16,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | --- | --- | --- | --- | --- |
 | #261 | 2026-09-06 | docs | docs: add guide for debugging failing workflows | #257 |
 
+| #366 | 2026-09-15 | testing | test: cover multiple unknown-command cases and a known-good control | #361 |
+
 ## Suggested Next Step
 
-- Second PR route: #258 Write the recipe: Handling GitHub API Errors Gracefully
+- Second PR route: #370 Let createDailyIssue.ts run without touching GitHub
 
 ## Share Line
 
