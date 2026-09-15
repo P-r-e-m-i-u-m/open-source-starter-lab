@@ -14,6 +14,7 @@ import {
 import { mentor } from "./plugins/mentor.js";
 import { suggest } from "./plugins/suggest.js";
 import { leaderboard } from "./plugins/leaderboard.js";
+import { timeline } from "./plugins/timeline.js";
 import { welcome } from "./plugins/welcome.js";
 
 function readFlag(name: string): string | undefined {
@@ -182,6 +183,18 @@ async function printMentor(): Promise<void> {
   await mentor(skill);
 }
 
+function printTimeline(): void {
+  const contributor = readFlag("--contributor");
+
+  if (!contributor) {
+    throw new Error(
+      "Usage: oss-lab timeline --contributor <github-username>"
+    );
+  }
+
+  timeline(contributor);
+}
+
 function printWelcome(): void {
   const contributor = readFlag("--contributor");
   const issue = readFlag("--issue");
@@ -256,6 +269,11 @@ async function main(): Promise<void> {
     return;
   }
 
+  if (command === "timeline") {
+    printTimeline();
+    return;
+  }
+
   if (command === "welcome") {
     printWelcome();
     return;
@@ -294,6 +312,9 @@ async function main(): Promise<void> {
     );
     console.log(
       "  oss-lab mentor --skill docs"
+    );
+    console.log(
+      "  oss-lab timeline --contributor <github-username>"
     );
     console.log(
       "  oss-lab welcome --contributor <name> --issue <issue>"
