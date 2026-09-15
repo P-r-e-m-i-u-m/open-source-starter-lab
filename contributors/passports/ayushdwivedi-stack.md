@@ -4,10 +4,10 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 2 - Returning Contributor
+- Level: 3 - Trust Builder
 - First merged PR: #261
-- Latest merged PR: #366
-- Primary skill: testing
+- Latest merged PR: #373
+- Primary skill: cli
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -18,9 +18,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #366 | 2026-09-15 | testing | test: cover multiple unknown-command cases and a known-good control | #361 |
 
+| #373 | 2026-09-15 | cli | Add dry run flag | #370 |
+
 ## Suggested Next Step
 
-- Second PR route: #370 Let createDailyIssue.ts run without touching GitHub
+- Second PR route: #368 Add a contributor proof example for website changes
 
 ## Share Line
 
