@@ -8,6 +8,7 @@ import { chooseIssueCandidates, selectFreshDailyIssues, type ExistingIssue } fro
 import { scoreDailyIssue } from "../src/issueQuality.js";
 import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
 import { timeline } from "../src/plugins/timeline.js";
+import { welcome } from "../src/plugins/welcome.js";
 
 const beginner = buildChecklist("beginner");
 assert.equal(beginner.profile, "beginner");
@@ -53,6 +54,20 @@ const progressionSteps = listProgressionSteps();
 assert.equal(progressionSteps.length, 5);
 assert.equal(normalizeContributorLevel("second pr"), "second-pr");
 
+const welcomeMessages: string[] = [];
+const originalWelcomeLog = console.log;
+console.log = (message: string) => welcomeMessages.push(message);
+
+welcome("Test Contributor", "Implement welcome plugin");
+
+console.log = originalWelcomeLog;
+assert.ok(welcomeMessages.includes("Welcome, Test Contributor!"));
+assert.ok(
+  welcomeMessages.includes(
+    "Your first claimed issue is: Implement welcome plugin"
+  )
+);
+
 const maintainerShadow = getProgressionStep("maintainer-shadow");
 assert.ok(maintainerShadow.labels.includes("level: maintainer-practice"));
 assert.ok(maintainerShadow.proof.some((item) => item.includes("before/after")));
@@ -79,6 +94,22 @@ assert.ok(profilesOutput.includes("beginner"));
 assert.ok(profilesOutput.includes("maintainer"));
 assert.ok(profilesOutput.includes("first or early open-source contribution"));
 assert.ok(profilesOutput.includes("reviewing, organizing, or supporting contributor work"));
+
+const welcomeOutput = execFileSync(
+  "node",
+  [
+    cliPath,
+    "welcome",
+    "--contributor",
+    "Aman",
+    "--issue",
+    "#385"
+  ],
+  { encoding: "utf8" }
+);
+
+assert.ok(welcomeOutput.includes("Welcome, Aman!"));
+assert.ok(welcomeOutput.includes("Your first claimed issue is: #385"));
 
 const helpOutput = execFileSync("node", [cliPath, "help"], {
   encoding: "utf8"

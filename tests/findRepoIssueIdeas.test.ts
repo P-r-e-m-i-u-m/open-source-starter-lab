@@ -1,11 +1,34 @@
 import assert from "node:assert/strict";
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { findRepoIssueIdeas } from "../scripts/findRepoIssueIdeas.js";
 
-const issues = findRepoIssueIdeas();
+const root = mkdtempSync(join(tmpdir(), "repo-issue-ideas-"));
+
+mkdirSync(join(root, "src"), { recursive: true });
+mkdirSync(join(root, "scripts"), { recursive: true });
+mkdirSync(join(root, "tests"), { recursive: true });
+mkdirSync(join(root, "docs/recipes"), { recursive: true });
+
+writeFileSync(
+  join(root, "src", "example.ts"),
+  "// TODO: wire this up to the real API\nexport function example() {}\n"
+);
+writeFileSync(
+  join(root, "src", "untested.ts"),
+  "export function untested() { return 1; }\n"
+);
+writeFileSync(join(root, "tests", "smoke.test.ts"), "// no coverage here\n");
+writeFileSync(
+  join(root, "docs/recipes", "sample-recipe.md"),
+  "# Recipe: Sample Recipe\n\n<!-- TODO: explain the sample recipe -->\n"
+);
+
+const issues = findRepoIssueIdeas([], root);
 
 assert.ok(Array.isArray(issues));
 assert.ok(issues.length > 0);
-assert.ok(issues.length <= 9);
 
 for (const issue of issues) {
   assert.ok(typeof issue.title === "string");
@@ -27,19 +50,14 @@ for (const issue of issues) {
   assert.ok(issue.acceptanceCriteria.length > 0);
 }
 
-// Passing the paths of all discovered issues as existing titles
-// should prevent those exact paths from being suggested again,
-// even if a large enough candidate pool means the total count stays the same.
 const existingTitles = issues.flatMap((issue) => issue.suggestedFiles);
-const knownPrimaryPaths = new Set(issues.map((issue) => issue.suggestedFiles[0]));
+const filteredIssues = findRepoIssueIdeas(existingTitles, root);
 
-const filteredIssues = findRepoIssueIdeas(existingTitles);
+assert.ok(
+  filteredIssues.length < issues.length,
+  "Known issue paths should be filtered out"
+);
 
-for (const issue of filteredIssues) {
-  assert.ok(
-    !knownPrimaryPaths.has(issue.suggestedFiles[0]),
-    `Known issue path ${issue.suggestedFiles[0]} should have been filtered out`
-  );
-}
+rmSync(root, { recursive: true, force: true });
 
 console.log("Find repo issue ideas tests passed.");

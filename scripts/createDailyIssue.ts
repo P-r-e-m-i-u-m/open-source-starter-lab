@@ -1,3 +1,4 @@
+import { readFileSync } from "fs";
 import { findRepoIssueIdeas } from "./findRepoIssueIdeas.js";
 import { type DailyIssue } from "../src/dailyIssueBacklog.js";
 import {
@@ -228,6 +229,44 @@ async function closeStaleDailyIssues(
   }
 }
 
+async function closeResolvedDailyIssues(
+  owner: string,
+  repo: string,
+  token: string,
+  openIssues: GitHubIssue[]
+): Promise<void> {
+  for (const issue of openIssues) {
+    const issueNumber = issue.html_url.split("/").pop();
+    const filePathMatch = issue.title.match(/`?([\w./-]+\.(ts|md))`?/);
+    if (!filePathMatch) continue;
+
+    const filePath = filePathMatch[1];
+
+    let stillNeedsWork = true;
+    try {
+      const content = readFileSync(filePath, "utf-8");
+      const hasTodo = /\/\/\s*(TODO|FIXME)[:\s]/.test(content) || /<!--\s*TODO[:\s]/.test(content);
+
+      if (issue.title.startsWith("Close out the TODO") && !hasTodo) {
+        stillNeedsWork = false;
+      }
+      if (issue.title.startsWith("Write the recipe") && !hasTodo) {
+        stillNeedsWork = false;
+      }
+    } catch {
+      stillNeedsWork = false;
+    }
+
+    if (!stillNeedsWork) {
+      await githubRequest(`/repos/${owner}/${repo}/issues/${issueNumber}`, token, {
+        method: "PATCH",
+        body: JSON.stringify({ state: "closed" })
+      });
+      console.log(`Closed already-resolved issue: ${issue.html_url}`);
+    }
+  }
+}
+
 async function main(): Promise<void> {
   const dryRun = hasFlag("--dry-run");
   const issueCount = getIssueCount();
@@ -261,6 +300,7 @@ async function main(): Promise<void> {
   const openDailyIssues = await fetchOpenDailyStarterIssues(owner, repo, token);
 
   await closeStaleDailyIssues(owner, repo, token, openDailyIssues);
+  await closeResolvedDailyIssues(owner, repo, token, openDailyIssues);
 
   const stillOpenDailyIssues = await fetchOpenDailyStarterIssues(owner, repo, token);
 

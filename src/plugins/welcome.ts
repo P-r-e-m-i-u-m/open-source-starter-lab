@@ -1,4 +1,5 @@
-// TODO: Implement a command that generates a personalized welcome message for a new contributor based on their first claimed issue.
-export function welcome(): void {
-  console.log("Not implemented yet.");
+export function welcome(contributor: string, issue: string): void {
+  console.log(`Welcome, ${contributor}!`);
+  console.log(`Your first claimed issue is: ${issue}`);
+  console.log("We're glad to have you contributing to Open Source Starter Lab!");
 }
