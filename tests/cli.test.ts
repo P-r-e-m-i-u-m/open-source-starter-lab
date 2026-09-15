@@ -1,79 +1,35 @@
-import { spawnSync } from 'node:child_process';
+import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
+import path from "node:path";
 
-function testUnknownCommand(): void {
-  console.log('🧪 Running: Unknown command test...');
+const cliPath = path.resolve("dist/src/cli.js");
 
-  const tests = [
-    {
-      name: 'unknown command fails with non-zero exit code',
-      args: ['dist/src/cli.js', 'definitely-invalid-command'],
-      check: (result: any) => {
-        if (result.status === 0) {
-          throw new Error('Expected non-zero exit code');
-        }
-        return true;
-      }
-    },
-    {
-      name: 'error message contains "Unknown command"',
-      args: ['dist/src/cli.js', 'notARealCommand'],
-      check: (result: any) => {
-        const output = `${result.stdout}${result.stderr}`;
-        if (!output.includes('Unknown command')) {
-          throw new Error(`Expected "Unknown command" in output. Got: ${output}`);
-        }
-        return true;
-      }
-    },
-    {
-      name: 'unknown command output is not empty',
-      args: ['dist/src/cli.js', 'foo'],
-      check: (result: any) => {
-        const output = `${result.stdout}${result.stderr}`;
-        if (output === '') {
-          throw new Error('Expected non-empty output');
-        }
-        return true;
-      }
-    },
-    {
-      name: 'error message includes the unknown command name',
-      args: ['dist/src/cli.js', 'my-special-command'],
-      check: (result: any) => {
-        const output = `${result.stdout}${result.stderr}`;
-        if (!output.includes('my-special-command')) {
-          throw new Error(`Expected command name in error message. Got: ${output}`);
-        }
-        return true;
-      }
-    }
-  ];
-
-  let passed = 0;
-  let failed = 0;
-
-  for (const test of tests) {
-    try {
-      const result = spawnSync(
-        process.execPath,
-        test.args,
-        { encoding: 'utf8', timeout: 5000 }
-      );
-      test.check(result);
-      console.log(`  ✅ ${test.name}`);
-      passed++;
-    } catch (error: any) {
-      console.error(`  ❌ ${test.name}: ${error.message}`);
-      failed++;
-    }
+function runCliExpectFailure(args: string[]): string {
+  try {
+    execFileSync("node", [cliPath, ...args], { encoding: "utf8", stdio: "pipe" });
+    assert.fail(`Expected "oss-lab ${args.join(" ")}" to exit with a non-zero status code.`);
+    return "";
+  } catch (error) {
+    return String(error);
   }
-
-  if (failed > 0) {
-    console.error(`\n❌ ${failed} test(s) failed, ${passed} passed`);
-    process.exit(1);
-  }
-
-  console.log(`\n✅ All ${passed} tests passed! 🎉`);
 }
 
-testUnknownCommand();
+for (const badCommand of ["not-a-real-command", "chekc", "--bogus-flag"]) {
+  const output = runCliExpectFailure([badCommand]);
+
+  assert.ok(
+    output.includes("Unknown command"),
+    `Expected output for "${badCommand}" to include "Unknown command"`
+  );
+  assert.ok(
+    output.includes(badCommand),
+    `Expected output for "${badCommand}" to name the command that was rejected`
+  );
+}
+
+// A known command should still exit cleanly, so the failures above are
+// actually about the command name and not a broken CLI.
+const profilesOutput = execFileSync("node", [cliPath, "profiles"], { encoding: "utf8" });
+assert.ok(profilesOutput.includes("beginner"));
+
+console.log("Unknown command CLI tests passed.");
