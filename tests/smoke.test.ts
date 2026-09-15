@@ -7,7 +7,6 @@ import { dailyIssueBacklog } from "../src/dailyIssueBacklog.js";
 import { chooseIssueCandidates, selectFreshDailyIssues, type ExistingIssue } from "../src/dailyIssueSelection.js";
 import { scoreDailyIssue } from "../src/issueQuality.js";
 import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
-import { timeline } from "../src/plugins/timeline.js";
 import { welcome } from "../src/plugins/welcome.js";
 
 const beginner = buildChecklist("beginner");
@@ -118,6 +117,7 @@ const helpOutput = execFileSync("node", [cliPath, "help"], {
 assert.ok(helpOutput.includes("oss-lab fit --skill docs --time 30m"));
 assert.ok(helpOutput.includes("Skills: html-css, javascript, python, docs, testing, git"));
 assert.ok(helpOutput.includes("Time: 15m, 30m, 1h"));
+assert.ok(helpOutput.includes("oss-lab timeline --contributor <github-username>"));
 
 let unknownCommandOutput = "";
 
@@ -256,15 +256,15 @@ const everythingOpen = selectFreshDailyIssues(
 assert.equal(everythingOpen.fresh.length, 0);
 assert.equal(everythingOpen.duplicates.length, dailyIssueBacklog.length);
 
-let capturedTimelineOutput = "";
-const originalLog = console.log;
-console.log = (msg: string) => {
-  capturedTimelineOutput = msg;
-};
+const timelineOutput = execFileSync(
+  "node",
+  [cliPath, "timeline", "--contributor", "4studiolabs"],
+  { encoding: "utf8" }
+);
 
-timeline();
-
-console.log = originalLog;
-assert.equal(capturedTimelineOutput, "Not implemented yet.");
+assert.ok(timelineOutput.includes("@4studiolabs first merged PR timeline"));
+assert.ok(timelineOutput.includes("2026-09-07 -> #279"));
+assert.ok(timelineOutput.includes("2026-09-10 -> #283"));
+assert.ok(timelineOutput.includes("2026-09-10 -> #304"));
 
 console.log("Smoke tests passed.");
