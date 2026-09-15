@@ -4,10 +4,10 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 1 - First PR Contributor
+- Level: 2 - Returning Contributor
 - First merged PR: #354
-- Latest merged PR: #354
-- Primary skill: testing
+- Latest merged PR: #367
+- Primary skill: open source workflow
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -16,9 +16,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | --- | --- | --- | --- | --- |
 | #354 | 2026-09-14 | testing | test: add CLI test for unknown command name in error message | #307 |
 
+| #367 | 2026-09-15 | open source workflow | Chore/contributor card template 364 | No linked issue was found in the PR body. |
+
 ## Suggested Next Step
 
-- Second PR route: #356 Give scripts/findRepoIssueIdeas.ts some real test coverage
+- Second PR route: #370 Let createDailyIssue.ts run without touching GitHub
 
 ## Share Line
 
