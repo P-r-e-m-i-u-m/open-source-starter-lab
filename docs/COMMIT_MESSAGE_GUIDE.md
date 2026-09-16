@@ -63,6 +63,23 @@ docs: refine first PR review guide and clean up formatting (#179)
 
 The second message tells the reviewer what documentation was changed instead of only saying that something was updated.
 
+## Quick examples for first-time contributors
+
+If you are unsure which prefix to use, choose one based on the purpose of your change:
+
+- `docs:` for guides, README updates, explanations, or documentation cleanup
+- `fix:` for typos, broken links, logic errors, or small bug corrections
+- `feat:` for new commands, pages, or user-visible features
+- `test:` for adding or updating tests
+
+Examples:
+
+```text
+docs: add quickstart steps for first-time contributors
+fix: correct broken clone command in setup guide
+feat: add profiles command to CLI
+test: add coverage for unknown command handling
+
 ## Quick checklist
 
 Before committing, ask:
