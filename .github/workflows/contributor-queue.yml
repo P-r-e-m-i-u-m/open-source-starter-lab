@@ -38,7 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     concurrency:
-      group: contributor-queue-${{ github.repository }}
+      # Scope by event so issue_comment (e.g. PR welcome) does not cancel
+      # the pull_request_target check that GitHub attaches to the PR.
+      group: contributor-queue-${{ github.repository }}-${{ github.event_name }}
       cancel-in-progress: true
 
     steps:
