@@ -404,6 +404,36 @@ Keep your entry short and professional.
 - I worked on: Implement personalized welcome message for contributors
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @AkashGowdaNC
+
+- First merged PR: #392
+- I worked on: docs: add website PR proof example
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @Parinita-13
+
+- First merged PR: #391
+- I worked on: docs: clarify npm ci and npm install usage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @gODtECH-Ctl-Create
+
+- First merged PR: #377
+- I worked on: feat: add contributor PR streak
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @pansuriyaForam
+
+- First merged PR: #381
+- I worked on: test: add welcome pull request coverage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @chenzeyan54-commits
+
+- First merged PR: #404
+- I worked on: fix: resolve #403 Close out the TODO in src/plugins/badges.ts
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.

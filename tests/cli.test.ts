@@ -14,7 +14,7 @@ function runCliExpectFailure(args: string[]): string {
   }
 }
 
-for (const badCommand of ["not-a-real-command", "chekc", "--bogus-flag"]) {
+for (const badCommand of ["unknown-command", "not-a-real-command", "chekc", "--bogus-flag"]) {
   const output = runCliExpectFailure([badCommand]);
 
   assert.ok(
