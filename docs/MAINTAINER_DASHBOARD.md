@@ -28,6 +28,7 @@ Every daily issue should include context, goal, suggested files, acceptance crit
 
 | Contributor | Level | Contributions | Proof |
 | --- | --- | --- | --- |
+| @payal-tyagi07 | 3 - Trust Builder | 10 | [passport](../contributors/passports/payal-tyagi07.md) |
 | @meenakshirejeendran | 3 - Trust Builder | 9 | [passport](../contributors/passports/meenakshirejeendran.md) |
 | @payal-tyagi07 | 3 - Trust Builder | 7 | [passport](../contributors/passports/payal-tyagi07.md) |
 | @Naveen-babu-t | 3 - Trust Builder | 6 | [passport](../contributors/passports/naveen-babu-t.md) |
@@ -57,10 +58,10 @@ Every daily issue should include context, goal, suggested files, acceptance crit
 
 ## Monthly Contributor Spotlight
 
-This month, the spotlight is on @meenakshirejeendran.
+This month, the spotlight is on @payal-tyagi07.
 
 - Passport level: 3 - Trust Builder
-- Verified contributions: 9
+- Verified contributions: 10
 - Why it matters: visible proof helps new contributors trust that the repo is active and reviewable.
 
 ## This Month's Maintainer Focus

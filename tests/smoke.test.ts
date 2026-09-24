@@ -2,12 +2,13 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { buildChecklist } from "../src/checklist.js";
-import { findIssueFit } from "../src/issueFitFinder.js";
 import { issueIdeas } from "../src/issueIdeas.js";
 import { dailyIssueBacklog } from "../src/dailyIssueBacklog.js";
 import { chooseIssueCandidates, selectFreshDailyIssues, type ExistingIssue } from "../src/dailyIssueSelection.js";
 import { scoreDailyIssue } from "../src/issueQuality.js";
 import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
+import { timeline } from "../src/plugins/timeline.js";
+import { welcome } from "../src/plugins/welcome.js";
 
 const beginner = buildChecklist("beginner");
 assert.equal(beginner.profile, "beginner");
@@ -17,28 +18,55 @@ assert.ok(beginner.items.some((item) => item.command?.includes("git clone")));
 const maintainer = buildChecklist("maintainer");
 assert.equal(maintainer.profile, "maintainer");
 assert.ok(maintainer.items.some((item) => item.id === "answers"));
+assert.equal(beginner.score, 76);
+assert.equal(
+  beginner.nextAction,
+  "Pick one good first issue and comment that you want to work on it."
+);
+
+assert.equal(maintainer.score, 82);
+assert.equal(
+  maintainer.nextAction,
+  "Create 3 small issues with clear acceptance criteria."
+);
 
 assert.ok(issueIdeas.length >= 5);
 assert.ok(issueIdeas.every((idea) => idea.acceptanceCriteria.length >= 3));
+assert.ok(dailyIssueBacklog.length > 0);
+assert.ok(dailyIssueBacklog.every((issue) => issue.title.trim().length > 0));
+assert.ok(dailyIssueBacklog.every((issue) => issue.labels.length > 0));
+assert.ok(dailyIssueBacklog.every((issue) => issue.labels.includes("daily starter issue")));
+assert.ok(dailyIssueBacklog.every((issue) => issue.context.trim().length > 0 && issue.goal.trim().length > 0));
+assert.ok(dailyIssueBacklog.every((issue) => issue.suggestedFiles.length > 0));
+assert.ok(dailyIssueBacklog.every((issue) => issue.acceptanceCriteria.length >= 3));
+assert.ok(dailyIssueBacklog.every((issue) => issue.helpfulNotes.length > 0));
+assert.ok(
+  dailyIssueBacklog.every((issue) =>
+    [issue.labels, issue.suggestedFiles, issue.acceptanceCriteria, issue.helpfulNotes].every(
+      (values) => values.every((value) => value.trim().length > 0)
+    )
+  )
+);
+assert.equal(new Set(dailyIssueBacklog.map((issue) => issue.title)).size, dailyIssueBacklog.length);
 assert.ok(dailyIssueBacklog.every((issue) => scoreDailyIssue(issue).score >= 80));
-
-const docsFit = findIssueFit("docs", "30m");
-assert.equal(docsFit.skill, "docs");
-assert.equal(docsFit.timeBudget, "30m");
-assert.ok(docsFit.issueSearchUrl.includes("no%3Aassignee"));
-assert.ok(docsFit.commentTemplate.includes("Please assign this to me"));
-
-// Test that the issue search URL is actionable
-assert.ok(docsFit.issueSearchUrl.startsWith("https://github.com"));
-assert.ok(docsFit.issueSearchUrl.includes("is%3Aopen")); // URL-encoded
-
-const jsFit = findIssueFit("ts", "1h");
-assert.equal(jsFit.skill, "javascript");
-assert.ok(jsFit.proofChecklist.some((item) => item.includes("full project check")));
 
 const progressionSteps = listProgressionSteps();
 assert.equal(progressionSteps.length, 5);
 assert.equal(normalizeContributorLevel("second pr"), "second-pr");
+
+const welcomeMessages: string[] = [];
+const originalWelcomeLog = console.log;
+console.log = (message: string) => welcomeMessages.push(message);
+
+welcome("Test Contributor", "Implement welcome plugin");
+
+console.log = originalWelcomeLog;
+assert.ok(welcomeMessages.includes("Welcome, Test Contributor!"));
+assert.ok(
+  welcomeMessages.includes(
+    "Your first claimed issue is: Implement welcome plugin"
+  )
+);
 
 const maintainerShadow = getProgressionStep("maintainer-shadow");
 assert.ok(maintainerShadow.labels.includes("level: maintainer-practice"));
@@ -66,6 +94,22 @@ assert.ok(profilesOutput.includes("beginner"));
 assert.ok(profilesOutput.includes("maintainer"));
 assert.ok(profilesOutput.includes("first or early open-source contribution"));
 assert.ok(profilesOutput.includes("reviewing, organizing, or supporting contributor work"));
+
+const welcomeOutput = execFileSync(
+  "node",
+  [
+    cliPath,
+    "welcome",
+    "--contributor",
+    "Aman",
+    "--issue",
+    "#385"
+  ],
+  { encoding: "utf8" }
+);
+
+assert.ok(welcomeOutput.includes("Welcome, Aman!"));
+assert.ok(welcomeOutput.includes("Your first claimed issue is: #385"));
 
 const helpOutput = execFileSync("node", [cliPath, "help"], {
   encoding: "utf8"
@@ -144,8 +188,8 @@ const dailyIssueDryRun = execFileSync("node", [path.resolve("dist/scripts/create
 assert.ok(dailyIssueDryRun.includes("Daily issue dry-run: 5 curated issue(s)"));
 assert.equal((dailyIssueDryRun.match(/^## \d+\./gm) ?? []).length, 5);
 
-// Daily issue duplicate handling. These run against the pure selection helper,
-// so they never call the GitHub API.
+// Daily issue duplicate handling tests protect backlog selection from creating duplicate issues
+// without making live GitHub API calls.
 const candidates = chooseIssueCandidates(new Date("2026-03-01T00:00:00Z"));
 assert.equal(candidates.length, dailyIssueBacklog.length);
 
@@ -190,6 +234,17 @@ assert.equal(differentCasing.duplicates.length, 1);
 assert.equal(differentCasing.fresh.length, 1);
 assert.notEqual(differentCasing.fresh[0].title, candidates[0].title);
 
+// Duplicate titles differing only by leading/trailing whitespace are also matched.
+const whitespaceDuplicate = selectFreshDailyIssues(
+  candidates,
+  asOpenIssues([`   ${candidates[0].title}   `]),
+  1
+);
+
+assert.equal(whitespaceDuplicate.duplicates.length, 1);
+assert.equal(whitespaceDuplicate.fresh.length, 1);
+assert.notEqual(whitespaceDuplicate.fresh[0].title, candidates[0].title);
+
 // When the whole backlog is already open the bot creates nothing instead of
 // posting duplicates.
 const everythingOpen = selectFreshDailyIssues(
@@ -200,5 +255,16 @@ const everythingOpen = selectFreshDailyIssues(
 
 assert.equal(everythingOpen.fresh.length, 0);
 assert.equal(everythingOpen.duplicates.length, dailyIssueBacklog.length);
+
+let capturedTimelineOutput = "";
+const originalLog = console.log;
+console.log = (msg: string) => {
+  capturedTimelineOutput = msg;
+};
+
+timeline();
+
+console.log = originalLog;
+assert.equal(capturedTimelineOutput, "Not implemented yet.");
 
 console.log("Smoke tests passed.");

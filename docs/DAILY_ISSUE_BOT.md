@@ -30,7 +30,7 @@ Maintainers can run it from GitHub:
 2. Select `Daily Issue Bot`.
 3. Click `Run workflow`.
 
-Local dry run:
+Local dry run — prints each candidate issue's title, labels, quality score, and full formatted body without creating anything or calling the GitHub API (no `GITHUB_TOKEN` required):
 
 ```bash
 npm run issue:daily

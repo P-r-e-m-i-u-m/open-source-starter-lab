@@ -4,10 +4,10 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 2 - Returning Contributor
+- Level: 3 - Trust Builder
 - First merged PR: #193
-- Latest merged PR: #194
-- Primary skill: docs
+- Latest merged PR: #215
+- Primary skill: testing
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -18,9 +18,13 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #194 | 2026-08-22 | docs | docs: add guide explaining squash merge and commit history | #182 |
 
+| #212 | 2026-08-29 | docs | docs: add guide for fixing rejected git push errors | #115 |
+
+| #215 | 2026-08-30 | testing | test: add whitespace normalization test for daily issue duplicate handling | #165 |
+
 ## Suggested Next Step
 
-- Second PR route: #184 Catch workflows stuck in queued for hours
+- Second PR route: #222 Catch workflows stuck in queued for hours
 
 ## Share Line
 

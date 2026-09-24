@@ -36,7 +36,23 @@ This helps visitors decide what the repo does before reading every section.
 - Keep screenshots focused on real repo behavior.
 - Use helpful alt text.
 - Replace existing screenshots only when the UI meaning changes.
+## Website PR Proof
 
+When your PR changes a page on the website, include proof that the page still works.
+
+A good website PR proof usually includes:
+
+* A screenshot of the changed section
+* A note about loading the page locally
+* The output of `npm run site:check-links`
+
+Example:
+
+> Loaded the homepage locally with `npm run site:dev`. The new link appears below the hero title.
+> Ran `npm run site:check-links` and all links passed.
+> Screenshot attached.
+
+You do not need a screenshot for every small change. Describing what you loaded and what you checked is often enough.
 ## Refresh Checklist
 
 When the website changes meaningfully:

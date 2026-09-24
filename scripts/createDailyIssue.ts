@@ -1,3 +1,5 @@
+import { readFileSync } from "fs";
+import { findRepoIssueIdeas } from "./findRepoIssueIdeas.js";
 import { type DailyIssue } from "../src/dailyIssueBacklog.js";
 import {
   chooseIssueCandidates,
@@ -196,6 +198,75 @@ async function fetchAllDailyStarterIssues(owner: string, repo: string, token: st
   return issues;
 }
 
+async function closeStaleDailyIssues(
+  owner: string,
+  repo: string,
+  token: string,
+  openIssues: GitHubIssue[]
+): Promise<void> {
+  const STALE_DAYS = 14;
+  const now = Date.now();
+
+  for (const issue of openIssues) {
+    const issueNumber = issue.html_url.split("/").pop();
+
+    const detail = await githubRequest<{
+      number: number;
+      comments: number;
+      assignee: unknown;
+      created_at: string;
+    }>(`/repos/${owner}/${repo}/issues/${issueNumber}`, token);
+
+    const ageDays = (now - new Date(detail.created_at).getTime()) / 86_400_000;
+
+    if (ageDays >= STALE_DAYS && detail.comments === 0 && !detail.assignee) {
+      await githubRequest(`/repos/${owner}/${repo}/issues/${detail.number}`, token, {
+        method: "PATCH",
+        body: JSON.stringify({ state: "closed" })
+      });
+      console.log(`Closed stale unclaimed issue: ${issue.html_url}`);
+    }
+  }
+}
+
+async function closeResolvedDailyIssues(
+  owner: string,
+  repo: string,
+  token: string,
+  openIssues: GitHubIssue[]
+): Promise<void> {
+  for (const issue of openIssues) {
+    const issueNumber = issue.html_url.split("/").pop();
+    const filePathMatch = issue.title.match(/`?([\w./-]+\.(ts|md))`?/);
+    if (!filePathMatch) continue;
+
+    const filePath = filePathMatch[1];
+
+    let stillNeedsWork = true;
+    try {
+      const content = readFileSync(filePath, "utf-8");
+      const hasTodo = /\/\/\s*(TODO|FIXME)[:\s]/.test(content) || /<!--\s*TODO[:\s]/.test(content);
+
+      if (issue.title.startsWith("Close out the TODO") && !hasTodo) {
+        stillNeedsWork = false;
+      }
+      if (issue.title.startsWith("Write the recipe") && !hasTodo) {
+        stillNeedsWork = false;
+      }
+    } catch {
+      stillNeedsWork = false;
+    }
+
+    if (!stillNeedsWork) {
+      await githubRequest(`/repos/${owner}/${repo}/issues/${issueNumber}`, token, {
+        method: "PATCH",
+        body: JSON.stringify({ state: "closed" })
+      });
+      console.log(`Closed already-resolved issue: ${issue.html_url}`);
+    }
+  }
+}
+
 async function main(): Promise<void> {
   const dryRun = hasFlag("--dry-run");
   const issueCount = getIssueCount();
@@ -227,22 +298,30 @@ async function main(): Promise<void> {
   }
 
   const openDailyIssues = await fetchOpenDailyStarterIssues(owner, repo, token);
-  const allDailyIssues = await fetchAllDailyStarterIssues(owner, repo, token);
-  const { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), openDailyIssues, issueCount);
-  let createdCount = 0;
 
+  await closeStaleDailyIssues(owner, repo, token, openDailyIssues);
+  await closeResolvedDailyIssues(owner, repo, token, openDailyIssues);
+
+  const stillOpenDailyIssues = await fetchOpenDailyStarterIssues(owner, repo, token);
+
+  let { fresh, duplicates } = selectFreshDailyIssues(chooseIssueCandidates(), stillOpenDailyIssues, issueCount);
+
+  if (fresh.length < issueCount) {
+    const existingTitles = stillOpenDailyIssues.map((i) => i.title);
+    const repoIdeas = findRepoIssueIdeas(existingTitles).filter(
+      (idea) => scoreDailyIssue(idea).score >= 80
+    );
+    const topUp = selectFreshDailyIssues(repoIdeas, stillOpenDailyIssues, issueCount - fresh.length);
+    fresh = [...fresh, ...topUp.fresh];
+    duplicates = [...duplicates, ...topUp.duplicates];
+  }
+
+  let createdCount = 0;
   for (const duplicate of duplicates) {
     console.log(`Open daily issue already exists: ${duplicate.existing.html_url}`);
   }
-
   for (const issue of fresh) {
     await ensureLabels(owner, repo, token, issue.labels);
-
-    const previouslyUsed = issueAlreadyExists(allDailyIssues, issue.title);
-    if (previouslyUsed) {
-      console.log(`Reopening fresh slot for previously used issue title: ${issue.title}`);
-    }
-
     const created = await githubRequest<GitHubIssue>(`/repos/${owner}/${repo}/issues`, token, {
       method: "POST",
       body: JSON.stringify({
@@ -251,9 +330,8 @@ async function main(): Promise<void> {
         labels: issue.labels
       })
     });
-
     console.log(`Created daily issue: ${created.html_url}`);
-    allDailyIssues.push(created);
+    stillOpenDailyIssues.push(created);
     createdCount += 1;
   }
 

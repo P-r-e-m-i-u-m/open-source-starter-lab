@@ -230,6 +230,210 @@ Keep your entry short and professional.
 - I worked on: docs: add npm ci lockfile troubleshooting guide
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @jayasrivenkatachalam9
+
+- First merged PR: #214
+- I worked on: Docs: add guide for choosing a good first issue
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @vaishnavim052005-cloud
+
+- First merged PR: #213
+- I worked on: docs: improve finding issues guide
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @asmitagogate
+
+- First merged PR: #210
+- I worked on: docs: add commit message guide
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @o231152-cloud
+
+- First merged PR: #221
+- I worked on: docs: clarify cloning a fork for beginners
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @sudharaka2010
+
+- First merged PR: #224
+- I worked on: docs: link issue filtering guide from README
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @arman-borkhani
+
+- First merged PR: #229
+- I worked on: docs: add test commit message example
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @CloudyZeeshan
+
+- First merged PR: #232
+- I worked on: docs: improve choosing first issue guide
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @BHARATH-1105
+
+- First merged PR: #230
+- I worked on: Add How to Contribute section
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @sumitpshinde269-oss
+
+- First merged PR: #247
+- I worked on: test: add checklist score and nextAction coverage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @sharvesh0
+
+- First merged PR: #248
+- I worked on: test: add checklist tests
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @sunilsonumonu12
+
+- First merged PR: #262
+- I worked on: docs: add discussion answer examples
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @ayushdwivedi-stack
+
+- First merged PR: #261
+- I worked on: docs: add guide for debugging failing workflows
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @badrisatyam1-ctrl
+
+- First merged PR: #260
+- I worked on: docs: fill in handling-github-api-errors recipe
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @be-student
+
+- First merged PR: #270
+- I worked on: test: cover issue fit finder behavior
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @Ravikumar49
+
+- First merged PR: #277
+- I worked on: docs: add discussion-to-issue guidance
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @4studiolabs
+
+- First merged PR: #279
+- I worked on: test: cobertura de scoreDailyIssue (closes #272)
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @vedantp404
+
+- First merged PR: #280
+- I worked on: test: add daily issue selection coverage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @Prem759-0
+
+- First merged PR: #253
+- I worked on: docs: add pro tip to reading CI failures guide
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @JEISAMATHEW
+
+- First merged PR: #287
+- I worked on: docs: add test fixture recipe
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @DESPITEOFIT
+
+- First merged PR: #281
+- I worked on: test: add coverage for repo issue ideas
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @janhavip02
+
+- First merged PR: #301
+- I worked on: docs: link commit message guide
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @sohamroy06-eveningstar
+
+- First merged PR: #303
+- I worked on: docs: warn against destructive reset on rejected push
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @Alvin-keys
+
+- First merged PR: #310
+- I worked on: docs: update commit message guide with recent real example (#305)
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @Roshan-Mallick
+
+- First merged PR: #323
+- I worked on: test: add issue fit finder coverage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @chaithanya-45
+
+- First merged PR: #336
+- I worked on: test: add weekly summary coverage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @NaDa042
+
+- First merged PR: #341
+- I worked on: docs: add guide for reading GitHub Actions failures
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @DhyaneshwerVK
+
+- First merged PR: #354
+- I worked on: test: add CLI test for unknown command name in error message
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @Voyagerroc-Lab
+
+- First merged PR: #352
+- I worked on: fix: preserve queued workflow count
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @Ruvaaa
+
+- First merged PR: #337
+- I worked on: Implement personalized welcome message for contributors
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @AkashGowdaNC
+
+- First merged PR: #392
+- I worked on: docs: add website PR proof example
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @Parinita-13
+
+- First merged PR: #391
+- I worked on: docs: clarify npm ci and npm install usage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @gODtECH-Ctl-Create
+
+- First merged PR: #377
+- I worked on: feat: add contributor PR streak
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @pansuriyaForam
+
+- First merged PR: #381
+- I worked on: test: add welcome pull request coverage
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @chenzeyan54-commits
+
+- First merged PR: #404
+- I worked on: fix: resolve #403 Close out the TODO in src/plugins/badges.ts
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.

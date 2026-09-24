@@ -40,7 +40,7 @@ export function chooseIssueCandidates(date = new Date()): DailyIssue[] {
 }
 
 export function issueAlreadyExists(issues: ExistingIssue[], title: string): ExistingIssue | undefined {
-  return issues.find((issue) => issue.title.toLowerCase() === title.toLowerCase());
+  return issues.find((issue) => issue.title.trim().toLowerCase() === title.trim().toLowerCase());
 }
 
 /**
