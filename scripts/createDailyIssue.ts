@@ -269,26 +269,22 @@ async function closeResolvedDailyIssues(
 
 async function main(): Promise<void> {
   const dryRun = hasFlag("--dry-run");
-  const issueCount = getIssueCount();
-  const issues = chooseIssues(issueCount);
 
   if (dryRun) {
-    console.log(`Daily issue dry-run: ${issues.length} curated issue(s)`);
+    const issueCount = getIssueCount();
+    const candidates = chooseIssueCandidates();
+    const selected = candidates.slice(0, issueCount);
 
-    for (const [index, issue] of issues.entries()) {
-      const quality = scoreDailyIssue(issue);
-
-      console.log("");
-      console.log(`## ${index + 1}. ${issue.title}`);
+    console.log(`[DRY RUN] Selected ${selected.length} issue(s) without creating on GitHub:`);
+    for (const [index, issue] of selected.entries()) {
+      console.log(`\nIssue #${index + 1}:`);
+      console.log(`Title:  ${issue.title}`);
       console.log(`Labels: ${issue.labels.join(", ")}`);
-      console.log(`Quality: ${quality.score}/100 (${quality.rating})`);
-      console.log("");
-      console.log(formatBody(issue));
     }
-
     return;
   }
 
+  const issueCount = getIssueCount();
   const repository = requireEnv("GITHUB_REPOSITORY");
   const token = requireEnv("GITHUB_TOKEN");
   const [owner, repo] = repository.split("/");
