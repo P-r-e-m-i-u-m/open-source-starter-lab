@@ -440,6 +440,12 @@ Keep your entry short and professional.
 - I worked on: Improve queued workflow monitoring in automation health check
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @Hariharan18092006
+
+- First merged PR: #414
+- I worked on: docs: guide discussion to issue conversion
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
