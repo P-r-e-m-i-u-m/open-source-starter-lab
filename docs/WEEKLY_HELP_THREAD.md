@@ -19,15 +19,31 @@ I am stuck on:
 
 ### Transitioning Discussions to Issues
 
-When a GitHub Discussion surfaces a clear problem or feature request that needs action, a maintainer should transition it into a formal, structured issue. To ensure the context isn't lost, the new issue must capture the following details:
+When a Discussion surfaces a clear problem or feature request that needs action,
+a maintainer can turn it into a focused issue.
 
-* **Source Link:** A direct link to the original discussion thread for historical reference.
-* **Problem Statement:** A clear, concise description of the bug, gap, or feature request.
-* **Relevant Context:** Background information, system environments, or specific user constraints.
-* **Desired Outcome:** A definition of success showing what the completed task looks like.
-* **Evidence and Examples:** Any diagnostic logs, code snippets, or screenshots provided in the thread.
+Copy the useful context from the Discussion:
 
-* **Next Step:** A list of actionable tasks or steps to resolve the issue, including any dependencies or prerequisites.
+- **Source link:** Link to the original Discussion.
+- **Problem statement:** Summarize the problem, bug, or feature request.
+- **Relevant context:** Include important background, environment details, or
+  contributor constraints.
+- **Desired outcome:** Describe what a successful result looks like.
+- **Evidence:** Include useful logs, code snippets, screenshots, or examples.
+- **Next step:** List the actions needed to resolve the issue.
+
+#### Ready issue checklist
+
+Before creating the issue, check that it:
+
+- has a clear problem or requested outcome;
+- includes enough context for another contributor to understand it;
+- links back to the original Discussion;
+- has the `needs triage` label when scope still needs maintainer review; and
+- uses relevant skill labels, such as `documentation`, `testing`, or `python`.
+
+Keep the issue focused so a contributor can understand the task and its
+acceptance criteria without reading the entire Discussion.
 
 
 ## Maintainer Reply Style
