@@ -9,6 +9,13 @@ import { scoreDailyIssue } from "../src/issueQuality.js";
 import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
 import { timeline } from "../src/plugins/timeline.js";
 import { welcome } from "../src/plugins/welcome.js";
+import {
+  analyzePrBody,
+  buildComment,
+  formatCheck,
+  type GitHubPullRequest,
+  type PrQuality
+} from "../scripts/welcomePullRequest.js";
 
 const beginner = buildChecklist("beginner");
 assert.equal(beginner.profile, "beginner");
@@ -266,5 +273,96 @@ timeline();
 
 console.log = originalLog;
 assert.equal(capturedTimelineOutput, "Not implemented yet.");
+
+// scripts/welcomePullRequest.ts tests.
+// These only call the pure exported functions with fake data, so there are no
+// live network or GitHub API calls. Importing the module is safe because its
+// main() only runs when the file is executed directly.
+{
+  const samplePr: GitHubPullRequest = {
+    number: 123,
+    title: "docs: improve first PR guide",
+    body: null,
+    html_url: "https://github.com/example/repo/pull/123",
+    user: { login: "new-contributor", type: "User" },
+    base: { repo: { full_name: "example/repo" } }
+  };
+
+  const allPassed: PrQuality = {
+    hasWhatChanged: true,
+    hasTesting: true,
+    hasCheckCommand: true,
+    hasLinkedIssue: true
+  };
+
+  const nonePassed: PrQuality = {
+    hasWhatChanged: false,
+    hasTesting: false,
+    hasCheckCommand: false,
+    hasLinkedIssue: false
+  };
+
+  // analyzePrBody: a null or empty body passes nothing.
+  assert.deepEqual(analyzePrBody(null), nonePassed);
+  assert.deepEqual(analyzePrBody(""), nonePassed);
+
+  // analyzePrBody: a complete PR body passes every check.
+  const goodBody = [
+    "## What changed?",
+    "Updated the guide.",
+    "",
+    "## Testing",
+    "I ran npm run check.",
+    "",
+    "Closes #432"
+  ].join("\n");
+  assert.deepEqual(analyzePrBody(goodBody), allPassed);
+
+  // analyzePrBody: linked issue works with a full GitHub issue URL too.
+  assert.equal(
+    analyzePrBody("Fixes https://github.com/example/repo/issues/12").hasLinkedIssue,
+    true
+  );
+
+  // analyzePrBody: mentioning an issue number without a closing keyword is not a link.
+  assert.equal(analyzePrBody("Related to #432").hasLinkedIssue, false);
+
+  // formatCheck: renders a markdown checkbox.
+  assert.equal(formatCheck("Testing section", true), "- [x] Testing section");
+  assert.equal(formatCheck("Testing section", false), "- [ ] Testing section");
+
+  // buildComment: first PR with everything present gets the happy-path comment.
+  const happyComment = buildComment(samplePr, true, allPassed);
+  assert.ok(happyComment.includes("<!-- oss-lab-pr-welcome-guard -->"));
+  assert.ok(happyComment.includes("Thanks @new-contributor. I see this is your first PR here, welcome."));
+  assert.ok(happyComment.includes("This already has the main review signals I look for."));
+  assert.ok(happyComment.includes("- [x] Clear summary of what changed"));
+  assert.ok(happyComment.includes("- [x] Mentions `npm run check`"));
+  assert.ok(happyComment.includes("Nice work keeping the PR easy to follow."));
+  assert.ok(!happyComment.includes("Suggested next edit:"));
+  assert.ok(!happyComment.includes("Optional cleanup:"));
+
+  // buildComment: returning contributor with nothing present gets every suggestion.
+  const needsWorkComment = buildComment(samplePr, false, nonePassed);
+  assert.ok(needsWorkComment.includes("I picked this up for a quick review-readiness check."));
+  assert.ok(needsWorkComment.includes("A few small things will make this easier to review:"));
+  assert.ok(needsWorkComment.includes("- [ ] Clear summary of what changed"));
+  assert.ok(needsWorkComment.includes("Suggested next edit:"));
+  assert.ok(needsWorkComment.includes("- add a short `What changed` or `Summary` section"));
+  assert.ok(needsWorkComment.includes("- add a `Testing` section"));
+  assert.ok(needsWorkComment.includes("- paste the `npm run check` result when you have it"));
+  assert.ok(needsWorkComment.includes("Optional cleanup:"));
+  assert.ok(needsWorkComment.includes("Closes #issue-number"));
+  assert.ok(needsWorkComment.includes("No stress. Small PRs are supposed to be easy to adjust."));
+
+  // buildComment: only the linked issue is missing, so it is optional cleanup, not a required edit.
+  const onlyIssueMissing = buildComment(samplePr, false, { ...allPassed, hasLinkedIssue: false });
+  assert.ok(onlyIssueMissing.includes("Optional cleanup:"));
+  assert.ok(!onlyIssueMissing.includes("Suggested next edit:"));
+
+  // buildComment: falls back to "there" when the PR has no user.
+  const noUserComment = buildComment({ ...samplePr, user: null }, true, allPassed);
+  assert.ok(noUserComment.includes("Thanks @there."));
+}
 
 console.log("Smoke tests passed.");
