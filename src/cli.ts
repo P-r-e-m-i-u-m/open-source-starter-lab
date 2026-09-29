@@ -16,6 +16,7 @@ import { suggest } from "./plugins/suggest.js";
 import { leaderboard } from "./plugins/leaderboard.js";
 import { streak } from "./plugins/streak.js";
 import { welcome } from "./plugins/welcome.js";
+import { labelStats } from "./plugins/labelStats.js";
 
 function readFlag(name: string): string | undefined {
   const index = process.argv.indexOf(name);
@@ -279,6 +280,11 @@ async function main(): Promise<void> {
     return;
   }
 
+  if (command === "label-stats") {
+    await labelStats();
+    return;
+  }
+
   if (
     command === "help" ||
     command === "--help" ||
@@ -318,6 +324,9 @@ async function main(): Promise<void> {
     );
     console.log(
       "  oss-lab welcome --contributor <name> --issue <issue>"
+    );
+    console.log(
+      "  oss-lab label-stats"
     );
 
     return;
