@@ -52,21 +52,26 @@ Examples:
 
 Even a short note about what you tested is helpful for reviewers.
 
+## Example: Website Change
+
+Website changes need visual proof because reviewers cannot always load the page themselves.
+
+### Summary
+Updated the hero section on the homepage to include a link to the getting started guide.
+
+### Testing
+
+* Loaded the page locally with `npm run site:dev` and confirmed the new link appears
+* Ran `npm run site:check-links` to confirm no links are broken
+* Attached a screenshot of the updated hero section
+
+### Related Issue
+
+Closes #123
+
+A short screenshot or a note about what you loaded locally is usually enough. If you cannot add a screenshot, describe what you checked and mention `npm run site:check-links` if you ran it.
+
 ## Linking Issues
-
-If your pull request resolves an issue, link it using:
-
-```text
-Closes #issue-number
-```
-
-For example:
-
-```text
-Closes #44
-```
-
-GitHub will automatically link the issue and close it when the pull request is merged.
 
 ## Final Tip
 

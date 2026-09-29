@@ -3,6 +3,7 @@
 ## Why CI uses `npm ci` and not `npm install`
 
 `npm install` treats `package-lock.json` as a starting point: if the lockfile does not match `package.json`, it quietly updates the lockfile and installs whatever it decided was correct. `npm ci` treats the lockfile as the source of truth: it deletes `node_modules`, installs the exact versions recorded in the lockfile, and fails immediately if the lockfile and `package.json` disagree. That strictness is the point — CI must install the same dependency tree every run, so a build that passes today passes tomorrow. A failing `npm ci` in CI usually means the lockfile is out of date, not that your change is broken.
+In short, use `npm install` when you need to update or regenerate the lockfile during dependency changes. Use `npm ci` for clean,reproducible installs (such as CI) when `package-lock.json` is already in sync with `package.json`.
 
 ## The error
 

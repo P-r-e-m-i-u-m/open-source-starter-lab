@@ -14,6 +14,7 @@ import {
 import { mentor } from "./plugins/mentor.js";
 import { suggest } from "./plugins/suggest.js";
 import { leaderboard } from "./plugins/leaderboard.js";
+import { streak } from "./plugins/streak.js";
 import { timeline } from "./plugins/timeline.js";
 import { welcome } from "./plugins/welcome.js";
 
@@ -183,6 +184,18 @@ async function printMentor(): Promise<void> {
   await mentor(skill);
 }
 
+async function printStreak(): Promise<void> {
+  const contributor = readFlag("--contributor");
+
+  if (!contributor) {
+    throw new Error(
+      "Usage: oss-lab streak --contributor <github-username>"
+    );
+  }
+
+  await streak(contributor);
+}
+
 function printTimeline(): void {
   const contributor = readFlag("--contributor");
 
@@ -269,6 +282,11 @@ async function main(): Promise<void> {
     return;
   }
 
+  if (command === "streak") {
+    await printStreak();
+    return;
+  }
+
   if (command === "timeline") {
     printTimeline();
     return;
@@ -315,6 +333,9 @@ async function main(): Promise<void> {
     );
     console.log(
       "  oss-lab timeline --contributor <github-username>"
+    );
+    console.log(
+      "  oss-lab streak --contributor <github-username>"
     );
     console.log(
       "  oss-lab welcome --contributor <name> --issue <issue>"
