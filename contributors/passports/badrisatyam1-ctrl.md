@@ -6,8 +6,8 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #260
-- Latest merged PR: #330
-- Primary skill: cli
+- Latest merged PR: #437
+- Primary skill: testing
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -22,9 +22,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #330 | 2026-09-13 | cli | feat: add suggest issue command | #328 |
 
+| #437 | 2026-09-28 | testing | test: add coverage for welcomePullRequest script | #432 |
+
 ## Suggested Next Step
 
-- Second PR route: #345 Catch workflows stuck in queued for hours
+- Second PR route: #439 Let createDailyIssue.ts run without touching GitHub
 
 ## Share Line
 
