@@ -252,6 +252,21 @@ assert.equal(whitespaceDuplicate.duplicates.length, 1);
 assert.equal(whitespaceDuplicate.fresh.length, 1);
 assert.notEqual(whitespaceDuplicate.fresh[0].title, candidates[0].title);
 
+// A duplicate candidate should be skipped so the selector can continue
+// until it finds the requested number of fresh issues.
+const duplicateThenFresh = selectFreshDailyIssues(
+  candidates,
+  asOpenIssues([candidates[0].title]),
+  2
+);
+
+assert.equal(duplicateThenFresh.duplicates.length, 1);
+assert.equal(duplicateThenFresh.fresh.length, 2);
+assert.deepEqual(
+  duplicateThenFresh.fresh,
+  candidates.slice(1, 3)
+);
+
 // When the whole backlog is already open the bot creates nothing instead of
 // posting duplicates.
 const everythingOpen = selectFreshDailyIssues(
