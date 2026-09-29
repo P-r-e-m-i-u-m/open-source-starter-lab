@@ -1,13 +1,15 @@
+import { fileURLToPath } from "node:url";
+
 const apiBase = "https://api.github.com";
 const botMarker = "<!-- oss-lab-pr-welcome-guard -->";
 const issueSearchUrl = "https://github.com/P-r-e-m-i-u-m/open-source-starter-lab/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee";
 
-interface GitHubUser {
+export interface GitHubUser {
   login: string;
   type: string;
 }
 
-interface GitHubPullRequest {
+export interface GitHubPullRequest {
   number: number;
   title: string;
   body: string | null;
@@ -38,7 +40,7 @@ interface GitHubSearchResult {
   total_count: number;
 }
 
-interface PrQuality {
+export interface PrQuality {
   hasWhatChanged: boolean;
   hasTesting: boolean;
   hasCheckCommand: boolean;
@@ -87,7 +89,7 @@ async function githubRequest<T>(path: string, token: string, options: RequestIni
   return (await response.json()) as T;
 }
 
-function analyzePrBody(body: string | null): PrQuality {
+export function analyzePrBody(body: string | null): PrQuality {
   const text = body ?? "";
 
   return {
@@ -98,11 +100,11 @@ function analyzePrBody(body: string | null): PrQuality {
   };
 }
 
-function formatCheck(label: string, passed: boolean): string {
+export function formatCheck(label: string, passed: boolean): string {
   return `- [${passed ? "x" : " "}] ${label}`;
 }
 
-function buildComment(pr: GitHubPullRequest, firstPrHere: boolean, quality: PrQuality): string {
+export function buildComment(pr: GitHubPullRequest, firstPrHere: boolean, quality: PrQuality): string {
   const username = pr.user?.login ?? "there";
   const missing: string[] = [];
 
@@ -226,7 +228,9 @@ async function main(): Promise<void> {
   console.log(`Updated PR welcome guard on #${pr.number}.`);
 }
 
-main().catch((error: unknown) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exit(1);
-});
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main().catch((error: unknown) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exit(1);
+  });
+}
