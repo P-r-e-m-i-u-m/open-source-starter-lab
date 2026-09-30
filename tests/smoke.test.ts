@@ -8,6 +8,7 @@ import { chooseIssueCandidates, selectFreshDailyIssues, type ExistingIssue } fro
 import { scoreDailyIssue } from "../src/issueQuality.js";
 import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
 import { welcome } from "../src/plugins/welcome.js";
+import { exportStats } from "../src/plugins/exportStats.js";
 import {
   analyzePrBody,
   buildComment,
@@ -73,6 +74,16 @@ assert.ok(
     "Your first claimed issue is: Implement welcome plugin"
   )
 );
+
+const exportStatsMessages: string[] = [];
+const originalExportStatsLog = console.log;
+try {
+  console.log = (message: string) => exportStatsMessages.push(message);
+  exportStats();
+} finally {
+  console.log = originalExportStatsLog;
+}
+assert.deepEqual(exportStatsMessages, ["Not implemented yet."]);
 
 const maintainerShadow = getProgressionStep("maintainer-shadow");
 assert.ok(maintainerShadow.labels.includes("level: maintainer-practice"));
