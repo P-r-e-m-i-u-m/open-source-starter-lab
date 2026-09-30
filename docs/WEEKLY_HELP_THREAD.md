@@ -32,6 +32,26 @@ Copy the useful context from the Discussion:
 - **Evidence:** Include useful logs, code snippets, screenshots, or examples.
 - **Next step:** List the actions needed to resolve the issue.
 
+#### Turn a Discussion into a ready issue
+
+After collecting the useful Discussion context, shape it into a small,
+reviewable issue:
+
+1. **Focused goal:** State one outcome the contributor can complete.
+2. **Suggested files:** Point to the file or folder the contributor should
+   inspect first. If the exact file is uncertain, name the most relevant area.
+3. **Acceptance criteria:** List the specific result the PR must deliver.
+4. **Beginner time:** Add a realistic time estimate such as `15 min`, `30 min`,
+   or `1 hour`.
+5. **Contributor level:** Choose the level that matches the work, such as
+   `level: first-pr`, `level: trust-builder`, or `level: second-pr`.
+6. **Helpful notes:** Tell the contributor where to start, what to avoid
+   changing, and what evidence to include in the PR.
+
+A good ready issue should let a contributor understand the task, find a
+reasonable starting point, and know how the maintainer will verify the result
+without reading the entire Discussion.
+
 #### Ready issue checklist
 
 Before creating the issue, check that it:

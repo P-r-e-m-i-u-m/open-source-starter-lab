@@ -4,9 +4,9 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 1 - First PR Contributor
+- Level: 3 - Trust Builder
 - First merged PR: #377
-- Latest merged PR: #377
+- Latest merged PR: #376
 - Primary skill: open source workflow
 - Proof: merged pull request with maintainer review and project checks
 
@@ -16,9 +16,13 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | --- | --- | --- | --- | --- |
 | #377 | 2026-09-24 | open source workflow | feat: add contributor PR streak | #326 |
 
+| #374 | 2026-09-30 | open source workflow | feat: implement weekly repository summary | #333 |
+
+| #376 | 2026-09-30 | open source workflow | feat: add contributor PR timeline | #331 |
+
 ## Suggested Next Step
 
-- Second PR route: #398 Let createDailyIssue.ts run without touching GitHub
+- Second PR route: #450 Let createDailyIssue.ts run without touching GitHub
 
 ## Share Line
 

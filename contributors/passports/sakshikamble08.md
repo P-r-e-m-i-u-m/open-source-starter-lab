@@ -1,12 +1,12 @@
-# @anasalialamgir Open Source Trust Passport
+# @SakshiKamble08 Open Source Trust Passport
 
 This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 2 - Returning Contributor
-- First merged PR: #410
-- Latest merged PR: #413
+- Level: 1 - First PR Contributor
+- First merged PR: #443
+- Latest merged PR: #443
 - Primary skill: testing
 - Proof: merged pull request with maintainer review and project checks
 
@@ -14,9 +14,7 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | PR | Date | Skill | Work | Linked issues |
 | --- | --- | --- | --- | --- |
-| #410 | 2026-09-26 | testing | Improve queued workflow monitoring in automation health check | #402 |
-
-| #413 | 2026-09-30 | testing | Refactor tests for daily issue backlog structure | #407 |
+| #443 | 2026-09-30 | testing | test(cli): improve unknown command coverage | #438 |
 
 ## Suggested Next Step
 
@@ -24,4 +22,4 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Share Line
 
-I earned my Open Source Trust Passport by getting #410 merged in Open Source Starter Lab.
+I earned my Open Source Trust Passport by getting #443 merged in Open Source Starter Lab.

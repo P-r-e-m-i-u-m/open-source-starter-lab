@@ -15,7 +15,9 @@ import { mentor } from "./plugins/mentor.js";
 import { suggest } from "./plugins/suggest.js";
 import { leaderboard } from "./plugins/leaderboard.js";
 import { streak } from "./plugins/streak.js";
+import { timeline } from "./plugins/timeline.js";
 import { welcome } from "./plugins/welcome.js";
+import { weeklySummary } from "./plugins/weeklySummary.js";
 
 function readFlag(name: string): string | undefined {
   const index = process.argv.indexOf(name);
@@ -195,6 +197,18 @@ async function printStreak(): Promise<void> {
   await streak(contributor);
 }
 
+function printTimeline(): void {
+  const contributor = readFlag("--contributor");
+
+  if (!contributor) {
+    throw new Error(
+      "Usage: oss-lab timeline --contributor <github-username>"
+    );
+  }
+
+  timeline(contributor);
+}
+
 function printWelcome(): void {
   const contributor = readFlag("--contributor");
   const issue = readFlag("--issue");
@@ -264,6 +278,11 @@ async function main(): Promise<void> {
     return;
   }
 
+  if (command === "weekly-summary") {
+    await weeklySummary();
+    return;
+  }
+
   if (command === "mentor") {
     await printMentor();
     return;
@@ -271,6 +290,11 @@ async function main(): Promise<void> {
 
   if (command === "streak") {
     await printStreak();
+    return;
+  }
+
+  if (command === "timeline") {
+    printTimeline();
     return;
   }
 
@@ -311,7 +335,13 @@ async function main(): Promise<void> {
       "  oss-lab leaderboard"
     );
     console.log(
+      "  oss-lab weekly-summary"
+    );
+    console.log(
       "  oss-lab mentor --skill docs"
+    );
+    console.log(
+      "  oss-lab timeline --contributor <github-username>"
     );
     console.log(
       "  oss-lab streak --contributor <github-username>"
