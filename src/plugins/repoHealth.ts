@@ -1,4 +1,13 @@
-// TODO: Implement a command that prints a repo health score based on open issue count, stale PR count, and daily bot uptime.
-export function repoHealth(): void {
-  console.log("Not implemented yet.");
-}
+import { expect, test } from "@jest/globals";
+import { repoHealth } from "../src/plugins/repoHealth.js";
+
+test("repoHealth logs not implemented message", () => {
+  const logs: string[] = [];
+  const originalLog = console.log;
+  console.log = (...args: unknown[]) => logs.push(args.join(" "));
+  
+  expect(() => repoHealth()).not.toThrow();
+  
+  console.log = originalLog;
+  expect(logs).toContain("Not implemented yet.");
+});
