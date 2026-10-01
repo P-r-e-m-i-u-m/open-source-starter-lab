@@ -83,7 +83,11 @@ try {
 } finally {
   console.log = originalExportStatsLog;
 }
-assert.deepEqual(exportStatsMessages, ["Not implemented yet."]);
+assert.equal(exportStatsMessages.length, 1);
+assert.ok(
+  exportStatsMessages[0].includes("Stats successfully exported"),
+  "Expected exportStats() to log a success message"
+);
 
 const maintainerShadow = getProgressionStep("maintainer-shadow");
 assert.ok(maintainerShadow.labels.includes("level: maintainer-practice"));
