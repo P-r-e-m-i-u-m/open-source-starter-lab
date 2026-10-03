@@ -119,4 +119,18 @@ assert.equal(
   ].join("\n")
 );
 
+// Streaks greater than one day format with the plural "days" label.
+assert.equal(
+  formatPrStreak("octocat", {
+    days: 3,
+    latestMergeDate: "2026-09-16"
+  }),
+  [
+    "@octocat merged PR streak",
+    "",
+    "Current streak: 3 days",
+    "Most recent merge: 2026-09-16"
+  ].join("\n")
+);
+
 console.log("Contributor PR streak tests passed.");
