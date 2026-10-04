@@ -12,6 +12,7 @@ The CLI gives beginners and maintainers a quick checklist.
 | `profiles` | Prints available checklist profiles (`beginner` and `maintainer`) with a short explanation of each. | Use this to discover which profile fits your role before running `check --profile`. |
 | `fit [--skill <skill>] [--time <time>]` | Finds an issue path matching your skill and time budget. | Use this to get tailored issue suggestions, search links, and proof checklists. |
 | `next [--level <level>]` | Shows next steps on the contributor progression path. | Use this after merging PRs to progress toward maintainer tasks. |
+| `label-stats` | Aggregates and displays the distribution of issue labels across the backlog. | Use this to find active labels and popular starter topics. |
 
 ## Beginner Checklist
 
@@ -223,6 +224,25 @@ Proof checklist:
 
 Comment to paste:
 Hi! I would like to work on this issue. I have read the contributing guidelines and can submit a PR within 24 hours.
+```
+
+## Issue Label Statistics
+
+```bash
+node dist/src/cli.js label-stats
+```
+
+Example output:
+
+```text
+Issue Label Statistics (24 total backlog issues):
+
+1. daily starter issue (24 issues)
+2. documentation (18 issues)
+3. good first issue (15 issues)
+4. beginner friendly (12 issues)
+5. time: 30 min (10 issues)
+6. level: first-pr (8 issues)
 ```
 
 ## Troubleshooting
