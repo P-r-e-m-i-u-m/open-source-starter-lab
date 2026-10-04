@@ -16,3 +16,19 @@ test("unknown CLI command exits unsuccessfully with a useful message", () => {
   assert.match(`${result.stdout}${result.stderr}`, /Unknown command/);
 });
 
+test("fit --help outputs accurate accepted skills list", () => {
+  const result = spawnSync(
+    "node",
+    [cliPath, "fit", "--help"],
+    { encoding: "utf8" }
+  );
+
+  assert.equal(result.status, 0);
+  assert.match(
+    result.stdout,
+    /Accepted Skills:\s*\n\s*html-css, javascript, python, docs, testing, git/
+  );
+  assert.doesNotMatch(result.stdout, /beginner, intermediate, advanced/);
+});
+
+

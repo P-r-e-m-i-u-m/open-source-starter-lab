@@ -83,9 +83,11 @@ function printIssueFit(): void {
     );
 
     console.log("Accepted Skills:");
-    console.log("  beginner, intermediate, advanced");
     console.log(
-      "  (examples: html-css, javascript, typescript, python, docs, testing, git)\n"
+      "  html-css, javascript, python, docs, testing, git"
+    );
+    console.log(
+      "  (aliases: html, css, js, ts, typescript, py, documentation, writing, test, github)\n"
     );
 
     console.log("Accepted Time Budgets:");
