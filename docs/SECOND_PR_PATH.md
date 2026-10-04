@@ -26,7 +26,7 @@ For your second PR, try to include:
 
 ## Good Second PR Examples
 
-- Add one missing test assertion for an existing CLI behavior.
+- Add one missing test assertion for an existing CLI behavior (see the [recipe on finding and adding missing tests](recipes/finding-and-adding-missing-tests.md)).
 - Improve a confusing command output message.
 - Turn a vague issue into a clearer checklist.
 - Add one example to a guide that already exists.
