@@ -53,8 +53,8 @@ node dist/src/cli.js fit --skill javascript --time 1h
 
 **Accepted Skills:**
 
-* beginner, intermediate, advanced
-* examples: `html-css`, `javascript`, `typescript`, `python`, `docs`, `testing`, `git`
+* `html-css`, `javascript`, `python`, `docs`, `testing`, `git`
+* (aliases: `html`, `css`, `js`, `ts`, `typescript`, `py`, `documentation`, `writing`, `test`, `github`)
 
 **Accepted Time Budgets:**
 

@@ -72,10 +72,14 @@ function issueMatchesSkill(
   return skillTerms[skill].some((term) => text.includes(term));
 }
 
-function extractTip(body: string | undefined, skill: ContributorSkill): string {
+export function extractTip(
+  body: string | undefined,
+  skill: ContributorSkill
+): string {
   const cleaned = (body ?? "")
     .replace(/^\s*>\s*/gm, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/<!--[\s\S]*?-->/g, "")
     .replace(/@\w[\w-]*/g, "")
     .replace(/\s+/g, " ")
     .trim();

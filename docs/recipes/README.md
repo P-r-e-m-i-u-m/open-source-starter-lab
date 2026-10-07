@@ -4,6 +4,7 @@ Short, practical guides for common tasks in this repo. Each recipe below is a st
 
 - [Writing a GitHub Action From Scratch](./writing-a-github-action.md)
 - [Adding a New CLI Subcommand](./adding-a-cli-subcommand.md)
+- [Finding and Adding Missing Test Assertions](./finding-and-adding-missing-tests.md)
 - [Writing a Good Test Fixture](./writing-a-test-fixture.md)
 - [Handling GitHub API Errors Gracefully](./handling-github-api-errors.md)
 - [Writing Clearer Error Messages](./improving-error-messages.md)

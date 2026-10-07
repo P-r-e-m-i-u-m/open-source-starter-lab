@@ -500,6 +500,18 @@ Keep your entry short and professional.
 - I worked on: docs: add Anurag contributor card
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @Harshiita24
+
+- First merged PR: #473
+- I worked on: test: cover plural days in formatPrStreak
+- I learned: how a focused pull request becomes a visible open-source contribution
+
+### @MassGethu
+
+- First merged PR: #487
+- I worked on: fix: hide internal marker from mentor tips
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
