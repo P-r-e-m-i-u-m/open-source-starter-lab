@@ -22,6 +22,17 @@ Before marking an issue as ready for contributors, ensure it includes the follow
 - [ ] **Labels Applied:**
   - [ ] `needs triage` (to flag for maintainer review)
   - [ ] A relevant `skill: ...` label (e.g., `skill: docs` for documentation tasks)
+  ### From Discussion to Ready Issue
+
+When a useful Discussion comment needs follow-up work:
+
+1. Copy the original Discussion link and the useful problem context.
+2. Summarize the desired outcome and include relevant evidence.
+3. Turn the idea into one focused goal with clear acceptance criteria.
+4. Add `needs triage` if the scope still needs maintainer review.
+5. Add the relevant skill label, then verify the issue is small enough to finish.
+
+Before publishing, use the Ready-Issue Checklist above.
 
 ### Worked Example: From Discussion to Ready Issue
 
