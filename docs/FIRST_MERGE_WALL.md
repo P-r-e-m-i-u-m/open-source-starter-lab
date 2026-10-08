@@ -524,6 +524,12 @@ Keep your entry short and professional.
 - I worked on: help-wanted: stake + contribute for #490
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @iamcipherdev
+
+- First merged PR: #493
+- I worked on: docs: explain how to register a new test in CONTRIBUTING.md
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
