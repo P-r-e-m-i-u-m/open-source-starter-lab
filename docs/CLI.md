@@ -13,6 +13,7 @@ The CLI gives beginners and maintainers a quick checklist.
 | `fit [--skill <skill>] [--time <time>]` | Finds an issue path matching your skill and time budget. | Use this to get tailored issue suggestions, search links, and proof checklists. |
 | `next [--level <level>]` | Shows next steps on the contributor progression path. | Use this after merging PRs to progress toward maintainer tasks. |
 | `label-stats` | Aggregates and displays the distribution of issue labels across the backlog. | Use this to find active labels and popular starter topics. |
+| `badges [--prs <count>] [--docs-prs <count>]` | Displays earned contributor milestone badges based on PR counts. | Use this to inspect your milestone badges and see what to unlock next. |
 
 ## Beginner Checklist
 
@@ -243,6 +244,22 @@ Issue Label Statistics (24 total backlog issues):
 4. beginner friendly (12 issues)
 5. time: 30 min (10 issues)
 6. level: first-pr (8 issues)
+```
+
+## Contributor Badges
+
+```bash
+node dist/src/cli.js badges
+node dist/src/cli.js badges --prs 1
+node dist/src/cli.js badges --prs 5 --docs-prs 1
+```
+
+Example output:
+
+```text
+Badges earned (2/3):
+- First PR: Opened your first pull request.
+- Docs Contributor: Improved the documentation with a pull request.
 ```
 
 ## Troubleshooting
