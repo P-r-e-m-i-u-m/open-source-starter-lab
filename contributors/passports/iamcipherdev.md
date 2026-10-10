@@ -4,10 +4,10 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 1 - First PR Contributor
+- Level: 2 - Returning Contributor
 - First merged PR: #493
-- Latest merged PR: #493
-- Primary skill: docs
+- Latest merged PR: #498
+- Primary skill: testing
 - Proof: merged pull request with maintainer review and project checks
 
 ## Verified Contributions
@@ -16,9 +16,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 | --- | --- | --- | --- | --- |
 | #493 | 2026-10-08 | docs | docs: explain how to register a new test in CONTRIBUTING.md | #479 |
 
+| #498 | 2026-10-10 | testing | test: add test coverage for welcome plugin | #424 |
+
 ## Suggested Next Step
 
-- Second PR route: #491 Give src/plugins/labelStats.ts some real test coverage
+- Second PR route: #504 Give src/plugins/leaderboard.ts some real test coverage
 
 ## Share Line
 
