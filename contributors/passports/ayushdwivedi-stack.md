@@ -6,7 +6,7 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 - Level: 3 - Trust Builder
 - First merged PR: #261
-- Latest merged PR: #373
+- Latest merged PR: #500
 - Primary skill: cli
 - Proof: merged pull request with maintainer review and project checks
 
@@ -20,9 +20,11 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | #373 | 2026-09-15 | cli | Add dry run flag | #370 |
 
+| #500 | 2026-10-10 | cli | feat(cli): add badges command to inspect contributor badges (#481) | #481 |
+
 ## Suggested Next Step
 
-- Second PR route: #368 Add a contributor proof example for website changes
+- Second PR route: #504 Give src/plugins/leaderboard.ts some real test coverage
 
 ## Share Line
 
