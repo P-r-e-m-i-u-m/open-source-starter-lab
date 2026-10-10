@@ -1,12 +1,12 @@
-# @iamcipherdev Open Source Trust Passport
+# @Suhas1010 Open Source Trust Passport
 
 This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Current Level
 
-- Level: 2 - Returning Contributor
-- First merged PR: #493
-- Latest merged PR: #498
+- Level: 1 - First PR Contributor
+- First merged PR: #505
+- Latest merged PR: #505
 - Primary skill: testing
 - Proof: merged pull request with maintainer review and project checks
 
@@ -14,9 +14,7 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 | PR | Date | Skill | Work | Linked issues |
 | --- | --- | --- | --- | --- |
-| #493 | 2026-10-08 | docs | docs: explain how to register a new test in CONTRIBUTING.md | #479 |
-
-| #498 | 2026-10-10 | testing | test: add test coverage for welcome plugin | #424 |
+| #505 | 2026-10-10 | testing | test: cover mentor plugin workflow | No linked issue was found in the PR body. |
 
 ## Suggested Next Step
 
@@ -24,4 +22,4 @@ This passport records reviewed, merged contributions in Open Source Starter Lab.
 
 ## Share Line
 
-I earned my Open Source Trust Passport by getting #493 merged in Open Source Starter Lab.
+I earned my Open Source Trust Passport by getting #505 merged in Open Source Starter Lab.

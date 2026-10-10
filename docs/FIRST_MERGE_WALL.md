@@ -542,6 +542,12 @@ Keep your entry short and professional.
 - I worked on: docs: explain converting discussions into issues
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @Suhas1010
+
+- First merged PR: #505
+- I worked on: test: cover mentor plugin workflow
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
