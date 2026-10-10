@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { extractTip } from "../src/plugins/mentor.js";
+import { extractTip,mentor } from "../src/plugins/mentor.js";
 
 // Strips internal HTML comments
 assert.equal(
@@ -60,5 +60,57 @@ const longSentence = "A".repeat(170) + ". Second sentence.";
 const truncated = extractTip(longSentence, "testing");
 assert.equal(truncated.length, 160);
 assert.equal(truncated, "A".repeat(157) + "...");
+
+// Tests the main mentor workflow without contacting GitHub.
+const originalFetch = globalThis.fetch;
+const originalLog = console.log;
+const output: string[] = [];
+
+globalThis.fetch = async (input) => {
+  const url = String(input);
+
+  if (url.includes("/issues/comments?")) {
+    return new Response(
+      JSON.stringify([
+        {
+          body: "Write focused JavaScript tests.",
+          user: { login: "test-mentor", type: "User" },
+          issue_url: "https://api.github.com/repos/P-r-e-m-i-u-m/open-source-starter-lab/issues/123"
+        }
+      ]),
+      { status: 200 }
+    );
+  }
+
+  if (url.endsWith("/issues/123")) {
+    return new Response(
+      JSON.stringify({
+        number: 123,
+        title: "Add JavaScript tests",
+        body: "Improve test coverage.",
+        state: "open",
+        labels: [{ name: "level: second-pr" }]
+      }),
+      { status: 200 }
+    );
+  }
+
+  throw new Error(`Unexpected URL: ${url}`);
+};
+
+console.log = (...args: unknown[]) => {
+  output.push(args.join(" "));
+};
+
+try {
+  await mentor("javascript");
+
+  assert.ok(output.some((line) => line.includes("@test-mentor")));
+  assert.ok(output.some((line) => line.includes("Write focused JavaScript tests.")));
+} finally {
+  globalThis.fetch = originalFetch;
+  console.log = originalLog;
+}
+
 
 console.log("Mentor tests passed.");
