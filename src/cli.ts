@@ -19,6 +19,7 @@ import { timeline } from "./plugins/timeline.js";
 import { welcome } from "./plugins/welcome.js";
 import { weeklySummary } from "./plugins/weeklySummary.js";
 import { labelStats } from "./plugins/labelStats.js";
+import { badges } from "./plugins/badges.js";
 
 function readFlag(name: string): string | undefined {
   const index = process.argv.indexOf(name);
@@ -225,6 +226,50 @@ function printWelcome(): void {
   welcome(contributor, issue);
 }
 
+function printBadges(): void {
+  const isHelp =
+    process.argv.includes("--help") ||
+    process.argv.includes("-h");
+
+  if (isHelp) {
+    console.log("Contributor Badges - Help\n");
+    console.log(
+      "Usage:\n  oss-lab badges [--prs <count>] [--docs-prs <count>]\n"
+    );
+    console.log("Options:");
+    console.log("  --prs <count>        Number of total pull requests opened");
+    console.log("  --docs-prs <count>   Number of documentation pull requests opened\n");
+    console.log("Examples:");
+    console.log("  oss-lab badges");
+    console.log("  oss-lab badges --prs 1");
+    console.log("  oss-lab badges --prs 5 --docs-prs 1");
+    return;
+  }
+
+  const prsFlag = readFlag("--prs");
+  const docsPrsFlag = readFlag("--docs-prs");
+
+  const pullRequests = prsFlag !== undefined ? Number(prsFlag) : 0;
+  const docsPullRequests = docsPrsFlag !== undefined ? Number(docsPrsFlag) : 0;
+
+  if (Number.isNaN(pullRequests) || pullRequests < 0 || !Number.isInteger(pullRequests)) {
+    throw new Error(
+      "Usage: oss-lab badges [--prs <count>] [--docs-prs <count>]"
+    );
+  }
+
+  if (Number.isNaN(docsPullRequests) || docsPullRequests < 0 || !Number.isInteger(docsPullRequests)) {
+    throw new Error(
+      "Usage: oss-lab badges [--prs <count>] [--docs-prs <count>]"
+    );
+  }
+
+  badges({
+    pullRequests,
+    docsPullRequests,
+  });
+}
+
 async function main(): Promise<void> {
   const command = process.argv[2] ?? "check";
 
@@ -311,6 +356,11 @@ async function main(): Promise<void> {
     return;
   }
 
+  if (command === "badges") {
+    printBadges();
+    return;
+  }
+
   if (
     command === "help" ||
     command === "--help" ||
@@ -359,6 +409,9 @@ async function main(): Promise<void> {
     );
     console.log(
       "  oss-lab label-stats"
+    );
+    console.log(
+      "  oss-lab badges [--prs <count>] [--docs-prs <count>]"
     );
 
     return;
