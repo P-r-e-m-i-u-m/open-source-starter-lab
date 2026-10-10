@@ -1,5 +1,9 @@
 import assert from "node:assert/strict";
-import { parseContributorTimeline } from "../src/plugins/timeline.js";
+import {
+  getContributorTimeline,
+  parseContributorTimeline,
+  timeline
+} from "../src/plugins/timeline.js";
 
 const contents = `
 | #304 | 2026-09-10 | merged | Add timeline command |
@@ -38,5 +42,61 @@ const manyEntries = parseContributorTimeline(`
 `);
 
 assert.equal(manyEntries.length, 5);
+
+// getContributorTimeline tests
+// Returns empty array for invalid usernames
+assert.deepEqual(getContributorTimeline(""), []);
+assert.deepEqual(getContributorTimeline("invalid username!"), []);
+assert.deepEqual(getContributorTimeline("@user/with/slashes"), []);
+
+// Returns empty array for non-existent contributor passport file
+assert.deepEqual(getContributorTimeline("non-existent-contributor-xyz"), []);
+
+// Returns parsed timeline entries for existing contributor passport
+const premEntries = getContributorTimeline("p-r-e-m-i-u-m");
+assert.ok(premEntries.length > 0);
+assert.equal(premEntries[0].prNumber, 77);
+assert.equal(premEntries[0].date, "2026-06-04");
+
+// Handles leading @ symbol properly for existing contributor
+const premWithAt = getContributorTimeline("@P-r-e-m-i-u-m");
+assert.deepEqual(premWithAt, premEntries);
+
+// timeline CLI output tests
+const originalLog = console.log;
+
+// Logs error message when username is invalid
+const invalidLogMessages: string[] = [];
+try {
+  console.log = (message: string) => invalidLogMessages.push(message);
+  timeline("invalid username!");
+} finally {
+  console.log = originalLog;
+}
+assert.deepEqual(invalidLogMessages, ["Provide a valid GitHub username."]);
+
+// Logs notice when contributor has no verified merged PRs
+const missingLogMessages: string[] = [];
+try {
+  console.log = (message: string) => missingLogMessages.push(message);
+  timeline("non-existent-contributor-xyz");
+} finally {
+  console.log = originalLog;
+}
+assert.deepEqual(missingLogMessages, [
+  "@non-existent-contributor-xyz first merged PR timeline\n",
+  "No verified merged pull requests found for this contributor."
+]);
+
+// Logs formatted list for contributor with verified merged PRs
+const validLogMessages: string[] = [];
+try {
+  console.log = (message: string) => validLogMessages.push(message);
+  timeline("p-r-e-m-i-u-m");
+} finally {
+  console.log = originalLog;
+}
+assert.equal(validLogMessages[0], "@p-r-e-m-i-u-m first merged PR timeline\n");
+assert.ok(validLogMessages[1].startsWith("1. 2026-06-04 -> #77 -> "));
 
 console.log("Timeline tests passed.");
