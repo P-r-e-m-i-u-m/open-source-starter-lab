@@ -100,3 +100,71 @@ assert.equal(validLogMessages[0], "@p-r-e-m-i-u-m first merged PR timeline\n");
 assert.ok(validLogMessages[1].startsWith("1. 2026-06-04 -> #77 -> "));
 
 console.log("Timeline tests passed.");
+
+// Empty input returns no entries
+assert.deepEqual(parseContributorTimeline(""), []);
+
+// Malformed and incomplete rows are ignored
+assert.deepEqual(
+  parseContributorTimeline(`
+| #10 | 2026-01-01 | merged |
+| #11 | 2026-01-02 |
+| #12 | invalid-date | merged | Invalid date |
+| not-a-number | 2026-01-03 | merged | Invalid PR |
+`),
+  []
+);
+
+// PR numbers must contain digits only
+assert.deepEqual(
+  parseContributorTimeline(`
+| #abc | 2026-01-01 | merged | Invalid PR |
+| #12x | 2026-01-02 | merged | Invalid PR |
+| #13 | 2026-01-03 | merged | Valid PR |
+`),
+  [
+    {
+      prNumber: 13,
+      date: "2026-01-03",
+      title: "Valid PR"
+    }
+  ]
+);
+
+// Equal dates are sorted by ascending PR number
+assert.deepEqual(
+  parseContributorTimeline(`
+| #30 | 2026-01-01 | merged | Third |
+| #10 | 2026-01-01 | merged | First |
+| #20 | 2026-01-01 | merged | Second |
+`),
+  [
+    { prNumber: 10, date: "2026-01-01", title: "First" },
+    { prNumber: 20, date: "2026-01-01", title: "Second" },
+    { prNumber: 30, date: "2026-01-01", title: "Third" }
+  ]
+);
+
+// Entries are sorted before the five-entry limit is applied
+const limitedEntries = parseContributorTimeline(`
+| #6 | 2026-01-06 | merged | Sixth |
+| #5 | 2026-01-05 | merged | Fifth |
+| #4 | 2026-01-04 | merged | Fourth |
+| #3 | 2026-01-03 | merged | Third |
+| #2 | 2026-01-02 | merged | Second |
+| #1 | 2026-01-01 | merged | First |
+`);
+
+assert.deepEqual(
+  limitedEntries.map((entry) => entry.prNumber),
+  [1, 2, 3, 4, 5]
+);
+
+// Whitespace and uppercase usernames are normalized
+assert.deepEqual(
+  getContributorTimeline("  @P-r-e-m-i-u-m  "),
+  premEntries
+);
+
+console.log("Additional timeline tests passed.");
+
