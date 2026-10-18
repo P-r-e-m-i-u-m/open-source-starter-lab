@@ -119,7 +119,9 @@ async function fetchLiveIssues() {
       throw new Error("Failed to fetch issues.");
     }
     
-    const issues = await response.json();
+    // GitHub's issues endpoint includes pull requests, so filter before
+    // deciding whether there are any issues to display.
+    const issues = (await response.json()).filter(issue => !issue.pull_request);
     
     // Clear loading state
     feedElement.innerHTML = "<p><span>&gt;</span> fetching open issues from GitHub API...</p><p class=\"terminal-success\">200 OK</p>";
@@ -150,9 +152,6 @@ if (issues.length === 0) {
     }
 
 issues.forEach(issue => {
-  // Don't show PRs, only issues
-  if (issue.pull_request) return;
-
   const isAssigned = issue.assignees && issue.assignees.length > 0;
   const statusColor = isAssigned ? "terminal-status-magenta" : "terminal-status-cyan";
   const statusText = isAssigned ? "CLAIMED" : "AVAILABLE";
