@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { extractTip,mentor } from "../src/plugins/mentor.js";
+import { extractTip, mentor } from "../src/plugins/mentor.js";
 
 // Strips internal HTML comments
 assert.equal(
@@ -65,31 +65,48 @@ assert.equal(truncated, "A".repeat(157) + "...");
 const originalFetch = globalThis.fetch;
 const originalLog = console.log;
 const output: string[] = [];
+const issueBase = "https://api.github.com/repos/P-r-e-m-i-u-m/open-source-starter-lab/issues";
+const commentsUrl = `${issueBase}/comments?sort=created&direction=desc&per_page=50`;
+const requestedUrls: string[] = [];
 
 globalThis.fetch = async (input) => {
   const url = String(input);
+  requestedUrls.push(url);
 
-  if (url.includes("/issues/comments?")) {
+  if (url === commentsUrl) {
     return new Response(
       JSON.stringify([
         {
           body: "Write focused JavaScript tests.",
+          user: { login: "automation", type: "Bot" },
+          issue_url: `${issueBase}/100`
+        },
+        // Closed (twice), PR, missing mentor level, wrong skill, match, then unused.
+        ...[101, 101, 102, 103, 104, 123, 124].map((number) => ({
+          body: number === 104
+            ? "Write a concise guide."
+            : "Write focused JavaScript tests.",
           user: { login: "test-mentor", type: "User" },
-          issue_url: "https://api.github.com/repos/P-r-e-m-i-u-m/open-source-starter-lab/issues/123"
-        }
+          issue_url: `${issueBase}/${number}`
+        }))
       ]),
       { status: 200 }
     );
   }
 
-  if (url.endsWith("/issues/123")) {
+  const issueNumber = Number(url.slice(url.lastIndexOf("/") + 1));
+  if (
+    [101, 102, 103, 104, 123].includes(issueNumber)
+    && url === `${issueBase}/${issueNumber}`
+  ) {
     return new Response(
       JSON.stringify({
-        number: 123,
-        title: "Add JavaScript tests",
-        body: "Improve test coverage.",
-        state: "open",
-        labels: [{ name: "level: second-pr" }]
+        number: issueNumber,
+        title: issueNumber === 104 ? "Write a documentation guide" : "Add JavaScript tests",
+        body: null,
+        state: issueNumber === 101 ? "closed" : "open",
+        labels: issueNumber === 103 ? [] : [{ name: "level: second-pr" }],
+        ...(issueNumber === 102 ? { pull_request: {} } : {})
       }),
       { status: 200 }
     );
@@ -105,12 +122,33 @@ console.log = (...args: unknown[]) => {
 try {
   await mentor("javascript");
 
-  assert.ok(output.some((line) => line.includes("@test-mentor")));
-  assert.ok(output.some((line) => line.includes("Write focused JavaScript tests.")));
+  assert.deepEqual(output, [
+    "Mentor suggestion\n",
+    "Skill: javascript",
+    "Mentor: @test-mentor",
+    "Tip: Write focused JavaScript tests."
+  ]);
+  assert.deepEqual(requestedUrls, [
+    commentsUrl,
+    `${issueBase}/101`,
+    `${issueBase}/102`,
+    `${issueBase}/103`,
+    `${issueBase}/104`,
+    `${issueBase}/123`
+  ], "skip bots, deduplicate issues, and stop fetching after the first eligible match");
+
+  // No match must reject without printing a misleading success suggestion.
+  output.length = 0;
+  globalThis.fetch = async (input) => {
+    assert.equal(String(input), commentsUrl);
+    return new Response("[]", { status: 200 });
+  };
+  await assert.rejects(mentor("python"), {
+    message: "No recent mentor match found for skill: python"
+  });
+  assert.deepEqual(output, []);
 } finally {
   globalThis.fetch = originalFetch;
   console.log = originalLog;
 }
-
-
 console.log("Mentor tests passed.");
