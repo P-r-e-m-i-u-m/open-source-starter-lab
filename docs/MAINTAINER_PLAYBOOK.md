@@ -24,13 +24,28 @@ Before marking an issue as ready for contributors, ensure it includes the follow
   - [ ] A relevant `skill: ...` label (e.g., `skill: docs` for documentation tasks)
   ### From Discussion to Ready Issue
 
-When a useful Discussion comment needs follow-up work:
+When a useful Discussion comment needs follow-up work, copy this context first:
 
-1. Copy the original Discussion link and the useful problem context.
-2. Summarize the desired outcome and include relevant evidence.
-3. Turn the idea into one focused goal with clear acceptance criteria.
-4. Add `needs triage` if the scope still needs maintainer review.
-5. Add the relevant skill label, then verify the issue is small enough to finish.
+- **Source link:** Link to the original Discussion.
+- **Problem statement:** Summarize the problem, bug, or feature request.
+- **Relevant context:** Include environment details or contributor constraints.
+- **Desired outcome:** Describe what a successful result looks like.
+- **Evidence:** Include useful logs, code snippets, screenshots, or examples.
+- **Next step:** List the actions needed to resolve the issue.
+
+Then shape the context into one small issue:
+
+1. State one focused goal and the acceptance criteria that prove it is done.
+2. Name the file or folder to inspect first. If the exact file is uncertain,
+   name the most relevant area.
+3. Add a realistic `time: 15 min`, `time: 30 min`, or `time: 1 hour` label.
+4. Add a contributor level such as `level: first-pr`, `level: second-pr`, or
+   `level: trust-builder`.
+5. Add `needs triage` if the scope still needs maintainer review.
+6. Add one skill label: `skill: docs`, `skill: testing`, `skill: python`,
+   `skill: git`, `skill: html-css`, or `skill: javascript`.
+7. Add helpful notes: where to start, what not to change, and what proof the PR
+   should include.
 
 Before publishing, use the Ready-Issue Checklist above.
 
