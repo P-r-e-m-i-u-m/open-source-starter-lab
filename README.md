@@ -287,6 +287,7 @@ For a full launch plan with LinkedIn, X, Reddit, DEV, Hashnode, GitHub Community
 
 ```text
 .
+|-- hindi-text-classifier/ Hindi Text Classifier (AI Everywhere)
 |-- src/                  TypeScript CLI source
 |-- tests/                Smoke tests
 |-- docs/                 Beginner guides and maintainer playbooks

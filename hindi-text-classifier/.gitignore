@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+*.joblib
+*.pkl
+venv/
+.env
+data/test_split.csv
+
