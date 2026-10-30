@@ -590,6 +590,12 @@ Keep your entry short and professional.
 - I worked on: fix(site): show empty state when feed contains only pull requests
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @JorgeDev10
+
+- First merged PR: #562
+- I worked on: Add my contributor card
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
