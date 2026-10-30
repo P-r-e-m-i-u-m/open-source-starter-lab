@@ -12,7 +12,7 @@ When your PR is ready, we'll use the **"Squash and merge"** button.
 - How clean your commit messages are
 - Force-pushing or fixing typos
 
-We only care about the final PR. For a detailed explanation, see [Merge Strategy](docs/MERGE_STRATEGY.md).
+We only care about the final PR. For a detailed explanation, see [Merge Strategy](MERGE_STRATEGY.md).
 
 
-For commit message conventions, see [Commit Message Guide](docs/COMMIT_MESSAGE_GUIDE.md).
+For commit message conventions, see [Commit Message Guide](COMMIT_MESSAGE_GUIDE.md).
