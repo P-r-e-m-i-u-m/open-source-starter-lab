@@ -1,0 +1,2 @@
+-Primera contribucion: añadi mi contributor card
+-Estoy practicando open source
