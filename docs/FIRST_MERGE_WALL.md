@@ -596,6 +596,12 @@ Keep your entry short and professional.
 - I worked on: Add my contributor card
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @Himanshu024-boop
+
+- First merged PR: #558
+- I worked on: Hello!
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
