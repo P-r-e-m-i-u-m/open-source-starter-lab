@@ -620,6 +620,12 @@ Keep your entry short and professional.
 - I worked on: docs: add TLetseka contributor profile
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @07-Vignesh
+
+- First merged PR: #574
+- I worked on:    test: expand issueIdeas coverage and register it in npm test
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
