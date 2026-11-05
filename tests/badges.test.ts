@@ -61,8 +61,9 @@ assert.deepEqual(
 assert.deepEqual(
   runBadgeTest({ pullRequests: 5, docsPullRequests: 0 }),
   [
-    "Badges earned (1/3):",
+    "Badges earned (2/3):",
     "- First PR: Opened your first pull request.",
+    "- Five PRs: Opened five pull requests.",
   ]
 );
 
@@ -79,8 +80,9 @@ assert.deepEqual(
 assert.deepEqual(
   runBadgeTest({ pullRequests: 100, docsPullRequests: 100 }),
   [
-    "Badges earned (2/3):",
+    "Badges earned (3/3):",
     "- First PR: Opened your first pull request.",
+    "- Five PRs: Opened five pull requests.",
     "- Docs Contributor: Improved the documentation with a pull request.",
   ]
 );
