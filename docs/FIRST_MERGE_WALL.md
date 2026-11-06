@@ -632,6 +632,12 @@ Keep your entry short and professional.
 - I worked on: added test case for badeges file
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @cccampb2
+
+- First merged PR: #579
+- I worked on: test: consolidate issue idea validation loops
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
