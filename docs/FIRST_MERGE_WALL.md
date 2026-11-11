@@ -638,6 +638,12 @@ Keep your entry short and professional.
 - I worked on: test: consolidate issue idea validation loops
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @dbdefault
+
+- First merged PR: #589
+- I worked on: docs: add contributor card for dbdefault (#364)
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
