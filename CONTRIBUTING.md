@@ -1,6 +1,6 @@
 - [Lakshya Saxena , Himanshu Yadav]
 How to add yourself as a contributor
-- Use the contributor card template in contributors/README.md for your public contributor entry.
+- Use the [contributor card template](contributors/README.md) for your public contributor entry.
 - Keep cards short and professional and do not include private contact details (phone number, home address, personal email).
 
 ## Adding a new test to the test suite
