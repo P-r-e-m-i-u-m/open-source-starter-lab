@@ -644,6 +644,12 @@ Keep your entry short and professional.
 - I worked on: docs: add contributor card for dbdefault (#364)
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @Joycelyn-0709
+
+- First merged PR: #593
+- I worked on: docs: improve contributor card example
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
