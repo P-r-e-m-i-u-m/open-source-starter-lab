@@ -1,5 +1,7 @@
 ### How to Add Yourself as a Contributor
 
+Contributors: Lakshya Saxena, Himanshu Yadav
+
 Want to introduce yourself to the community? You can add a short contributor card!
 
 1. Open the [Contributor Card Template](contributors/README.md).
