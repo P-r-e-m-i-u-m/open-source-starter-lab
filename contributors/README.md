@@ -1,20 +1,18 @@
-
 # Contributors
 
-Add a small profile card here if you make a contribution.
+Thank you for contributing to this project! You can add a short profile card to introduce yourself.
 
-Use `contributors/your-github-username.md`.
+Create your card at `contributors/your-github-username.md` using this template:
 
-## Contributor Card Example
+## Contributor Card (Example)
 
-Name: Jane Doe
-Role: Documentation volunteer
-GitHub: [@janedoe](https://github.com/janedoe)
-Pronouns: she/her (optional)
-Bio: Frontend engineer focused on docs and accessibility.
-Areas: docs, testing
-Contact: View my GitHub profile for contact.
+**Name:** Jane Doe  
+**Role:** Documentation Volunteer  
+**GitHub:** [@janedoe](https://github.com/janedoe)  
+**Pronouns:** She/Her (Optional)  
+**Bio:** Frontend developer interested in documentation and accessibility.  
+**Areas:** Documentation, Testing  
 
-Notes:
-- Keep this short (1–2 lines for bio).
-- Do not include private phone numbers, home addresses, or personal email addresses.
+**Note:** Keep your bio short (1–2 lines). Do not share private contact details such as personal phone numbers, home addresses, or personal email addresses.
+
+You can customize the fields to introduce yourself while keeping your card simple and professional.

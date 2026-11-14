@@ -1,7 +1,15 @@
-- [Lakshya Saxena , Himanshu Yadav]
-How to add yourself as a contributor
-- Use the [contributor card template](contributors/README.md) for your public contributor entry.
-- Keep cards short and professional and do not include private contact details (phone number, home address, personal email).
+### How to Add Yourself as a Contributor
+
+Contributors: Lakshya Saxena, Himanshu Yadav
+
+Want to introduce yourself to the community? You can add a short contributor card!
+
+1. Open the [Contributor Card Template](contributors/README.md).
+2. Create a new file at `contributors/your-github-username.md`.
+3. Use the template to add your name, role, GitHub profile, short bio, and areas of interest.
+4. Keep your card short and professional.
+
+**Privacy reminder:** Do not include private contact details such as personal phone numbers, home addresses, or personal email addresses.
 
 ## Adding a new test to the test suite
 
