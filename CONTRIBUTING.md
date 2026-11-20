@@ -4,7 +4,8 @@ Contributors: Lakshya Saxena, Himanshu Yadav
 
 Want to introduce yourself to the community? You can add a short contributor card!
 
-1. Open the [Contributor Card Template](contributors/README.md).
+1. Read the [Contributor Card Instructions](contributors/README.md)
+   and review the example template.
 2. Create a new file at `contributors/your-github-username.md`.
 3. Use the template to add your name, role, GitHub profile, short bio, and areas of interest.
 4. Keep your card short and professional.
