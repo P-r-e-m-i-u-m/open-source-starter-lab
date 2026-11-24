@@ -668,6 +668,12 @@ Keep your entry short and professional.
 - I worked on: docs: improve contributor card instructions
 - I learned: how a focused pull request becomes a visible open-source contribution
 
+### @dhruvatr
+
+- First merged PR: #619
+- I worked on: Fix punctuation and spacing in first contribution message
+- I learned: how a focused pull request becomes a visible open-source contribution
+
 ## Why This Exists
 
 Open source can feel invisible when you are starting out. This page gives new contributors a simple record of their first merge and shows future visitors that real beginners are welcome here.
