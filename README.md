@@ -348,4 +348,4 @@ Be clear, kind, and useful. Short answers are fine when they solve the problem, 
 MIT
 ## My First Contribution
 
-Hello ,this is my first open source contribution.
+Hello, this is my first open-source contribution.
