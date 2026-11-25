@@ -3,8 +3,8 @@ import { findRepoIssueIdeas } from "./findRepoIssueIdeas.js";
 import { type DailyIssue } from "../src/dailyIssueBacklog.js";
 import {
   chooseIssueCandidates,
-  chooseIssues,
   issueAlreadyExists,
+  previewDailyIssues,
   selectFreshDailyIssues
 } from "../src/dailyIssueSelection.js";
 import { scoreDailyIssue } from "../src/issueQuality.js";
@@ -270,10 +270,12 @@ async function closeResolvedDailyIssues(
 async function main(): Promise<void> {
   const dryRun = hasFlag("--dry-run");
   const issueCount = getIssueCount();
-  const issues = chooseIssues(issueCount);
 
   if (dryRun) {
+    const issues = previewDailyIssues(issueCount);
+
     console.log(`Daily issue dry-run: ${issues.length} curated issue(s)`);
+    console.log("Open issues are not checked in dry-run, so a live run may skip titles that are already open.");
 
     for (const [index, issue] of issues.entries()) {
       const quality = scoreDailyIssue(issue);
