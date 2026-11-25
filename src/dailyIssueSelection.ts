@@ -73,3 +73,13 @@ export function selectFreshDailyIssues(
 
   return { fresh, duplicates };
 }
+
+/**
+ * Previews the curated issues a live run would create today.
+ *
+ * Uses the same rotation and selection as the live bot, but without the open
+ * issues from GitHub, so it can run offline (for example with `--dry-run`).
+ */
+export function previewDailyIssues(count: number, date = new Date()): DailyIssue[] {
+  return selectFreshDailyIssues(chooseIssueCandidates(date), [], count).fresh;
+}
