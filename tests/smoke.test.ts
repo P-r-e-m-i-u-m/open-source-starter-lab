@@ -4,7 +4,7 @@ import path from "node:path";
 import { buildChecklist } from "../src/checklist.js";
 import { issueIdeas } from "../src/issueIdeas.js";
 import { dailyIssueBacklog } from "../src/dailyIssueBacklog.js";
-import { chooseIssueCandidates, selectFreshDailyIssues, type ExistingIssue } from "../src/dailyIssueSelection.js";
+import { chooseIssueCandidates, previewDailyIssues, selectFreshDailyIssues, type ExistingIssue } from "../src/dailyIssueSelection.js";
 import { scoreDailyIssue } from "../src/issueQuality.js";
 import { getProgressionStep, listProgressionSteps, normalizeContributorLevel } from "../src/progressionPath.js";
 import { welcome } from "../src/plugins/welcome.js";
@@ -209,6 +209,33 @@ const dailyIssueDryRun = execFileSync("node", [path.resolve("dist/scripts/create
 
 assert.ok(dailyIssueDryRun.includes("Daily issue dry-run: 5 curated issue(s)"));
 assert.equal((dailyIssueDryRun.match(/^## \d+\./gm) ?? []).length, 5);
+
+// The dry-run must preview the issues a live run would pick today, with labels.
+const dryRunTitles = [...dailyIssueDryRun.matchAll(/^## \d+\. (.+)$/gm)].map((match) => match[1]);
+const expectedPreview = previewDailyIssues(5);
+assert.deepEqual(dryRunTitles, expectedPreview.map((issue) => issue.title));
+for (const issue of expectedPreview) {
+  assert.ok(dailyIssueDryRun.includes(`Labels: ${issue.labels.join(", ")}`));
+}
+
+// The dry-run must not call the GitHub API, even when credentials are present.
+// fetch is replaced with a function that throws, so any API call fails the run.
+const offlineDryRun = execFileSync(
+  "node",
+  [
+    "--import",
+    "data:text/javascript,globalThis.fetch=()=>{throw new Error('fetch called in dry-run')}",
+    path.resolve("dist/scripts/createDailyIssue.js"),
+    "--dry-run",
+    "--count",
+    "2"
+  ],
+  {
+    encoding: "utf8",
+    env: { ...process.env, GITHUB_REPOSITORY: "example/repo", GITHUB_TOKEN: "dry-run-token" }
+  }
+);
+assert.ok(offlineDryRun.includes("Daily issue dry-run: 2 curated issue(s)"));
 
 // Daily issue duplicate handling tests protect backlog selection from creating duplicate issues
 // without making live GitHub API calls.
