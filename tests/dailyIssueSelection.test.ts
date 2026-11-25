@@ -4,6 +4,7 @@ import {
   chooseIssues,
   chooseIssueCandidates,
   issueAlreadyExists,
+  previewDailyIssues,
   selectFreshDailyIssues,
   type ExistingIssue
 } from "../src/dailyIssueSelection.js";
@@ -115,5 +116,17 @@ const everythingOpen = selectFreshDailyIssues(
 
 assert.equal(everythingOpen.fresh.length, 0);
 assert.equal(everythingOpen.duplicates.length, candidates.length);
+
+// previewDailyIssues (used by --dry-run) should show the same issues a live
+// run would create when nothing is open yet, not the older chooseIssues order.
+const previewDate = new Date("2026-01-03T00:00:00Z");
+const preview = previewDailyIssues(5, previewDate);
+
+assert.equal(preview.length, 5);
+assert.deepEqual(
+  preview,
+  selectFreshDailyIssues(chooseIssueCandidates(previewDate), [], 5).fresh
+);
+assert.deepEqual(preview, dailyIssueBacklog.slice(2, 7));
 
 console.log("Daily issue selection tests passed.");
