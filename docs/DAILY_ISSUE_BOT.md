@@ -30,7 +30,9 @@ Maintainers can run it from GitHub:
 2. Select `Daily Issue Bot`.
 3. Click `Run workflow`.
 
-Local dry run — pass `--dry-run` to print each candidate issue's title, labels, quality score, and full formatted body without creating anything or calling the GitHub API. No `GITHUB_TOKEN` is required:
+Local dry run — pass `--dry-run` to print each candidate issue's title, labels, quality score, and full formatted body without creating anything or calling the GitHub API. No `GITHUB_TOKEN` is required.
+
+The dry run uses the same backlog rotation as a live run, so it shows the issues the bot would create today if none of them were already open. Because it does not read open issues from GitHub, a live run may skip a previewed title that is already open and pick the next backlog item instead:
 
 ```bash
 npm run build
