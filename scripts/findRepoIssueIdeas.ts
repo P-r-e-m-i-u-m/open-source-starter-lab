@@ -16,25 +16,33 @@ function markdownScanDirs(root: string): string[] {
   return [join(root, "docs/recipes")];
 }
 
-function walk(dir: string): string[] {
+function isSourceFile(name: string): boolean {
+  return name.endsWith(".ts") && !name.endsWith(".test.ts");
+}
+
+function isTestFile(name: string): boolean {
+  return name.endsWith(".ts");
+}
+
+function walk(dir: string, include: (name: string) => boolean): string[] {
   let files: string[] = [];
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry);
     const stat = statSync(full);
     if (stat.isDirectory()) {
-      files = files.concat(walk(full));
-    } else if (entry.endsWith(".ts") && !entry.endsWith(".test.ts")) {
+      files = files.concat(walk(full, include));
+    } else if (include(entry)) {
       files.push(full);
     }
   }
   return files;
 }
 
-function safeWalk(dirs: string[]): string[] {
+function safeWalk(dirs: string[], include: (name: string) => boolean = isSourceFile): string[] {
   let files: string[] = [];
   for (const dir of dirs) {
     try {
-      files = files.concat(walk(dir));
+      files = files.concat(walk(dir, include));
     } catch {
       // dir doesn't exist, skip it
     }
@@ -86,7 +94,7 @@ function findTodoIssues(existingTitles: string[], root: string): DailyIssue[] {
 
 function findUntestedFiles(existingTitles: string[], root: string): DailyIssue[] {
   const found: DailyIssue[] = [];
-  const testContent = safeWalk(testDirs(root))
+  const testContent = safeWalk(testDirs(root), isTestFile)
     .map((f) => readFileSync(f, "utf-8"))
     .join("\n");
 
