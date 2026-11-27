@@ -19,7 +19,15 @@ writeFileSync(
   join(root, "src", "untested.ts"),
   "export function untested() { return 1; }\n"
 );
+writeFileSync(
+  join(root, "src", "covered.ts"),
+  "export function covered() { return 2; }\n"
+);
 writeFileSync(join(root, "tests", "smoke.test.ts"), "// no coverage here\n");
+writeFileSync(
+  join(root, "tests", "covered.test.ts"),
+  'import { covered } from "../src/covered.js";\n'
+);
 writeFileSync(
   join(root, "docs/recipes", "sample-recipe.md"),
   "# Recipe: Sample Recipe\n\n<!-- TODO: explain the sample recipe -->\n"
@@ -49,6 +57,17 @@ for (const issue of issues) {
   assert.ok(Array.isArray(issue.acceptanceCriteria));
   assert.ok(issue.acceptanceCriteria.length > 0);
 }
+
+const titles = issues.map((issue) => issue.title);
+
+assert.ok(
+  titles.includes("Give src/untested.ts some real test coverage"),
+  "A file no test mentions should be reported as untested"
+);
+assert.ok(
+  !titles.includes("Give src/covered.ts some real test coverage"),
+  "A file with a matching test should not be reported as untested"
+);
 
 const existingTitles = issues.flatMap((issue) => issue.suggestedFiles);
 const filteredIssues = findRepoIssueIdeas(existingTitles, root);
