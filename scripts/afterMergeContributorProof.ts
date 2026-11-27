@@ -1,3 +1,5 @@
+import { fileURLToPath } from "node:url";
+
 const apiBase = "https://api.github.com";
 const firstMergeWallPath = "docs/FIRST_MERGE_WALL.md";
 const passportDirectory = "contributors/passports";
@@ -7,7 +9,7 @@ interface GitHubUser {
   type: string;
 }
 
-interface GitHubPullRequest {
+export interface GitHubPullRequest {
   number: number;
   title: string;
   body: string | null;
@@ -215,6 +217,25 @@ function countContributionRows(passport: string): number {
     .length;
 }
 
+// Markdown ends a table at the first blank line, so the new row goes directly
+// under the last one, and blank lines left between earlier rows are dropped.
+function addContributionRow(passport: string, contributionLine: string): string {
+  const lines = passport.split("\n");
+  const rowIndexes = lines.flatMap((line, index) => (/^\| #\d+ \|/.test(line.trim()) ? [index] : []));
+
+  if (rowIndexes.length === 0) {
+    return passport.includes("## Suggested Next Step")
+      ? passport.replace("## Suggested Next Step", `${contributionLine}\n\n## Suggested Next Step`)
+      : `${passport.trimEnd()}\n\n${contributionLine}\n`;
+  }
+
+  const firstRow = rowIndexes[0];
+  const lastRow = rowIndexes[rowIndexes.length - 1];
+  const rows = lines.slice(firstRow, lastRow + 1).filter((line) => line.trim() !== "");
+
+  return [...lines.slice(0, firstRow), ...rows, contributionLine, ...lines.slice(lastRow + 1)].join("\n");
+}
+
 function resolveTrustLevel(contributionCount: number, skill: string, title: string): { level: number; name: string } {
   const trustSignal = /\b(help|discussion|answer|community|queue|triage|issue quality|passport|mentor)\b/i.test(
     `${skill} ${title}`
@@ -274,7 +295,7 @@ async function ensureWallEntry(contributor: string, pr: GitHubPullRequest): Prom
   return true;
 }
 
-async function ensureContributorPassport(
+export async function ensureContributorPassport(
   contributor: string,
   pr: GitHubPullRequest,
   skill: string,
@@ -335,11 +356,10 @@ async function ensureContributorPassport(
 
   const contributionCount = countContributionRows(existing) + 1;
   const level = resolveTrustLevel(contributionCount, skill, pr.title);
+  const withRow = addContributionRow(existing, contributionLine);
   const withContribution = existing.includes("## Suggested Next Step")
-    ? existing
-        .replace("## Suggested Next Step", `${contributionLine}\n\n## Suggested Next Step`)
-        .replace(/- .+\n(?=\n## Share Line)/, `- ${formatNextIssueLine(nextIssues)}\n`)
-    : `${existing.trimEnd()}\n\n${contributionLine}\n`;
+    ? withRow.replace(/- .+\n(?=\n## Share Line)/, `- ${formatNextIssueLine(nextIssues)}\n`)
+    : withRow;
   const updated = updatePassportLevel(withContribution, level, pr, skill);
 
   await writeFile(path, updated, "utf8");
@@ -608,7 +628,9 @@ async function main(): Promise<void> {
   console.log(`Thanked @${plan.contributor} on #${plan.pullRequestNumber}.`);
 }
 
-main().catch((error: unknown) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exit(1);
-});
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main().catch((error: unknown) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exit(1);
+  });
+}
