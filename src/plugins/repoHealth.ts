@@ -2,7 +2,10 @@ import { execSync } from "child_process";
 
 function getOpenIssueCount(): number {
   try {
-    const result = execSync("git ls-remote --heads origin", { encoding: "utf-8" });
+    const result = execSync("git ls-remote --heads origin", {
+      encoding: "utf-8",
+      stdio: ["ignore", "pipe", "ignore"]
+    });
     // In a real scenario, this would query a Git provider API or a local issue tracker.
     // For this starter lab, we simulate a health check component.
     // Note: A robust implementation would depend on the specific hosting provider's API.
